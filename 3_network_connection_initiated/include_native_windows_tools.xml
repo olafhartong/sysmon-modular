@@ -1,0 +1,53 @@
+<Sysmon schemaversion="3.4">
+   <!-- Capture all hashes -->
+   <HashAlgorithms>*</HashAlgorithms>
+   <EventFiltering>
+      <!-- Event ID 1 == Process Creation. -->
+      <ProcessCreate onmatch="include"/>
+      <!-- Event ID 2 == File Creation Time. -->
+      <FileCreateTime onmatch="include"/>
+      <!-- Event ID 3 == Network Connection. -->
+      <NetworkConnect onmatch="include">
+			<!--Native Windows tools - Living off the land-->
+			<Image condition="image">at.exe</Image> <!--Microsoft:Windows: Remote task scheduling | Credit @ion-storm -->
+			<Image condition="image">certutil.exe</Image> <!--Microsoft:Windows: Certificate tool can contact outbound | Credit @ion-storm and @FVT [ https://twitter.com/FVT/status/834433734602530817 ] -->
+			<Image condition="image">cmd.exe</Image> <!--Microsoft:Windows: Command prompt-->
+			<Image condition="image">cscript.exe</Image> <!--Microsoft:WindowsScriptingHost: | Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
+			<Image condition="image">java.exe</Image> <!--Java: Monitor usage of vulnerable application | Credit @ion-storm -->
+			<Image condition="image">mshta.exe</Image> <!--Microsoft:Windows: HTML application executes scripts without IE protections | Credit @ion-storm [ https://en.wikipedia.org/wiki/HTML_Application ] -->
+			<Image condition="image">msiexec.exe</Image> <!--Microsoft:Windows: Can install from http:// paths | Credit @vector-sec -->
+			<Image condition="image">net.exe</Image> <!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
+			<Image condition="image">notepad.exe</Image> <!--Microsoft:Windows: [ https://blog.cobaltstrike.com/2013/08/08/why-is-notepad-exe-connecting-to-the-internet/ ] -->
+			<Image condition="image">powershell.exe</Image> <!--Microsoft:Windows: PowerShell interface-->
+			<Image condition="image">qwinsta.exe</Image> <!--Microsoft:Windows: Remotely query login sessions on a server or workstation | Credit @ion-storm -->
+			<Image condition="image">reg.exe</Image> <!--Microsoft:Windows: Remote Registry | Credit @ion-storm -->
+			<Image condition="image">regsvr32.exe</Image> <!--Mitre T1117--><!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
+			<Image condition="image">rundll32.exe</Image> <!--Microsoft:Windows: [ https://blog.cobaltstrike.com/2016/07/22/why-is-rundll32-exe-connecting-to-the-internet/ ] -->
+			<Image condition="image">sc.exe</Image> <!--Microsoft:Windows: Remotely change Windows service settings from command line | Credit @ion-storm -->
+			<Image condition="image">wmic.exe</Image> <!--Microsoft:WindowsManagementInstrumentation: Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
+			<Image condition="image">wscript.exe</Image> <!--Microsoft:WindowsScriptingHost: | Credit @arekfurt -->
+	  </NetworkConnect>	
+      <!-- Event ID 5 == Process Terminated. -->
+      <ProcessTerminate onmatch="include"/>
+      <!-- Event ID 6 == Driver Loaded. -->
+      <DriverLoad onmatch="include"/>
+      <!-- Event ID 7 == Image Loaded. -->
+      <ImageLoad onmatch="include"/>  
+      <!-- Event ID 8 == CreateRemoteThread. -->
+      <CreateRemoteThread onmatch="include"/>
+      <!-- Event ID 9 == RawAccessRead. -->
+      <RawAccessRead onmatch="include"/>
+      <!-- Event ID 10 == ProcessAccess. -->
+      <ProcessAccess onmatch="include"/>
+      <!-- Event ID 11 == FileCreate. -->
+      <FileCreate onmatch="include"/>
+      <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
+      <RegistryEvent onmatch="include"/>
+      <!-- Event ID 15 == FileStream Created. -->
+      <FileCreateStreamHash onmatch="include"/>
+      <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
+      <PipeEvent onmatch="include"/>
+      <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
+      <WmiEvent onmatch="include"/>
+  </EventFiltering>
+</Sysmon>
