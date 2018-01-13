@@ -6,8 +6,10 @@ Note:
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
 
 Big credit goes out to SwiftOnSecurity for laying a great foundation and making this repo possible!
-**[sysmonconfig-export.xml](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**
+**[sysmonconfig-export.xml](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
+
 Equally a huge shoutout to **[Roberto Rodriguez](https://twitter.com/cyb3rward0g)** for his amazing work on the **[ThreatHunter-Playbook](https://github.com/Cyb3rWard0g/ThreatHunter-Playbook.git)** and his contribution to the community on his **[blog](https://cyberwardog.blogspot.nl)**.
+
 Final thanks to **[Matt Graeber](https://twitter.com/mattifestation)** for his PowerShell Modules, without them, this project would not have worked as well.
 
 Pull requests / issue tickets and new additions will be greatly appreciated!
@@ -32,13 +34,13 @@ Optionally you can omit the comments from the merged config with the “-Exclude
 ### Install ###
 Run with administrator rights
 ~~~~
-sysmon.exe -accepteula -i sysmonconfig.xml
+'sysmon.exe -accepteula -i sysmonconfig.xml'
 ~~~~
 
 ### Update existing configuration ###
 Run with administrator rights
 ~~~~
-sysmon.exe -c sysmonconfig.xml
+'sysmon.exe -c sysmonconfig.xml'
 ~~~~
 
 
