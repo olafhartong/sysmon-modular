@@ -26,10 +26,7 @@
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include"/>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
-      <RegistryEvent onmatch="include">
-          <TargetObject condition="contains">\mscfile\shell\open\command\</TargetObject> <!--Mitre T1088-->
-		  <TargetObject condition="contains">ms-settings\shell\open\command</TargetObject> <!--Mitre T1088-->
-      </RegistryEvent>
+      <RegistryEvent onmatch="include"/>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include" />
       <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
