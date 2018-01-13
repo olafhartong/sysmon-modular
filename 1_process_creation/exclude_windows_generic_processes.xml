@@ -1,0 +1,51 @@
+<Sysmon schemaversion="3.4">
+   <!-- Capture all hashes -->
+   <HashAlgorithms>*</HashAlgorithms>
+   <EventFiltering>
+      <!-- Event ID 1 == Process Creation. -->
+      <ProcessCreate onmatch="exclude">
+			<!--SECTION: Generic Microsoft Windows Processes-->
+			<CommandLine condition="begin with">C:\Windows\system32\DllHost.exe /Processid</CommandLine> <!--Microsoft:Windows-->
+			<CommandLine condition="is">C:\Windows\system32\SearchIndexer.exe /Embedding</CommandLine> <!--Microsoft:Windows: Search Indexer-->
+			<Image condition="end with">C:\Windows\System32\CompatTelRunner.exe</Image> <!--Microsoft:Windows:Customer Experience Improvement-->
+			<Image condition="is">C:\Windows\System32\MusNotification.exe</Image> <!--Microsoft:Windows: Update popups-->
+			<Image condition="is">C:\Windows\System32\MusNotificationUx.exe</Image> <!--Microsoft:Windows: Update popups-->
+			<Image condition="is">C:\Windows\System32\audiodg.exe</Image> <!--Microsoft:Windows: Launched constantly-->
+			<Image condition="is">C:\Windows\System32\conhost.exe</Image> <!--Microsoft:Windows: Command line interface host process-->
+			<Image condition="is">C:\Windows\System32\powercfg.exe</Image> <!--Microsoft:Power configuration management-->
+			<Image condition="is">C:\Windows\System32\wbem\WmiApSrv.exe</Image> <!--Microsoft:Windows: WMI performance adpater host process-->
+			<Image condition="is">C:\Windows\System32\wermgr.exe</Image> <!--Microsoft:Windows:Windows error reporting/telemetry-->
+			<Image condition="is">C:\Windows\SysWOW64\wermgr.exe</Image> <!--Microsoft:Windows:Windows error reporting/telemetry-->
+			<Image condition="is">C:\Windows\system32\sppsvc.exe</Image> <!--Microsoft:Windows: Software Protection Service-->
+			<IntegrityLevel condition="is">AppContainer</IntegrityLevel> <!--Microsoft:Windows: Don't care about sandboxed processes-->
+			<ParentCommandLine condition="begin with">%%SystemRoot%%\system32\csrss.exe ObjectDirectory=\Windows</ParentCommandLine> <!--Microsoft:Windows:CommandShell: Triggered when programs use the command shell, but without attribution-->
+			<ParentImage condition="is">C:\Windows\system32\SearchIndexer.exe</ParentImage> <!--Microsoft:Windows:Search: Launches many uninteresting sub-processes-->
+			</ProcessCreate>
+      <!-- Event ID 2 == File Creation Time. -->
+      <FileCreateTime onmatch="include"/>
+      <!-- Event ID 3 == Network Connection. -->
+      <NetworkConnect onmatch="include"/>
+      <!-- Event ID 5 == Process Terminated. -->
+      <ProcessTerminate onmatch="include"/>
+      <!-- Event ID 6 == Driver Loaded. -->
+      <DriverLoad onmatch="include"/>
+      <!-- Event ID 7 == Image Loaded. -->
+      <ImageLoad onmatch="include"/>  
+      <!-- Event ID 8 == CreateRemoteThread. -->
+      <CreateRemoteThread onmatch="include"/>
+      <!-- Event ID 9 == RawAccessRead. -->
+      <RawAccessRead onmatch="include"/>
+      <!-- Event ID 10 == ProcessAccess. -->
+      <ProcessAccess onmatch="include"/>
+      <!-- Event ID 11 == FileCreate. -->
+      <FileCreate onmatch="include"/>
+      <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
+      <RegistryEvent onmatch="include"/>
+      <!-- Event ID 15 == FileStream Created. -->
+      <FileCreateStreamHash onmatch="include"/>
+      <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
+      <PipeEvent onmatch="include"/>
+      <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
+      <WmiEvent onmatch="include"/>
+  </EventFiltering>
+</Sysmon>

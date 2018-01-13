@@ -1,0 +1,60 @@
+<Sysmon schemaversion="3.4">
+   <!-- Capture all hashes -->
+   <HashAlgorithms>*</HashAlgorithms>
+   <EventFiltering>
+      <!-- Event ID 1 == Process Creation. -->
+      <ProcessCreate onmatch="include">
+	  		<!--Native Windows tools - Living off the land-->
+			<Image condition="end with">whoami.exe</Image> <!--Microsoft:Windows: shows current user -->
+			<Image condition="end with">ipconfig.exe</Image> <!--Microsoft:Windows: shows ip configuration -->
+			<Image condition="end with">tasklist.exe</Image> <!--Microsoft:Windows: shows current running processes-->
+			<Image condition="end with">sysinfo.exe</Image> <!--Microsoft:Windows: shows systeminformation -->
+			<Image condition="end with">netstat.exe</Image> <!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
+			<Image condition="end with">qprocess.exe</Image> <!--Microsoft:Windows: shows information about processes -->
+			<Image condition="end with">nslookup.exe</Image> <!--Microsoft:Windows: shows DNS configuration and enables quering -->
+			<Image condition="end with">quser.exe</Image> <!--Microsoft:Windows: shows logged-on users -->
+			<Image condition="end with">query.exe</Image> <!--Microsoft:Windows: shows information about processes -->
+			<Image condition="end with">tracert.exe</Image> <!--Microsoft:Windows: shows routing information -->
+			<Image condition="end with">tree.com</Image> <!--Microsoft:Windows: shows recursive directory listing -->
+			<Image condition="end with">route.exe</Image> <!--Microsoft:Windows: manipulates network routing tables -->
+			<Image condition="end with">runas.exe</Image> <!--Microsoft:Windows: run a process as another user -->
+			<Image condition="end with">reg.exe</Image> <!--Microsoft:Windows: reads and modifies the Windows register -->
+			<Image condition="end with">taskkill.exe</Image> <!--Microsoft:Windows: stops processes -->
+			<Image condition="end with">netsh.exe</Image> <!--Microsoft:Windows: manipulate the firewall -->
+			<Image condition="end with">klist.exe</Image> <!--Microsoft:Windows: show cached kerberos tickets -->
+			<Image condition="end with">wevtutil.exe</Image>  <!--Mitre T1070--><!--Microsoft:Windows: read and modify the Windows Eventlog -->
+			<CommandLine condition="contains">wevtutil cl</CommandLine>  <!--Mitre T1070-->
+			<Image condition="end with">regsvr32.exe</Image> <!--Mitre T1117--><!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
+			<ParentImage condition="end with">wmiprvse.exe</ParentImage>
+            <Image condition="end with">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
+			<Image condition="end with">bash.exe</Image> <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
+			<Image condition="end with">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
+		</ProcessCreate>	
+      <!-- Event ID 2 == File Creation Time. -->
+      <FileCreateTime onmatch="include"/>
+      <!-- Event ID 3 == Network Connection. -->
+      <NetworkConnect onmatch="include"/>
+      <!-- Event ID 5 == Process Terminated. -->
+      <ProcessTerminate onmatch="include"/>
+      <!-- Event ID 6 == Driver Loaded. -->
+      <DriverLoad onmatch="include"/>
+      <!-- Event ID 7 == Image Loaded. -->
+      <ImageLoad onmatch="include"/>  
+      <!-- Event ID 8 == CreateRemoteThread. -->
+      <CreateRemoteThread onmatch="include"/>
+      <!-- Event ID 9 == RawAccessRead. -->
+      <RawAccessRead onmatch="include"/>
+      <!-- Event ID 10 == ProcessAccess. -->
+      <ProcessAccess onmatch="include"/>
+      <!-- Event ID 11 == FileCreate. -->
+      <FileCreate onmatch="include"/>
+      <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
+      <RegistryEvent onmatch="include"/>
+      <!-- Event ID 15 == FileStream Created. -->
+      <FileCreateStreamHash onmatch="include"/>
+      <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
+      <PipeEvent onmatch="include"/>
+      <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
+      <WmiEvent onmatch="include"/>
+  </EventFiltering>
+</Sysmon>
