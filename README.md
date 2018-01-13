@@ -43,7 +43,9 @@ Run with administrator rights
 'sysmon.exe -c sysmonconfig.xml'
 ~~~~
 
-
-
+### Todo ###
+- Link more indicators to Mitre ATT&CK techniques.
+- Add / Improve comments
+- Extend, extend, extend.
 
 
