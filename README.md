@@ -20,27 +20,40 @@ I highly recommend looking at the configs before implementing them in your produ
 ### Prerequisites ###
 Install the PowerShell modules from **[PSSysmonTools](https://github.com/mattifestation/PSSysmonTools)**
 
+~~~~
+git clone https://github.com/mattifestation/PSSysmonTools.git
+cd PSSysmonTools
+Import-Module .\PSSysmonTools.psm1 
+~~~~
+
 ### Customization ###
 You will need to install and observe the results of the configuration in your own environment before deploying it widely. 
 For example, you will need to exclude actions of your antivirus, which will otherwise likely fill up your logs with useless information.
 
 ### Generating a config ###
-
+~~~~
+git clone https://github.com/olafhartong/sysmon-modular.git
+cd sysmon modular
 Get-ChildItem -Path . -Filter *.xml -Recurse -ErrorAction SilentlyContinue | Merge-SysmonXMLConfiguration -ReferencePolicyPath .\baseconfig.xml | Out-File sysmonconfig.xml
-
+~~~~
 Optionally you can omit the comments from the merged config with the “-ExcludeMergeComments” switch.
+
+You can test your config if it's schema compliant
+~~~~
+Test-SysmonConfiguration .\sysmonconfig.xml
+~~~~
 
 ## Use ##
 ### Install ###
 Run with administrator rights
 ~~~~
-'sysmon.exe -accepteula -i sysmonconfig.xml'
+sysmon.exe -accepteula -i sysmonconfig.xml
 ~~~~
 
 ### Update existing configuration ###
 Run with administrator rights
 ~~~~
-'sysmon.exe -c sysmonconfig.xml'
+sysmon.exe -c sysmonconfig.xml
 ~~~~
 
 ### Todo ###
