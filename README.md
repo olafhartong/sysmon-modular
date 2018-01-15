@@ -14,6 +14,10 @@ Final thanks to **[Matt Graeber](https://twitter.com/mattifestation)** for his P
 
 Pull requests / issue tickets and new additions will be greatly appreciated!
 
+## Mitre ATT&CK
+I strive to map all configurations to the ATT&CK framework whenever Sysmon is able to detect it.
+A current map of all linked configurations is found [here](attack_matrix/README.md)
+
 ## Required actions ##
 I highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as litte noise as possible.
 
@@ -23,11 +27,11 @@ Install the PowerShell modules from **[PSSysmonTools](https://github.com/mattife
 ~~~~
 git clone https://github.com/mattifestation/PSSysmonTools.git
 cd PSSysmonTools
-Import-Module .\PSSysmonTools.psm1 
+Import-Module .\PSSysmonTools.psm1
 ~~~~
 
 ### Customization ###
-You will need to install and observe the results of the configuration in your own environment before deploying it widely. 
+You will need to install and observe the results of the configuration in your own environment before deploying it widely.
 For example, you will need to exclude actions of your antivirus, which will otherwise likely fill up your logs with useless information.
 
 ### Generating a config ###
@@ -60,5 +64,3 @@ sysmon.exe -c sysmonconfig.xml
 - Link more indicators to Mitre ATT&CK techniques.
 - Add / Improve comments
 - Extend, extend, extend.
-
-
