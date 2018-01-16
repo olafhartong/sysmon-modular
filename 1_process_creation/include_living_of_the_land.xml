@@ -5,27 +5,28 @@
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
 	  		<!--Native Windows tools - Living off the land-->
-			<Image condition="end with">whoami.exe</Image> <!--Microsoft:Windows: shows current user -->
-			<Image condition="end with">ipconfig.exe</Image> <!--Microsoft:Windows: shows ip configuration -->
+			<Image condition="end with">whoami.exe</Image> <!--Mitre T1033--><!--Microsoft:Windows: shows current user -->
+			<Image condition="end with">ipconfig.exe</Image> <!--Mitre T1016--><!--Microsoft:Windows: shows ip configuration -->
 			<Image condition="end with">tasklist.exe</Image> <!--Microsoft:Windows: shows current running processes-->
-			<Image condition="end with">sysinfo.exe</Image> <!--Microsoft:Windows: shows systeminformation -->
-			<Image condition="end with">netstat.exe</Image> <!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
+			<Image condition="end with">sysinfo.exe</Image> <!--Mitre T1033--><!--Mitre T1082--><!--Microsoft:Windows: shows systeminformation -->
+			<Image condition="end with">netstat.exe</Image> <!--Mitre T1016--><!--Mitre T1049--><!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
 			<Image condition="end with">qprocess.exe</Image> <!--Microsoft:Windows: shows information about processes -->
 			<Image condition="end with">nslookup.exe</Image> <!--Microsoft:Windows: shows DNS configuration and enables quering -->
+      <Image condition="end with">net.exe</Image> <!--Mitre T1018--><!--Mitre T1049--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
 			<Image condition="end with">quser.exe</Image> <!--Microsoft:Windows: shows logged-on users -->
 			<Image condition="end with">query.exe</Image> <!--Microsoft:Windows: shows information about processes -->
 			<Image condition="end with">tracert.exe</Image> <!--Microsoft:Windows: shows routing information -->
 			<Image condition="end with">tree.com</Image> <!--Microsoft:Windows: shows recursive directory listing -->
 			<Image condition="end with">route.exe</Image> <!--Microsoft:Windows: manipulates network routing tables -->
 			<Image condition="end with">runas.exe</Image> <!--Microsoft:Windows: run a process as another user -->
-			<Image condition="end with">reg.exe</Image> <!--Mitre T1112--><!--Microsoft:Windows: reads and modifies the Windows register -->
+			<Image condition="end with">reg.exe</Image> <!--Mitre T1012--><!--Mitre T1112--><!--Microsoft:Windows: reads and modifies the Windows register -->
 			<Image condition="end with">taskkill.exe</Image> <!--Microsoft:Windows: stops processes -->
-			<Image condition="end with">netsh.exe</Image> <!--Mitre T1128--><!--Microsoft:Windows: manipulate the firewall -->
+			<Image condition="end with">netsh.exe</Image> <!--Mitre T1016--><!--Mitre T1128--><!--Mitre T1063--><!--Microsoft:Windows: manipulate the firewall -->
 			<Image condition="end with">klist.exe</Image> <!--Microsoft:Windows: show cached kerberos tickets -->
 			<Image condition="end with">wevtutil.exe</Image>  <!--Mitre T1070--><!--Microsoft:Windows: read and modify the Windows Eventlog -->
       <Image condition="end with">taskeng.exe</Image>  <!--Mitre T1053--><!--Microsoft:Windows: taskscheduler -->
 			<CommandLine condition="contains">wevtutil cl</CommandLine>  <!--Mitre T1070-->
-			<Image condition="end with">regsvr32.exe</Image> <!--Mitre T1117--><!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
+			<Image condition="end with">regsvr32.exe</Image> <!--Mitre T1117--><!--Mitre T1085--><!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
 			<ParentImage condition="end with">wmiprvse.exe</ParentImage>
             <Image condition="end with">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
 			<Image condition="end with">bash.exe</Image> <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
