@@ -26,7 +26,7 @@
       <RegistryEvent onmatch="include"/>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include">
-			<TargetFilename condition="end with">.hta</TargetFilename> <!--Scripting-->
+			<TargetFilename condition="end with">.hta</TargetFilename> <!--Mitre T1170--><!--Scripting-->
 		</FileCreateStreamHash>
       <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
       <PipeEvent onmatch="include"/>
