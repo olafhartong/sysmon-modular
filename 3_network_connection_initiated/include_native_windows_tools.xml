@@ -16,7 +16,7 @@
 			<Image condition="end with">java.exe</Image> <!--Java: Monitor usage of vulnerable application | Credit @ion-storm -->
 			<Image condition="end with">mshta.exe</Image> <!--Mitre T1170--><!--Microsoft:Windows: HTML application executes scripts without IE protections | Credit @ion-storm [ https://en.wikipedia.org/wiki/HTML_Application ] -->
 			<Image condition="end with">msiexec.exe</Image> <!--Microsoft:Windows: Can install from http:// paths | Credit @vector-sec -->
-			<Image condition="end with">net.exe</Image> <!--Mitre T1018--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
+			<Image condition="end with">net.exe</Image> <!--Mitre T1018--><!--Mitre T1077--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
 			<Image condition="end with">notepad.exe</Image> <!--Microsoft:Windows: [ https://blog.cobaltstrike.com/2013/08/08/why-is-notepad-exe-connecting-to-the-internet/ ] -->
 			<Image condition="end with">powershell.exe</Image> <!--Microsoft:Windows: PowerShell interface-->
 			<Image condition="end with">qwinsta.exe</Image> <!--Microsoft:Windows: Remotely query login sessions on a server or workstation | Credit @ion-storm -->
