@@ -7,12 +7,12 @@
 	  		<!--Native Windows tools - Living off the land-->
 			<Image condition="end with">whoami.exe</Image> <!--Mitre T1033--><!--Microsoft:Windows: shows current user -->
 			<Image condition="end with">ipconfig.exe</Image> <!--Mitre T1016--><!--Microsoft:Windows: shows ip configuration -->
-			<Image condition="end with">tasklist.exe</Image> <!--Microsoft:Windows: shows current running processes-->
+			<Image condition="end with">tasklist.exe</Image> <!--Mitre T1007--><!--Microsoft:Windows: shows current running processes-->
 			<Image condition="end with">sysinfo.exe</Image> <!--Mitre T1033--><!--Mitre T1082--><!--Microsoft:Windows: shows systeminformation -->
 			<Image condition="end with">netstat.exe</Image> <!--Mitre T1016--><!--Mitre T1049--><!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
 			<Image condition="end with">qprocess.exe</Image> <!--Microsoft:Windows: shows information about processes -->
 			<Image condition="end with">nslookup.exe</Image> <!--Microsoft:Windows: shows DNS configuration and enables quering -->
-      <Image condition="end with">net.exe</Image> <!--Mitre T1018--><!--Mitre T1049--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
+      <Image condition="end with">net.exe</Image> <!--Mitre T1007--><!--Mitre T1124--><!--Mitre T1018--><!--Mitre T1049--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Mitre T1077--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
 			<Image condition="end with">quser.exe</Image> <!--Microsoft:Windows: shows logged-on users -->
 			<Image condition="end with">query.exe</Image> <!--Microsoft:Windows: shows information about processes -->
 			<Image condition="end with">tracert.exe</Image> <!--Microsoft:Windows: shows routing information -->
@@ -28,7 +28,9 @@
 			<CommandLine condition="contains">wevtutil cl</CommandLine>  <!--Mitre T1070-->
 			<Image condition="end with">regsvr32.exe</Image> <!--Mitre T1117--><!--Mitre T1085--><!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
 			<ParentImage condition="end with">wmiprvse.exe</ParentImage>
-            <Image condition="end with">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
+      <Image condition="end with">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
+      <Image condition="end with">cmd.exe</Image> <!--Mitre T1059--><!--Microsoft:Windows: Command prompt-->
+      <Image condition="end with">powershell.exe</Image> <!--Mitre T1086--><!--Microsoft:Windows: PowerShell interface-->
 			<Image condition="end with">bash.exe</Image> <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
 			<Image condition="end with">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
 		</ProcessCreate>
