@@ -1,4 +1,4 @@
-<Sysmon schemaversion="3.4">
+<Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
    <EventFiltering>
