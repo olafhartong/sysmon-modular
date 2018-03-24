@@ -1,4 +1,4 @@
-<Sysmon schemaversion="3.4">
+<Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
    <EventFiltering>
@@ -13,7 +13,7 @@
       <!-- Event ID 6 == Driver Loaded. -->
       <DriverLoad onmatch="include"/>
       <!-- Event ID 7 == Image Loaded. -->
-      <ImageLoad onmatch="include"/>  
+      <ImageLoad onmatch="include"/>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
       <!-- Event ID 9 == RawAccessRead. -->
