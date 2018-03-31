@@ -1,4 +1,4 @@
-chemaversion="4.0">
+<Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
    <EventFiltering>
@@ -24,13 +24,12 @@ chemaversion="4.0">
   	<SourceImage condition="end with">GoogleUpdate.exe</SourceImage>
   	<SourceImage condition="end with">LTSVC.exe</SourceImage>
   	<SourceImage condition="end with">taskmgr.exe</SourceImage>
-  	<SourceImage condition="end with">VBoxService.exe</SourceImage> # Virtual Box
-  	<SourceImage condition="end with">vmtoolsd.exe</SourceImage>
-  	<SourceImage condition="end with">taskmgr.exe</SourceImage>
-  	<SourceImage condition="end with">\Citrix\System32\wfshell.exe</SourceImage> #Citrix process in C:\Program Files (x86)\Citrix\System32\wfshell.exe
-  	<SourceImage condition="is">C:\Windows\System32\lsm.exe</SourceImage> # System process under C:\Windows\System32\lsm.exe
-  	<SourceImage condition="end with">Microsoft.Identity.AadConnect.Health.AadSync.Host.exe</SourceImage> # Microsoft Azure AD Connect Health Sync Agent
-  	<SourceImage condition="begin with">C:\Program Files (x86)\Symantec\Symantec Endpoint Protection</SourceImage> # Symantec
+  	<SourceImage condition="end with">VBoxService.exe</SourceImage> <!-- Virtual Box -->
+  	<SourceImage condition="end with">vmtoolsd.exe</SourceImage> <!-- VMWare -->
+  	<SourceImage condition="end with">\Citrix\System32\wfshell.exe</SourceImage> <!--Citrix process in C:\Program Files (x86)\Citrix\System32\wfshell.exe -->
+  	<SourceImage condition="is">C:\Windows\System32\lsm.exe</SourceImage> <!-- System process under C:\Windows\System32\lsm.exe -->
+  	<SourceImage condition="end with">Microsoft.Identity.AadConnect.Health.AadSync.Host.exe</SourceImage> <!-- Microsoft Azure AD Connect Health Sync Agent -->
+  	<SourceImage condition="begin with">C:\Program Files (x86)\Symantec\Symantec Endpoint Protection</SourceImage> <!-- Symantec -->
       </ProcessAccess>  
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include"/>
