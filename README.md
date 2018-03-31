@@ -35,6 +35,7 @@ You will need to install and observe the results of the configuration in your ow
 For example, you will need to exclude actions of your antivirus, which will otherwise likely fill up your logs with useless information.
 
 ### Generating a config ###
+#### PowerShell ####
 ~~~~
 git clone https://github.com/olafhartong/sysmon-modular.git
 cd sysmon modular
@@ -46,6 +47,10 @@ You can test your config if it's schema compliant
 ~~~~
 Test-SysmonConfiguration .\sysmonconfig.xml
 ~~~~
+
+#### SysmonShell ####
+This repository also was made available within **[SysmonShell](https://github.com/nshalabi/SysmonTools)** a great tool by **[Nader Shalabi](https://twitter.com/nader_shalabi)**
+
 
 ## Use ##
 ### Install ###
