@@ -4,13 +4,11 @@
    <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
-      <ProcessCreate onmatch="include">
-          <Image condition="end with">=SyncAppvPublishingServer.exe</Image><!--Mitre T1218-->
-      </ProcessCreate>
+      <ProcessCreate onmatch="include"/>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
       <!-- Event ID 3 == Network Connection. -->
-      <NetworkConnect>
+      <NetworkConnect onmatch="include">
         <Image condition="end with">=SyncAppvPublishingServer.exe</Image><!--Mitre T1218-->
       </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
