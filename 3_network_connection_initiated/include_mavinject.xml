@@ -9,7 +9,7 @@
       <FileCreateTime onmatch="include"/>
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include">
-        <Image condition="end with">=Mavinject.exe</Image><!--Mitre T1218-->
+        <Image condition="image">Mavinject.exe</Image><!--Mitre T1218-->
       </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>
