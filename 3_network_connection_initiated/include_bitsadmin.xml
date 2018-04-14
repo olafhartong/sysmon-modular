@@ -4,13 +4,13 @@
    <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
-      <ProcessCreate onmatch="include">
-          <Image condition="end with">bitsadmin.exe</Image><!--Mitre T1197-->
-      </ProcessCreate>
+      <ProcessCreate onmatch="include"/>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
       <!-- Event ID 3 == Network Connection. -->
-      <NetworkConnect onmatch="include"/>
+      <NetworkConnect>
+        <Image condition="end with">bitsadmin.exe</Image><!--Mitre T1197-->
+      </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>
       <!-- Event ID 6 == Driver Loaded. -->
