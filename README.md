@@ -16,7 +16,8 @@ Pull requests / issue tickets and new additions will be greatly appreciated!
 
 ## Mitre ATT&CK
 I strive to map all configurations to the ATT&CK framework whenever Sysmon is able to detect it.
-A current map of all linked configurations is found [here](attack_matrix/README.md)
+A current ATT&CK navigator map of all linked configurations is found [here](attack_matrix/Sysmon-modular.json)
+![Mapping](attack_matrix/sysmon-modular.png)
 
 ## Required actions ##
 I highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as litte noise as possible.
