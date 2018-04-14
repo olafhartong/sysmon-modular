@@ -8,7 +8,7 @@
 	  		<!--Native Windows tools - Living off the land-->
 			<Image condition="end with">whoami.exe</Image> <!--Mitre T1033--><!--Microsoft:Windows: shows current user -->
 			<Image condition="end with">ipconfig.exe</Image> <!--Mitre T1016--><!--Microsoft:Windows: shows ip configuration -->
-			<Image condition="end with">tasklist.exe</Image> <!--Mitre T1007--><!--Microsoft:Windows: shows current running processes-->
+			<Image condition="end with">tasklist.exe</Image> <!--Mitre T1057--><!--Mitre T1007--><!--Microsoft:Windows: shows current running processes-->
 			<Image condition="end with">sysinfo.exe</Image> <!--Mitre T1033--><!--Mitre T1082--><!--Microsoft:Windows: shows systeminformation -->
 			<Image condition="end with">netstat.exe</Image> <!--Mitre T1016--><!--Mitre T1049--><!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
 			<Image condition="end with">qprocess.exe</Image> <!--Microsoft:Windows: shows information about processes -->
