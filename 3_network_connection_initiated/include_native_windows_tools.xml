@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -13,7 +13,7 @@
 			<Image condition="end with">at.exe</Image> <!--Microsoft:Windows: Remote task scheduling | Credit @ion-storm -->
 			<Image condition="end with">certutil.exe</Image> <!--Microsoft:Windows: Certificate tool can contact outbound | Credit @ion-storm and @FVT [ https://twitter.com/FVT/status/834433734602530817 ] -->
 			<Image condition="end with">cmd.exe</Image> <!--Microsoft:Windows: Command prompt-->
-			<Image condition="end with">cscript.exe</Image> <!--Microsoft:WindowsScriptingHost: | Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
+			<Image condition="end with">cscript.exe</Image> <!--Mitre 1216--><!--Microsoft:WindowsScriptingHost: | Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
 			<Image condition="end with">java.exe</Image> <!--Java: Monitor usage of vulnerable application | Credit @ion-storm -->
 			<Image condition="end with">mshta.exe</Image> <!--Mitre T1170--><!--Microsoft:Windows: HTML application executes scripts without IE protections | Credit @ion-storm [ https://en.wikipedia.org/wiki/HTML_Application ] -->
 			<Image condition="end with">msiexec.exe</Image> <!--Microsoft:Windows: Can install from http:// paths | Credit @vector-sec -->
