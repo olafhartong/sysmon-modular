@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <Image condition="end with">bitsadmin.exe</Image>
+          <Image condition="end with">bitsadmin.exe</Image><!--Mitre T1197-->
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
