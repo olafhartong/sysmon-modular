@@ -1,13 +1,13 @@
 <Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include">
-	  	<Image condition="begin with">C:\Users</Image> <!--Look for timestomping in user area-->
+	  	<Image condition="begin with">C:\Users</Image> <!--Mitre T1099--><!--Look for timestomping in user area-->
 	  </FileCreateTime>
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include"/>
@@ -16,7 +16,7 @@
       <!-- Event ID 6 == Driver Loaded. -->
       <DriverLoad onmatch="include"/>
       <!-- Event ID 7 == Image Loaded. -->
-      <ImageLoad onmatch="include"/>  
+      <ImageLoad onmatch="include"/>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
       <!-- Event ID 9 == RawAccessRead. -->
