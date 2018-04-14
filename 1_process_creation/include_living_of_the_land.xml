@@ -26,7 +26,6 @@
 			<Image condition="end with">klist.exe</Image> <!--Microsoft:Windows: show cached kerberos tickets -->
 			<Image condition="end with">wevtutil.exe</Image>  <!--Mitre T1070--><!--Microsoft:Windows: read and modify the Windows Eventlog -->
       <Image condition="end with">taskeng.exe</Image>  <!--Mitre T1053--><!--Microsoft:Windows: taskscheduler -->
-			<CommandLine condition="contains">wevtutil cl</CommandLine>  <!--Mitre T1070-->
 			<Image condition="end with">regsvr32.exe</Image> <!--Mitre T1117--><!--Mitre T1085--><!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
 			<ParentImage condition="end with">wmiprvse.exe</ParentImage>
       <Image condition="end with">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
