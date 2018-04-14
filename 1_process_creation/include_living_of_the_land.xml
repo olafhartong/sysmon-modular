@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
@@ -13,7 +13,7 @@
 			<Image condition="end with">netstat.exe</Image> <!--Mitre T1016--><!--Mitre T1049--><!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
 			<Image condition="end with">qprocess.exe</Image> <!--Microsoft:Windows: shows information about processes -->
 			<Image condition="end with">nslookup.exe</Image> <!--Microsoft:Windows: shows DNS configuration and enables quering -->
-      <Image condition="end with">net.exe</Image> <!--Mitre T1007--><!--Mitre T1124--><!--Mitre T1018--><!--Mitre T1049--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Mitre T1077--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
+      <Image condition="end with">net.exe</Image> <!--Mitre T1201--><!--Mitre T1007--><!--Mitre T1124--><!--Mitre T1018--><!--Mitre T1049--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Mitre T1077--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
 			<Image condition="end with">quser.exe</Image> <!--Microsoft:Windows: shows logged-on users -->
 			<Image condition="end with">query.exe</Image> <!--Microsoft:Windows: shows information about processes -->
 			<Image condition="end with">tracert.exe</Image> <!--Microsoft:Windows: shows routing information -->
