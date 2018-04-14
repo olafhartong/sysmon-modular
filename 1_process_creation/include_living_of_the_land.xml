@@ -20,7 +20,7 @@
 			<Image condition="end with">tree.com</Image> <!--Microsoft:Windows: shows recursive directory listing -->
 			<Image condition="end with">route.exe</Image> <!--Microsoft:Windows: manipulates network routing tables -->
 			<Image condition="end with">runas.exe</Image> <!--Microsoft:Windows: run a process as another user -->
-			<Image condition="end with">reg.exe</Image> <!--Mitre T1012--><!--Mitre T1112--><!--Microsoft:Windows: reads and modifies the Windows register -->
+			<Image condition="end with">reg.exe</Image> <!--Mitre T1214--><!--Mitre T1012--><!--Mitre T1112--><!--Microsoft:Windows: reads and modifies the Windows register -->
 			<Image condition="end with">taskkill.exe</Image> <!--Microsoft:Windows: stops processes -->
 			<Image condition="end with">netsh.exe</Image> <!--Mitre T1016--><!--Mitre T1128--><!--Mitre T1063--><!--Microsoft:Windows: manipulate the firewall -->
 			<Image condition="end with">klist.exe</Image> <!--Microsoft:Windows: show cached kerberos tickets -->
