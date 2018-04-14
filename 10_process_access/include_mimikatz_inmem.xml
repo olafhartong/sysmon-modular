@@ -1,6 +1,7 @@
 <Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>

@@ -1,25 +1,13 @@
 <Sysmon schemaversion="4.0">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="exclude">
-			<!--SECTION: Generic Microsoft Windows-->
-			<CommandLine condition="begin with">C:\Windows\system32\DllHost.exe /Processid</CommandLine> <!--Microsoft:Windows-->
-			<CommandLine condition="is">C:\Windows\system32\SearchIndexer.exe /Embedding</CommandLine> <!--Microsoft:Windows: Search Indexer-->
-			<Image condition="end with">C:\Windows\System32\CompatTelRunner.exe</Image> <!--Microsoft:Windows:Customer Experience Improvement-->
-			<Image condition="is">C:\Windows\System32\MusNotification.exe</Image> <!--Microsoft:Windows: Update popups-->
-			<Image condition="is">C:\Windows\System32\MusNotificationUx.exe</Image> <!--Microsoft:Windows: Update popups-->
-			<Image condition="is">C:\Windows\System32\audiodg.exe</Image> <!--Microsoft:Windows: Launched constantly-->
-			<Image condition="is">C:\Windows\System32\conhost.exe</Image> <!--Microsoft:Windows: Command line interface host process-->
-			<Image condition="is">C:\Windows\System32\powercfg.exe</Image> <!--Microsoft:Power configuration management-->
-			<Image condition="is">C:\Windows\System32\wbem\WmiApSrv.exe</Image> <!--Microsoft:Windows: WMI performance adpater host process-->
-			<Image condition="is">C:\Windows\System32\wermgr.exe</Image> <!--Microsoft:Windows:Windows error reporting/telemetry-->
-			<Image condition="is">C:\Windows\SysWOW64\wermgr.exe</Image> <!--Microsoft:Windows:Windows error reporting/telemetry-->
-			<Image condition="is">C:\Windows\system32\sppsvc.exe</Image> <!--Microsoft:Windows: Software Protection Service-->
-			<IntegrityLevel condition="is">AppContainer</IntegrityLevel> <!--Microsoft:Windows: Don't care about sandboxed processes-->
-			<ParentCommandLine condition="begin with">%%SystemRoot%%\system32\csrss.exe ObjectDirectory=\Windows</ParentCommandLine> <!--Microsoft:Windows:CommandShell: Triggered when programs use the command shell, but without attribution-->
-			<ParentImage condition="is">C:\Windows\system32\SearchIndexer.exe</ParentImage> <!--Microsoft:Windows:Search: Launches many uninteresting sub-processes-->
+        <Image condition="begin with">C:\Program Files\Windows Defender</Image> <!--Microsoft:Windows:Defender in Win10-->
+  			<Image condition="is">C:\Windows\system32\MpSigStub.exe</Image> <!--Microsoft:Windows: Microsoft Malware Protection Signature Update Stub-->
+  			<Image condition="begin with">C:\Windows\SoftwareDistribution\Download\Install\AM_</Image> <!--Microsoft:Defender: Signature updates-->
 			</ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
@@ -30,7 +18,7 @@
       <!-- Event ID 6 == Driver Loaded. -->
       <DriverLoad onmatch="include"/>
       <!-- Event ID 7 == Image Loaded. -->
-      <ImageLoad onmatch="include"/>  
+      <ImageLoad onmatch="include"/>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
       <!-- Event ID 9 == RawAccessRead. -->
