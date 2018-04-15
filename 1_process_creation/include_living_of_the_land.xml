@@ -33,7 +33,7 @@
       <Image condition="end with">powershell.exe</Image> <!--Mitre T1086--><!--Microsoft:Windows: PowerShell interface-->
 			<Image condition="end with">bash.exe</Image> <!--Mitre T1202--><!--Microsoft:Windows: bash on Windows, Linux subsystem-->
 			<Image condition="end with">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
-      <Image condition="end with">pcalua.exe</Image> <!--Mitre T1202--><!--Microsoft:Windows: Program Compatibility Assistant)
+      <Image condition="end with">pcalua.exe</Image> <!--Mitre T1202--><!--Microsoft:Windows: Program Compatibility Assistant)-->
 		</ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
