@@ -47,6 +47,7 @@
 			<Image condition="image">schtasks.exe</Image> <!--Microsoft:Windows: Command-line interface to local and remote tasks -->
 			<Image condition="image">taskkill.exe</Image> <!--Microsoft:Windows: Kill processes, has remote ability -->
 			<Image condition="image">tasklist.exe</Image> <!--Microsoft:Windows: List processes, has remote ability -->
+      <Image condition="image">replace.exe</Image><!--Mitre T1218>
 	  </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>
