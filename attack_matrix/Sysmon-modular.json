@@ -483,6 +483,13 @@
 			"color": "",
 			"comment": "",
 			"enabled": true
+		},
+		{
+			"techniqueID": "T1182",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
 		}
 	],
 	"gradient": {
