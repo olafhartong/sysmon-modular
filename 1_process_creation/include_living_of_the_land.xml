@@ -34,6 +34,7 @@
 			<Image condition="end with">bash.exe</Image> <!--Mitre T1202--><!--Microsoft:Windows: bash on Windows, Linux subsystem-->
 			<Image condition="end with">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
       <Image condition="end with">pcalua.exe</Image> <!--Mitre T1202--><!--Microsoft:Windows: Program Compatibility Assistant)-->
+      <Image condition="end with">attrib.exe</Image> <!--Mitre T1158-->
 		</ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
