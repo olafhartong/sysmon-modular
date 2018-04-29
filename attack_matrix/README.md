@@ -1,4 +1,5 @@
 # Windows Technique Matrix
+# OUTDATED, please refer to the ATT&CK Navigator Json or PNG
 
 | ﻿Persistence                                           | Privilege Escalation                  | Defense Evasion                         | Credential Access                      | Discovery                              | Lateral Movement                    | Execution                          | Collection                     | Exfiltration                                  | Command and Control                     |
 |-------------------------------------------------------|---------------------------------------|-----------------------------------------|----------------------------------------|----------------------------------------|-------------------------------------|------------------------------------|--------------------------------|-----------------------------------------------|-----------------------------------------|
