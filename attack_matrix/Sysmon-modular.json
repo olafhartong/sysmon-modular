@@ -490,6 +490,13 @@
 			"color": "",
 			"comment": "",
 			"enabled": true
+		},
+		{
+			"techniqueID": "T1158",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
 		}
 	],
 	"gradient": {
