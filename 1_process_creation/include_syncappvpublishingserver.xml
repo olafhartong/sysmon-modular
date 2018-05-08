@@ -5,7 +5,7 @@
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <Image condition="end with">=SyncAppvPublishingServer.exe</Image><!--Mitre T1218-->
+          <Image condition="end with">SyncAppvPublishingServer.exe</Image><!--Mitre T1218-->
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
