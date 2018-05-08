@@ -8,7 +8,7 @@
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
       <!-- Event ID 3 == Network Connection. -->
-      <NetworkConnect>
+      <NetworkConnect onmatch="include">
         <Image condition="image">bitsadmin.exe</Image><!--Mitre T1197-->
       </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
