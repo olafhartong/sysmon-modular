@@ -27,11 +27,11 @@
 			<Image condition="image">sc.exe</Image> <!--Microsoft:Windows: Remotely change Windows service settings from command line | Credit @ion-storm -->
 			<Image condition="image">wmic.exe</Image> <!--T1047--><!--Mitre T1135--><!--Microsoft:WindowsManagementInstrumentation: Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
 			<Image condition="image">wscript.exe</Image> <!--Mitre 1216--><!--Microsoft:WindowsScriptingHost: | Credit @arekfurt -->
-      <Image condition="image">driverquery.exe</Image> <!--Microsoft:Windows: Remote recognisance of system configuration, oudated/vulnerable drivers -->
+      			<Image condition="image">driverquery.exe</Image> <!--Microsoft:Windows: Remote recognisance of system configuration, oudated/vulnerable drivers -->
 			<Image condition="image">dsquery.exe</Image> <!--Microsoft: Query Active Directory -->
 			<Image condition="image">hh.exe</Image> <!--Microsoft:Windows: HTML Help Executable, opens CHM files -->
 			<Image condition="image">infDefaultInstall.exe</Image> <!--Microsoft: [ https://github.com/huntresslabs/evading-autoruns ] | Credit @KyleHanslovan -->
-      <Image condition="image">javaw.exe</Image> <!--Java: Monitor usage of vulnerable application and init from JAR files -->
+      			<Image condition="image">javaw.exe</Image> <!--Java: Monitor usage of vulnerable application and init from JAR files -->
 			<Image condition="image">javaws.exe</Image> <!--Java: Monitor usage of vulnerable application and init from JAR files -->
 			<Image condition="image">mmc.exe</Image> <!--Microsoft:Windows: -->
 			<Image condition="image">msbuild.exe</Image> <!--Mitre 1216--><!--Microsoft:Windows: [ https://www.hybrid-analysis.com/sample/a314f6106633fba4b70f9d6ddbee452e8f8f44a72117749c21243dc93c7ed3ac?environmentId=100 ] -->
@@ -47,8 +47,8 @@
 			<Image condition="image">schtasks.exe</Image> <!--Microsoft:Windows: Command-line interface to local and remote tasks -->
 			<Image condition="image">taskkill.exe</Image> <!--Microsoft:Windows: Kill processes, has remote ability -->
 			<Image condition="image">tasklist.exe</Image> <!--Microsoft:Windows: List processes, has remote ability -->
-      <Image condition="image">replace.exe</Image><!--Mitre T1218>
-	  </NetworkConnect>
+      			<Image condition="image">replace.exe</Image><!--Mitre T1218>
+	</NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>
       <!-- Event ID 6 == Driver Loaded. -->
