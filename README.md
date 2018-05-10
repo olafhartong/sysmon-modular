@@ -1,4 +1,6 @@
-# sysmon-modular | A Sysmon configuration repository for everybody to customise #
+# sysmon-modular | A Sysmon configuration repository for everybody to customise
+
+[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg?style=flat-square)]()
 
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
