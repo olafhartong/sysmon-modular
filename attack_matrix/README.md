@@ -8,4 +8,4 @@ The [MITRE corporation](https://www.mitre.org/) has developed a handy [ATT&CK na
 
 Viewing the matrix online is easy:
 
-![docs](https://github.com/netevert/sysmon-modular/blob/master/attack_matrix/demo.gif)
+![docs](https://github.com/olafhartong/sysmon-modular/blob/master/attack_matrix/demo.gif)
