@@ -497,6 +497,13 @@
 			"color": "",
 			"comment": "",
 			"enabled": true
+		},
+		{
+			"techniqueID": "T1034",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
 		}
 	],
 	"gradient": {
