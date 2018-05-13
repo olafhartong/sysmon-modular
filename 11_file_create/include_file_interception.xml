@@ -23,9 +23,9 @@
       <ProcessAccess onmatch="include"/>
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include">
-			<TargetFilename condition="contains">python</TargetFilename> <!--MITRE T1034, more programs that are named after windows system programs or programs commonly executed without a path should be added -->
-			<TargetFilename condition="contains">net</TargetFilename>
-            <TargetFilename condition="contains">findstr</TargetFilename>
+			<Image condition="contains">python</Image> <!--MITRE T1034, more programs that are named after windows system programs or programs commonly executed without a path should be added -->
+			<Image condition="contains">net</Image>
+            <Image condition="contains">findstr</Image>
 		</FileCreate>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include"/>
