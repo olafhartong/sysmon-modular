@@ -25,7 +25,9 @@
       <FileCreate onmatch="exclude">
 			<!--SECTION: Microsoft:Windows-->
 			<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename> <!-- Microsoft:Windows: -->
-			<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename> <!-- Microsoft:Windows: -->
+	      		<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename> <!-- Microsoft:Windows: -->
+			<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename> <!-- Microsoft:Windows: Customer Experience Improvement Program-->
+	      		<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename> <!-- Microsoft:Windows: Customer Experience Improvement Program-->
 		</FileCreate>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include"/>
