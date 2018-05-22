@@ -1,6 +1,6 @@
 {
 	"name": "Sysmon-modular",
-	"version": "1.0",
+	"version": "2.0",
 	"domain": "mitre-enterprise",
 	"description": "",
 	"filters": {
@@ -12,11 +12,20 @@
 		]
 	},
 	"sorting": 0,
-	"viewFullTable": true,
+	"viewMode": 0,
 	"hideDisabled": false,
 	"techniques": [
 		{
 			"techniqueID": "T1015",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1015",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -24,6 +33,7 @@
 		},
 		{
 			"techniqueID": "T1087",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -31,6 +41,7 @@
 		},
 		{
 			"techniqueID": "T1098",
+			"tactic": "credential-access",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -38,6 +49,15 @@
 		},
 		{
 			"techniqueID": "T1103",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1103",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -45,6 +65,15 @@
 		},
 		{
 			"techniqueID": "T1138",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1138",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -52,6 +81,7 @@
 		},
 		{
 			"techniqueID": "T1123",
+			"tactic": "collection",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -59,6 +89,7 @@
 		},
 		{
 			"techniqueID": "T1131",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -66,6 +97,15 @@
 		},
 		{
 			"techniqueID": "T1088",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1088",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -73,6 +113,7 @@
 		},
 		{
 			"techniqueID": "T1042",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -80,6 +121,7 @@
 		},
 		{
 			"techniqueID": "T1059",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -87,6 +129,7 @@
 		},
 		{
 			"techniqueID": "T1043",
+			"tactic": "command-and-control",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -94,6 +137,15 @@
 		},
 		{
 			"techniqueID": "T1122",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1122",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -101,6 +153,7 @@
 		},
 		{
 			"techniqueID": "T1003",
+			"tactic": "credential-access",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -108,6 +161,7 @@
 		},
 		{
 			"techniqueID": "T1070",
+			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -115,6 +169,15 @@
 		},
 		{
 			"techniqueID": "T1118",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1118",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -122,6 +185,7 @@
 		},
 		{
 			"techniqueID": "T1112",
+			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -129,6 +193,15 @@
 		},
 		{
 			"techniqueID": "T1170",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1170",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -136,6 +209,7 @@
 		},
 		{
 			"techniqueID": "T1128",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -143,6 +217,7 @@
 		},
 		{
 			"techniqueID": "T1135",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -150,6 +225,7 @@
 		},
 		{
 			"techniqueID": "T1075",
+			"tactic": "lateral-movement",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -157,6 +233,7 @@
 		},
 		{
 			"techniqueID": "T1069",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -164,6 +241,15 @@
 		},
 		{
 			"techniqueID": "T1013",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1013",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -171,6 +257,7 @@
 		},
 		{
 			"techniqueID": "T1086",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -178,6 +265,15 @@
 		},
 		{
 			"techniqueID": "T1055",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1055",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -185,6 +281,7 @@
 		},
 		{
 			"techniqueID": "T1012",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -192,6 +289,7 @@
 		},
 		{
 			"techniqueID": "T1060",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -199,6 +297,15 @@
 		},
 		{
 			"techniqueID": "T1121",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1121",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -206,6 +313,15 @@
 		},
 		{
 			"techniqueID": "T1117",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1117",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -213,6 +329,7 @@
 		},
 		{
 			"techniqueID": "T1076",
+			"tactic": "lateral-movement",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -220,6 +337,7 @@
 		},
 		{
 			"techniqueID": "T1018",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -227,6 +345,15 @@
 		},
 		{
 			"techniqueID": "T1085",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1085",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -234,6 +361,23 @@
 		},
 		{
 			"techniqueID": "T1053",
+			"tactic": "execution",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1053",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1053",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -241,6 +385,7 @@
 		},
 		{
 			"techniqueID": "T1063",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -248,6 +393,7 @@
 		},
 		{
 			"techniqueID": "T1101",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -255,6 +401,7 @@
 		},
 		{
 			"techniqueID": "T1082",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -262,6 +409,7 @@
 		},
 		{
 			"techniqueID": "T1016",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -269,6 +417,7 @@
 		},
 		{
 			"techniqueID": "T1049",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -276,6 +425,7 @@
 		},
 		{
 			"techniqueID": "T1033",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -283,6 +433,7 @@
 		},
 		{
 			"techniqueID": "T1007",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -290,6 +441,7 @@
 		},
 		{
 			"techniqueID": "T1124",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -297,6 +449,15 @@
 		},
 		{
 			"techniqueID": "T1127",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1127",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -304,6 +465,7 @@
 		},
 		{
 			"techniqueID": "T1077",
+			"tactic": "lateral-movement",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -311,6 +473,7 @@
 		},
 		{
 			"techniqueID": "T1047",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -318,6 +481,7 @@
 		},
 		{
 			"techniqueID": "T1084",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -325,6 +489,15 @@
 		},
 		{
 			"techniqueID": "T1028",
+			"tactic": "execution",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1028",
+			"tactic": "lateral-movement",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -332,6 +505,7 @@
 		},
 		{
 			"techniqueID": "T1004",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -339,6 +513,15 @@
 		},
 		{
 			"techniqueID": "T1197",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1197",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -346,6 +529,15 @@
 		},
 		{
 			"techniqueID": "T1191",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1191",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -353,6 +545,7 @@
 		},
 		{
 			"techniqueID": "T1116",
+			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -360,6 +553,15 @@
 		},
 		{
 			"techniqueID": "T1196",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1196",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -367,6 +569,7 @@
 		},
 		{
 			"techniqueID": "T1214",
+			"tactic": "credential-access",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -374,6 +577,7 @@
 		},
 		{
 			"techniqueID": "T1094",
+			"tactic": "command-and-control",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -381,6 +585,7 @@
 		},
 		{
 			"techniqueID": "T1187",
+			"tactic": "credential-access",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -388,6 +593,23 @@
 		},
 		{
 			"techniqueID": "T1183",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1183",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1183",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -395,6 +617,7 @@
 		},
 		{
 			"techniqueID": "T1202",
+			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -402,6 +625,7 @@
 		},
 		{
 			"techniqueID": "T1130",
+			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -409,6 +633,15 @@
 		},
 		{
 			"techniqueID": "T1177",
+			"tactic": "execution",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1177",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -416,6 +649,7 @@
 		},
 		{
 			"techniqueID": "T1201",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -423,6 +657,7 @@
 		},
 		{
 			"techniqueID": "T1057",
+			"tactic": "discovery",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -430,6 +665,15 @@
 		},
 		{
 			"techniqueID": "T1198",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1198",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -437,6 +681,15 @@
 		},
 		{
 			"techniqueID": "T1064",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1064",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -444,6 +697,15 @@
 		},
 		{
 			"techniqueID": "T1058",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1058",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -451,6 +713,15 @@
 		},
 		{
 			"techniqueID": "T1218",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1218",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -458,6 +729,15 @@
 		},
 		{
 			"techniqueID": "T1216",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1216",
+			"tactic": "execution",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -465,6 +745,7 @@
 		},
 		{
 			"techniqueID": "T1209",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -472,6 +753,7 @@
 		},
 		{
 			"techniqueID": "T1099",
+			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -479,6 +761,7 @@
 		},
 		{
 			"techniqueID": "T1065",
+			"tactic": "command-and-control",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -486,6 +769,15 @@
 		},
 		{
 			"techniqueID": "T1182",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1182",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -493,6 +785,15 @@
 		},
 		{
 			"techniqueID": "T1158",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1158",
+			"tactic": "persistence",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -500,6 +801,15 @@
 		},
 		{
 			"techniqueID": "T1034",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1034",
+			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "",
 			"comment": "",
@@ -514,5 +824,9 @@
 		],
 		"minValue": 0,
 		"maxValue": 100
-	}
+	},
+	"legendItems": [],
+	"showTacticRowBackground": false,
+	"tacticRowBackground": "#dddddd",
+	"selectTechniquesAcrossTactics": true
 }
