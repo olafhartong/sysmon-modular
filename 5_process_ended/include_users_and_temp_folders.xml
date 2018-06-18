@@ -14,7 +14,7 @@
 	  	<!--COMMENT:	Useful data in building infection timelines.-->
 		<Image condition="begin with">C:\Users</Image> <!--Process terminations by user binaries-->
 		<Image condition="begin with">C:\Temp</Image> <!--Process terminations by temp binaries-->
-		<Image condition="begin with">C:\Windws\Temp</Image> <!--Process terminations by temp binaries-->
+		<Image condition="begin with">C:\Windows\Temp</Image> <!--Process terminations by temp binaries-->
 	  </ProcessTerminate>
       <!-- Event ID 6 == Driver Loaded. -->
       <DriverLoad onmatch="include"/>
