@@ -9,8 +9,8 @@
       <FileCreateTime onmatch="include"/>
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include">
-        <Image condition="image">psexec.exe</Image>
-  			<Image condition="image">psexesvc.exe</Image>
+        <Image name="technique_id=T1035,technique_name=Service Execution" condition="image">psexec.exe</Image> <!--Sysinternals:PsExec client side | Credit @Cyb3rOps -->
+  			<Image name="technique_id=T1035,technique_name=Service Execution" condition="image">psexesvc.exe</Image> <!--Sysinternals:PsExec server side | Credit @Cyb3rOps -->
 	  </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>

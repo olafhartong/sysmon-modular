@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -11,12 +11,12 @@
       <NetworkConnect onmatch="include">
 			<!--Ports: Suspicious-->
       <!--Eventhough DNS is a commmon exfil channel, you should monitor that via some other way, Sysmon is not ideal for that-->
-			<DestinationPort condition="is">22</DestinationPort> <!--Mitre T1043--><!--SSH protocol-->
-			<DestinationPort condition="is">23</DestinationPort> <!--Telnet protocol-->
-			<DestinationPort condition="is">25</DestinationPort> <!--Mitre T1043--><!--SMTP mail protocol-->
-			<DestinationPort condition="is">3389</DestinationPort> <!--Mitre T1043--><!--Microsoft:Windows:RDP-->
-			<DestinationPort condition="is">5800</DestinationPort> <!--VNC protocol-->
-			<DestinationPort condition="is">5900</DestinationPort> <!--VNC protocol-->
+			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort> <!--SSH protocol-->
+			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">23</DestinationPort> <!--Telnet protocol-->
+			<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">25</DestinationPort> <!--SMTP mail protocol-->
+			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">3389</DestinationPort> <!--Microsoft:Windows:RDP-->
+			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort> <!--VNC protocol-->
+			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort> <!--VNC protocol-->
 	  </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>

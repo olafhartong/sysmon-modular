@@ -9,7 +9,7 @@
       <FileCreateTime onmatch="include"/>
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include">
-        <Image condition="image">bitsadmin.exe</Image><!--Mitre T1197-->
+        <Image name="technique_id=T1197,technique_name=BITS Jobs" condition="image">bitsadmin.exe</Image>
       </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>

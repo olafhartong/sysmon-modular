@@ -5,8 +5,8 @@
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <CommandLine condition="contains">control.exe /name</CommandLine><!--Mitre T1196-->
-          <CommandLine condition="contains">rundll32.exe shell32.dll,Control_RunDLL</CommandLine><!--Mitre T1196-->
+          <CommandLine name="technique_id=T1196,technique_name=Control Panel Items" condition="contains">control.exe /name</CommandLine>
+          <CommandLine name="technique_id=T1196,technique_name=Control Panel Items" condition="contains">rundll32.exe shell32.dll,Control_RunDLL</CommandLine>
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>

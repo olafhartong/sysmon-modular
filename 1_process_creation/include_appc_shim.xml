@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <Image condition="end with">sdbinst.exe</Image><!--Mitre T1138-->
+          <Image name="technique_id=T1138,technique_name=Application Shimming" condition="image">sdbinst.exe</Image>
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>

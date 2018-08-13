@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -10,9 +10,9 @@
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include">
 			<!--Ports: Proxy-->
-			<DestinationPort condition="is">1080</DestinationPort> <!--Socks proxy port | Credit @ion-storm-->
-			<DestinationPort condition="is">3128</DestinationPort> <!--Socks proxy port | Credit @ion-storm-->
-			<DestinationPort condition="is">8080</DestinationPort> <!--Mitre T1043--><!--Socks proxy port | Credit @ion-storm-->
+			<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">1080</DestinationPort> <!--Socks proxy port | Credit @ion-storm-->
+			<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">3128</DestinationPort> <!--Socks proxy port | Credit @ion-storm-->
+			<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">8080</DestinationPort><!--Socks proxy port | Credit @ion-storm-->
 	  </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>

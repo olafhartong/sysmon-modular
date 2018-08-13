@@ -9,7 +9,7 @@
       <FileCreateTime onmatch="include"/>
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include">
-        <Image condition="image">SyncAppvPublishingServer.exe</Image><!--Mitre T1218-->
+        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">SyncAppvPublishingServer.exe</Image>
       </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>

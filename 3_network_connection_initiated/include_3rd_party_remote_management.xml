@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -10,20 +10,17 @@
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include">
 			<!--3rd Party Remote Management tools-->
-			<Image condition="image">psexec.exe</Image> <!--Sysinternals:PsExec client side | Credit @Cyb3rOps -->
-			<Image condition="image">psexesvc.exe</Image> <!--Sysinternals:PsExec server side | Credit @Cyb3rOps -->
-			<Image condition="image">vnc.exe</Image> <!-- VNC client | Credit @Cyb3rOps -->
-			<Image condition="image">vncviewer.exe</Image> <!-- VNC client | Credit @Cyb3rOps -->
-			<Image condition="image">vncservice.exe</Image> <!-- VNC server | Credit @Cyb3rOps -->
-			<Image condition="image">winexesvc.exe</Image> <!-- Winexe service executable | Credit @Cyb3rOps -->
-			<Image condition="image">\AA_v</Image> <!-- Ammy Admin service executable (e.g. AA_v3.0.exe AA_v3.5.exe ) | Credit @Cyb3rOps -->
-	  </NetworkConnect>	
+			<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">vnc.exe</Image> <!-- VNC client | Credit @Cyb3rOps -->
+			<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">vncviewer.exe</Image> <!-- VNC client | Credit @Cyb3rOps -->
+			<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">vncservice.exe</Image> <!-- VNC server | Credit @Cyb3rOps -->
+			<Image name="technique_id=T1035,technique_name=Service Execution" condition="image">winexesvc.exe</Image> <!-- Winexe service executable | Credit @Cyb3rOps -->
+	  </NetworkConnect>
       <!-- Event ID 5 == Process Terminated. -->
       <ProcessTerminate onmatch="include"/>
       <!-- Event ID 6 == Driver Loaded. -->
       <DriverLoad onmatch="include"/>
       <!-- Event ID 7 == Image Loaded. -->
-      <ImageLoad onmatch="include"/>  
+      <ImageLoad onmatch="include"/>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
       <!-- Event ID 9 == RawAccessRead. -->

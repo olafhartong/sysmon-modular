@@ -25,8 +25,8 @@
       <FileCreate onmatch="include"/>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include">
-			<TargetObject condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
-      <TargetObject condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
+			<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
+      <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
 		</RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include"/>

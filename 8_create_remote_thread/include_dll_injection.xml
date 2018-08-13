@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -17,7 +17,7 @@
       <ImageLoad onmatch="include"/>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include">
-          <StartFunction condition="contains">LoadLibrary</StartFunction> <!--Mitre T1055-->
+          <StartFunction name="technique_id=T1055,technique_name=Process Injection" condition="contains">LoadLibrary</StartFunction>
       </CreateRemoteThread>
       <!-- Event ID 9 == RawAccessRead. -->
       <RawAccessRead onmatch="include"/>

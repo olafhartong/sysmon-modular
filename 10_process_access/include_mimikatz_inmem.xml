@@ -21,7 +21,8 @@
       <RawAccessRead onmatch="include"/>
       <!-- Event ID 10 == ProcessAccess. -->
       <ProcessAccess onmatch="include">
-         <TargetImage condition="is">C:\Windows\system32\lsass.exe</TargetImage> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003--><!-- depending on what you're running on your host, this might be noisy-->
+        <!-- In some environments this causes HIGH CPU usage by sysmon, remove this module when that occurs -->
+         <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003--><!-- depending on what you're running on your host, this might be noisy-->
       </ProcessAccess>
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include"/>

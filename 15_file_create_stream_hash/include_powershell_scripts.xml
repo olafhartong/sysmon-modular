@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -27,8 +27,8 @@
       <RegistryEvent onmatch="include"/>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include">
-			<TargetFilename condition="end with">.ps1</TargetFilename> <!--Powershell-->
-			<TargetFilename condition="end with">.ps2</TargetFilename> <!--Powershell-->
+			<TargetFilename name="technique_id=T1086,technique_name=PowerShell" condition="end with">.ps1</TargetFilename> <!--Powershell-->
+			<TargetFilename name="technique_id=T1086,technique_name=PowerShell" condition="end with">.ps2</TargetFilename> <!--Powershell-->
 		</FileCreateStreamHash>
       <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
       <PipeEvent onmatch="include"/>

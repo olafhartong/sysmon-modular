@@ -7,7 +7,9 @@
       <ProcessCreate onmatch="include"/>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include">
-	  	<Image condition="begin with">C:\Temp</Image> <!--Mitre T1099--><!--Look for timestomping in temp folders-->
+	  	<Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Temp</Image><!--Look for timestomping in temp folders-->
+      <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Windows\Temp</Image>
+      <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Tmp</Image>
 	  </FileCreateTime>
       <!-- Event ID 3 == Network Connection. -->
       <NetworkConnect onmatch="include"/>

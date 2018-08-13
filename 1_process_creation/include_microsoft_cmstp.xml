@@ -5,7 +5,7 @@
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <Image condition="end with">CMSTP.exe</Image><!--Mitre T1191--><!--Microsoft Connection Manager Profile Installer-->
+          <Image name="technique_id=T1191,technique_name=CMSTP" condition="image">CMSTP.exe</Image><!--Microsoft Connection Manager Profile Installer-->
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>

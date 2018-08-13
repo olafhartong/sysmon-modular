@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <Image condition="end with">wsmprovhost.exe</Image>  <!--Mitre T1028-->
-		  <Image condition="end with">winrm.cmd</Image>  <!--Mitre T1028-->
+          <Image name="technique_id=T1028,technique_name=Windows Remote Management" condition="image">wsmprovhost.exe</Image>
+		      <Image name="technique_id=T1028,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>

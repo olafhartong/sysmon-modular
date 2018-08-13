@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <Image condition="end with">InstallUtil.exe</Image><!--Mitre T1118-->
-          <CommandLine condition="contains">/logfile= /LogToConsole=false /U</CommandLine><!--Mitre T1118-->
+          <Image name="technique_id=T1118,technique_name=InstallUtil" condition="image">InstallUtil.exe</Image>
+          <CommandLine name="technique_id=T1118,technique_name=InstallUtil" condition="contains">/logfile= /LogToConsole=false /U</CommandLine>
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
@@ -17,7 +17,7 @@
       <!-- Event ID 6 == Driver Loaded. -->
       <DriverLoad onmatch="include"/>
       <!-- Event ID 7 == Image Loaded. -->
-      <ImageLoad onmatch="include"/>  
+      <ImageLoad onmatch="include"/>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
       <!-- Event ID 9 == RawAccessRead. -->

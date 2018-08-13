@@ -5,7 +5,7 @@
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <Image condition="end with">MSBuild.exe</Image><!--Mitre T1127-->
+          <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="image">MSBuild.exe</Image>
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
