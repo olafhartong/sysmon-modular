@@ -1,17 +1,17 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include">
-          <ParentImage condition="end with">sethc.exe</ParentImage> <!--Mitre T1015-->
-          <ParentImage condition="end with">utilman.exe</ParentImage> <!--Mitre T1015-->
-          <ParentImage condition="end with">osk.exe</ParentImage> <!--Mitre T1015-->
-          <ParentImage condition="end with">Magnify.exe</ParentImage> <!--Mitre T1015-->
-          <ParentImage condition="end with">DisplaySwitch.exe</ParentImage> <!--Mitre T1015-->
-          <ParentImage condition="end with">Narrator.exe</ParentImage> <!--Mitre T1015-->
-          <ParentImage condition="end with">AtBroker.exe</ParentImage> <!--Mitre T1015-->
+          <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">sethc.exe</ParentImage>
+          <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">utilman.exe</ParentImage>
+          <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">osk.exe</ParentImage>
+          <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">Magnify.exe</ParentImage>
+          <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">DisplaySwitch.exe</ParentImage>
+          <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">Narrator.exe</ParentImage>
+          <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">AtBroker.exe</ParentImage>
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
@@ -22,7 +22,7 @@
       <!-- Event ID 6 == Driver Loaded. -->
       <DriverLoad onmatch="include"/>
       <!-- Event ID 7 == Image Loaded. -->
-      <ImageLoad onmatch="include"/>  
+      <ImageLoad onmatch="include"/>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
       <!-- Event ID 9 == RawAccessRead. -->
