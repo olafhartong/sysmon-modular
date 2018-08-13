@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.0">
+<Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
    <CheckRevocation/> 
