@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -23,9 +23,9 @@
       <ProcessAccess onmatch="include"/>
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.py</TargetFilename> <!--Python [ More information: https://attack.mitre.org/wiki/Group/G0035 ] -->
-			<TargetFilename condition="end with">.pyc</TargetFilename> <!--Python compiled code -->
-            <TargetFilename condition="end with">.pyw</TargetFilename> <!--Python script to be ran with console suppressed -->
+			     <TargetFilename condition="end with">.py</TargetFilename> <!--Python [ More information: https://attack.mitre.org/wiki/Group/G0035 ] -->
+			     <TargetFilename condition="end with">.pyc</TargetFilename> <!--Python compiled code -->
+           <TargetFilename condition="end with">.pyw</TargetFilename> <!--Python script to be ran with console suppressed -->
 		</FileCreate>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include"/>

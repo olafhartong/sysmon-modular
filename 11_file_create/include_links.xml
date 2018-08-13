@@ -23,8 +23,8 @@
       <ProcessAccess onmatch="include"/>
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.lnk</TargetFilename> <!--Mitre T1187-->
-      <TargetFilename condition="end with">.scf</TargetFilename> <!--Mitre T1187-->
+			<TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.lnk</TargetFilename> 
+      <TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.scf</TargetFilename>
 		</FileCreate>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include"/>
