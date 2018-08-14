@@ -19,6 +19,8 @@
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\repair\</Image>
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\security\</Image>
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</Image>
+          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
+          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
       </ProcessCreate>
       <!-- Event ID 2 == File Creation Time. -->
       <FileCreateTime onmatch="include"/>
