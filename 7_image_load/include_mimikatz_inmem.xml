@@ -20,6 +20,7 @@
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\cryptdll.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\hid.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\vaultcli.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\wlanapi.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
       </ImageLoad>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
