@@ -23,6 +23,9 @@ I started a series of blog posts covering this repo;
 - [Endpoint detection Superpowers on the cheap — part 2 — Deploy and Maintain](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-2-deploy-and-maintain-d06580329fe8)
 - [Endpoint detection Superpowers on the cheap — part 3 — Sysmon Tampering](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-3-sysmon-tampering-49c2dc9bf6d9)
 
+
+Following this blogpost [Sysmon 8.0, a leap forward in event annotation](https://medium.com/@olafhartong/sysmon-8-0-a-leap-forward-in-event-annotation-59a36555d856) I've been working on updating the configuration modules to schemaversion 4.1 as well as adding the MITRE annotation fields. Eventually I deviated a little bit from my blogpost and went with the OSSEM field naming; technique_id and technique_name
+
 ## Mitre ATT&CK
 
 I strive to map all configurations to the ATT&CK framework whenever Sysmon is able to detect it.
