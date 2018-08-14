@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -25,8 +25,7 @@
       <FileCreate onmatch="include"/>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include">
-          <Image condition="is">C:\Windows\system32\LogonUI.exe</Image> <!--Mitre T1076-->
-          <TargetObject condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</TargetObject> <!--Mitre T1076-->
+          <TargetObject name="technique_id=T1076,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</TargetObject>
       </RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include" />

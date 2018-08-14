@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -26,7 +26,7 @@
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include">
           <!-- Win32_OSRecoveryConfiguration class C2 maps to a change in values within the following key: -->
-          <TargetObject condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
+          <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
       </RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include" />

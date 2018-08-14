@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -25,7 +25,7 @@
       <FileCreate onmatch="include"/>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include">
-			<TargetObject condition="contains">SOFTWARE\Microsoft\Netsh</TargetObject><!--Mitre T1128-->
+			<TargetObject name="technique_id=T1128,technique_name=Netsh Helper DLL" condition="contains">SOFTWARE\Microsoft\Netsh</TargetObject>
 		</RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include"/>

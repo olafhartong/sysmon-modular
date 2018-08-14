@@ -27,7 +27,7 @@
       <RegistryEvent onmatch="include">
 			<!--Windows internals integrity monitoring-->
 			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject> <!--Microsoft:Windows: Malware likes changing IFEO-->
-			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject> <!--Microsoft:Windows:UAC: Detect malware changes to UAC prompt level-->
+			<TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject> <!--Microsoft:Windows:UAC: Detect malware changes to UAC prompt level-->
 			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT</TargetObject> <!--Microsoft:Windows: Event log system integrity and ACLs-->
 			<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject> <!--Microsoft:Windows: Services approved to load in safe mode-->
 			<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Winlogon</TargetObject> <!--Microsoft:Windows: Providers notified by WinLogon-->

@@ -27,7 +27,7 @@
       <RegistryEvent onmatch="include">
 			<!--AppPaths hijacking-->
 			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths</TargetObject> <!--Microsoft:Windows: Credit to @Hexacorn [ http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/ ] -->
-			<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls</TargetObject> <!--Mitre T1182--><!--Microsoft:Windows: Credit to @Hexacorn [ http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/ ] -->
+			<TargetObject name="technique_id=T1182,technique_name=AppCert DLLs" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls</TargetObject><!--Microsoft:Windows: Credit to @Hexacorn [ http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/ ] -->
 		</RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include"/>

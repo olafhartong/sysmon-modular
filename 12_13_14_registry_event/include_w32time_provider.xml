@@ -25,7 +25,7 @@
       <FileCreate onmatch="include"/>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include">
-          <TargetObject condition="contains">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders</TargetObject><!--Mitre T1209-->
+          <TargetObject name="technique_id=T1209,technique_name=Time Providers" condition="contains">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders</TargetObject>
       </RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include" />

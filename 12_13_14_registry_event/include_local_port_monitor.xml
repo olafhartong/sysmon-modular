@@ -25,7 +25,7 @@
       <FileCreate onmatch="include"/>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors</TargetObject> <!--Mitre T1013-->
+          <TargetObject name="technique_id=T1013,technique_name=Forced Authentication" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors</TargetObject>
       </RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include" />

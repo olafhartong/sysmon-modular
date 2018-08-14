@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -26,9 +26,9 @@
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include">
 			<!--Microsoft Firewall tampering-->
-			<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject> <!--Windows Firewall authorized applications | Credit @ion-storm -->
-			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
-			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
+			<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject> <!--Windows Firewall authorized applications | Credit @ion-storm -->
+			<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
+			<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
 		</RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include"/>
