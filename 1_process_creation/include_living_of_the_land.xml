@@ -40,6 +40,7 @@
       <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">cscript.exe</ParentImage>
       <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">wscript.exe</ParentImage>
       <ParentImage name="technique_id=T1170,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
+      <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">control.exe</ParentImage> <!-- https://twitter.com/rikvduijn/status/853251879320662017 -->
       <Image name="technique_id=T1170,technique_name=Mshta" condition="image">mshta.exe</Image>
       <Image name="technique_id=T1158,technique_name=Hidden Files and DirectoriesHidden Files and Directories" condition="image">attrib.exe</Image>
       <Image condition="image">cmdkey.exe</Image> <!--Microsoft:Windows: creates, lists, and deletes stored user names and passwords or credentials.-->
