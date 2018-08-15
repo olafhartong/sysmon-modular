@@ -80,14 +80,6 @@
 			"enabled": true
 		},
 		{
-			"techniqueID": "T1123",
-			"tactic": "collection",
-			"score": 100,
-			"color": "",
-			"comment": "",
-			"enabled": true
-		},
-		{
 			"techniqueID": "T1131",
 			"tactic": "persistence",
 			"score": 100,
@@ -810,6 +802,78 @@
 		{
 			"techniqueID": "T1034",
 			"tactic": "privilege-escalation",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1134",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1134",
+			"tactic": "privilege-escalation",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1054",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1037",
+			"tactic": "lateral-movement",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1037",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1036",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1031",
+			"tactic": "persistence",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1027",
+			"tactic": "defense-evasion",
+			"score": 100,
+			"color": "",
+			"comment": "",
+			"enabled": true
+		},
+		{
+			"techniqueID": "T1021",
+			"tactic": "lateral-movement",
 			"score": 100,
 			"color": "",
 			"comment": "",
