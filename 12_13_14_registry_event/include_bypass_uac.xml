@@ -27,6 +27,7 @@
       <RegistryEvent onmatch="include">
           <TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="contains">\mscfile\shell\open\command</TargetObject>
 		      <TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="contains">ms-settings\shell\open\command</TargetObject>
+          <TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject> <!-- Credit cyb3rop -->
       </RegistryEvent>
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include" />
