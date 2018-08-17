@@ -38,9 +38,9 @@ I highly recommend looking at the configs before implementing them in your produ
 
 ### Prerequisites
 
-Install the PowerShell modules from **[PSSysmonTools](https://github.com/mattifestation/PSSysmonTools)**
+Install the PowerShell modules from **[PSSysmonTools](https://github.com/olafhartong/PSSysmonTools)**
 
-    git clone https://github.com/mattifestation/PSSysmonTools.git
+    git clone https://github.com/olafhartong/PSSysmonTools.git
     cd PSSysmonTools
     Import-Module .\PSSysmonTools.psm1
 
