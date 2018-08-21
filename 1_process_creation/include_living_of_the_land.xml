@@ -30,8 +30,11 @@
 			<ParentImage name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="image">wmiprvse.exe</ParentImage>
       <Image condition="image">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
       <Image name="technique_id=T1059,technique_name=Command-Line Interface" condition="image">cmd.exe</Image><!--Microsoft:Windows: Command prompt-->
+      <ParentImage name="technique_id=T1059,technique_name=Command-Line Interface" condition="image">cmd.exe</ParentImage><!--Microsoft:Windows: Command prompt-->
       <Image name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell.exe</Image><!--Microsoft:Windows: PowerShell interface-->
-			<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">bash.exe</Image><!--Microsoft:Windows: bash on Windows, Linux subsystem-->
+      <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell.exe</ParentImage><!--Microsoft:Windows: PowerShell interface-->
+      <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell_ise.exe</ParentImage><!--Microsoft:Windows: PowerShell interface-->
+      <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">bash.exe</Image><!--Microsoft:Windows: bash on Windows, Linux subsystem-->
 			<Image condition="image">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
       <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image><!--Microsoft:Windows: Program Compatibility Assistant)-->
       <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">cscript.exe</Image>
