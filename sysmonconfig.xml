@@ -708,6 +708,18 @@
       <TargetObject condition="begin with" name="undefined">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1122,technique_name=Component Object Model Hijacking">Software\Classes\CLSID</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1060,technique_name=Registry Run Keys / Start Folder">\Policies\Explorer\Run</TargetObject>
+      <TargetObject name="technique_id=T1035,technique_name=Service Execution" condition="end with">\PsExec\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1105,technique_name=Remote File Copy" condition="end with">\PsFile\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="end with">\PsGetSID\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1057,technique_name=Process Discovery" condition="end with">\PsInfo\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="end with">\PsKill\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1057,technique_name=Process Discovery" condition="end with">\PsList\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="end with">\PsLoggedOn\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1035,technique_name=Service Execution" condition="end with">\PsLogList\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1098,technique_name=Account Manipulation" condition="end with">\PsPasswd\EulaAccepted</TargetObject>
+      <TargetObject name="technique_id=T1035,technique_name=Service Execution" condition="end with">\PsService\EulaAccepted</TargetObject>
+      <TargetObject name="undefined" condition="end with">\PsShutDown\EulaAccepted</TargetObject>
+      <TargetObject name="undefined" condition="end with">\PsSuspend\EulaAccepted</TargetObject>
     </RegistryEvent>
     <RegistryEvent onmatch="exclude">
       <Image name="undefined">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>
