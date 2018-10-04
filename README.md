@@ -59,6 +59,10 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
 Optionally you can omit the comments from the merged config with the “-ExcludeMergeComments” switch.
 
+You might see an error like ; *Merge-SysmonXMLConfiguration : The schema version of C:\Temp\sysmon-modular-master\sysmonconfig.xml () does not match that of the reference configuration:*
+The error is due to the validator. When executing the oneliner the sysmonconfig.xml is created but it is still empty at that time. Therefore it is not a valid config at that time, the file is filled with data at the end of the generation phase. You can safely ignore it.
+
+
 You can test your config if it's schema compliant
 
     Test-SysmonConfiguration .\sysmonconfig.xml
