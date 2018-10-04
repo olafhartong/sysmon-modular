@@ -55,7 +55,7 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
     git clone https://github.com/olafhartong/sysmon-modular.git
     cd sysmon modular
-    Get-ChildItem -Path . -Filter *.xml -Recurse -ErrorAction SilentlyContinue | Merge-SysmonXMLConfiguration -ReferencePolicyPath .\baseconfig.xml | Out-File sysmonconfig.xml
+    .\Generate-Sysmon-Config.ps1
 
 Optionally you can omit the comments from the merged config with the “-ExcludeMergeComments” switch.
 
