@@ -1,7 +1,7 @@
 <Sysmon schemaversion="4.1">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/> 
+   <CheckRevocation/>
    <EventFiltering>
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
@@ -15,8 +15,8 @@
       <DriverLoad onmatch="include"/>
       <!-- Event ID 7 == Image Loaded. -->
       <ImageLoad onmatch="include">
-		<!--COMMENT:	Can cause high system load, disabled by default, important examples included below.-->
-		</ImageLoad>	  
+		<!--COMMENT:	Can cause high system load, disabled by default.-->
+		</ImageLoad>
       <!-- Event ID 8 == CreateRemoteThread. -->
       <CreateRemoteThread onmatch="include"/>
       <!-- Event ID 9 == RawAccessRead. -->
