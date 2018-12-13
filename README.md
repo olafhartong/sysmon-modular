@@ -6,6 +6,8 @@
 
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
+## NOTICE; Sysmon 8.02 is not compatible with this configuration. Please use Sysmon 8.0. Weblog with reasoning will follow soon
+
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
 
