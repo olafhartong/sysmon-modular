@@ -23,17 +23,9 @@
       <ProcessAccess onmatch="include"/>
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.docm</TargetFilename> <!--Microsoft:Office:Word: With Macro-->
-			<TargetFilename condition="end with">.pptm</TargetFilename> <!--Microsoft:Office:PowerPoint: With Macro-->
-			<TargetFilename condition="end with">.xlsm</TargetFilename> <!--Microsoft:Office:Excel: With Macro-->
-			<TargetFilename condition="end with">.xlm</TargetFilename> <!--Microsoft:Office:Excel: Legacy Excel With Macro-->
-			<TargetFilename condition="end with">.dotm</TargetFilename> <!--Microsoft:Office:Word: Template With Macro-->
-			<TargetFilename condition="end with">.xltm</TargetFilename> <!--Microsoft:Office:Excel: Template With Macro-->
-			<TargetFilename condition="end with">.potm</TargetFilename> <!--Microsoft:Office:PowerPoint: Template With Macro-->
-			<TargetFilename condition="end with">.ppsm</TargetFilename> <!--Microsoft:Office:PowerPoint: Slideshow With Macro-->
-			<TargetFilename condition="end with">.sldm</TargetFilename> <!--Microsoft:Office:PowerPoint: Slide With Macro-->
-			<TargetFilename condition="end with">.xlam</TargetFilename> <!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
-			<TargetFilename condition="end with">.xla</TargetFilename> <!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
+			<!--Info on how these are abused: https://www.vmray.com/cyber-security-blog/forgotten-ms-office-features-used-deliver-malware/-->
+			<TargetFilename condition="end with">.iqy</TargetFilename> <!--Microsoft:Office:Excel: IQY file used to pull down dropper-->
+			<TargetFilename condition="end with">.slk</TargetFilename> <!--Microsoft:Office:Excel: SLK file used for command execution-->
 		</FileCreate>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
       <RegistryEvent onmatch="include"/>

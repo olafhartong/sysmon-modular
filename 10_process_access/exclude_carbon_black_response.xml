@@ -21,7 +21,7 @@
       <RawAccessRead onmatch="include"/>
       <!-- Event ID 10 == ProcessAccess. -->
       <ProcessAccess onmatch="exclude">
-  	<SourceImage condition="is">C:\Program Files (x86)\VMware\VMWare Player\vmware-authd.exe</SourceImage>
+		<SourceImage condition="is">C:\Windows\CarbonBlack\cb.exe</SourceImage><!--CarbonBlack:Response-->
       </ProcessAccess>
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include"/>

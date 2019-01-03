@@ -21,7 +21,8 @@
       <RawAccessRead onmatch="include"/>
       <!-- Event ID 10 == ProcessAccess. -->
       <ProcessAccess onmatch="exclude">
-  	<SourceImage condition="is">C:\Program Files (x86)\VMware\VMWare Player\vmware-authd.exe</SourceImage>
+		<SourceImage condition="is">C:\Program Files\McAfee\Endpoint Security\Endpoint Security Platform\mfeesp.exe</SourceImage><!--McAfee:Endpoint Security Platform-->
+		<SourceImage condition="is">C:\Program Files\McAfee\Agent\x86\macompatsvc.exe</SourceImage><!--McAfee:Agent-->
       </ProcessAccess>
       <!-- Event ID 11 == FileCreate. -->
       <FileCreate onmatch="include"/>
