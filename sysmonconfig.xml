@@ -4,9 +4,10 @@
 <!--     * C:\Users\ohartong\tools\sysmon-modular\baseconfig.xml                                                                       -->
 <!--   Merged policies:                                                                                                                -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\baseconfig.xml                                                                       -->
-<!--     * C:\Users\ohartong\tools\sysmon-modular\sysmonconfig.xml                                                                     -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\10_process_access\exclude_carbon_black_response.xml                                  -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\10_process_access\exclude_ivanti.xml                                                 -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\10_process_access\exclude_lsass_noise.xml                                            -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\10_process_access\exclude_mcafee_endpoint.xml                                        -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\10_process_access\exclude_microsoft_windows_defender.xml                             -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\10_process_access\exclude_vmware_player.xml                                          -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\10_process_access\include_general_commment.xml                                       -->
@@ -15,6 +16,7 @@
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\exclude_intel_gfx_service.xml                                         -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\exclude_microsoft_click2run.xml                                       -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\exclude_microsoft_services.xml                                        -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\exclude_microsoft_windows_recent_files.xml                            -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\exclude_microsoft_windows_update.xml                                  -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\exclude_scheduled_task_noise.xml                                      -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_appc_shim.xml                                                 -->
@@ -28,7 +30,10 @@
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_links.xml                                                     -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_microsoft_clickonce.xml                                       -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_microsoft_msbuild_scripts.xml                                 -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_microsoft_settingcontent-ms.xml                               -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_ms_office_documents_with_macros - Copy.xml                    -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_ms_office_documents_with_macros.xml                           -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_ms_office_excel_iqy_slk.xml                                   -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_outlook_attachments.xml                                       -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_powershell_changes.xml                                        -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_powershell_scripts.xml                                        -->
@@ -40,8 +45,10 @@
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_system_driver_files.xml                                       -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_visual_basic_scripts.xml                                      -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\11_file_create\include_wmi_changes.xml                                               -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\12_13_14_registry_event\exclude_cisco_anyconnect.xml                                 -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\12_13_14_registry_event\exclude_internet_explorer_settings.xml                       -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\12_13_14_registry_event\exclude_ivanti.xml                                           -->
+<!--     * C:\Users\ohartong\tools\sysmon-modular\12_13_14_registry_event\exclude_mcafee_endpoint.xml                                  -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\12_13_14_registry_event\exclude_webroot.xml                                          -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\12_13_14_registry_event\exclude_widcomm_bt_driver.xml                                -->
 <!--     * C:\Users\ohartong\tools\sysmon-modular\12_13_14_registry_event\exclude_windows_bootup_control.xml                           -->
@@ -601,16 +608,19 @@
     <ProcessAccess onmatch="exclude">
       <SourceImage>C:\Program Files\RES Software\Workspace Manager\cpushld.exe</SourceImage>
       <SourceImage>C:\Program Files\Windows Defender\MsMpEng.exe</SourceImage>
+      <SourceImage>C:\Program Files\McAfee\Agent\x86\macompatsvc.exe</SourceImage>
       <SourceImage>C:\Program Files (x86)\VMware\VMWare Player\vmware-authd.exe</SourceImage>
       <SourceImage condition="end with">Microsoft.Identity.AadConnect.Health.AadSync.Host.exe</SourceImage>
       <SourceImage>C:\Windows\System32\lsm.exe</SourceImage>
       <SourceImage condition="end with">taskmgr.exe</SourceImage>
       <SourceImage condition="end with">vmtoolsd.exe</SourceImage>
+      <SourceImage>C:\Windows\CarbonBlack\cb.exe</SourceImage>
       <SourceImage>C:\Program Files (x86)\Ivanti\Workspace Control\cpushld.exe</SourceImage>
       <SourceImage condition="end with">VBoxService.exe</SourceImage>
       <SourceImage condition="end with">LTSVC.exe</SourceImage>
       <SourceImage condition="end with">GoogleUpdate.exe</SourceImage>
       <SourceImage condition="end with">wmiprvse.exe</SourceImage>
+      <SourceImage>C:\Program Files\McAfee\Endpoint Security\Endpoint Security Platform\mfeesp.exe</SourceImage>
       <SourceImage condition="begin with">C:\Program Files (x86)\Symantec\Symantec Endpoint Protection</SourceImage>
       <SourceImage>C:\Program Files\Ivanti\Workspace Control\cpushld.exe</SourceImage>
       <SourceImage condition="end with">\Citrix\System32\wfshell.exe</SourceImage>
@@ -619,42 +629,53 @@
     <FileCreate onmatch="include">
       <Image condition="image">rundll32.exe</Image>
       <Image condition="begin with" name="technique_id=T1047,technique_name=Windows Management Instrumentation">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
-      <TargetFilename condition="end with" name="technique_id=T1187,technique_name=Forced Authentication">.lnk</TargetFilename>
+      <TargetFilename condition="end with">.dotm</TargetFilename>
       <TargetFilename condition="end with">.vb</TargetFilename>
+      <TargetFilename condition="end with">.potm</TargetFilename>
       <TargetFilename condition="end with">.vbe</TargetFilename>
       <TargetFilename condition="end with" name="technique_id=T1086,technique_name=PowerShell">.ps2</TargetFilename>
-      <TargetFilename condition="begin with">C:\Windows\Tasks\</TargetFilename>
       <TargetFilename condition="end with" name="technique_id=T1086,technique_name=PowerShell">.ps1</TargetFilename>
+      <TargetFilename condition="begin with">C:\Windows\Tasks\</TargetFilename>
+      <TargetFilename condition="end with">.iqy</TargetFilename>
       <TargetFilename condition="begin with" name="technique_id=T1047,technique_name=Windows Management Instrumentation">C:\Windows\System32\Wbem</TargetFilename>
       <TargetFilename condition="end with">.pyc</TargetFilename>
       <TargetFilename condition="end with">.application</TargetFilename>
-      <TargetFilename condition="end with">.py</TargetFilename>
+      <TargetFilename condition="end with">.xla</TargetFilename>
       <TargetFilename condition="begin with">C:\Users\Default</TargetFilename>
       <TargetFilename condition="end with">.docm</TargetFilename>
       <TargetFilename condition="end with" name="technique_id=T1127,technique_name=Trusted Developer Utilities">.*proj</TargetFilename>
+      <TargetFilename condition="end with">.slk</TargetFilename>
       <TargetFilename condition="end with">.pptm</TargetFilename>
+      <TargetFilename condition="end with">.xlm</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\Tasks</TargetFilename>
       <TargetFilename condition="end with">.vbs</TargetFilename>
-      <TargetFilename condition="end with">.sys</TargetFilename>
+      <TargetFilename condition="contains">\Content.Outlook\</TargetFilename>
       <TargetFilename condition="end with">.pyw</TargetFilename>
       <TargetFilename condition="contains">\Downloads\</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\GroupPolicy\User\Scripts</TargetFilename>
       <TargetFilename condition="end with" name="technique_id=T1170,technique_name=Mshta">.hta</TargetFilename>
-      <TargetFilename condition="contains">\Content.Outlook\</TargetFilename>
+      <TargetFilename condition="end with">.sldm</TargetFilename>
+      <TargetFilename condition="end with" name="technique_id=T1187,technique_name=Forced Authentication">.lnk</TargetFilename>
+      <TargetFilename condition="end with">.ppsm</TargetFilename>
+      <TargetFilename condition="end with">.xlam</TargetFilename>
       <TargetFilename condition="end with" name="technique_id=T1187,technique_name=Forced Authentication">.scf</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\GroupPolicy\Machine\Scripts</TargetFilename>
       <TargetFilename condition="end with">.cmd</TargetFilename>
       <TargetFilename condition="end with">.bat</TargetFilename>
       <TargetFilename condition="end with" name="technique_id=T1127,technique_name=Trusted Developer Utilities">.sln</TargetFilename>
       <TargetFilename condition="contains">\Startup</TargetFilename>
+      <TargetFilename condition="end with">.settingcontent-ms</TargetFilename>
       <TargetFilename condition="begin with" name="technique_id=T1086,technique_name=PowerShell">C:\Windows\System32\WindowsPowerShell</TargetFilename>
       <TargetFilename condition="end with">.xlsm</TargetFilename>
+      <TargetFilename condition="end with">.py</TargetFilename>
+      <TargetFilename condition="end with">.xltm</TargetFilename>
       <TargetFilename condition="begin with" name="technique_id=T1086,technique_name=PowerShell">C:\Windows\SysWOW64\WindowsPowerShell</TargetFilename>
       <TargetFilename condition="contains">\Start Menu</TargetFilename>
       <TargetFilename condition="begin with" name="technique_id=T1047,technique_name=Windows Management Instrumentation">C:\Windows\SysWOW64\Wbem</TargetFilename>
       <TargetFilename condition="contains" name="technique_id=T1138,technique_name=Application Shimming">C:\Windows\AppPatch\Custom</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\Drivers</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\SysWOW64\Drivers</TargetFilename>
+      <TargetFilename condition="end with">.sys</TargetFilename>
       <TargetFilename condition="end with">.appref-ms</TargetFilename>
       <TargetFilename condition="end with">.exe</TargetFilename>
     </FileCreate>
@@ -668,11 +689,12 @@
       <Image>C:\Windows\system32\wbem\WMIADAP.EXE</Image>
       <TargetFilename condition="begin with">C:\Windows\System32\wbem\Performance\</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
+      <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
       <TargetFilename condition="end with">WRITABLE.TST</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\DriverStore\Temp\</TargetFilename>
       <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
-      <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
+      <TargetFilename condition="contains">\AppData\Roaming\Microsoft\Windows\Recent\</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
     </FileCreate>
     <RegistryEvent onmatch="include">
@@ -785,16 +807,29 @@
       <TargetObject condition="contains" name="technique_id=T1060,technique_name=Registry Run Keys / Start Folder">\Policies\Explorer\Run</TargetObject>
     </RegistryEvent>
     <RegistryEvent onmatch="exclude">
-      <Image>C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>
-      <Image>C:\Program Files\WIDCOMM\Bluetooth Software\btwdins.exe</Image>
-      <Image condition="begin with">C:\$WINDOWS.~BT\</Image>
-      <Image>C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe</Image>
-      <Image>C:\Program Files\RES Software\Workspace Manager\pfwsmgr.exe</Image>
       <Image condition="image">C:\WINDOWS\system32\backgroundTaskHost.exe</Image>
-      <Image>C:\Program Files (x86)\Webroot\WRSA.exe</Image>
+      <Image>C:\Program Files\McAfee\Agent\x86\macompatsvc.exe</Image>
       <Image>C:\Program Files\Windows Defender\MsMpEng.exe</Image>
-      <Image>C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
       <Image condition="end with">Office\root\integration\integrator.exe</Image>
+      <Image>C:\Program Files\McAfee\Agent\masvc.exe</Image>
+      <Image>C:\Program Files (x86)\Webroot\WRSA.exe</Image>
+      <Image>C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe</Image>
+      <Image>C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
+      <Image>C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\aciseposture.exe</Image>
+      <Image>C:\Program Files\WIDCOMM\Bluetooth Software\btwdins.exe</Image>
+      <Image>C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>
+      <Image condition="begin with">C:\$WINDOWS.~BT\</Image>
+      <Image>C:\Program Files\McAfee\Agent\x86\mfemactl.exe</Image>
+      <Image>C:\Program Files\McAfee\Endpoint Security\Threat Prevention\mfeensppl.exe</Image>
+      <Image>C:\Program Files\McAfee\Endpoint Security\Endpoint Security Platform\mfeesp.exe</Image>
+      <Image condition="begin with">C:\Program Files\Common Files\McAfee\Engine\scanners</Image>
+      <Image>C:\Program Files\Common Files\McAfee\Engine\AMCoreUpdater\amupdate.exe</Image>
+      <Image>C:\Program Files\McAfee\Agent\x86\McScript_InUse.exe</Image>
+      <Image>C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
+      <Image>C:\Program Files\RES Software\Workspace Manager\pfwsmgr.exe</Image>
+      <Image>C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
+      <Image>C:\Program Files\McAfee\Endpoint Security\Adaptive Threat Protection\mfeatp.exe</Image>
+      <Image>C:\Program Files\McAfee\Endpoint Encryption Agent\MfeEpeHost.exe</Image>
       <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject>
       <TargetObject condition="end with">ShellBrowser</TargetObject>
       <TargetObject condition="end with">\services\BITS\Start</TargetObject>
