@@ -28,7 +28,7 @@
       <!-- Event ID 15 == FileStream Created. -->
       <FileCreateStreamHash onmatch="include"/>
       <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
-      <PipeEvent onmatch="include"/>
+      <PipeEvent onmatch="exclude"/>
       <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
       <WmiEvent onmatch="include"/>
   </EventFiltering>
