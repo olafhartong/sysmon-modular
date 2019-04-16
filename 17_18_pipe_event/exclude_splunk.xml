@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <PipeEvent onmatch="exclude">
+          <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunkd.exe</Image>
+          <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk.exe</Image>
+          <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk-MonitorNoHandle.exe</Image>              
+      </PipeEvent>
+  </EventFiltering>
+</Sysmon>

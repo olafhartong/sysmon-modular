@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <PipeEvent onmatch="exclude">
+          <PipeName condition="is">\ntapvsrq</PipeName>
+          <PipeName condition="is">\srvsvc</PipeName>
+          <PipeName condition="is">\wkssvc</PipeName>
+          <PipeName condition="is">\lsass</PipeName>
+          <PipeName condition="is">\winreg</PipeName>
+          <PipeName condition="is">\spoolss</PipeName>
+      </PipeEvent>
+  </EventFiltering>
+</Sysmon>
