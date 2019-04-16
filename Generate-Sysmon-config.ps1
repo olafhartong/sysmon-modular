@@ -25,4 +25,4 @@ If((Test-Path .\sysmonconfig.xml)) {
 #sysmonconfig.xml
 
 Write-Host "Generating new configuration..."
-Get-ChildItem -Path . -Filter *.xml -Recurse -ErrorAction SilentlyContinue | Where {$_.Name -NotMatch "sysmonconfig(?:-\d{2}-\w{3}-\d{4}-\d{2}-\d{2})?.xml"} | Merge-SysmonXMLConfiguration -ReferencePolicyPath .\baseconfig.xml | Out-File sysmonconfig.xml -Encoding UTF8 
+Get-ChildItem -Path . -Filter *.xml -Recurse -ErrorAction SilentlyContinue | Where {$_.Name -NotMatch "sysmonconfig(?:-\d{2}-\w{3}-\d{4}-\d{2}-\d{2})?.xml"} | Merge-SysmonXMLConfiguration -ReferencePolicyPath .\baseconfig.xml -ExcludeMergeComments | Out-File sysmonconfig.xml -Encoding UTF8 
