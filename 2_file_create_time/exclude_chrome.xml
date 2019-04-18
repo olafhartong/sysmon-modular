@@ -1,8 +1,8 @@
 <Sysmon schemaversion="4.1">
    <EventFiltering>
       <FileCreateTime onmatch="exclude">
-			<Image condition="contains">AppData\Local\Google\Chrome\Application\chrome.exe</Image> <!--chrome constantly changes files-->
-			<Image condition="contains">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image> <!--chrome constantly changes files-->      
+			<Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image> <!--chrome constantly changes files-->
+			<Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image> <!--chrome constantly changes files-->      
 	  </FileCreateTime>
   </EventFiltering>
 </Sysmon>
