@@ -9,6 +9,7 @@
           <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\WEB_OSCE\WEB\CGI\cgiRqHotFix.exe</Image>
           <PipeName condition="is">\Trend Micro OSCE Command Handler Manager</PipeName>
           <PipeName condition="is">\Trend Micro OSCE Command Handler2 Manager</PipeName>
+          <PipeName condition="is">\Trend Micro Endpoint Encryption ToolBox Command Handler Manager</PipeName>
           <PipeName condition="is">\OfcServerNamePipe</PipeName>
       </PipeEvent>
   </EventFiltering>

@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <PipeEvent onmatch="exclude">
+          <PipeName condition="is">\SQLLocal\MSSQLSERVER</PipeName>
+          <PipeName condition="is">\SQLLocal\INSTANCE01</PipeName>
+          <PipeName condition="is">\SQLLocal\SQLEXPRESS</PipeName>
+          <PipeName condition="is">\SQLLocal\COMMVAULT</PipeName>
+          <PipeName condition="is">\SQLLocal\RTCLOCAL</PipeName>
+          <PipeName condition="is">\SQLLocal\RTC</PipeName>
+          <PipeName condition="is">\SQLLocal\TMSM</PipeName>          
+      </PipeEvent>
+  </EventFiltering>
+</Sysmon>

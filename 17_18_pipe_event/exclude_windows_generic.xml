@@ -7,6 +7,7 @@
           <PipeName condition="is">\lsass</PipeName>
           <PipeName condition="is">\winreg</PipeName>
           <PipeName condition="is">\spoolss</PipeName>
+          <PipeName condition="contains">Anonymous Pipe</PipeName>
       </PipeEvent>
   </EventFiltering>
 </Sysmon>
