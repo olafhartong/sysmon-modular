@@ -9,7 +9,7 @@ This is a Microsoft Sysinternals Sysmon configuration repository, set up modular
 
 ## NOTICE; Sysmon 8.02 is not compatible with this configuration, it will cause severe blind spots in your logging. Please use Sysmon 8.0 or 8.0.4
 
-### NOTICE; Sysmon 9.0x is not supported in the generate script yet. There is a manually generated configuration included.
+### NOTICE; Sysmon 9.0x is not supported in the generate script yet. There is a manually generated configuration [HERE](https://github.com/olafhartong/sysmon-configs).
 
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
