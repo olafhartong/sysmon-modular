@@ -1,9 +1,0 @@
-<Sysmon schemaversion="4.1">
-   <EventFiltering>
-      <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.docm</TargetFilename> <!--Microsoft:Office:Word: With Macro-->
-			<TargetFilename condition="end with">.pptm</TargetFilename> <!--Microsoft:Office:PowerPoint: With Macro-->
-			<TargetFilename condition="end with">.xlsm</TargetFilename> <!--Microsoft:Office:Excel: With Macro-->
-		</FileCreate>
-  </EventFiltering>
-</Sysmon>
