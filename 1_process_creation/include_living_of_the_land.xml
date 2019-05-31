@@ -52,6 +52,8 @@
       <Image condition="image">schtasks.exe</Image> <!--Microsoft:Windows: Command-line interface to local and remote tasks -->
       <Image condition="image">taskkill.exe</Image> <!--Microsoft:Windows: Kill processes, has remote ability -->
       <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">replace.exe</Image>
+      <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">jjs.exe</Image>
+      <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">appcmd.exe</Image>
       <Image name="technique_id=T1031,technique_name=Modify Existing Service" condition="image">sc.exe</Image>
 		</ProcessCreate>
   </EventFiltering>
