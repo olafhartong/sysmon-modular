@@ -8,6 +8,7 @@
           <PipeName condition="is">\winreg</PipeName>
           <PipeName condition="is">\spoolss</PipeName>
           <PipeName condition="contains">Anonymous Pipe</PipeName>
+          <Image condition="is">c:\windows\system32\inetsrv\w3wp.exe</Image>          
       </PipeEvent>
   </EventFiltering>
 </Sysmon>

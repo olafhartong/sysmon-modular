@@ -1,0 +1,7 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <PipeEvent onmatch="exclude">
+          <Image condition="is">Program Files\Qlik\Sense\Engine\Engine.exe</Image>
+      </PipeEvent>
+  </EventFiltering>
+</Sysmon>
