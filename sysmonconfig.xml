@@ -2,6 +2,7 @@
   <EventFiltering>
     <ProcessCreate onmatch="include">
       <Image condition="image" name="technique_id=T1202,technique_name=Indirect Command Execution">wscript.exe</Image>
+      <Image condition="image" name="technique_id=T1218,technique_name=Signed Binary Proxy Execution">jjs.exe</Image>
       <Image condition="begin with" name="technique_id=T1036,technique_name=Masquerading">C:\Windows\Fonts\</Image>
       <Image condition="contains" name="technique_id=T1036,technique_name=Masquerading">\htdocs\</Image>
       <Image condition="image">cmdkey.exe</Image>
@@ -54,6 +55,8 @@
       <Image condition="image" name="technique_id=T1031,technique_name=Modify Existing Service">sc.exe</Image>
       <Image condition="begin with" name="technique_id=T1036,technique_name=Masquerading">C:\Windows\Help\</Image>
       <Image condition="image" name="technique_id=T1202,technique_name=Indirect Command Execution">pcalua.exe</Image>
+      <Image condition="contains" name="technique_id=T1036,technique_name=Masquerading">VolumeShadowCopy</Image>
+      <Image condition="image" name="technique_id=T1218,technique_name=Signed Binary Proxy Execution">appcmd.exe</Image>
       <Image condition="image" name="technique_id=T1086,technique_name=PowerShell">powershell.exe</Image>
       <Image condition="image" name="technique_id=T1005,technique_name=Data from Local System">PsLogList.exe</Image>
       <Image condition="image" name="technique_id=T1057,technique_name=Process Discovery">PsList.exe</Image>
@@ -549,10 +552,12 @@
     <RegistryEvent onmatch="include">
       <TargetObject condition="contains" name="technique_id=T1089,technique_name=Disabling Security Tools">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject>
       <TargetObject condition="end with" name="technique_id=T1035,technique_name=Service Execution">\PsService\EulaAccepted</TargetObject>
+      <TargetObject>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1089,technique_name=Disabling Security Tools">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiVirus</TargetObject>
+      <TargetObject condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1198,technique_name=SIP and Trust Provider Hijacking">HKLM\SOFTWARE\WOW6432Node\Microsoft\Cryptography\Providers\Trust</TargetObject>
       <TargetObject condition="end with">\ProxyServer</TargetObject>
-      <TargetObject condition="end with">\InprocServer32\(Default)</TargetObject>
+      <TargetObject condition="end with">\ServiceDll</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1060,technique_name=Registry Run Keys / Start Folder">\CurrentVersion\Run</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1138,technique_name=Application Shimming">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB</TargetObject>
       <TargetObject condition="contains">\shell\open\ddeexec</TargetObject>
@@ -565,13 +570,13 @@
       <TargetObject condition="contains" name="technique_id=T1128,technique_name=Netsh Helper DLL">SOFTWARE\Microsoft\Netsh</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1089,technique_name=Disabling Security Tools">HKLM\SOFTWARE\Microsoft\Security Center\DisableMonitoring</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1089,technique_name=Disabling Security Tools">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
-      <TargetObject condition="begin with" name="technique_id=T1060,technique_name=Registry Run Keys / Start Folder">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1088,technique_name=Bypass User Account Control">ms-settings\shell\open\command</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1088,technique_name=Bypass User Account Control">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1088,technique_name=Bypass User Account Control">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1089,technique_name=Disabling Security Tools">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableOnAccessProtection</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1130,technique_name=Install Root Certificate">\Microsoft\SystemCertificates\Root\Certificates</TargetObject>
       <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellServiceObjectDelayLoad</TargetObject>
+      <TargetObject condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1089,technique_name=Disabling Security Tools">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware</TargetObject>
       <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject>
       <TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject>
@@ -580,7 +585,6 @@
       <TargetObject condition="contains" name="technique_id=T1003,technique_name=Credential Dumping">\Control\SecurityProviders\WDigest</TargetObject>
       <TargetObject condition="end with" name="technique_id=T1035,technique_name=Service Execution">\PsLogList\EulaAccepted</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1004,technique_name=Winlogon Helper DLL">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify</TargetObject>
-      <TargetObject condition="end with">\ServiceDll</TargetObject>
       <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1089,technique_name=Disabling Security Tools">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1103,technique_name=Appinit DLLs">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
@@ -593,7 +597,7 @@
       <TargetObject condition="end with">\ImagePath</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1060,technique_name=Registry Run Keys / Start Folder">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute</TargetObject>
       <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject>
-      <TargetObject>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject>
+      <TargetObject condition="begin with" name="technique_id=T1182,technique_name=AppCert DLLs">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls</TargetObject>
       <TargetObject condition="end with" name="technique_id=T1033,technique_name=System Owner/User Discovery">\PsLoggedOn\EulaAccepted</TargetObject>
       <TargetObject name="technique_id=T1015,technique_name=Accessibility Features">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1101,technique_name=Security Support Provider">SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe</TargetObject>
@@ -608,6 +612,7 @@
       <TargetObject condition="begin with" name="technique_id=T1088,technique_name=Bypass User Account Control">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
       <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths</TargetObject>
       <TargetObject condition="end with" name="technique_id=T1057,technique_name=Process Discovery">\PsList\EulaAccepted</TargetObject>
+      <TargetObject condition="contains" name="technique_id=T1060,technique_name=Registry Run Keys / Start Folder">Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1004,technique_name=Winlogon Helper DLL">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell</TargetObject>
       <TargetObject condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>
       <TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject>
@@ -621,6 +626,7 @@
       <TargetObject condition="end with" name="technique_id=T1105,technique_name=Remote File Copy">\PsFile\EulaAccepted</TargetObject>
       <TargetObject condition="end with" name="technique_id=T1057,technique_name=Process Discovery">\PsInfo\EulaAccepted</TargetObject>
       <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\NetworkProvider\Order</TargetObject>
+      <TargetObject condition="end with">\InprocServer32\(Default)</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1098,technique_name=Account Manipulation">\services\Netlogon\Parameters\DisablePasswordChange</TargetObject>
       <TargetObject condition="contains">\Classes\Drive</TargetObject>
       <TargetObject condition="contains" name="technique_id=T1138,technique_name=Application Shimming">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom</TargetObject>
@@ -648,7 +654,7 @@
       <TargetObject condition="begin with" name="technique_id=T1130,technique_name=Install Root Certificate">HKLM\SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1103,technique_name=Appinit DLLs">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
       <TargetObject condition="contains">\Group Policy\Scripts</TargetObject>
-      <TargetObject condition="begin with" name="technique_id=T1182,technique_name=AppCert DLLs">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls</TargetObject>
+      <TargetObject condition="begin with" name="technique_id=T1060,technique_name=Registry Run Keys / Start Folder">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1088,technique_name=Bypass User Account Control">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
       <TargetObject condition="begin with" name="technique_id=T1183,technique_name=Image File Execution Options Injection">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
       <TargetObject condition="end with" name="undefined">\PsShutDown\EulaAccepted</TargetObject>
@@ -747,24 +753,49 @@
       <TargetFilename condition="end with">.vb</TargetFilename>
     </FileCreateStreamHash>
     <PipeEvent onmatch="exclude">
-      <PipeName>\lsass</PipeName>
-      <PipeName>\srvsvc</PipeName>
-      <PipeName>\spoolss</PipeName>
+      <PipeName>\SQLLocal\RTCLOCAL</PipeName>
       <PipeName>\Trend Micro OSCE Command Handler Manager</PipeName>
-      <PipeName>\Trend Micro OSCE Command Handler2 Manager</PipeName>
-      <PipeName>\wkssvc</PipeName>
+      <PipeName>\spoolss</PipeName>
       <PipeName>\OfcServerNamePipe</PipeName>
+      <PipeName>\SQLLocal\SQLEXPRESS</PipeName>
       <PipeName>\ntapvsrq</PipeName>
       <PipeName>\winreg</PipeName>
-      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\web\service\verconn.exe</Image>
-      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\Web\Service\DbServer.exe</Image>
+      <PipeName>\srvsvc</PipeName>
+      <PipeName>\SQLLocal\COMMVAULT</PipeName>
+      <PipeName>\Trend Micro Endpoint Encryption ToolBox Command Handler Manager</PipeName>
+      <PipeName>\lsass</PipeName>
+      <PipeName condition="contains">Anonymous Pipe</PipeName>
+      <PipeName condition="begin with">\Vivisimo Velocity</PipeName>
+      <PipeName>\Trend Micro OSCE Command Handler2 Manager</PipeName>
+      <PipeName>\wkssvc</PipeName>
+      <PipeName>\SQLLocal\MSSQLSERVER</PipeName>
+      <PipeName>\SQLLocal\RTC</PipeName>
+      <PipeName>\SQLLocal\INSTANCE01</PipeName>
+      <PipeName condition="contains">\pgsignal_</PipeName>
+      <PipeName>\SQLLocal\TMSM</PipeName>
+      <Image>Program Files (x86)\Citrix\ICA Client\Receiver\Receiver.exe</Image>
       <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\CMAgent\OfcCMAgent.exe</Image>
-      <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk-MonitorNoHandle.exe</Image>
-      <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk.exe</Image>
+      <Image>Program Files (x86)\Citrix\ICA Client\SelfServicePlugin\SelfService.exe</Image>
+      <Image>Program Files\Qlik\Sense\Engine\Engine.exe</Image>
+      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\web\service\osceintegrationservice.exe</Image>
+      <Image condition="end with">Program Files\Trend\SPROTECT\x64\tsc64.exe</Image>
+      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\WSS\iCRCService.exe</Image>
+      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\web\service\OfcLogReceiverSvc.exe</Image>
       <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\WEB_OSCE\WEB\CGI\cgiOnClose.exe</Image>
-      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\web\service\ofcservice.exe</Image>
+      <Image>Program Files (x86)\Citrix\ICA Client\wfcrun32.exe</Image>
+      <Image>Program Files (x86)\Microsoft SQL Server\110\DTS\binn\dtexec.exe</Image>
+      <Image>Program Files (x86)\Citrix\ICA Client\concentr.exe</Image>
+      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\LWCS\LWCSService.exe</Image>
+      <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk.exe</Image>
+      <Image condition="end with">PostgreSQL\9.6\bin\postgres.exe</Image>
       <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\WEB_OSCE\WEB\CGI\cgiRqHotFix.exe</Image>
       <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunkd.exe</Image>
+      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\Web\Service\DbServer.exe</Image>
+      <Image condition="end with">Program Files\Trend\SPROTECT\x64\tsc.exe</Image>
+      <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk-MonitorNoHandle.exe</Image>
+      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\web\service\verconn.exe</Image>
+      <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\web\service\ofcservice.exe</Image>
+      <Image>c:\windows\system32\inetsrv\w3wp.exe</Image>
     </PipeEvent>
     <WmiEvent onmatch="include">
       <Operation name="technique_id=T1047,technique_name=Windows Management Instrumentation">Created</Operation>
