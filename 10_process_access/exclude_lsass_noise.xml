@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.1">
    <EventFiltering>
-      <ProcessAccess onmatch="exclude">
+    <ProcessAccess onmatch="exclude">
   	<SourceImage condition="end with">wmiprvse.exe</SourceImage>
   	<SourceImage condition="end with">GoogleUpdate.exe</SourceImage>
   	<SourceImage condition="end with">LTSVC.exe</SourceImage>
