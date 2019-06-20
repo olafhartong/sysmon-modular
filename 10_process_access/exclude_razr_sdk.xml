@@ -1,0 +1,7 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <ProcessAccess onmatch="exclude">
+		<SourceImage condition="is">C:\Program Files (x86)\Razer Chroma SDK\bin\RzSDKService.exe</SourceImage>
+      </ProcessAccess>
+  </EventFiltering>
+</Sysmon>

@@ -1,0 +1,7 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <FileCreate onmatch="exclude">
+			<Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
+		</FileCreate>
+  </EventFiltering>
+</Sysmon>

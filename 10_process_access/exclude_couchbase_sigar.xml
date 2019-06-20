@@ -1,0 +1,7 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <ProcessAccess onmatch="exclude">
+		<SourceImage condition="is">c:\Program Files\Couchbase\Server\bin\sigar_port.exe</SourceImage>
+      </ProcessAccess>
+  </EventFiltering>
+</Sysmon>

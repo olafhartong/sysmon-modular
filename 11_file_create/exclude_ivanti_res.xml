@@ -1,0 +1,8 @@
+<Sysmon schemaversion="4.1">
+   <EventFiltering>
+      <FileCreate onmatch="exclude">
+			<Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
+            <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
+		</FileCreate>
+  </EventFiltering>
+</Sysmon>

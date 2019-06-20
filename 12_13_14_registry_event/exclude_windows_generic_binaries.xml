@@ -6,6 +6,7 @@
 			<Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe</Image> <!--Microsoft:Office: C2R client-->
 			<Image condition="is">C:\Program Files\Windows Defender\MsMpEng.exe</Image> <!--Microsoft:Windows:Defender-->
 			<Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image> <!--Microsoft:Cortana-->
+			<Image condition="is">C:\Program Files\Microsoft Application Virtualization\Client\AppVClient.exe</Image>
 		</RegistryEvent>
   </EventFiltering>
 </Sysmon>
