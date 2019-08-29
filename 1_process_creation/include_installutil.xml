@@ -2,8 +2,10 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <Image name="technique_id=T1118,technique_name=InstallUtil" condition="image">InstallUtil.exe</Image>
-          <CommandLine name="technique_id=T1118,technique_name=InstallUtil" condition="contains">/logfile= /LogToConsole=false /U</CommandLine>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1118,technique_name=InstallUtil" condition="image">InstallUtil.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1118,technique_name=InstallUtil" condition="contains all">/logfile=;/LogToConsole=false;/U</CommandLine>
+        </Rule>
       </ProcessCreate>
 </RuleGroup>
 </EventFiltering>
