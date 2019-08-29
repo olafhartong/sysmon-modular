@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ProcessCreate onmatch="include">
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</Image>

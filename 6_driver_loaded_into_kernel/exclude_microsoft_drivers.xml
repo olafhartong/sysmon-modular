@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <DriverLoad onmatch="exclude">
 		<!--COMMENT:	Because drivers with bugs can be used to escalate to kernel permissions, be extremely selective

@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreateStreamHash onmatch="include">
 	  		<!--COMMENT:	Any files created with an NTFS Alternate Data Stream which match these rules will be hashed and logged.

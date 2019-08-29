@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreate onmatch="include">
 			<TargetFilename condition="end with">.exe</TargetFilename> <!--Executable-->

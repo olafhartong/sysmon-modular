@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ProcessTerminate onmatch="include">
 		<Image condition="begin with">C:\Users</Image> <!--Process terminations by user binaries-->

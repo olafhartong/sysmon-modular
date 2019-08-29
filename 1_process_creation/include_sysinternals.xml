@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ProcessCreate onmatch="include">
         <!--Note: Not all Sysinternals listed here, only the ones I know/suspect to be used for malicious activity -->

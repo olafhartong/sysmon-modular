@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreate onmatch="include">
 			<!--Info on how these are abused: https://www.vmray.com/cyber-security-blog/forgotten-ms-office-features-used-deliver-malware/-->

@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <NetworkConnect onmatch="include">
       <!--Eventhough DNS is a commmon exfil channel, you should monitor that via some other way, Sysmon is not ideal for that-->

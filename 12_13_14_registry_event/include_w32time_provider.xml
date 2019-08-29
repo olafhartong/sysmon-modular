@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
           <TargetObject name="technique_id=T1209,technique_name=Time Providers" condition="contains">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders</TargetObject>

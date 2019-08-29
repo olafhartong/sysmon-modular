@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
 			<TargetObject name="technique_id=T1128,technique_name=Netsh Helper DLL" condition="contains">SOFTWARE\Microsoft\Netsh</TargetObject>

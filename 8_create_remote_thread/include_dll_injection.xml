@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <CreateRemoteThread onmatch="include">
           <StartFunction name="technique_id=T1055,technique_name=Process Injection" condition="contains">LoadLibrary</StartFunction>

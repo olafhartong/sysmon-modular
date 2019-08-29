@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreateTime onmatch="exclude">
 			<Image condition="contains">setup</Image> <!--Ignore setups-->

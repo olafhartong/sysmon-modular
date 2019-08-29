@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ProcessCreate onmatch="exclude">
 			<Image condition="begin with">C:\Program Files\NVIDIA Corporation\</Image> <!--Nvidia:Driver: routine actions-->

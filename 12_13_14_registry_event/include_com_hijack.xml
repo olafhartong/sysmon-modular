@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
 			<TargetObject name="technique_id=T1122,technique_name=Component Object Model Hijacking" condition="contains">Software\Classes\CLSID</TargetObject><!--Appears in HKLM and HKCU-->

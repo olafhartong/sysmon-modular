@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <NetworkConnect onmatch="exclude">
        <Image condition="is">C:\Program files (x86)\Trend Micro\OfficeScan Client\tmlisten.exe</Image> <!--Credit d4ph1l -->

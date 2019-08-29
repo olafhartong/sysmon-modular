@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreate onmatch="include">
 			<TargetFilename name="technique_id=T1170,technique_name=Mshta" condition="end with">.hta</TargetFilename><!--Scripting-->

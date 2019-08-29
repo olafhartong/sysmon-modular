@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreate onmatch="include">
 			<TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.lnk</TargetFilename> 

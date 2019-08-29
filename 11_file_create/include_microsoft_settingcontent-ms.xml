@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreate onmatch="include">
 			<TargetFilename condition="end with">.settingcontent-ms</TargetFilename> <!--Microsoft:Windows:SettingContent-MS (https://posts.specterops.io/the-tale-of-settingcontent-ms-files-f1ea253e4d39)-->

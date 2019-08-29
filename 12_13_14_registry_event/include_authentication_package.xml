@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
           <TargetObject name="technique_id=T1131,technique_name=Authentication Package" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa</TargetObject>

@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RawAccessRead onmatch="include">
 	  		<!--COMMENT:	Monitor for raw sector-level access to the disk, often used to bypass access control lists or access locked files.

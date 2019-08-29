@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
 			<TargetObject name="technique_id=T1103,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject><!--Microsoft:Windows: [ https://msdn.microsoft.com/en-us/library/windows/desktop/dd744762(v=vs.85).aspx ] -->

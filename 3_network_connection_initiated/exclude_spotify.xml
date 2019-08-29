@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <NetworkConnect onmatch="exclude">
 			<Image condition="image">Spotify.exe</Image> <!--Spotify-->

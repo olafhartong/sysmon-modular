@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ProcessCreate onmatch="include">
           <ParentImage name="technique_id=T1088,technique_name=Bypass User Account Control" condition="image">eventvwr.exe</ParentImage>

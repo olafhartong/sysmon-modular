@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ProcessCreate onmatch="include">
           <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">sethc.exe</ParentImage>

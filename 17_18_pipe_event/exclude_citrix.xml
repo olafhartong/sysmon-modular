@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <PipeEvent onmatch="exclude">
           <Image condition="is">Program Files (x86)\Citrix\ICA Client\SelfServicePlugin\SelfService.exe</Image>

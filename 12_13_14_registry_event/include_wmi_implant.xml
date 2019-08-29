@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
           <!-- Win32_OSRecoveryConfiguration class C2 maps to a change in values within the following key: -->

@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
           <TargetObject name="technique_id=T1103,technique_name=Appinit DLLs" condition="is">REGISTRY\MACHINE\SYSTEM\ControlSet001\Services\DNS\Parameters\ServerLevelPluginDll</TargetObject>

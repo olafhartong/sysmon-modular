@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <PipeEvent onmatch="exclude">
           <Image condition="end with">PostgreSQL\9.6\bin\postgres.exe</Image>

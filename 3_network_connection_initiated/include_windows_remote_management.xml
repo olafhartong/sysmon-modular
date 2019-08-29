@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <NetworkConnect onmatch="include">
 			   <DestinationPort name="technique_id=T1028,technique_name=Windows Remote Management" condition="is">5986</DestinationPort>

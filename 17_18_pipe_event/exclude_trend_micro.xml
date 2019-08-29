@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <PipeEvent onmatch="exclude">
           <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\CMAgent\OfcCMAgent.exe</Image>

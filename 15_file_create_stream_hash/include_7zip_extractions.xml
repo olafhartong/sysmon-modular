@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <FileCreateStreamHash onmatch="include">
 		<TargetFilename condition="contains">Temp\7z</TargetFilename> <!--7zip extractions-->

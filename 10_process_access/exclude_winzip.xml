@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ProcessAccess onmatch="exclude">
 		<SourceImage condition="is">C:\Program Files\WinZip\FAHWindow64.exe</SourceImage>

@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="exclude">
 			<TargetObject condition="contains">\OpenWithProgids</TargetObject> <!--Microsoft:Windows: Remove noise from monitoring "FileExts"-->

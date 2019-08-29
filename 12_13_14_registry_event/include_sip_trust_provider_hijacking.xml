@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
 		<TargetObject name="technique_id=T1198,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\Microsoft\Cryptography\OID</TargetObject>

@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <RegistryEvent onmatch="include">
           <TargetObject name="technique_id=T1013,technique_name=Forced Authentication" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors</TargetObject>

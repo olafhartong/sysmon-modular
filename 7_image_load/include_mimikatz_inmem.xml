@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
       <ImageLoad onmatch="include">
 	      <!--<ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\samlib.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
