@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
 			<!--3rd Party Remote Management tools-->
 			<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">vnc.exe</Image> <!-- VNC client | Credit @Cyb3rOps -->
@@ -7,5 +8,6 @@
 			<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">vncservice.exe</Image> <!-- VNC server | Credit @Cyb3rOps -->
 			<Image name="technique_id=T1035,technique_name=Service Execution" condition="image">winexesvc.exe</Image> <!-- Winexe service executable | Credit @Cyb3rOps -->
 	  </NetworkConnect>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

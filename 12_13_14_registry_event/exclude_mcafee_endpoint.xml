@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="exclude">
 		<!--McAfee:Endpoint Encryption Agent-->
 		<Image condition="is">C:\Program Files\McAfee\Endpoint Encryption Agent\MfeEpeHost.exe</Image>
@@ -24,5 +25,6 @@
 		<!--McAfee:MCShield-->
 		<Image condition="is">C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
 	  </RegistryEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

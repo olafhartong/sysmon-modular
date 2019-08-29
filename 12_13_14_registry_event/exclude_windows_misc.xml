@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="exclude">
 			<!--SECTION: Windows:Misc-->
 			<TargetObject condition="end with">\CurrentVersion\Run</TargetObject> <!--Microsoft:Windows: Remove noise from the "\Windows\CurrentVersion\Run" wildcard-->
@@ -27,5 +28,6 @@
 			<Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image> <!--Microsoft:Windows: Remove noise from Windows 10 Cortana | Credit @ion-storm--> <!--Win10-->
 	      	<Image condition="begin with">C:\$WINDOWS.~BT\</Image> <!--Microsoft:Windows: Update/Upgrade noise -->
 		</RegistryEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

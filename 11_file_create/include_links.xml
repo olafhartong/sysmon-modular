@@ -1,8 +1,10 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
 			<TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.lnk</TargetFilename> 
       <TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.scf</TargetFilename>
 		</FileCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

@@ -1,8 +1,10 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="exclude">
 			<Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
       <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
 		</FileCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

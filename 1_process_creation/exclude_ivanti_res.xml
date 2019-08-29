@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
 			<ParentImage condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</ParentImage>
 			<ParentImage condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\respesvc64.exe</ParentImage>
@@ -8,5 +9,6 @@
 			<ParentImage condition="is">C:\Program Files\RES Software\Workspace Manager\respesvc.exe</ParentImage>
 			<ParentImage condition="is">C:\Program Files\Ivanti\Workspace Control\ResPesvc.exe</ParentImage>
 			</ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

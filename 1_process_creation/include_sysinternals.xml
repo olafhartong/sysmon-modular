@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <!--Note: Not all Sysinternals listed here, only the ones I know/suspect to be used for malicious activity -->
         <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">PsList.exe</Image>
@@ -22,5 +23,6 @@
         <Image name="technique_id=T1012,technique_name=Query Registry" condition="image">ru.exe</Image>
         <CommandLine name="technique_id=T1003,technique_name=Credential Dumping"  condition="contains">-ma lsass.exe</CommandLine>
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

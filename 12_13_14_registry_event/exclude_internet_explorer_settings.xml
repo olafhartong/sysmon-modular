@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="exclude">
 			<!--SECTION: InternetExplorer-->
 			<TargetObject condition="end with">Toolbar\WebBrowser</TargetObject> <!--Microsoft:IE: Extraneous activity-->
@@ -8,5 +9,6 @@
 			<TargetObject condition="end with">Internet Explorer\Toolbar\Locked</TargetObject> <!--Microsoft:Windows:Explorer: Extraneous activity-->
 			<TargetObject condition="end with">ShellBrowser</TargetObject> <!--Microsoft:InternetExplorer: Noise-->
 		</RegistryEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

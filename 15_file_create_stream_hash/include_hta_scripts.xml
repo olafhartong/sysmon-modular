@@ -1,7 +1,9 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">
 			<TargetFilename condition="end with">.hta</TargetFilename> <!--Mitre T1170--><!--Scripting-->
       </FileCreateStreamHash>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

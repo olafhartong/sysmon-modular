@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
 	  		<!--Native Windows tools - Living off the land-->
 			<Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">ipconfig.exe</Image><!--Microsoft:Windows: shows ip configuration -->
@@ -34,5 +35,6 @@
       <Image condition="image">taskkill.exe</Image> <!--Microsoft:Windows: Kill processes, has remote ability -->
       <Image name="technique_id=T1031,technique_name=Modify Existing Service" condition="image">sc.exe</Image>
 		</NetworkConnect>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

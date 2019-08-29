@@ -1,9 +1,11 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
 			<TargetFilename condition="end with">.vb</TargetFilename> <!--VisualBasicScripting files-->
 			<TargetFilename condition="end with">.vbe</TargetFilename> <!--VisualBasicScripting files-->
 			<TargetFilename condition="end with">.vbs</TargetFilename> <!--VisualBasicScripting files-->
 		</FileCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

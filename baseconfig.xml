@@ -3,6 +3,7 @@
    <HashAlgorithms>*</HashAlgorithms>
    <CheckRevocation/>
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <!-- Event ID 1 == Process Creation. -->
       <ProcessCreate onmatch="include"/>
       <!-- Event ID 2 == File Creation Time. -->
@@ -31,5 +32,6 @@
       <PipeEvent onmatch="exclude"/>
       <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
       <WmiEvent onmatch="include"/>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

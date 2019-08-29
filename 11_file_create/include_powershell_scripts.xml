@@ -1,8 +1,10 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
 			<TargetFilename name="technique_id=T1086,technique_name=PowerShell" condition="end with">.ps1</TargetFilename> <!--PowerShell [ More information: http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/ ] -->
 			<TargetFilename name="technique_id=T1086,technique_name=PowerShell" condition="end with">.ps2</TargetFilename> <!--PowerShell -->
 		</FileCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

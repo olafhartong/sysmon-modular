@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
 	  		<!--Native Windows tools - Living off the land-->
 			<Image name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="image">whoami.exe</Image><!--Microsoft:Windows: shows current user -->
@@ -56,5 +57,6 @@
       <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">appcmd.exe</Image>
       <Image name="technique_id=T1031,technique_name=Modify Existing Service" condition="image">sc.exe</Image>
 		</ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

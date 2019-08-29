@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
 			<Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users</Image> <!--Tools downloaded by users can use other processes for networking, but this is a very valuable indicator.-->
 			<Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\ProgramData</Image> <!--Normally, network communications should be sourced from "Program Files" not from ProgramData, something to look at-->
@@ -22,5 +23,6 @@
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
 	  </NetworkConnect>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

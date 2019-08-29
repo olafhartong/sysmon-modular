@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
 			<!--Windows shell hijack-->
 			<TargetObject condition="contains">\Classes\AllFilesystemObjects</TargetObject> <!--Microsoft:Windows:Explorer: [ http://www.silentrunners.org/launchpoints.html ] -->
@@ -11,5 +12,6 @@
 			<TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellExecuteHooks</TargetObject> <!--Microsoft:Windows: ShellExecuteHooks-->
 			<TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellServiceObjectDelayLoad</TargetObject> <!--Microsoft:Windows: ShellExecuteHooks-->
 		</RegistryEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

@@ -1,8 +1,10 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
         <Image name="technique_id=T1035,technique_name=Service Execution" condition="image">psexec.exe</Image> <!--Sysinternals:PsExec client side | Credit @Cyb3rOps -->
   			<Image name="technique_id=T1035,technique_name=Service Execution" condition="image">psexesvc.exe</Image> <!--Sysinternals:PsExec server side | Credit @Cyb3rOps -->
   	  </NetworkConnect>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

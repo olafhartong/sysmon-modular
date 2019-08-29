@@ -1,7 +1,9 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
         <Image name="technique_id=T1197,technique_name=BITS Jobs" condition="image">bitsadmin.exe</Image>
       </NetworkConnect>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

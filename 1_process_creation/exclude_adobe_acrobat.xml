@@ -13,6 +13,6 @@
 			   <Image condition="end with">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\LogTransport2.exe</Image>
         </Rule>
 			</ProcessCreate>
-    </RuleGroup>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
           <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\CMAgent\OfcCMAgent.exe</Image>
           <Image condition="end with">Program Files (x86)\Trend Micro\OfficeScan\PCCSRV\web\service\ofcservice.exe</Image>
@@ -18,5 +19,6 @@
           <PipeName condition="is">\Trend Micro Endpoint Encryption ToolBox Command Handler Manager</PipeName>
           <PipeName condition="is">\OfcServerNamePipe</PipeName>
       </PipeEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

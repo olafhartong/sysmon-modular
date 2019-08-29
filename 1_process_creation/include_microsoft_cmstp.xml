@@ -1,7 +1,9 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
           <Image name="technique_id=T1191,technique_name=CMSTP" condition="image">CMSTP.exe</Image><!--Microsoft Connection Manager Profile Installer-->
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

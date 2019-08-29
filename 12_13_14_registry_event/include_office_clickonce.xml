@@ -1,8 +1,10 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
 			<!--Microsoft:Office:ClickOnce-->
 			<TargetObject condition="end with">\UrlUpdateInfo</TargetObject> <!--Microsoft:Office:ClickOnce: [ https://subt0x10.blogspot.com/2016/12/mimikatz-delivery-via-clickonce-with.html ] -->
 		</RegistryEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

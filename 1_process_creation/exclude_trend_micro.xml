@@ -1,10 +1,12 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
         <Image condition="is">C:\Program Files (x86)\Trend Micro\BM\TMBMSRV.exe</Image> <!--Credit d4ph1l -->
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmopExtIns32.exe</Image> <!--Credit d4ph1l -->
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmExtIns.exe</Image> <!--Credit d4ph1l -->
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmListen.exe</Image> <!--Credit d4ph1l -->
 			</ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

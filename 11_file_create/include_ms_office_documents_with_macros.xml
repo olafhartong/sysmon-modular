@@ -1,5 +1,6 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
 			<TargetFilename condition="end with">.docm</TargetFilename> <!--Microsoft:Office:Word: With Macro-->
 			<TargetFilename condition="end with">.pptm</TargetFilename> <!--Microsoft:Office:PowerPoint: With Macro-->
@@ -13,5 +14,6 @@
 			<TargetFilename condition="end with">.xlam</TargetFilename> <!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
 			<TargetFilename condition="end with">.xla</TargetFilename> <!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
 		</FileCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

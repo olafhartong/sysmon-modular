@@ -1,8 +1,10 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="exclude">
   	<SourceImage condition="is">C:\Program Files\Microsoft Security Client\MsMpEng.exe</SourceImage>
     <SourceImage condition="is">C:\Program Files\Windows Defender\MsMpEng.exe</SourceImage>
       </ProcessAccess>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>
