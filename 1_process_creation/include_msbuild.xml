@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="image">MSBuild.exe</Image>
+          <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">MSBuild.exe</OriginalFileName>
       </ProcessCreate>
 </RuleGroup>
 </EventFiltering>

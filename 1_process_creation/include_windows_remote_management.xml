@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <Image name="technique_id=T1028,technique_name=Windows Remote Management" condition="image">wsmprovhost.exe</Image>
+          <OriginalFileName name="technique_id=T1028,technique_name=Windows Remote Management" condition="image">wsmprovhost.exe</OriginalFileName>
 		      <Image name="technique_id=T1028,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
       </ProcessCreate>
 </RuleGroup>

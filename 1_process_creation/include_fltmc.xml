@@ -3,11 +3,11 @@
      <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <Rule name="Fltmc" groupRelation="and">
-          <Image name="technique_id=T1054,technique_name=Indicator Blocking" condition="image">fltMC.exe</Image>
+          <OriginalFileName name="technique_id=T1054,technique_name=Indicator Blocking" condition="is">fltMC.exe</OriginalFileName>
           <CommandLine name="technique_id=T1054,technique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
         </Rule>
         <Rule groupRelation="or">
-          <Image name="technique_id=T1063,technique_name=Security Software Discovery" condition="image">fltMC.exe</Image>
+          <OriginalFileName name="technique_id=T1063,technique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>
           <CommandLine name="technique_id=T1063,technique_name=Security Software Discovery" condition="contains">misc::mflt</CommandLine>
         </Rule>
       </ProcessCreate>

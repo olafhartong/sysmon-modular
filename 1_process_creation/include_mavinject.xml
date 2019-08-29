@@ -4,7 +4,7 @@
       <ProcessCreate onmatch="include">
         <Rule name="Mavinject" groupRelation="and">
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains any">Mavinject.exe;mavinject64.exe</OriginalFileName>
-        <CommandLine name="technique_id=T1118,technique_name=InstallUtil" condition="contains">/INJECTRUNNING</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">/INJECTRUNNING</CommandLine>
       </Rule>
       </ProcessCreate>
 </RuleGroup>
