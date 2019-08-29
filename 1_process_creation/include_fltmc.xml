@@ -2,7 +2,7 @@
    <EventFiltering>
      <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-        <Rule groupRelation="and">
+        <Rule name="Fltmc" groupRelation="and">
           <Image name="technique_id=T1054,technique_name=Indicator Blocking" condition="image">fltMC.exe</Image>
           <CommandLine name="technique_id=T1054,technique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
         </Rule>
