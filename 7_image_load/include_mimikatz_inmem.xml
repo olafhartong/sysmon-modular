@@ -2,12 +2,14 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
-	      <!--<ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\samlib.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
-        <!--<ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\WinSCard.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
-        <!--<ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\cryptdll.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
-        <!--<ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\hid.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
-        <!--<ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\vaultcli.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
-        <!--<ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\wlanapi.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
+	      <Rule groupRelation="and">
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\samlib.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\WinSCard.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\cryptdll.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\hid.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\vaultcli.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\wlanapi.dll</ImageLoaded> Can be noisy and won't detect custom mimikatz--> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->      
+        </Rule>
       </ImageLoad>
 </RuleGroup>
 </EventFiltering>
