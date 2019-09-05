@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.22">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <CreateRemoteThread onmatch="include">
+         <Rule groupRelation="and"> 
+          <StartAddress name="technique_id=T1003,technique_name=Credential Dumping" condition="is">0x001A0000</StartAddress><!--default address-->
+          <TargetImage condition="is">c:\windows\system32\lsass.exe</TargetImage>
+         </Rule> 
+      </CreateRemoteThread>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
