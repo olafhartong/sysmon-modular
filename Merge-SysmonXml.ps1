@@ -5,7 +5,9 @@ function Merge-AllSysmonXml
         [Alias('FullName')]
         [string[]]$Path,
 
-        [switch]$AsString
+        [switch]$AsString,
+
+        [switch]$PreserveComments
     )
 
     begin {
@@ -15,8 +17,15 @@ function Merge-AllSysmonXml
     process{
         foreach($FilePath in $Path){
             $doc = [xml]::new()
-            Write-Verbose "Loading doc from $FilePath..."
+            Write-Verbose "Loading doc from '$FilePath'..."
             $doc.Load($(Resolve-Path $FilePath))
+            if(-not $PreserveComments){
+                Write-Verbose "Stripping comments for '$FilePath'"
+                $commentNodes = $doc.SelectNodes('//comment()')
+                foreach($commentNode in $commentNodes){
+                    $null = $commentNode.ParentNode.RemoveChild($commentNode)
+                }
+            }
             $XmlDocs += $doc
         }
     }
@@ -182,29 +191,18 @@ $mainRuleGroup = $newDoc.SelectSingleNode('//EventFiltering/RuleGroup')
             }
         }
 
-        foreach($rule in $Rules[$key]['include']){
-            if($existing = $mainRuleGroup.SelectSingleNode("$key[@onmatch = 'include']")){
-                foreach($child in $rule.ChildNodes){
-                    $newNode = $newDoc.ImportNode($child, $true)
-                    $null = $existing.AppendChild($newNode)
+        foreach($matchType in 'include','exclude'){
+            foreach($rule in $Rules[$key][$matchType]){
+                if($existing = $mainRuleGroup.SelectSingleNode("$key[@onmatch = '$matchType']")){
+                    foreach($child in $rule.ChildNodes){
+                        $newNode = $newDoc.ImportNode($child, $true)
+                        $null = $existing.AppendChild($newNode)
+                    }
                 }
-            }
-            else{
-                $newNode = $newDoc.ImportNode($rule, $true)
-                $null = $mainRuleGroup.AppendChild($newNode)
-            }
-        }
-
-        foreach($rule in $Rules[$key]['exclude']){
-            if($existing = $mainRuleGroup.SelectSingleNode("$key[@onmatch = 'exclude']")){
-                foreach($child in $rule.ChildNodes){
-                    $newNode = $newDoc.ImportNode($child, $true)
-                    $null = $existing.AppendChild($newNode)
+                else{
+                    $newNode = $newDoc.ImportNode($rule, $true)
+                    $null = $mainRuleGroup.AppendChild($newNode)
                 }
-            }
-            else{
-                $newNode = $newDoc.ImportNode($rule, $true)
-                $null = $mainRuleGroup.AppendChild($newNode)
             }
         }
     }
