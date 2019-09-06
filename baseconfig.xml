@@ -3,35 +3,80 @@
    <HashAlgorithms>*</HashAlgorithms>
    <CheckRevocation/>
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
       <!-- Event ID 1 == Process Creation. -->
-      <ProcessCreate onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <ProcessCreate onmatch="include">
+        </ProcessCreate>
+      </RuleGroup>
       <!-- Event ID 2 == File Creation Time. -->
-      <FileCreateTime onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <FileCreateTime onmatch="include">
+        </FileCreateTime>
+      </RuleGroup>
       <!-- Event ID 3 == Network Connection. -->
-      <NetworkConnect onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <NetworkConnect onmatch="include">
+        </NetworkConnect>
+      </RuleGroup>
       <!-- Event ID 5 == Process Terminated. -->
-      <ProcessTerminate onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <ProcessTerminate onmatch="include">
+        </ProcessTerminate>
+      </RuleGroup>
       <!-- Event ID 6 == Driver Loaded. -->
-      <DriverLoad onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <DriverLoad onmatch="include">
+        </DriverLoad>
+      </RuleGroup>
       <!-- Event ID 7 == Image Loaded. -->
-      <ImageLoad onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <ImageLoad onmatch="include">
+        </ImageLoad>
+      </RuleGroup>
       <!-- Event ID 8 == CreateRemoteThread. -->
-      <CreateRemoteThread onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <CreateRemoteThread onmatch="include">
+        </CreateRemoteThread>
+      </RuleGroup>
       <!-- Event ID 9 == RawAccessRead. -->
-      <RawAccessRead onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <RawAccessRead onmatch="include">
+        </RawAccessRead>
+      </RuleGroup>
       <!-- Event ID 10 == ProcessAccess. -->
-      <ProcessAccess onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <ProcessAccess onmatch="include">
+        </ProcessAccess>
+      </RuleGroup>
       <!-- Event ID 11 == FileCreate. -->
-      <FileCreate onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <FileCreate onmatch="include">
+        </FileCreate>
+      </RuleGroup>
       <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
-      <RegistryEvent onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <RegistryEvent onmatch="include">
+        </RegistryEvent>
+      </RuleGroup>
       <!-- Event ID 15 == FileStream Created. -->
-      <FileCreateStreamHash onmatch="include"/>
+      <RuleGroup name="" groupRelation="or">
+        <FileCreateStreamHash onmatch="include">
+        </FileCreateStreamHash>
+      </RuleGroup>
       <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
-      <PipeEvent onmatch="exclude"/>
+      <RuleGroup name="" groupRelation="or">
+        <PipeEvent onmatch="exclude">
+        </PipeEvent>
+      </RuleGroup>
       <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
-      <WmiEvent onmatch="include"/>
-</RuleGroup>
+      <RuleGroup name="" groupRelation="or">
+        <WmiEvent onmatch="include">
+        </WmiEvent>
+      </RuleGroup>
+      <!-- Event ID 22 == DNS Events -->
+      <RuleGroup name="" groupRelation="or">
+        <DnsEvent onmatch="include">
+        </DnsEvent>
+      </RuleGroup>
 </EventFiltering>
 </Sysmon>
