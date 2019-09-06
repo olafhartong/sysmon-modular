@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.22">
+   <!-- special thanks to @SwiftOnSecurity for this -->
+   <HashAlgorithms>*</HashAlgorithms>
+   <CheckRevocation/>
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+			<QueryName condition="end with">.spotify.com</QueryName> <!--Spotify-->
+			<QueryName condition="end with">.spotify.map.fastly.net</QueryName> <!--Spotify-->
+      </DnsQuery>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
