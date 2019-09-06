@@ -75,8 +75,8 @@
       </RuleGroup>
       <!-- Event ID 22 == DNS Events -->
       <RuleGroup name="" groupRelation="or">
-        <DnsEvent onmatch="include">
-        </DnsEvent>
+        <DnsQuery onmatch="include">
+        </DnsQuery>
       </RuleGroup>
 </EventFiltering>
 </Sysmon>
