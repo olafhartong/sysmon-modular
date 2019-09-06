@@ -1,4 +1,4 @@
-<OriginalFileName<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">

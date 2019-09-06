@@ -14,7 +14,7 @@
 			<OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">quser.exe</OriginalFileName> <!--Microsoft:Windows: shows logged-on users -->
 			<OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">query.exe</OriginalFileName> <!--Microsoft:Windows: shows information about processes -->
 			<OriginalFileName name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="is">tracert.exe</OriginalFileName> <!--Microsoft:Windows: shows routing information -->
-			<OriginalFileName name="technique_id=T1083,technique_name=File and Directory Discovery"condition="is">tree.com</OriginalFileName> <!--Microsoft:Windows: shows recursive directory listing -->
+			<OriginalFileName name="technique_id=T1083,technique_name=File and Directory Discovery" condition="is">tree.com</OriginalFileName> <!--Microsoft:Windows: shows recursive directory listing -->
 			<OriginalFileName name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="is">route.exe</OriginalFileName> <!--Microsoft:Windows: manipulates network routing tables -->
 			<OriginalFileName name="technique_id=T1134,technique_name=Access Token Manipulation" condition="is">runas.exe</OriginalFileName> <!--Microsoft:Windows: run a process as another user -->
 			<OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">reg.exe</OriginalFileName> <!--Mitre T1214--><!--Mitre T1012--><!--Mitre T1112--><!--Microsoft:Windows: reads and modifies the Windows register -->
@@ -33,7 +33,7 @@
       <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell.exe</ParentImage><!--Microsoft:Windows: PowerShell interface-->
       <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell_ise.exe</ParentImage><!--Microsoft:Windows: PowerShell interface-->
       <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">bash.exe</OriginalFileName><!--Microsoft:Windows: bash on Windows, Linux subsystem-->
-			<OriginalFileName name="technique_id=T1073,technique_name=DLL Side-Loading"condition="is">odbcconf.exe</OriginalFileName> <!--Microsoft:Windows: allows for driver loads -->
+			<OriginalFileName name="technique_id=T1073,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</OriginalFileName> <!--Microsoft:Windows: allows for driver loads -->
       <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image><!--Microsoft:Windows: Program Compatibility Assistant)-->
       <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">cscript.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wscript.exe</OriginalFileName>
