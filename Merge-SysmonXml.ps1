@@ -1,9 +1,12 @@
 function Merge-AllSysmonXml
 {
     param(
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-        [Alias('FullName')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ParameterSetName = 'ByPath')]
         [string[]]$Path,
+
+        [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = 'ByLiteralPath')]
+        [Alias('PSPath')]
+        [string[]]$LiteralPath,
 
         [switch]$AsString,
 
@@ -11,14 +14,28 @@ function Merge-AllSysmonXml
     )
 
     begin {
+        $FilePaths = @()
         $XmlDocs = @()
     }
 
     process{
-        foreach($FilePath in $Path){
+        if($PSCmdlet.ParameterSetName -eq 'ByPath'){
+            foreach($P in $Path){
+                $FilePaths += (Resolve-Path $P).Path
+            }
+        }
+        else{
+            foreach($LP in $LiteralPath){
+                $FilePaths += $LiteralPath
+            }
+        }
+    }
+
+    end{
+        foreach($FilePath in $FilePaths){
             $doc = [xml]::new()
             Write-Verbose "Loading doc from '$FilePath'..."
-            $doc.Load($(Resolve-Path $FilePath))
+            $doc.Load($FilePath)
             if(-not $PreserveComments){
                 Write-Verbose "Stripping comments for '$FilePath'"
                 $commentNodes = $doc.SelectNodes('//comment()')
@@ -28,9 +45,6 @@ function Merge-AllSysmonXml
             }
             $XmlDocs += $doc
         }
-    }
-
-    end{
         if($XmlDocs.Count -lt 2){
             throw 'At least 2 sysmon configs expected'
             return
@@ -144,30 +158,56 @@ function Merge-SysmonXml
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 1 == Process Creation. -->
         <ProcessCreate onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 2 == File Creation Time. -->
         <FileCreateTime onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 3 == Network Connection. -->
         <NetworkConnect onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 5 == Process Terminated. -->
         <ProcessTerminate onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 6 == Driver Loaded. -->
         <DriverLoad onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 7 == Image Loaded. -->
         <ImageLoad onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 8 == CreateRemoteThread. -->
         <CreateRemoteThread onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 9 == RawAccessRead. -->
         <RawAccessRead onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 10 == ProcessAccess. -->
         <ProcessAccess onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 11 == FileCreate. -->
         <FileCreate onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed. -->
         <RegistryEvent onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 15 == FileStream Created. -->
         <FileCreateStreamHash onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
         <PipeEvent onmatch="exclude"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
         <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
         <WmiEvent onmatch="include"/>
     </RuleGroup>
@@ -175,7 +215,7 @@ function Merge-SysmonXml
 </Sysmon>
 '@
 
-$mainRuleGroup = $newDoc.SelectSingleNode('//EventFiltering/RuleGroup')
+    $EventFilteringRoot = $newDoc.SelectSingleNode('//Sysmon/EventFiltering')
 
     foreach($key in $Rules.Keys){
         foreach($config in $Source,$Diff){
@@ -192,16 +232,20 @@ $mainRuleGroup = $newDoc.SelectSingleNode('//EventFiltering/RuleGroup')
         }
 
         foreach($matchType in 'include','exclude'){
+            Write-Verbose "About to merge ${key}:${matchType}"
             foreach($rule in $Rules[$key][$matchType]){
-                if($existing = $mainRuleGroup.SelectSingleNode("$key[@onmatch = '$matchType']")){
+                if($existing = $newDoc.SelectSingleNode("//RuleGroup/$key[@onmatch = '$matchType']")){
                     foreach($child in $rule.ChildNodes){
                         $newNode = $newDoc.ImportNode($child, $true)
                         $null = $existing.AppendChild($newNode)
                     }
                 }
                 else{
+                    $newRuleGroup = $newDoc.CreateElement('RuleGroup')
+                    $newRuleGroup.SetAttribute('groupRelation','or')
                     $newNode = $newDoc.ImportNode($rule, $true)
-                    $null = $mainRuleGroup.AppendChild($newNode)
+                    $null = $newRuleGroup.AppendChild($newNode)
+                    $null = $EventFilteringRoot.AppendChild($newRuleGroup)
                 }
             }
         }
