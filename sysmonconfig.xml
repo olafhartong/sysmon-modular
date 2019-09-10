@@ -372,10 +372,16 @@
         <Rule groupRelation="and">
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\csrss.exe</TargetImage>
           <GrantedAccess>0x1F1FFF</GrantedAccess>
+        </Rule>
+        <Rule groupRelation="and">
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\wininit.exe</TargetImage>
           <GrantedAccess>0x1F1FFF</GrantedAccess>
+        </Rule>
+        <Rule groupRelation="and">
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\winlogon.exe</TargetImage>
           <GrantedAccess>0x1F1FFF</GrantedAccess>
+        </Rule>
+        <Rule groupRelation="and">
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\services.exe</TargetImage>
           <GrantedAccess>0x1F1FFF</GrantedAccess>
         </Rule>
