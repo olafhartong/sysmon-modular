@@ -7,9 +7,7 @@
 
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
-## NOTICE; Sysmon 8.02 is not compatible with this configuration, it will cause severe blind spots in your logging. Please use Sysmon 8.0 or 8.0.4
-
-### NOTICE; Sysmon 9.0x is not supported in the generate script yet. There is a manually generated configuration [HERE](https://github.com/olafhartong/sysmon-configs).
+## NOTICE; Sysmon below 10.4 is not compatible with this configuration
 
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
@@ -19,7 +17,7 @@ Big credit goes out to SwiftOnSecurity for laying a great foundation and making 
 
 Equally a huge shoutout to **[Roberto Rodriguez](https://twitter.com/cyb3rward0g)** for his amazing work on the **[ThreatHunter-Playbook](https://github.com/Cyb3rWard0g/ThreatHunter-Playbook.git)** and his contribution to the community on his **[blog](https://cyberwardog.blogspot.nl)**.
 
-Final thanks to **[Matt Graeber](https://twitter.com/mattifestation)** for his PowerShell Modules, without them, this project would not have worked as well.
+Final thanks to **[Mathias Jessen](https://twitter.com/iisresetme)** for his Merge script, without it, this project would not have worked as well.
 
 Pull requests / issue tickets and new additions will be greatly appreciated!
 
@@ -41,13 +39,6 @@ A current ATT&CK navigator export of all linked configurations is found [here](a
 
 I highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as litte noise as possible.
 
-### Prerequisites
-
-Install the PowerShell modules from **[PSSysmonTools](https://github.com/olafhartong/PSSysmonTools)**
-
-    git clone https://github.com/olafhartong/PSSysmonTools.git
-    cd PSSysmonTools
-    Import-Module .\PSSysmonTools.psm1
 
 ### Customization
 
@@ -60,21 +51,8 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
     git clone https://github.com/olafhartong/sysmon-modular.git
     cd sysmon modular
-    .\Generate-Sysmon-Config.ps1
-
-Optionally you can omit the comments from the merged config with the “-ExcludeMergeComments” switch.
-
-You might see an error like ; *Merge-SysmonXMLConfiguration : The schema version of C:\Temp\sysmon-modular-master\sysmonconfig.xml () does not match that of the reference configuration:*
-The error is due to the validator. When executing the oneliner the sysmonconfig.xml is created but it is still empty at that time. Therefore it is not a valid config at that time, the file is filled with data at the end of the generation phase. You can safely ignore it.
-
-
-You can test your config if it's schema compliant
-
-    Test-SysmonConfiguration .\sysmonconfig.xml
-
-#### SysmonShell
-
-This repository also was made available within **[SysmonShell](https://github.com/nshalabi/SysmonTools)** a great tool by **[Nader Shalabi](https://twitter.com/nader_shalabi)**
+    . .\Merge-AllSysmonXml.ps1
+    Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
 
 ## Use
 
