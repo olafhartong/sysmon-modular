@@ -1125,7 +1125,7 @@
         <QueryName condition="end with">.arpa.</QueryName>
         <QueryName condition="end with">.arpa</QueryName>
         <QueryName condition="end with">.msftncsi.com</QueryName>
-        <QueryName condition="is">.localmachine</QueryName>
+        <QueryName condition="end with">.localmachine</QueryName>
         <QueryName condition="end with">-pushp.svc.ms</QueryName>
         <QueryName condition="end with">.b-msedge.net</QueryName>
         <QueryName condition="end with">.bing.com</QueryName>
@@ -1196,7 +1196,7 @@
         <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
         <Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>
         <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
-        <SourceImage condition="is">c:\windows\system32\provtool.exe</SourceImage>
+        <Image condition="is">c:\windows\system32\provtool.exe</Image>
         <Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
         <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
