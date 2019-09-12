@@ -401,7 +401,6 @@
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <GrantedAccess>0x143A</GrantedAccess>
         </Rule>
-        <GrantedAccess name="technique_id=T1057,technique_name=Process Discovery">0x1410</GrantedAccess>
         <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x0800</GrantedAccess>
         <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x0810</GrantedAccess>
         <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x0820</GrantedAccess>
@@ -595,12 +594,15 @@
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
-        <TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT</TargetObject>
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject>
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Winlogon</TargetObject>
         <TargetObject condition="end with">\FriendlyName</TargetObject>
         <TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject>
+        <Rule groupRelation="and">
+          <TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
+          <Image condition="is not">C:\Windows\System32\svchost.exe</Image>
+        </Rule>
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\NetworkProvider\Order</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject>
         <TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="begin with">HKLM\SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject>
@@ -1120,19 +1122,10 @@
         <QueryName condition="is">cdnjs.cloudflare.com</QueryName>
         <QueryName condition="end with">.stackassets.com</QueryName>
         <QueryName condition="end with">.steamcontent.com</QueryName>
-        <QueryName condition="end with">.mozaws.net</QueryName>
-        <QueryName condition="end with">.mozilla.com</QueryName>
-        <QueryName condition="end with">.mozilla.net</QueryName>
-        <QueryName condition="end with">.mozilla.org</QueryName>
-        <QueryName condition="end with">.spotify.com</QueryName>
-        <QueryName condition="end with">.spotify.map.fastly.net</QueryName>
-        <QueryName condition="is">clients1.google.com</QueryName>
-        <QueryName condition="is">clients2.google.com</QueryName>
-        <QueryName condition="is">clients3.google.com</QueryName>
-        <QueryName condition="is">clients4.google.com</QueryName>
-        <QueryName condition="is">clients5.google.com</QueryName>
-        <QueryName condition="is">clients6.google.com</QueryName>
-        <QueryName condition="is">safebrowsing.googleapis.com</QueryName>
+        <QueryName condition="end with">.arpa.</QueryName>
+        <QueryName condition="end with">.arpa</QueryName>
+        <QueryName condition="end with">.msftncsi.com</QueryName>
+        <QueryName condition="is">.localmachine</QueryName>
         <QueryName condition="end with">-pushp.svc.ms</QueryName>
         <QueryName condition="end with">.b-msedge.net</QueryName>
         <QueryName condition="end with">.bing.com</QueryName>
@@ -1203,6 +1196,7 @@
         <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
         <Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>
         <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
+        <SourceImage condition="is">c:\windows\system32\provtool.exe</SourceImage>
         <Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
         <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
