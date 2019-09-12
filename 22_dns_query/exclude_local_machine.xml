@@ -5,19 +5,10 @@
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
       <DnsQuery onmatch="exclude">
-			<QueryName condition="end with">.mozaws.net</QueryName> <!--Mozilla-->
-			<QueryName condition="end with">.mozilla.com</QueryName> <!--Mozilla-->
-			<QueryName condition="end with">.mozilla.net</QueryName> <!--Mozilla-->
-			<QueryName condition="end with">.mozilla.org</QueryName> <!--Mozilla-->
-			<QueryName condition="end with">.spotify.com</QueryName> <!--Spotify-->
-			<QueryName condition="end with">.spotify.map.fastly.net</QueryName> <!--Spotify-->
-			<QueryName condition="is">clients1.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients2.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients3.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients4.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients5.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients6.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">safebrowsing.googleapis.com</QueryName> <!--Google-->
+			<QueryName condition="end with">.arpa.</QueryName> <!--Design decision to not log reverse DNS lookups. You will need to decide.-->
+			<QueryName condition="end with">.arpa</QueryName> <!--Design decision to not log reverse DNS lookups. You will need to decide.-->
+			<QueryName condition="end with">.msftncsi.com</QueryName> <!--Microsoft proxy detection | Microsoft default exclusion-->
+			<QueryName condition="end with">.localmachine</QueryName>
       </DnsQuery>
 </RuleGroup>
 </EventFiltering>
