@@ -21,8 +21,10 @@
 		<QueryName condition="is">ocsp.entrust.net</QueryName>
 		<QueryName condition="end with">ocsp.identrust.com</QueryName>
 		<QueryName condition="is">status.rapidssl.com</QueryName>	
-            <QueryName condition="is">status.thawte.com</QueryName>
-	      <QueryName condition="is">ocsp.int-x3.letsencrypt.org</QueryName>	
+         <QueryName condition="is">status.thawte.com</QueryName>
+	     <QueryName condition="is">ocsp.int-x3.letsencrypt.org</QueryName>
+		 <QueryName condition="is">subca.ocsp-certum.com</QueryName>
+		 <QueryName condition="is">cscasha2.ocsp-certum.com</QueryName>
       </DnsQuery>
 </RuleGroup>
 </EventFiltering>

@@ -781,14 +781,39 @@
       </RegistryEvent>
     </RuleGroup>
     <RuleGroup groupRelation="or">
-      <PipeEvent onmatch="include">
-        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\atsvc</PipeName>
-        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\msagent_</PipeName>
-        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\msf-pipe</PipeName>
-        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\PSEXESVC</PipeName>
-        <PipeName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName>
-        <PipeName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="begin with">\winreg</PipeName>
-      </PipeEvent>
+      <FileCreate onmatch="exclude">
+        <Image condition="is">C:\Program Files (x86)\Dell\CommandUpdate\InvColPC.exe</Image>
+        <Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
+        <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe</Image>
+        <Image condition="is">C:\Windows\System32\smss.exe</Image>
+        <Image condition="is">C:\Windows\system32\CompatTelRunner.exe</Image>
+        <Image condition="is">C:\Windows\system32\wbem\WMIADAP.EXE</Image>
+        <TargetFilename condition="begin with">C:\Windows\System32\DriverStore\Temp\</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\wbem\Performance\</TargetFilename>
+        <TargetFilename condition="end with">WRITABLE.TST</TargetFilename>
+        <TargetFilename condition="contains">\AppData\Roaming\Microsoft\Windows\Recent\</TargetFilename>
+        <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
+        <Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>
+        <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
+        <Image condition="is">c:\windows\system32\provtool.exe</Image>
+        <Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
+        <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
+        <Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
+      </FileCreate>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileCreateTime onmatch="exclude">
+        <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
+        <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
+        <Image condition="image">OneDrive.exe</Image>
+        <Image condition="contains">setup</Image>
+      </FileCreateTime>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessCreate onmatch="exclude">
@@ -964,34 +989,6 @@
       </ProcessCreate>
     </RuleGroup>
     <RuleGroup groupRelation="or">
-      <NetworkConnect onmatch="exclude">
-        <Image condition="end with">AppData\Roaming\Dropbox\bin\Dropbox.exe</Image>
-        <Image condition="is">C:\Program Files\ESET\ESET Nod32 Antivirus\ekrn.exe</Image>
-        <Image condition="image">OneDrive.exe</Image>
-        <Image condition="image">OneDriveStandaloneUpdater.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Sophos\AutoUpdate\ALsvc.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\RouterNT.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Control\swc_service.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
-        <Image condition="is">C:\Program Files\Sophos\Sophos Network Threat Protection\bin\SntpService.exe</Image>
-        <Image condition="image">Spotify.exe</Image>
-        <Image condition="is">C:\Program files (x86)\Trend Micro\OfficeScan Client\tmlisten.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Trend Micro\BM\TMBMSRV.exe</Image>
-        <DestinationHostname condition="end with">microsoft.com</DestinationHostname>
-        <DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>
-        <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
-      </NetworkConnect>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <FileCreateTime onmatch="exclude">
-        <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
-        <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
-        <Image condition="image">OneDrive.exe</Image>
-        <Image condition="contains">setup</Image>
-      </FileCreateTime>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
       <CreateRemoteThread onmatch="exclude">
         <SourceImage condition="is">C:\Windows\System32\svchost.exe</SourceImage>
         <SourceImage condition="is">C:\Windows\System32\wininit.exe</SourceImage>
@@ -1126,6 +1123,7 @@
         <QueryName condition="end with">.arpa</QueryName>
         <QueryName condition="end with">.msftncsi.com</QueryName>
         <QueryName condition="end with">.localmachine</QueryName>
+        <QueryName condition="is">localhost</QueryName>
         <QueryName condition="end with">-pushp.svc.ms</QueryName>
         <QueryName condition="end with">.b-msedge.net</QueryName>
         <QueryName condition="end with">.bing.com</QueryName>
@@ -1175,36 +1173,38 @@
         <QueryName condition="is">status.rapidssl.com</QueryName>
         <QueryName condition="is">status.thawte.com</QueryName>
         <QueryName condition="is">ocsp.int-x3.letsencrypt.org</QueryName>
+        <QueryName condition="is">subca.ocsp-certum.com</QueryName>
+        <QueryName condition="is">cscasha2.ocsp-certum.com</QueryName>
         <QueryName condition="end with">.spotify.com</QueryName>
         <QueryName condition="end with">.spotify.map.fastly.net</QueryName>
       </DnsQuery>
     </RuleGroup>
     <RuleGroup groupRelation="or">
-      <FileCreate onmatch="exclude">
-        <Image condition="is">C:\Program Files (x86)\Dell\CommandUpdate\InvColPC.exe</Image>
-        <Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
-        <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe</Image>
-        <Image condition="is">C:\Windows\System32\smss.exe</Image>
-        <Image condition="is">C:\Windows\system32\CompatTelRunner.exe</Image>
-        <Image condition="is">C:\Windows\system32\wbem\WMIADAP.EXE</Image>
-        <TargetFilename condition="begin with">C:\Windows\System32\DriverStore\Temp\</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\wbem\Performance\</TargetFilename>
-        <TargetFilename condition="end with">WRITABLE.TST</TargetFilename>
-        <TargetFilename condition="contains">\AppData\Roaming\Microsoft\Windows\Recent\</TargetFilename>
-        <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
-        <Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>
-        <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
-        <Image condition="is">c:\windows\system32\provtool.exe</Image>
-        <Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
-        <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
-        <Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
-      </FileCreate>
+      <DriverLoad onmatch="exclude">
+        <Signature condition="begin with">Intel </Signature>
+        <Signature condition="contains">microsoft</Signature>
+        <Signature condition="contains">windows</Signature>
+      </DriverLoad>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <NetworkConnect onmatch="exclude">
+        <Image condition="end with">AppData\Roaming\Dropbox\bin\Dropbox.exe</Image>
+        <Image condition="is">C:\Program Files\ESET\ESET Nod32 Antivirus\ekrn.exe</Image>
+        <Image condition="image">OneDrive.exe</Image>
+        <Image condition="image">OneDriveStandaloneUpdater.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Sophos\AutoUpdate\ALsvc.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\RouterNT.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Control\swc_service.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
+        <Image condition="is">C:\Program Files\Sophos\Sophos Network Threat Protection\bin\SntpService.exe</Image>
+        <Image condition="image">Spotify.exe</Image>
+        <Image condition="is">C:\Program files (x86)\Trend Micro\OfficeScan Client\tmlisten.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Trend Micro\BM\TMBMSRV.exe</Image>
+        <DestinationHostname condition="end with">microsoft.com</DestinationHostname>
+        <DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>
+        <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
+      </NetworkConnect>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
@@ -1241,11 +1241,14 @@
       </ProcessAccess>
     </RuleGroup>
     <RuleGroup groupRelation="or">
-      <DriverLoad onmatch="exclude">
-        <Signature condition="begin with">Intel </Signature>
-        <Signature condition="contains">microsoft</Signature>
-        <Signature condition="contains">windows</Signature>
-      </DriverLoad>
+      <PipeEvent onmatch="include">
+        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\atsvc</PipeName>
+        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\msagent_</PipeName>
+        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\msf-pipe</PipeName>
+        <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\PSEXESVC</PipeName>
+        <PipeName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName>
+        <PipeName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="begin with">\winreg</PipeName>
+      </PipeEvent>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>
