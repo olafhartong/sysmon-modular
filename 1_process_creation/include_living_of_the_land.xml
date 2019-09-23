@@ -69,6 +69,9 @@
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">mofcomp.exe</OriginalFileName><!-- Microsoft:MOF Compiler -used to compile custom MOF files for WMI use -->
+      <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
+      <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">ScrCons</OriginalFileName>
 		</ProcessCreate>
 </RuleGroup>
 </EventFiltering>
