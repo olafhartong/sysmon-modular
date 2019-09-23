@@ -1,5 +1,6 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
           <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">sethc.exe</ParentImage>
           <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">utilman.exe</ParentImage>
@@ -9,5 +10,6 @@
           <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">Narrator.exe</ParentImage>
           <ParentImage name="technique_id=T1015,technique_name=Accessibility Features" condition="image">AtBroker.exe</ParentImage>
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

@@ -1,10 +1,12 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <!-- Capture all hashes -->
    <HashAlgorithms>*</HashAlgorithms>
    <CheckRevocation/>
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <WmiEvent onmatch="include">
 	<Operation name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">Created</Operation>
       </WmiEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

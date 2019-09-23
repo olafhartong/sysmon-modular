@@ -1,7 +1,9 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
 			<TargetFilename name="technique_id=T1064,technique_name=Scripting" condition="end with">.chm</TargetFilename><!--Scripting, thanks to Darkoperator-->
 		</FileCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

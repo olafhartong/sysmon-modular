@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.22">
+   <!-- special thanks to @SwiftOnSecurity for this -->
+   <HashAlgorithms>*</HashAlgorithms>
+   <CheckRevocation/>
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+			<QueryName condition="end with">.arpa.</QueryName> <!--Design decision to not log reverse DNS lookups. You will need to decide.-->
+			<QueryName condition="end with">.arpa</QueryName> <!--Design decision to not log reverse DNS lookups. You will need to decide.-->
+			<QueryName condition="end with">.msftncsi.com</QueryName> <!--Microsoft proxy detection | Microsoft default exclusion-->
+			<QueryName condition="end with">.localmachine</QueryName>
+			<QueryName condition="is">localhost</QueryName>
+      </DnsQuery>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

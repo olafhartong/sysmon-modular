@@ -1,5 +1,6 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
       <!--Eventhough DNS is a commmon exfil channel, you should monitor that via some other way, Sysmon is not ideal for that-->
 			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort> <!--SSH protocol-->
@@ -9,5 +10,6 @@
 			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort> <!--VNC protocol-->
 			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort> <!--VNC protocol-->
 	  </NetworkConnect>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

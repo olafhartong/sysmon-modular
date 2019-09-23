@@ -1,8 +1,10 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">
 			<TargetFilename condition="end with">.bat</TargetFilename> <!--Batch scripting-->
 			<TargetFilename condition="end with">.cmd</TargetFilename> <!--Batch scripting | Credit @ion-storm -->
 		</FileCreateStreamHash>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

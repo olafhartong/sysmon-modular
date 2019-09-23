@@ -1,8 +1,10 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">
 			<TargetFilename name="technique_id=T1086,technique_name=PowerShell" condition="end with">.ps1</TargetFilename> <!--Powershell-->
 			<TargetFilename name="technique_id=T1086,technique_name=PowerShell" condition="end with">.ps2</TargetFilename> <!--Powershell-->
 		</FileCreateStreamHash>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

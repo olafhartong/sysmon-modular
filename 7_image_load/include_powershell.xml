@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.22">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+    	  <ImageLoaded name="technique_id=T1086,technique_name=PowerShell" condition="end with" >system.management.automation.ni.dll</ImageLoaded>
+	      <ImageLoaded name="technique_id=T1086,technique_name=PowerShell" condition="end with" >system.management.automation.dll</ImageLoaded>
+      </ImageLoad>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

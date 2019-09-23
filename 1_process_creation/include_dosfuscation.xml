@@ -1,7 +1,9 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
           <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">ˆ</CommandLine><!-- https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/dosfuscation-report.pdf  -->
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

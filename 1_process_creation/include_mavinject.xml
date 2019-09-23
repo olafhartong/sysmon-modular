@@ -1,7 +1,12 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">Mavinject.exe</Image>
+        <Rule name="Mavinject" groupRelation="and">
+        <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains any">Mavinject.exe;mavinject64.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">/INJECTRUNNING</CommandLine>
+      </Rule>
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

@@ -1,5 +1,6 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
 			<!--Native Windows tools - Living off the land-->
 			<Image name="technique_id=T1053,technique_name=Scheduled Task" condition="image">at.exe</Image> <!--Microsoft:Windows: Remote task scheduling | Credit @ion-storm -->
@@ -38,5 +39,6 @@
 			<Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">tasklist.exe</Image> <!--Microsoft:Windows: List processes, has remote ability -->
       <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">replace.exe</Image>
 	</NetworkConnect>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

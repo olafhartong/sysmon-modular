@@ -1,5 +1,6 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</Image>
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</Image>
@@ -18,6 +19,8 @@
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">VolumeShadowCopy</Image>
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
+          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</Image>
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

@@ -1,7 +1,0 @@
-<Sysmon schemaversion="4.1">
-   <EventFiltering>
-      <ProcessAccess onmatch="include">
-	  		<!--COMMENT:	Monitor for processes accessing other process' memory. This can be valuable, but can cause a huge number of events.-->
-		</ProcessAccess>
-  </EventFiltering>
-</Sysmon>

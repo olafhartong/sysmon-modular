@@ -1,9 +1,16 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.21">
    <EventFiltering>
+     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <Image name="technique_id=T1054,technique_name=Indicator Blocking" condition="image">fltMC.exe</Image>
-          <CommandLine name="technique_id=T1054,technique_name=Indicator Blocking" condition="contains">fltmc unload</CommandLine>
+        <Rule name="Fltmc" groupRelation="and">
+          <OriginalFileName name="technique_id=T1054,technique_name=Indicator Blocking" condition="is">fltMC.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1054,technique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
+        </Rule>
+        <Rule groupRelation="or">
+          <OriginalFileName name="technique_id=T1063,technique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>
           <CommandLine name="technique_id=T1063,technique_name=Security Software Discovery" condition="contains">misc::mflt</CommandLine>
+        </Rule>
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

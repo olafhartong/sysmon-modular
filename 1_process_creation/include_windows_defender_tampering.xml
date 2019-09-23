@@ -1,10 +1,12 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
+        <Rule name="Windows Defender tampering" groupRelation="and">
         <Image name="technique_id=T1089,technique_name=Disabling Security Tools" condition="image">MpCmdRun.exe</Image><!-- Credit @viss http://www.offensiveops.io/tools/incapacitating-windows-defender/ -->
-        <CommandLine name="technique_id=T1089,technique_name=Disabling Security Tools"  condition="contains">Add-MpPreference</CommandLine><!-- Credit @viss http://www.offensiveops.io/tools/incapacitating-windows-defender/ -->
-        <CommandLine name="technique_id=T1089,technique_name=Disabling Security Tools"  condition="contains">RemoveDefinitions</CommandLine><!-- Credit @viss http://www.offensiveops.io/tools/incapacitating-windows-defender/ -->
-        <CommandLine name="technique_id=T1089,technique_name=Disabling Security Tools"  condition="contains">DisableIOAVProtection</CommandLine><!-- Credit @viss http://www.offensiveops.io/tools/incapacitating-windows-defender/ -->
+        <CommandLine name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains any">Add-MpPreference;RemoveDefinitions;DisableIOAVProtection</CommandLine><!-- Credit @viss http://www.offensiveops.io/tools/incapacitating-windows-defender/ -->
+      </Rule>
       </ProcessCreate>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

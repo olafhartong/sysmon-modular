@@ -1,5 +1,6 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <CreateRemoteThread onmatch="exclude">
 	  		<!--COMMENT:	Monitor for processes injecting code into other processes. Often used by malware to cloak their actions.
 				Exclude mostly-safe sources and log anything else.-->
@@ -11,5 +12,6 @@
 			<SourceImage condition="is">C:\Windows\System32\audiodg.exe</SourceImage>
 			<StartModule condition="is">C:\windows\system32\kernel32.dll</StartModule>
 		</CreateRemoteThread>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

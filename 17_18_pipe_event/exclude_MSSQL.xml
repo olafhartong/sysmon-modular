@@ -1,5 +1,6 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
           <PipeName condition="is">\SQLLocal\MSSQLSERVER</PipeName>
           <PipeName condition="is">\SQLLocal\INSTANCE01</PipeName>
@@ -10,5 +11,6 @@
           <PipeName condition="is">\SQLLocal\TMSM</PipeName>      
           <Image condition="is">Program Files (x86)\Microsoft SQL Server\110\DTS\binn\dtexec.exe</Image>              
       </PipeEvent>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

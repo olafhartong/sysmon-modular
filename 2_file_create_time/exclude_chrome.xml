@@ -1,8 +1,10 @@
-<Sysmon schemaversion="4.1">
+<Sysmon schemaversion="4.22">
    <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
       <FileCreateTime onmatch="exclude">
 			<Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image> <!--chrome constantly changes files-->
 			<Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image> <!--chrome constantly changes files-->      
 	  </FileCreateTime>
-  </EventFiltering>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

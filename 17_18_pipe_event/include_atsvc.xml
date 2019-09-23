@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.22">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="include">
+          <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\atsvc</PipeName>
+      </PipeEvent>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
