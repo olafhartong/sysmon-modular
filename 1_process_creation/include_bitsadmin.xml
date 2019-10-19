@@ -1,9 +1,15 @@
 <Sysmon schemaversion="4.22">
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
           <OriginalFileName name="technique_id=T1197,technique_name=BITS Jobs" condition="is">bitsadmin.exe</OriginalFileName>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+      <ProcessCreate onmatch="include">
+          <CommandLine name="technique_id=T1197,technique_name=BITS Jobs" condition="contains">Start-BitsTransfer</CommandLine>
+      </ProcessCreate>
+      <ProcessCreate onmatch="include">
+          <CommandLine name="technique_id=T1197,technique_name=BITS Jobs" condition="contains">/create</CommandLine>
+      </ProcessCreate onmatch="include">
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

@@ -67,6 +67,12 @@
           <CommandLine condition="contains">.cs</CommandLine>
         </ProcessCreate>
       </RuleGroup>
+      <RuleGroup groupRelation="and">
+        <ProcessCreate onmatch="include">
+          <OriginalFileName name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="is">cscript.exe</ParentImage><!-- Catch cscript executing javascript locally-->
+          <CommandLine condition="contains">.js</CommandLine>
+        </ProcessCreate>
+      </RuleGroup>
       <ParentImage name="technique_id=T1170,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
       <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">control.exe</ParentImage> <!-- https://twitter.com/rikvduijn/status/853251879320662017 -->
       <OriginalFileName name="technique_id=T1170,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
@@ -109,6 +115,9 @@
         <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">esentutl.exe</OriginalFileName>
         <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains all">/y;/vss/d</CommandLine>
       </Rule>
+      <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">vssadmin.exe delete</CommandLine><!-- Possible Ransomeware detection or any kind of backup prevention  https://attack.mitre.org/techniques/T1490/-->
+      <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">wbadmin.exe delete</CommandLine><!-- Deletion of Backup Catalog  https://attack.mitre.org/techniques/T1490/-->
+      <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">bcedit.exe /set</CommandLine><!-- Modify Windows Recovery features by modifying boot config data  https://attack.mitre.org/techniques/T1490/-->
 		</ProcessCreate>
 </RuleGroup>
 </EventFiltering>
