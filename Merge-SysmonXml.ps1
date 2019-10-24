@@ -21,12 +21,12 @@ function Merge-AllSysmonXml
     process{
         if($PSCmdlet.ParameterSetName -eq 'ByPath'){
             foreach($P in $Path){
-                $FilePaths += (Resolve-Path -Path:$P).Path
+                $FilePaths += (Resolve-Path -Path:$P).ProviderPath
             }
         }
         else{
             foreach($LP in $LiteralPath){
-                $FilePaths += (Resolve-Path -LiteralPath:$LP).Path
+                $FilePaths += (Resolve-Path -LiteralPath:$LP).ProviderPath
             }
         }
     }
