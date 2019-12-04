@@ -110,6 +110,10 @@
           <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains any">Mavinject.exe;mavinject64.exe</OriginalFileName>
           <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">/INJECTRUNNING</CommandLine>
         </Rule>
+	<Rule name="Domain Name" groupRelation="and">
+	  <OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
+	  <CommandLine name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="contains all">"C:\WINDOWS\system32\nltest.exe" /domain_trusts	</CommandLine>
+	</Rule>
         <Rule name="Mavinject" groupRelation="and">
           <OriginalFileName name="technique_id=T1191,technique_name=CMSTP" condition="is">CMSTP.exe</OriginalFileName>
           <CommandLine name="technique_id=T1191,technique_name=CMSTP" condition="contains all">/ni;/s</CommandLine>
