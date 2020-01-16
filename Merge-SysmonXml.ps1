@@ -21,12 +21,12 @@ function Merge-AllSysmonXml
     process{
         if($PSCmdlet.ParameterSetName -eq 'ByPath'){
             foreach($P in $Path){
-                $FilePaths += (Resolve-Path $P).Path
+                $FilePaths += (Resolve-Path -Path:$P).ProviderPath
             }
         }
         else{
             foreach($LP in $LiteralPath){
-                $FilePaths += $LiteralPath
+                $FilePaths += (Resolve-Path -LiteralPath:$LP).ProviderPath
             }
         }
     }
@@ -86,64 +86,64 @@ function Merge-SysmonXml
         [switch]$AsString
     )
 
-    $Rules = @{
-        ProcessCreate = @{
+    $Rules = [ordered]@{
+        ProcessCreate = [ordered]@{
             include = @()
             exclude = @()
         }
-        FileCreateTime = @{
+        FileCreateTime = [ordered]@{
             include = @()
             exclude = @()
         }
-        NetworkConnect = @{
+        NetworkConnect = [ordered]@{
             include = @()
             exclude = @()
         }
-        ProcessTerminate = @{
+        ProcessTerminate = [ordered]@{
             include = @()
             exclude = @()
         }
-        DriverLoad = @{
+        DriverLoad = [ordered]@{
             include = @()
             exclude = @()
         }
-        ImageLoad = @{
+        ImageLoad = [ordered]@{
             include = @()
             exclude = @()
         }
-        CreateRemoteThread = @{
+        CreateRemoteThread = [ordered]@{
             include = @()
             exclude = @()
         }
-        RawAccessRead = @{
+        RawAccessRead = [ordered]@{
             include = @()
             exclude = @()
         }
-        ProcessAccess = @{
+        ProcessAccess = [ordered]@{
             include = @()
             exclude = @()
         }
-        FileCreate = @{
+        FileCreate = [ordered]@{
             include = @()
             exclude = @()
         }
-        RegistryEvent = @{
+        RegistryEvent = [ordered]@{
             include = @()
             exclude = @()
         }
-        FileCreateStreamHash = @{
+        FileCreateStreamHash = [ordered]@{
             include = @()
             exclude = @()
         }
-        PipeEvent = @{
+        PipeEvent = [ordered]@{
             include = @()
             exclude = @()
         }
-        WmiEvent = @{
+        WmiEvent = [ordered]@{
             include = @()
             exclude = @()
         }
-        DnsQuery = @{
+        DnsQuery = [ordered]@{
             include = @()
             exclude = @()
         }
