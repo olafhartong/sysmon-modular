@@ -1,0 +1,3 @@
+<Sysmon schemaversion="4.3">
+    <FileDelete onmatch="Exclude"/>
+</Sysmon>

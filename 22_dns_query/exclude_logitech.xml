@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.3">
    <HashAlgorithms>*</HashAlgorithms>
    <CheckRevocation/>
    <EventFiltering>
