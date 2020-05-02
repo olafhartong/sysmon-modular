@@ -1,7 +1,12 @@
 <Sysmon schemaversion="4.3">
-    <FileDelete onmatch="include">
-        <TargetFilename contition="contains">.exe;.ps1;.js;.xls;xlsm</TargetFilename>
+   <HashAlgorithms>*</HashAlgorithms>
+   <CheckRevocation/>
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+      <FileDelete onmatch="include">
+        <TargetFilename contition="contains any">.exe;.ps1;.js;.xls;.xlsm</TargetFilename>
         <IsExecutable>True</IsExecutable>
-    </FileDelete>
-
+      </FileDelete>
+</RuleGroup>
+</EventFiltering>
 </Sysmon>

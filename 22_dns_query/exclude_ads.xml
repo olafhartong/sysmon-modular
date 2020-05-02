@@ -90,6 +90,8 @@
 			<QueryName condition="end with">.ytimg.com</QueryName> <!--Google-->
 			<QueryName condition="end with">.zorosrv.com</QueryName> <!--Ads:Taboola-->
 			<QueryName condition="is">1rx.io</QueryName> <!--Ads-->
+			<QueryName condition="end with">googleapis.com</QueryName><!--Google Apis-->
+			<QueryName condition="end with">joinhoney.com</QueryName>
 			<QueryName condition="is">adservice.google.com</QueryName> <!--Google-->
 			<QueryName condition="is">ampcid.google.com</QueryName> <!--Google-->
 			<QueryName condition="is">clientservices.googleapis.com</QueryName> <!--Google-->

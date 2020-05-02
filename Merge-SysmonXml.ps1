@@ -158,8 +158,6 @@ function Merge-SysmonXml
 <!-- Capture all hashes -->
 <HashAlgorithms>*</HashAlgorithms>
 <ArchiveDirectory>Archival</ArchiveDirectory>  
-<CopyOnDeletePE>True</CopyOnDeletePE>  
-<CopyOnDeleteExtensions>exe,dll,xls,xlsm,doc,docm,ps1,pdf</CopyOnDeleteExtensions> 
 <CheckRevocation/>
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
