@@ -147,12 +147,19 @@ function Merge-SysmonXml
             include = @()
             exclude = @()
         }
+        FileDelete = @{
+            include = @()
+            exclude = @()
+        }
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.3">
 <!-- Capture all hashes -->
 <HashAlgorithms>*</HashAlgorithms>
+<ArchiveDirectory>Archival</ArchiveDirectory>  
+<CopyOnDeletePE>True</CopyOnDeletePE>  
+<CopyOnDeleteExtensions>exe,dll,xls,xlsm,doc,docm,ps1,pdf</CopyOnDeleteExtensions> 
 <CheckRevocation/>
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
@@ -208,7 +215,7 @@ function Merge-SysmonXml
         <PipeEvent onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
+        <!-- Event ID 19,20,21,22,23 == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
         <WmiEvent onmatch="include"/>
     </RuleGroup>
 </EventFiltering>

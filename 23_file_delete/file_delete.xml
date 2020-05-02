@@ -3,4 +3,5 @@
         <TargetFilename contition="contains">.exe;.ps1;.js;.xls;xlsm</TargetFilename>
         <IsExecutable>True</IsExecutable>
     </FileDelete>
+
 </Sysmon>

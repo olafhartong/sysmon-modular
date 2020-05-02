@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.3">
    <EventFiltering>
      <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
@@ -9,7 +9,7 @@
       </ProcessCreate>
       <ProcessCreate onmatch="include">
           <CommandLine name="technique_id=T1197,technique_name=BITS Jobs" condition="contains">/create</CommandLine>
-      </ProcessCreate onmatch="include">
+      </ProcessCreate>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>
