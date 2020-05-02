@@ -1,18 +1,13 @@
 # sysmon-modular | A Sysmon configuration repository for everybody to customise
 
-[![license](https://img.shields.io/github/license/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/blob/master/license.md)
-![Maintenance](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)
-[![GitHub last commit](https://img.shields.io/github/last-commit/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/commit/master)
-[![Twitter](https://img.shields.io/twitter/follow/olafhartong.svg?style=social&label=Follow)](https://twitter.com/olafhartong)
-
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
-## NOTICE; Sysmon below 10.4 is not compatible with this configuration
+## NOTICE; Sysmon below 11 is not compatible with this configuration
 Older versions are still available in the branches, but are not as complete as the current branch
 V8.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-8)
 V9.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-9)
 
-To understand added features in the latest version, have a look at my [small blog post](https://medium.com/@olafhartong/sysmon-10-4-release-7f7480300dff) or watch my [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
+To understand added features in the latest version, have a look at Olaf's [small blog post](https://medium.com/@olafhartong/sysmon-10-4-release-7f7480300dff) or watch his [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
 
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
@@ -74,3 +69,7 @@ Run with administrator rights
 
     sysmon.exe -c sysmonconfig.xml
 
+## Debug your config
+
+Run with administrator rights
+    sysmon.exe -t -i sysmonconfig.xml
