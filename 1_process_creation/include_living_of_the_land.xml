@@ -29,10 +29,6 @@
       <OriginalFileName condition="is">hh.exe</OriginalFileName><!--Microsoft:Windows: HTML Helper-->
       <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">hh.exe</ParentImage><!--Microsoft:Windows: HTML Helper-->
       <Rule groupRelation="and">
-          <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">hh.exe</ParentImage><!--Always build overlapping detections, powershell scripts -->
-          <CommandLine condition="contains">.ps1</CommandLine>
-      </Rule>
-      <Rule groupRelation="and">
           <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">hh.exe</ParentImage><!--Always build overlapping detections, PEs -->
           <CommandLine condition="contains">.exe</CommandLine>
       </Rule>

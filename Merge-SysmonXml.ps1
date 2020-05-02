@@ -213,8 +213,12 @@ function Merge-SysmonXml
         <PipeEvent onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 19,20,21,22,23 == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
+        <!-- Event ID 19,20,21 == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
         <WmiEvent onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 23 == FileDelete. Log all file delete-->
+        <FileDelete onmatch="include"/>
     </RuleGroup>
 </EventFiltering>
 </Sysmon>
