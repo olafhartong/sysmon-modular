@@ -9,6 +9,8 @@
      <RegistryEvent onmatch="include">
          <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="contains">Software\Microsoft\Windows NT\CurrentVersion\Accessibility\Configuration</TargetObject>
          <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="contains">Software\Microsoft\Windows NT\CurrentVersion\Accessibility\ATs</TargetObject>
+         <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="end with">HKEY_CURRENT_USER\Software\Classes\AppXypsaf9f1qserqevf0sws76dx4k9a5206\Shell\open\command</TargetObject>
+         <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="end eith">Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe\Debugger</TargetObject>
      </RegistryEvent>
    </RuleGroup>
   </EventFiltering>
