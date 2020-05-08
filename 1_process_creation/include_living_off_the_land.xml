@@ -94,6 +94,7 @@
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">mofcomp.exe</OriginalFileName><!-- Microsoft:MOF Compiler -used to compile custom MOF files for WMI use -->
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">Microsoft.Workflow.Compiler.exe</OriginalFileName><!--https://lolbas-project.github.io/lolbas/Binaries/Microsoft.Workflow.Compiler/-->
       <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
       <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">ScrCons</OriginalFileName>
       <Rule name="Extensible Storage Engine Utilities" groupRelation="and">
@@ -108,6 +109,24 @@
       <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">diskshadow.exe /s</CommandLine><!--This only applies to versions of Windows Server-->
       <ParentImage name="technique_id=T1103,technique_name=Credential Dumping" condition="is">diskshadow.exe</ParentImage><!--This only applies to versions of Windows Server-->
       <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy with Expand" condition="is">expand.exe</OriginalFileName>
+      <ParentImage name="technique=T1218,technique_name=Signed Binary Proxy Execution with FTP" condition="is">ftp.exe</ParentImage>
+      <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
+      <CommandLine name="technique_id=1218,technique_name=Signed Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
+      <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Tools" condition="contains">ilasm</CommandLine>
+      <OriginalFileName name="technique_id=T1118,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1127,technique_name=Javascript compilation" condition="is">jsc.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
+      <Rule name="Alternate Data Streams with Print" condition="and">
+        <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">print.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains">:</CommandLine>
+      </Rule>
+      <Rule name="Alternate Data Streams with Regedit.exe" condition="and">
+        <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">regedit.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains">:</CommandLine>
+      </Rule>
+      <OriginalFileName name="technique_id=1218,technique_name=Signed Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
+      
 		</ProcessCreate>
 </RuleGroup>
 </EventFiltering>
