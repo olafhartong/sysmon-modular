@@ -126,8 +126,60 @@
         <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains">:</CommandLine>
       </Rule>
       <OriginalFileName name="technique_id=1218,technique_name=Signed Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
-      
-		</ProcessCreate>
+      <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">rpcping.exe</OriginalFileName>
+      <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">runscripthelper.exe surfacecheck</CommandLine>
+      <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">Scriptrunner.exe -appvscript</CommandLine>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">Scriptrunner.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">tttracer.exe</OriginalFileName>
+      <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="contains">vbc.exe /target:exe</CommandLine>
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="contains">vbc.exe</OriginalFileName>
+      <ParentImage name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">wab.exe</ParentImage>
+      <ParentImage name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">wsreset.exe</ParentImage>
+      <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">xwizard RunWizard</CommandLine>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">Appvlp.exe</OriginalFileName>
+      <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">bginfo</CommandLine>
+      <ParentCommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">bginfo</ParentCommandLine>
+      <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">cbd</CommandLine>
+      <ParentCommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">csi.exe</ParentCommandLine>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">csi.exe</OriginalFileName>
+      <ParentCommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">devtoolslauncher.exe LaunchForDeploy</ParentCommandLine>
+      <ParentImage name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">devtoolslauncher.exe</ParentImage>
+      <CommandLine name="technique_id=T1218,technique_name=Proxy Execution of unsigned C# Code" condition="contains all">dnx.exe consoleapp</CommandLine>
+      <Rule name="Alternate Data Streams with Regedit.exe" condition="and">
+        <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">dotnet.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="end with">.dll</CommandLine>
+      </Rule>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is"></OriginalFileName>
+      <CommandLine name="technique_id=T1217,technique_name=Trusted Script Proxy Execution" condition="contains">pester</CommandLine>
+      <CommandLine name="technique_id=T1218,technique_name=Trusted Script Proxy Execution" condition="contains">winrm</CommandLine> <!--This is something to keep an eye on always -->
+      <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">slmgr</CommandLine>
+      <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">pubprn</CommandLine>
+      <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">manage-bde</CommandLine>
+      <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Exectuion" condition="contains">CL_Invocation</CommandLine>
+      <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Exectuion" condition="contains">CL_Mutexverifiers</CommandLine>
+      <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
+      <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">vsjitdebugger.exe</ParentImage>
+      <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains">vsjitdebugger</CommandLine>
+      <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">update --download</CommandLine>
+      <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe --update</CommandLine>
+      <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe --ProcessStart</CommandLine>
+      <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">tracker.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">te.exe</OriginalFileName>
+      <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">squirrel --download</CommandLine>
+      <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">squirrel.exe --update</CommandLine>
+      <OriginalFileName name="technique_id=1086,technique_name=Powershell" condition="contains">Sqlps.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">sqldumper.exe</OriginalFileName><!-- Should rarely be ran -->
+      <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">rcsi.exe</OriginalFileName>
+      <Rule name="AD Dump with ntdsutil" groupRelation="and">
+        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">ntdsutil.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">ifm</CommandLine>
+      </Rule>
+      <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">msxls.exe</OriginalFileName>
+      <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains">msdeploy.exe -verb:sync -source:RunCommand</CommandLine>
+      <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">mftrace.exe</ParentImage>
+      <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">dxcap.exe</ParentImage>
+      <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">dxcap.exe -c</CommandLine>
+      </ProcessCreate>
 </RuleGroup>
 </EventFiltering>
 </Sysmon>
