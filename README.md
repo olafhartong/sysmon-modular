@@ -3,9 +3,6 @@
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
 ## NOTICE; Sysmon below 11 is not compatible with this configuration
-Older versions are still available in the branches, but are not as complete as the current branch
-V8.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-8)
-V9.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-9)
 
 To understand added features in the latest version, have a look at Olaf's [small blog post](https://medium.com/@olafhartong/sysmon-10-4-release-7f7480300dff) or watch his [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
 
@@ -50,7 +47,7 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
 #### PowerShell
 
-    git clone https://github.com/olafhartong/sysmon-modular.git
+    git clone https://github.com/thehack3r4chan/sysmon-modular.git
     cd sysmon modular
     . .\Merge-SysmonXml.ps1
     Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
