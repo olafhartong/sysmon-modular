@@ -117,11 +117,11 @@
       <OriginalFileName name="technique_id=T1127,technique_name=Javascript compilation" condition="is">jsc.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
-      <Rule name="Alternate Data Streams with Print" condition="and">
+      <Rule name="Alternate Data Streams with Print" groupRelation="and">
         <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">print.exe</OriginalFileName>
         <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains">:</CommandLine>
       </Rule>
-      <Rule name="Alternate Data Streams with Regedit.exe" condition="and">
+      <Rule name="Alternate Data Streams with Regedit.exe" groupRelation="and">
         <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">regedit.exe</OriginalFileName>
         <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains">:</CommandLine>
       </Rule>
@@ -145,7 +145,7 @@
       <ParentCommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">devtoolslauncher.exe LaunchForDeploy</ParentCommandLine>
       <ParentImage name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">devtoolslauncher.exe</ParentImage>
       <CommandLine name="technique_id=T1218,technique_name=Proxy Execution of unsigned C# Code" condition="contains all">dnx.exe consoleapp</CommandLine>
-      <Rule name="Alternate Data Streams with Regedit.exe" condition="and">
+      <Rule name="Alternate Data Streams with Regedit.exe" groupRelation="and">
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">dotnet.exe</OriginalFileName>
         <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="end with">.dll</CommandLine>
       </Rule>
