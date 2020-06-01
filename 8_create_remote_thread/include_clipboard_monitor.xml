@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <CreateRemoteThread onmatch="include">
+         <Rule groupRelation="and"> 
+          <SourceImage condition="is">c:\windows\system32\csrss.exe</SourceImage>
+          <StartFunction condition="is">CrtlRoutine</StartFunction>
+         </Rule> 
+      </CreateRemoteThread>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
