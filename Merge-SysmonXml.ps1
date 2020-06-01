@@ -147,10 +147,14 @@ function Merge-SysmonXml
             include = @()
             exclude = @()
         }
+        FileDelete = [ordered]@{
+            include = @()
+            exclude = @()
+        }        
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.30">
 <!-- Capture all hashes -->
 <HashAlgorithms>*</HashAlgorithms>
 <CheckRevocation/>
