@@ -99,10 +99,21 @@
         <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">mofcomp.exe</OriginalFileName>
+        <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
+        <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">ScrCons</OriginalFileName>
+        <Rule name="Extensible Storage Engine Utilities" groupRelation="and">
+          <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">esentutl.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains all">/y;/vss/d</CommandLine>
+        </Rule>
         <Rule name="Mavinject" groupRelation="and">
           <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains any">Mavinject.exe;mavinject64.exe</OriginalFileName>
           <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">/INJECTRUNNING</CommandLine>
         </Rule>
+	<Rule name="Domain Name" groupRelation="and">
+	  <OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
+	  <CommandLine name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="contains all">"C:\WINDOWS\system32\nltest.exe" /domain_trusts	</CommandLine>
+	</Rule>
         <Rule name="Mavinject" groupRelation="and">
           <OriginalFileName name="technique_id=T1191,technique_name=CMSTP" condition="is">CMSTP.exe</OriginalFileName>
           <CommandLine name="technique_id=T1191,technique_name=CMSTP" condition="contains all">/ni;/s</CommandLine>
@@ -157,6 +168,7 @@
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Appdata\Local\</Image>
         <Rule name="Control Panel Items" groupRelation="or">
           <CommandLine name="technique_id=T1196,technique_name=Control Panel Items" condition="contains all">control;/name</CommandLine>
           <CommandLine name="technique_id=T1196,technique_name=Control Panel Items" condition="contains all">rundll32.exe;shell32.dll;Control_RunDLL</CommandLine>
@@ -385,6 +397,7 @@
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\services.exe</TargetImage>
           <GrantedAccess>0x1F1FFF</GrantedAccess>
         </Rule>
+        <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x21410</GrantedAccess>
         <Rule groupRelation="and">
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <GrantedAccess>0x1FFFFF</GrantedAccess>
@@ -454,6 +467,8 @@
         <TargetFilename condition="begin with">C:\Windows\System32\GroupPolicy\Machine\Scripts</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\GroupPolicy\User\Scripts</TargetFilename>
         <TargetFilename name="technique_id=T1170,technique_name=Mshta" condition="end with">.hta</TargetFilename>
+        <TargetFilename condition="end with">.iso</TargetFilename>
+        <TargetFilename condition="end with">.img</TargetFilename>
         <TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.lnk</TargetFilename>
         <TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.scf</TargetFilename>
         <TargetFilename condition="end with">.application</TargetFilename>
@@ -496,6 +511,7 @@
         <TargetFilename condition="contains">\Start Menu</TargetFilename>
         <TargetFilename condition="contains">\Startup</TargetFilename>
         <TargetFilename condition="end with">.sys</TargetFilename>
+        <TargetFilename condition="end with">.url</TargetFilename>
         <TargetFilename condition="end with">.vb</TargetFilename>
         <TargetFilename condition="end with">.vbe</TargetFilename>
         <TargetFilename condition="end with">.vbs</TargetFilename>
@@ -703,6 +719,216 @@
       </WmiEvent>
     </RuleGroup>
     <RuleGroup groupRelation="or">
+      <DnsQuery onmatch="exclude">
+        <QueryName condition="end with">.1rx.io</QueryName>
+        <QueryName condition="end with">.2mdn.net</QueryName>
+        <QueryName condition="end with">.adadvisor.net</QueryName>
+        <QueryName condition="end with">.adap.tv</QueryName>
+        <QueryName condition="end with">.addthis.com</QueryName>
+        <QueryName condition="end with">.adform.net</QueryName>
+        <QueryName condition="end with">.adnxs.com</QueryName>
+        <QueryName condition="end with">.adroll.com</QueryName>
+        <QueryName condition="end with">.adrta.com</QueryName>
+        <QueryName condition="end with">.adsafeprotected.com</QueryName>
+        <QueryName condition="end with">.adsrvr.org</QueryName>
+        <QueryName condition="end with">.advertising.com</QueryName>
+        <QueryName condition="end with">.amazon-adsystem.com</QueryName>
+        <QueryName condition="end with">.amazon-adsystem.com</QueryName>
+        <QueryName condition="end with">.analytics.yahoo.com</QueryName>
+        <QueryName condition="end with">.aol.com</QueryName>
+        <QueryName condition="end with">.betrad.com</QueryName>
+        <QueryName condition="end with">.bidswitch.net</QueryName>
+        <QueryName condition="end with">.casalemedia.com</QueryName>
+        <QueryName condition="end with">.chartbeat.net</QueryName>
+        <QueryName condition="end with">.cnn.com</QueryName>
+        <QueryName condition="end with">.convertro.com</QueryName>
+        <QueryName condition="end with">.criteo.com</QueryName>
+        <QueryName condition="end with">.criteo.net</QueryName>
+        <QueryName condition="end with">.crwdcntrl.net</QueryName>
+        <QueryName condition="end with">.demdex.net</QueryName>
+        <QueryName condition="end with">.domdex.com</QueryName>
+        <QueryName condition="end with">.dotomi.com</QueryName>
+        <QueryName condition="end with">.doubleclick.net</QueryName>
+        <QueryName condition="end with">.doubleverify.com</QueryName>
+        <QueryName condition="end with">.emxdgt.com</QueryName>
+        <QueryName condition="end with">.exelator.com</QueryName>
+        <QueryName condition="end with">.google-analytics.com</QueryName>
+        <QueryName condition="end with">.googleadservices.com</QueryName>
+        <QueryName condition="end with">.googlesyndication.com</QueryName>
+        <QueryName condition="end with">.googletagmanager.com</QueryName>
+        <QueryName condition="end with">.googlevideo.com</QueryName>
+        <QueryName condition="end with">.gstatic.com</QueryName>
+        <QueryName condition="end with">.gvt1.com</QueryName>
+        <QueryName condition="end with">.gvt2.com</QueryName>
+        <QueryName condition="end with">.ib-ibi.com</QueryName>
+        <QueryName condition="end with">.jivox.com</QueryName>
+        <QueryName condition="end with">.mathtag.com</QueryName>
+        <QueryName condition="end with">.moatads.com</QueryName>
+        <QueryName condition="end with">.moatpixel.com</QueryName>
+        <QueryName condition="end with">.mookie1.com</QueryName>
+        <QueryName condition="end with">.myvisualiq.net</QueryName>
+        <QueryName condition="end with">.netmng.com</QueryName>
+        <QueryName condition="end with">.nexac.com</QueryName>
+        <QueryName condition="end with">.openx.net</QueryName>
+        <QueryName condition="end with">.optimizely.com</QueryName>
+        <QueryName condition="end with">.outbrain.com</QueryName>
+        <QueryName condition="end with">.pardot.com</QueryName>
+        <QueryName condition="end with">.phx.gbl</QueryName>
+        <QueryName condition="end with">.pinterest.com</QueryName>
+        <QueryName condition="end with">.pubmatic.com</QueryName>
+        <QueryName condition="end with">.quantcount.com</QueryName>
+        <QueryName condition="end with">.quantserve.com</QueryName>
+        <QueryName condition="end with">.revsci.net</QueryName>
+        <QueryName condition="end with">.rfihub.net</QueryName>
+        <QueryName condition="end with">.rlcdn.com</QueryName>
+        <QueryName condition="end with">.rubiconproject.com</QueryName>
+        <QueryName condition="end with">.scdn.co</QueryName>
+        <QueryName condition="end with">.scorecardresearch.com</QueryName>
+        <QueryName condition="end with">.serving-sys.com</QueryName>
+        <QueryName condition="end with">.sharethrough.com</QueryName>
+        <QueryName condition="end with">.simpli.fi</QueryName>
+        <QueryName condition="end with">.sitescout.com</QueryName>
+        <QueryName condition="end with">.smartadserver.com</QueryName>
+        <QueryName condition="end with">.snapads.com</QueryName>
+        <QueryName condition="end with">.spotxchange.com</QueryName>
+        <QueryName condition="end with">.taboola.com</QueryName>
+        <QueryName condition="end with">.taboola.map.fastly.net</QueryName>
+        <QueryName condition="end with">.tapad.com</QueryName>
+        <QueryName condition="end with">.tidaltv.com</QueryName>
+        <QueryName condition="end with">.trafficmanager.net</QueryName>
+        <QueryName condition="end with">.tremorhub.com</QueryName>
+        <QueryName condition="end with">.tribalfusion.com</QueryName>
+        <QueryName condition="end with">.turn.com</QueryName>
+        <QueryName condition="end with">.twimg.com</QueryName>
+        <QueryName condition="end with">.tynt.com</QueryName>
+        <QueryName condition="end with">.w55c.net</QueryName>
+        <QueryName condition="end with">.ytimg.com</QueryName>
+        <QueryName condition="end with">.zorosrv.com</QueryName>
+        <QueryName condition="is">1rx.io</QueryName>
+        <QueryName condition="is">adservice.google.com</QueryName>
+        <QueryName condition="is">ampcid.google.com</QueryName>
+        <QueryName condition="is">clientservices.googleapis.com</QueryName>
+        <QueryName condition="is">googleadapis.l.google.com</QueryName>
+        <QueryName condition="is">imasdk.googleapis.com</QueryName>
+        <QueryName condition="is">l.google.com</QueryName>
+        <QueryName condition="is">ml314.com</QueryName>
+        <QueryName condition="is">mtalk.google.com</QueryName>
+        <QueryName condition="is">update.googleapis.com</QueryName>
+        <QueryName condition="is">www.googletagservices.com</QueryName>
+        <QueryName condition="end with">.mozaws.net</QueryName>
+        <QueryName condition="end with">.mozilla.com</QueryName>
+        <QueryName condition="end with">.mozilla.net</QueryName>
+        <QueryName condition="end with">.mozilla.org</QueryName>
+        <QueryName condition="is">clients1.google.com</QueryName>
+        <QueryName condition="is">clients2.google.com</QueryName>
+        <QueryName condition="is">clients3.google.com</QueryName>
+        <QueryName condition="is">clients4.google.com</QueryName>
+        <QueryName condition="is">clients5.google.com</QueryName>
+        <QueryName condition="is">clients6.google.com</QueryName>
+        <QueryName condition="is">safebrowsing.googleapis.com</QueryName>
+        <QueryName condition="end with">.akadns.net</QueryName>
+        <QueryName condition="end with">.netflix.com</QueryName>
+        <QueryName condition="end with">aspnetcdn.com</QueryName>
+        <QueryName condition="is">ajax.googleapis.com</QueryName>
+        <QueryName condition="is">cdnjs.cloudflare.com</QueryName>
+        <QueryName condition="is">fonts.googleapis.com</QueryName>
+        <QueryName condition="end with">.typekit.net</QueryName>
+        <QueryName condition="is">cdnjs.cloudflare.com</QueryName>
+        <QueryName condition="end with">.stackassets.com</QueryName>
+        <QueryName condition="end with">.steamcontent.com</QueryName>
+        <QueryName condition="end with">.arpa.</QueryName>
+        <QueryName condition="end with">.arpa</QueryName>
+        <QueryName condition="end with">.msftncsi.com</QueryName>
+        <QueryName condition="end with">.localmachine</QueryName>
+        <QueryName condition="is">localhost</QueryName>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\ProgramData\LogiShrd\LogiOptions\Software\Current\updater.exe</Image>
+          <QueryName condition="end with">.logitech.com</QueryName>
+        </Rule>
+        <Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe</Image>
+        <QueryName condition="end with">-pushp.svc.ms</QueryName>
+        <QueryName condition="end with">.b-msedge.net</QueryName>
+        <QueryName condition="end with">.bing.com</QueryName>
+        <QueryName condition="end with">.hotmail.com</QueryName>
+        <QueryName condition="end with">.live.com</QueryName>
+        <QueryName condition="end with">.live.net</QueryName>
+        <QueryName condition="end with">.s-microsoft.com</QueryName>
+        <QueryName condition="end with">.microsoft.com</QueryName>
+        <QueryName condition="end with">.microsoftonline.com</QueryName>
+        <QueryName condition="end with">.microsoftstore.com</QueryName>
+        <QueryName condition="end with">.ms-acdc.office.com</QueryName>
+        <QueryName condition="end with">.msedge.net</QueryName>
+        <QueryName condition="end with">.msn.com</QueryName>
+        <QueryName condition="end with">.msocdn.com</QueryName>
+        <QueryName condition="end with">.skype.com</QueryName>
+        <QueryName condition="end with">.skype.net</QueryName>
+        <QueryName condition="end with">.windows.com</QueryName>
+        <QueryName condition="end with">.windows.net.nsatc.net</QueryName>
+        <QueryName condition="end with">.windowsupdate.com</QueryName>
+        <QueryName condition="end with">.xboxlive.com</QueryName>
+        <QueryName condition="is">login.windows.net</QueryName>
+        <QueryName condition="end with">.activedirectory.windowsazure.com</QueryName>
+        <QueryName condition="end with">.aria.microsoft.com</QueryName>
+        <QueryName condition="end with">.msauth.net</QueryName>
+        <QueryName condition="end with">.msftauth.net</QueryName>
+        <QueryName condition="end with">.opinsights.azure.com</QueryName>
+        <QueryName condition="is">management.azure.com</QueryName>
+        <QueryName condition="is">outlook.office365.com</QueryName>
+        <QueryName condition="is">portal.azure.com</QueryName>
+        <QueryName condition="is">substrate.office.com</QueryName>
+        <QueryName condition="is">osi.office.net</QueryName>
+        <QueryName condition="end with">.digicert.com</QueryName>
+        <QueryName condition="end with">.globalsign.com</QueryName>
+        <QueryName condition="end with">.globalsign.net</QueryName>
+        <QueryName condition="is">msocsp.com</QueryName>
+        <QueryName condition="is">ocsp.msocsp.com</QueryName>
+        <QueryName condition="end with">pki.goog</QueryName>
+        <QueryName condition="is">ocsp.godaddy.com</QueryName>
+        <QueryName condition="end with">amazontrust.com</QueryName>
+        <QueryName condition="is">ocsp.sectigo.com</QueryName>
+        <QueryName condition="is">pki-goog.l.google.com</QueryName>
+        <QueryName condition="end with">.usertrust.com</QueryName>
+        <QueryName condition="is">ocsp.comodoca.com</QueryName>
+        <QueryName condition="is">ocsp.verisign.com</QueryName>
+        <QueryName condition="is">ocsp.entrust.net</QueryName>
+        <QueryName condition="end with">ocsp.identrust.com</QueryName>
+        <QueryName condition="is">status.rapidssl.com</QueryName>
+        <QueryName condition="is">status.thawte.com</QueryName>
+        <QueryName condition="is">ocsp.int-x3.letsencrypt.org</QueryName>
+        <QueryName condition="is">subca.ocsp-certum.com</QueryName>
+        <QueryName condition="is">cscasha2.ocsp-certum.com</QueryName>
+        <QueryName condition="end with">.spotify.com</QueryName>
+        <QueryName condition="end with">.spotify.map.fastly.net</QueryName>
+      </DnsQuery>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileCreate onmatch="exclude">
+        <Image condition="is">C:\Program Files (x86)\Dell\CommandUpdate\InvColPC.exe</Image>
+        <Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
+        <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe</Image>
+        <Image condition="is">C:\Windows\System32\smss.exe</Image>
+        <Image condition="is">C:\Windows\system32\CompatTelRunner.exe</Image>
+        <Image condition="is">C:\Windows\system32\wbem\WMIADAP.EXE</Image>
+        <TargetFilename condition="begin with">C:\Windows\System32\DriverStore\Temp\</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\wbem\Performance\</TargetFilename>
+        <TargetFilename condition="end with">WRITABLE.TST</TargetFilename>
+        <TargetFilename condition="contains">\AppData\Roaming\Microsoft\Windows\Recent\</TargetFilename>
+        <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
+        <Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>
+        <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
+        <Image condition="is">c:\windows\system32\provtool.exe</Image>
+        <Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
+        <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
+        <Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
+      </FileCreate>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
       <RegistryEvent onmatch="exclude">
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\aciseposture.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
@@ -779,41 +1005,6 @@
         <TargetObject condition="end with">\services\tunnel\Start</TargetObject>
         <TargetObject condition="end with">\services\UsoSvc\Start</TargetObject>
       </RegistryEvent>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <FileCreate onmatch="exclude">
-        <Image condition="is">C:\Program Files (x86)\Dell\CommandUpdate\InvColPC.exe</Image>
-        <Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
-        <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
-        <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe</Image>
-        <Image condition="is">C:\Windows\System32\smss.exe</Image>
-        <Image condition="is">C:\Windows\system32\CompatTelRunner.exe</Image>
-        <Image condition="is">C:\Windows\system32\wbem\WMIADAP.EXE</Image>
-        <TargetFilename condition="begin with">C:\Windows\System32\DriverStore\Temp\</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\wbem\Performance\</TargetFilename>
-        <TargetFilename condition="end with">WRITABLE.TST</TargetFilename>
-        <TargetFilename condition="contains">\AppData\Roaming\Microsoft\Windows\Recent\</TargetFilename>
-        <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
-        <Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>
-        <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
-        <Image condition="is">c:\windows\system32\provtool.exe</Image>
-        <Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
-        <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
-        <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
-        <Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
-      </FileCreate>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <FileCreateTime onmatch="exclude">
-        <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
-        <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
-        <Image condition="image">OneDrive.exe</Image>
-        <Image condition="contains">setup</Image>
-      </FileCreateTime>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessCreate onmatch="exclude">
@@ -963,6 +1154,11 @@
         <CommandLine condition="is">C:\Windows\system32\svchost.exe -k wsappx</CommandLine>
         <ParentCommandLine condition="is">C:\Windows\system32\svchost.exe -k netsvcs</ParentCommandLine>
         <ParentCommandLine condition="is">C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted</ParentCommandLine>
+        <Image condition="is">C:\Program Files\Trend Micro\Deep Security Agent\ds_monitor.exe</Image>
+        <Image condition="is">C:\Program Files\Trend Micro\Deep Security Agent\dsa.exe</Image>
+        <Image condition="is">C:\Program Files\Trend Micro\Deep Security Agent\dsuam.exe</Image>
+        <Image condition="is">C:\Program Files\Trend Micro\Deep Security Agent\Notifier.exe</Image>
+        <Image condition="is">C:\Program Files\Trend Micro\Deep Security Agent\lib\Patch.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Trend Micro\BM\TMBMSRV.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmopExtIns32.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmExtIns.exe</Image>
@@ -989,204 +1185,6 @@
       </ProcessCreate>
     </RuleGroup>
     <RuleGroup groupRelation="or">
-      <CreateRemoteThread onmatch="exclude">
-        <SourceImage condition="is">C:\Windows\System32\svchost.exe</SourceImage>
-        <SourceImage condition="is">C:\Windows\System32\wininit.exe</SourceImage>
-        <SourceImage condition="is">C:\Windows\System32\csrss.exe</SourceImage>
-        <SourceImage condition="is">C:\Windows\System32\services.exe</SourceImage>
-        <SourceImage condition="is">C:\Windows\System32\winlogon.exe</SourceImage>
-        <SourceImage condition="is">C:\Windows\System32\audiodg.exe</SourceImage>
-        <StartModule condition="is">C:\windows\system32\kernel32.dll</StartModule>
-        <TargetImage condition="end with">Google\Chrome\Application\chrome.exe</TargetImage>
-        <SourceImage condition="is">C:\Windows\System32\wbem\WmiPrvSE.exe</SourceImage>
-      </CreateRemoteThread>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <DnsQuery onmatch="exclude">
-        <QueryName condition="end with">.1rx.io</QueryName>
-        <QueryName condition="end with">.2mdn.net</QueryName>
-        <QueryName condition="end with">.adadvisor.net</QueryName>
-        <QueryName condition="end with">.adap.tv</QueryName>
-        <QueryName condition="end with">.addthis.com</QueryName>
-        <QueryName condition="end with">.adform.net</QueryName>
-        <QueryName condition="end with">.adnxs.com</QueryName>
-        <QueryName condition="end with">.adroll.com</QueryName>
-        <QueryName condition="end with">.adrta.com</QueryName>
-        <QueryName condition="end with">.adsafeprotected.com</QueryName>
-        <QueryName condition="end with">.adsrvr.org</QueryName>
-        <QueryName condition="end with">.advertising.com</QueryName>
-        <QueryName condition="end with">.amazon-adsystem.com</QueryName>
-        <QueryName condition="end with">.amazon-adsystem.com</QueryName>
-        <QueryName condition="end with">.analytics.yahoo.com</QueryName>
-        <QueryName condition="end with">.aol.com</QueryName>
-        <QueryName condition="end with">.betrad.com</QueryName>
-        <QueryName condition="end with">.bidswitch.net</QueryName>
-        <QueryName condition="end with">.casalemedia.com</QueryName>
-        <QueryName condition="end with">.chartbeat.net</QueryName>
-        <QueryName condition="end with">.cnn.com</QueryName>
-        <QueryName condition="end with">.convertro.com</QueryName>
-        <QueryName condition="end with">.criteo.com</QueryName>
-        <QueryName condition="end with">.criteo.net</QueryName>
-        <QueryName condition="end with">.crwdcntrl.net</QueryName>
-        <QueryName condition="end with">.demdex.net</QueryName>
-        <QueryName condition="end with">.domdex.com</QueryName>
-        <QueryName condition="end with">.dotomi.com</QueryName>
-        <QueryName condition="end with">.doubleclick.net</QueryName>
-        <QueryName condition="end with">.doubleverify.com</QueryName>
-        <QueryName condition="end with">.emxdgt.com</QueryName>
-        <QueryName condition="end with">.exelator.com</QueryName>
-        <QueryName condition="end with">.google-analytics.com</QueryName>
-        <QueryName condition="end with">.googleadservices.com</QueryName>
-        <QueryName condition="end with">.googlesyndication.com</QueryName>
-        <QueryName condition="end with">.googletagmanager.com</QueryName>
-        <QueryName condition="end with">.googlevideo.com</QueryName>
-        <QueryName condition="end with">.gstatic.com</QueryName>
-        <QueryName condition="end with">.gvt1.com</QueryName>
-        <QueryName condition="end with">.gvt2.com</QueryName>
-        <QueryName condition="end with">.ib-ibi.com</QueryName>
-        <QueryName condition="end with">.jivox.com</QueryName>
-        <QueryName condition="end with">.mathtag.com</QueryName>
-        <QueryName condition="end with">.moatads.com</QueryName>
-        <QueryName condition="end with">.moatpixel.com</QueryName>
-        <QueryName condition="end with">.mookie1.com</QueryName>
-        <QueryName condition="end with">.myvisualiq.net</QueryName>
-        <QueryName condition="end with">.netmng.com</QueryName>
-        <QueryName condition="end with">.nexac.com</QueryName>
-        <QueryName condition="end with">.openx.net</QueryName>
-        <QueryName condition="end with">.optimizely.com</QueryName>
-        <QueryName condition="end with">.outbrain.com</QueryName>
-        <QueryName condition="end with">.pardot.com</QueryName>
-        <QueryName condition="end with">.phx.gbl</QueryName>
-        <QueryName condition="end with">.pinterest.com</QueryName>
-        <QueryName condition="end with">.pubmatic.com</QueryName>
-        <QueryName condition="end with">.quantcount.com</QueryName>
-        <QueryName condition="end with">.quantserve.com</QueryName>
-        <QueryName condition="end with">.revsci.net</QueryName>
-        <QueryName condition="end with">.rfihub.net</QueryName>
-        <QueryName condition="end with">.rlcdn.com</QueryName>
-        <QueryName condition="end with">.rubiconproject.com</QueryName>
-        <QueryName condition="end with">.scdn.co</QueryName>
-        <QueryName condition="end with">.scorecardresearch.com</QueryName>
-        <QueryName condition="end with">.serving-sys.com</QueryName>
-        <QueryName condition="end with">.sharethrough.com</QueryName>
-        <QueryName condition="end with">.simpli.fi</QueryName>
-        <QueryName condition="end with">.sitescout.com</QueryName>
-        <QueryName condition="end with">.smartadserver.com</QueryName>
-        <QueryName condition="end with">.snapads.com</QueryName>
-        <QueryName condition="end with">.spotxchange.com</QueryName>
-        <QueryName condition="end with">.taboola.com</QueryName>
-        <QueryName condition="end with">.taboola.map.fastly.net</QueryName>
-        <QueryName condition="end with">.tapad.com</QueryName>
-        <QueryName condition="end with">.tidaltv.com</QueryName>
-        <QueryName condition="end with">.trafficmanager.net</QueryName>
-        <QueryName condition="end with">.tremorhub.com</QueryName>
-        <QueryName condition="end with">.tribalfusion.com</QueryName>
-        <QueryName condition="end with">.turn.com</QueryName>
-        <QueryName condition="end with">.twimg.com</QueryName>
-        <QueryName condition="end with">.tynt.com</QueryName>
-        <QueryName condition="end with">.w55c.net</QueryName>
-        <QueryName condition="end with">.ytimg.com</QueryName>
-        <QueryName condition="end with">.zorosrv.com</QueryName>
-        <QueryName condition="is">1rx.io</QueryName>
-        <QueryName condition="is">adservice.google.com</QueryName>
-        <QueryName condition="is">ampcid.google.com</QueryName>
-        <QueryName condition="is">clientservices.googleapis.com</QueryName>
-        <QueryName condition="is">googleadapis.l.google.com</QueryName>
-        <QueryName condition="is">imasdk.googleapis.com</QueryName>
-        <QueryName condition="is">l.google.com</QueryName>
-        <QueryName condition="is">ml314.com</QueryName>
-        <QueryName condition="is">mtalk.google.com</QueryName>
-        <QueryName condition="is">update.googleapis.com</QueryName>
-        <QueryName condition="is">www.googletagservices.com</QueryName>
-        <QueryName condition="end with">.mozaws.net</QueryName>
-        <QueryName condition="end with">.mozilla.com</QueryName>
-        <QueryName condition="end with">.mozilla.net</QueryName>
-        <QueryName condition="end with">.mozilla.org</QueryName>
-        <QueryName condition="is">clients1.google.com</QueryName>
-        <QueryName condition="is">clients2.google.com</QueryName>
-        <QueryName condition="is">clients3.google.com</QueryName>
-        <QueryName condition="is">clients4.google.com</QueryName>
-        <QueryName condition="is">clients5.google.com</QueryName>
-        <QueryName condition="is">clients6.google.com</QueryName>
-        <QueryName condition="is">safebrowsing.googleapis.com</QueryName>
-        <QueryName condition="end with">.akadns.net</QueryName>
-        <QueryName condition="end with">.netflix.com</QueryName>
-        <QueryName condition="end with">aspnetcdn.com</QueryName>
-        <QueryName condition="is">ajax.googleapis.com</QueryName>
-        <QueryName condition="is">cdnjs.cloudflare.com</QueryName>
-        <QueryName condition="is">fonts.googleapis.com</QueryName>
-        <QueryName condition="end with">.typekit.net</QueryName>
-        <QueryName condition="is">cdnjs.cloudflare.com</QueryName>
-        <QueryName condition="end with">.stackassets.com</QueryName>
-        <QueryName condition="end with">.steamcontent.com</QueryName>
-        <QueryName condition="end with">.arpa.</QueryName>
-        <QueryName condition="end with">.arpa</QueryName>
-        <QueryName condition="end with">.msftncsi.com</QueryName>
-        <QueryName condition="end with">.localmachine</QueryName>
-        <QueryName condition="is">localhost</QueryName>
-        <QueryName condition="end with">-pushp.svc.ms</QueryName>
-        <QueryName condition="end with">.b-msedge.net</QueryName>
-        <QueryName condition="end with">.bing.com</QueryName>
-        <QueryName condition="end with">.hotmail.com</QueryName>
-        <QueryName condition="end with">.live.com</QueryName>
-        <QueryName condition="end with">.live.net</QueryName>
-        <QueryName condition="end with">.s-microsoft.com</QueryName>
-        <QueryName condition="end with">.microsoft.com</QueryName>
-        <QueryName condition="end with">.microsoftonline.com</QueryName>
-        <QueryName condition="end with">.microsoftstore.com</QueryName>
-        <QueryName condition="end with">.ms-acdc.office.com</QueryName>
-        <QueryName condition="end with">.msedge.net</QueryName>
-        <QueryName condition="end with">.msn.com</QueryName>
-        <QueryName condition="end with">.msocdn.com</QueryName>
-        <QueryName condition="end with">.skype.com</QueryName>
-        <QueryName condition="end with">.skype.net</QueryName>
-        <QueryName condition="end with">.windows.com</QueryName>
-        <QueryName condition="end with">.windows.net.nsatc.net</QueryName>
-        <QueryName condition="end with">.windowsupdate.com</QueryName>
-        <QueryName condition="end with">.xboxlive.com</QueryName>
-        <QueryName condition="is">login.windows.net</QueryName>
-        <QueryName condition="end with">.activedirectory.windowsazure.com</QueryName>
-        <QueryName condition="end with">.aria.microsoft.com</QueryName>
-        <QueryName condition="end with">.msauth.net</QueryName>
-        <QueryName condition="end with">.msftauth.net</QueryName>
-        <QueryName condition="end with">.opinsights.azure.com</QueryName>
-        <QueryName condition="is">management.azure.com</QueryName>
-        <QueryName condition="is">outlook.office365.com</QueryName>
-        <QueryName condition="is">portal.azure.com</QueryName>
-        <QueryName condition="is">substrate.office.com</QueryName>
-        <QueryName condition="is">osi.office.net</QueryName>
-        <QueryName condition="end with">.digicert.com</QueryName>
-        <QueryName condition="end with">.globalsign.com</QueryName>
-        <QueryName condition="end with">.globalsign.net</QueryName>
-        <QueryName condition="is">msocsp.com</QueryName>
-        <QueryName condition="is">ocsp.msocsp.com</QueryName>
-        <QueryName condition="end with">pki.goog</QueryName>
-        <QueryName condition="is">ocsp.godaddy.com</QueryName>
-        <QueryName condition="end with">amazontrust.com</QueryName>
-        <QueryName condition="is">ocsp.sectigo.com</QueryName>
-        <QueryName condition="is">pki-goog.l.google.com</QueryName>
-        <QueryName condition="end with">.usertrust.com</QueryName>
-        <QueryName condition="is">ocsp.comodoca.com</QueryName>
-        <QueryName condition="is">ocsp.verisign.com</QueryName>
-        <QueryName condition="is">ocsp.entrust.net</QueryName>
-        <QueryName condition="end with">ocsp.identrust.com</QueryName>
-        <QueryName condition="is">status.rapidssl.com</QueryName>
-        <QueryName condition="is">status.thawte.com</QueryName>
-        <QueryName condition="is">ocsp.int-x3.letsencrypt.org</QueryName>
-        <QueryName condition="is">subca.ocsp-certum.com</QueryName>
-        <QueryName condition="is">cscasha2.ocsp-certum.com</QueryName>
-        <QueryName condition="end with">.spotify.com</QueryName>
-        <QueryName condition="end with">.spotify.map.fastly.net</QueryName>
-      </DnsQuery>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <DriverLoad onmatch="exclude">
-        <Signature condition="begin with">Intel </Signature>
-        <Signature condition="contains">microsoft</Signature>
-        <Signature condition="contains">windows</Signature>
-      </DriverLoad>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
       <NetworkConnect onmatch="exclude">
         <Image condition="end with">AppData\Roaming\Dropbox\bin\Dropbox.exe</Image>
         <Image condition="is">C:\Program Files\ESET\ESET Nod32 Antivirus\ekrn.exe</Image>
@@ -1205,6 +1203,13 @@
         <DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>
         <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
       </NetworkConnect>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <DriverLoad onmatch="exclude">
+        <Signature condition="begin with">Intel </Signature>
+        <Signature condition="contains">microsoft</Signature>
+        <Signature condition="contains">windows</Signature>
+      </DriverLoad>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
@@ -1241,6 +1246,14 @@
       </ProcessAccess>
     </RuleGroup>
     <RuleGroup groupRelation="or">
+      <FileCreateTime onmatch="exclude">
+        <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
+        <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
+        <Image condition="image">OneDrive.exe</Image>
+        <Image condition="contains">setup</Image>
+      </FileCreateTime>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
       <PipeEvent onmatch="include">
         <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\atsvc</PipeName>
         <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\msagent_</PipeName>
@@ -1249,6 +1262,19 @@
         <PipeName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName>
         <PipeName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="begin with">\winreg</PipeName>
       </PipeEvent>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <CreateRemoteThread onmatch="exclude">
+        <SourceImage condition="is">C:\Windows\System32\svchost.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\System32\wininit.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\System32\csrss.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\System32\services.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\System32\winlogon.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\System32\audiodg.exe</SourceImage>
+        <StartModule condition="is">C:\windows\system32\kernel32.dll</StartModule>
+        <TargetImage condition="end with">Google\Chrome\Application\chrome.exe</TargetImage>
+        <SourceImage condition="is">C:\Windows\System32\wbem\WmiPrvSE.exe</SourceImage>
+      </CreateRemoteThread>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>

@@ -6,6 +6,7 @@
 			<OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">whoami.exe</OriginalFileName><!--Microsoft:Windows: shows current user -->
 			<OriginalFileName name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="is">ipconfig.exe</OriginalFileName><!--Microsoft:Windows: shows ip configuration -->
 			<OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">tasklist.exe</OriginalFileName> <!--Mitre T1057--><!--Mitre T1007--><!--Microsoft:Windows: shows current running processes-->
+      <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">taskmgr.exe</OriginalFileName> <!--Mitre T1057--><!--Mitre T1007--><!--Microsoft:Windows: shows current running processes-->
 			<OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="contains any">systeminfo.exe;sysinfo.exe</OriginalFileName><!--Mitre T1033--><!--Mitre T1082--><!--Microsoft:Windows: shows systeminformation -->
 			<OriginalFileName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="is">netstat.exe</OriginalFileName> <!--Mitre T1016--><!--Mitre T1049--><!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
 			<OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="image">qprocess.exe</OriginalFileName> <!--Microsoft:Windows: shows information about processes -->
@@ -18,6 +19,7 @@
 			<OriginalFileName name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="is">route.exe</OriginalFileName> <!--Microsoft:Windows: manipulates network routing tables -->
 			<OriginalFileName name="technique_id=T1134,technique_name=Access Token Manipulation" condition="is">runas.exe</OriginalFileName> <!--Microsoft:Windows: run a process as another user -->
 			<OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">reg.exe</OriginalFileName> <!--Mitre T1214--><!--Mitre T1012--><!--Mitre T1112--><!--Microsoft:Windows: reads and modifies the Windows register -->
+      <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">regedit.exe</OriginalFileName> <!--Mitre T1214--><!--Mitre T1012--><!--Mitre T1112--><!--Microsoft:Windows: reads and modifies the Windows register -->
 			<OriginalFileName condition="is">taskkill.exe</OriginalFileName> <!--Microsoft:Windows: stops processes -->
 			<OriginalFileName name="technique_id=T1063,technique_name=Security Software Discovery" condition="is">netsh.exe</OriginalFileName> <!--Mitre T1016--><!--Mitre T1128--><!--Mitre T1063--><!--Microsoft:Windows: manipulate the firewall -->
 			<OriginalFileName name="technique_id=T1087,technique_name=Account Discovery" condition="is">klist.exe</OriginalFileName> <!--Microsoft:Windows: show cached kerberos tickets -->
@@ -69,6 +71,19 @@
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1078,technique_name=Valid Accounts" condition="is">djoin.exe</OriginalFileName><!--Create computer account -->
+      <OriginalFileName name="technique_id=T1040,technique_name=Network Sniffing" condition="is">PktMon.exe</OriginalFileName><!--Native windows packet sniffer -->
+      <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">mofcomp.exe</OriginalFileName><!-- Microsoft:MOF Compiler -used to compile custom MOF files for WMI use -->
+      <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
+      <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">ScrCons</OriginalFileName>
+      <Rule name="Extensible Storage Engine Utilities" groupRelation="and">
+        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">esentutl.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains all">/y;/vss/d</CommandLine>
+      </Rule>
+      <Rule name="Domain Name" groupRelation="and">
+	      <OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
+	      <CommandLine name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="contains">/domain_trusts</CommandLine>
+    	</Rule>
 		</ProcessCreate>
 </RuleGroup>
 </EventFiltering>

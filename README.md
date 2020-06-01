@@ -1,17 +1,23 @@
 # sysmon-modular | A Sysmon configuration repository for everybody to customise
 
 [![license](https://img.shields.io/github/license/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/blob/master/license.md)
-![Maintenance](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)
+![Maintenance](https://img.shields.io/maintenance/yes/2020.svg?style=flat-square)
 [![GitHub last commit](https://img.shields.io/github/last-commit/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/commit/master)
 [![Twitter](https://img.shields.io/twitter/follow/olafhartong.svg?style=social&label=Follow)](https://twitter.com/olafhartong)
 
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
 ## NOTICE; Sysmon below 10.4 is not compatible with this configuration
+Older versions are still available in the branches, but are not as complete as the current branch
+V8.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-8)
+V9.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-9)
+
+To understand added features in the latest version, have a look at my [small blog post](https://medium.com/@olafhartong/sysmon-10-4-release-7f7480300dff) or watch my [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
 
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
 
+## Credits
 Big credit goes out to SwiftOnSecurity for laying a great foundation and making this repo possible!
 **[sysmonconfig-export.xml](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
 
@@ -19,15 +25,15 @@ Equally a huge shoutout to **[Roberto Rodriguez](https://twitter.com/cyb3rward0g
 
 Final thanks to **[Mathias Jessen](https://twitter.com/iisresetme)** for his Merge script, without it, this project would not have worked as well.
 
+## Contributing
 Pull requests / issue tickets and new additions will be greatly appreciated!
 
+## More information
 I started a series of blog posts covering this repo;
 - [Endpoint detection Superpowers on the cheap - part1 - MITRE ATT&CK, Sysmon and my modular configuration](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-1-e9c28201ac47)
 - [Endpoint detection Superpowers on the cheap — part 2 — Deploy and Maintain](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-2-deploy-and-maintain-d06580329fe8)
 - [Endpoint detection Superpowers on the cheap — part 3 — Sysmon Tampering](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-3-sysmon-tampering-49c2dc9bf6d9)
 
-
-Following this blogpost [Sysmon 8.0, a leap forward in event annotation](https://medium.com/@olafhartong/sysmon-8-0-a-leap-forward-in-event-annotation-59a36555d856) I've been working on updating the configuration modules to schemaversion 4.1 as well as adding the MITRE annotation fields. Eventually I deviated a little bit from my blogpost and went with the OSSEM field naming; technique_id and technique_name
 
 ## Mitre ATT&CK
 
@@ -51,7 +57,7 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
     git clone https://github.com/olafhartong/sysmon-modular.git
     cd sysmon modular
-    . .\Merge-AllSysmonXml.ps1
+    . .\Merge-SysmonXml.ps1
     Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
 
 ## Use
@@ -68,8 +74,3 @@ Run with administrator rights
 
     sysmon.exe -c sysmonconfig.xml
 
-### Todo
-
-- Link more indicators to Mitre ATT&CK techniques.
-- Add / Improve comments
-- Extend, extend, extend.

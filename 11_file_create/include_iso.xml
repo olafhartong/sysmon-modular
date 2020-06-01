@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.22">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="include">
+			<TargetFilename condition="end with">.iso</TargetFilename><!--often ignored by AV/EDR but opens like a zip file in windows-->
+      <TargetFilename condition="end with">.img</TargetFilename><!--often ignored by AV/EDR but opens like a zip file in windows-->
+		</FileCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
