@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
       <DnsQuery onmatch="exclude">
