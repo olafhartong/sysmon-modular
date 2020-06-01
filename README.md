@@ -7,12 +7,13 @@
 
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
-## NOTICE; Sysmon below 10.4 is not compatible with this configuration
+## NOTICE; Sysmon below 11 will not completely be compatible with this configuration
 Older versions are still available in the branches, but are not as complete as the current branch
-V8.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-8)
-V9.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-9)
+- V8.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-8)
+- V9.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-9)
+- V10.4 >> [here](https://github.com/olafhartong/sysmon-modular/tree/v10.4)
 
-To understand added features in the latest version, have a look at my [small blog post](https://medium.com/@olafhartong/sysmon-10-4-release-7f7480300dff) or watch my [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
+To understand added features in the latest version, have a look at my [small blog post](https://medium.com/falconforce/sysmon-11-dns-improvements-and-filedelete-events-7a74f17ca842) or watch my [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
 
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
@@ -73,4 +74,3 @@ Run with administrator rights
 Run with administrator rights
 
     sysmon.exe -c sysmonconfig.xml
-
