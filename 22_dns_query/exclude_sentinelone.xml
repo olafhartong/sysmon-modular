@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+		<Image condition="contains all">C:\Program Files\SentinelOne\Sentinel Agent;\SentinelAgent.exe</Image>
+      </DnsQuery>
+	</RuleGroup>
+</EventFiltering>
+</Sysmon>
