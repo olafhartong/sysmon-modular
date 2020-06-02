@@ -84,6 +84,36 @@
 	      <OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
 	      <CommandLine name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="contains">/domain_trusts</CommandLine>
     	</Rule>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">ATBroker.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">csc.exe</OriginalFileName><!--https://lolbas-project.github.io/lolbas/Binaries/Csc/-->
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">dfsvc.exe</OriginalFileName><!--https://lolbas-project.github.io/lolbas/Binaries/Dfsvc/-->
+      <OriginalFileName name="technique_id=T1035,technique_name=Service Execution" condition="is">dnscmd.exe</OriginalFileName><!--Service Execution-->
+      <OriginalFileName name="technique_id=T1096,technique_name=NTFS File Attributes" condition="is">esentutl.exe</OriginalFileName><!--https://lolbas-project.github.io/lolbas/Binaries/Esentutl/ Multiple options-->
+      <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">expand</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">extexport.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1096,technique_name=NTFS File Attributes" condition="is">extrac32.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">IEExec.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">ilasm.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</OriginalFileName>
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">jsc.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">vbc.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">Microsoft.Workflow.Compiler.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">msconfig.EXE</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">Msdt.exe</OriginalFileName><!--https://lolbas-project.github.io/lolbas/Binaries/Msdt/-->
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">msiexec.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">odbcconf.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">PresentationHost.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">Print.Exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">rasdlui.exe</OriginalFileName><!--pre win10, rasautou.exe-->
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">RegisterCimProvider2.exe</OriginalFileName><!--Image name is RegisterCimProvider.exe-->
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">RegisterCimProvider.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">RpcPing.exe</OriginalFileName><!--https://lolbas-project.github.io/lolbas/Binaries/Rpcping/-->
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">ScriptRunner.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">TTTracer.exe</OriginalFileName><!--Also able to spawn processes https://lolbas-project.github.io/lolbas/Binaries/Tttracer/-->
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">verclsid.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">wab.exe</OriginalFileName><!--http://www.hexacorn.com/blog/2018/05/01/wab-exe-as-a-lolbin/-->
+      <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">WSReset.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">xwizard.exe</OriginalFileName><!--https://bohops.com/2018/08/18/abusing-the-com-registry-structure-part-2-loading-techniques-for-evasion-and-persistence/ -->
 		</ProcessCreate>
 </RuleGroup>
 </EventFiltering>
