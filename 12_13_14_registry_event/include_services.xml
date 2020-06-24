@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.3">
+<Sysmon schemaversion="4.31">
     <EventFiltering>
         <RuleGroup name="" groupRelation="or">
             <RegistryEvent onmatch="include">
