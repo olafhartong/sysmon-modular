@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.31">
+<Sysmon schemaversion="4.32">
    <!-- special thanks to @SwiftOnSecurity for most of this -->
    <HashAlgorithms>*</HashAlgorithms>
    <CheckRevocation/>

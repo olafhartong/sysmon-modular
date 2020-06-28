@@ -1,15 +1,15 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.32">
    <EventFiltering>
      <RuleGroup name="" groupRelation="or">
-      <ProcessCreate onmatch="include">
+      <NetworkConnect onmatch="include">
           <OriginalFileName name="technique_id=T1197,technique_name=BITS Jobs" condition="is">bitsadmin.exe</OriginalFileName>
-      </ProcessCreate>
-      <ProcessCreate onmatch="include">
+      </NetworkConnect>
+      <NetworkConnect onmatch="include">
           <CommandLine name="technique_id=T1197,technique_name=BITS Jobs" condition="contains">Start-BitsTransfer</CommandLine>
-      </ProcessCreate>
-      <ProcessCreate onmatch="include">
+      </NetworkConnect>
+      <NetworkConnect onmatch="include">
           <CommandLine name="technique_id=T1197,technique_name=BITS Jobs" condition="contains">/create</CommandLine>
-      </ProcessCreate>
+      </NetworkConnect>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>

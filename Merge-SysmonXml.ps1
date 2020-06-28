@@ -154,7 +154,7 @@ function Merge-SysmonXml
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.31">
+<Sysmon schemaversion="4.32">
 <!-- Capture all hashes -->
 <HashAlgorithms>*</HashAlgorithms>
 <ArchiveDirectory>Archival</ArchiveDirectory>  
