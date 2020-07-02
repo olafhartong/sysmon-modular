@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="include">
+			<TargetFilename condition="contains">Desktop</TargetFilename> <!--Files on the Desktop-->
+		</ProcessAccess>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

@@ -56,6 +56,7 @@
       <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">appcmd.exe</Image>
       <OriginalFileName name="technique_id=T1031,technique_name=Modify Existing Service" condition="is">sc.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">certutil.exe</OriginalFileName>
+      <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">desktopimgdownldr.exe</OriginalFileName><!--https://labs.sentinelone.com/living-off-windows-land-a-new-native-file-downldr/-->
       <OriginalFileName name="technique_id=T1081,technique_name=Credentials in Files" condition="is">findstr.exe</OriginalFileName>
       <OriginalFileName name="technique_id=T1081,technique_name=Credentials in Files" condition="is">where.exe</OriginalFileName>
       <Image name="technique_id=T1222,technique_name=File Permissions Modification" condition="image">forfiles.exe</Image>
