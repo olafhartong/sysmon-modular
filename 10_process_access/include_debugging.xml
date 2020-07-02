@@ -3,7 +3,7 @@
  <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include">
       	<CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
-      	<CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgore.dll</CallTrace>
+      	<CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
       </ProcessAccess>
 </RuleGroup>
 </EventFiltering>
