@@ -2,13 +2,7 @@
    <EventFiltering>
      <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
-          <OriginalFileName name="technique_id=T1197,technique_name=BITS Jobs" condition="is">bitsadmin.exe</OriginalFileName>
-      </NetworkConnect>
-      <NetworkConnect onmatch="include">
-          <CommandLine name="technique_id=T1197,technique_name=BITS Jobs" condition="contains">Start-BitsTransfer</CommandLine>
-      </NetworkConnect>
-      <NetworkConnect onmatch="include">
-          <CommandLine name="technique_id=T1197,technique_name=BITS Jobs" condition="contains">/create</CommandLine>
+          <Image name="technique_id=T1197,technique_name=BITS Jobs" condition="image">bitsadmin.exe</Image>
       </NetworkConnect>
     </RuleGroup>
   </EventFiltering>
