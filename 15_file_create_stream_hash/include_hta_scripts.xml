@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">
-			<TargetFilename condition="end with">.hta</TargetFilename> <!--Mitre T1170--><!--Scripting-->
+			<TargetFilename condition="end with">.hta</TargetFilename> <!--Mitre T1218.005--><!--Scripting-->
       </FileCreateStreamHash>
 </RuleGroup>
 </EventFiltering>

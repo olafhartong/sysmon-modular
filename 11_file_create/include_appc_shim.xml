@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-          <TargetFilename name="technique_id=T1138,technique_name=Application Shimming" condition="contains">C:\Windows\AppPatch\Custom</TargetFilename>
+          <TargetFilename name="technique_id=T1546.011,technique_name=Application Shimming" condition="contains">C:\Windows\AppPatch\Custom</TargetFilename>
       </FileCreate>
 </RuleGroup>
 </EventFiltering>
