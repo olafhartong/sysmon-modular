@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include">
-			<TargetFilename condition="contains">Desktop</TargetFilename> <!--Files on the Desktop-->
+			<TargetImage condition="contains">Desktop</TargetImage> <!--Files on the Desktop-->
 		</ProcessAccess>
 </RuleGroup>
 </EventFiltering>
