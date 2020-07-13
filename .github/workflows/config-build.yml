@@ -11,11 +11,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Import Merge-SysmonXml.ps1
-        run: . .\Merge-SysmonXml.ps1
-        shell: pwsh
-      - name: Generate config
-        run: Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
+      - name: Import Merge-SysmonXml.ps1 and generate config
+        run: | 
+          Import-Module .\Merge-SysmonXml.ps1
+          Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
         shell: pwsh
       - uses: actions/upload-artifact@v2
         with:
