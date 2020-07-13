@@ -3,9 +3,12 @@
 [![license](https://img.shields.io/github/license/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/blob/master/license.md)
 ![Maintenance](https://img.shields.io/maintenance/yes/2020.svg?style=flat-square)
 [![GitHub last commit](https://img.shields.io/github/last-commit/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/commit/master)
+![Build Sysmon config with all modules](https://github.com/olafhartong/sysmon-modular/workflows/Build%20Sysmon%20config%20with%20all%20modules/badge.svg)
 [![Twitter](https://img.shields.io/twitter/follow/olafhartong.svg?style=social&label=Follow)](https://twitter.com/olafhartong)
 
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
+
+[Download the latest automatic build here](https://github.com/olafhartong/sysmon-modular/actions), the sysmonconfig.xml in the repo is a manually generated one by me.
 
 ## NOTICE; Sysmon below 11 will not completely be compatible with this configuration
 Older versions are still available in the branches, but are not as complete as the current branch
