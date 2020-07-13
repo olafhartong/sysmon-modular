@@ -56,10 +56,10 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
 #### PowerShell
 
-    git clone https://github.com/olafhartong/sysmon-modular.git
-    cd sysmon modular
-    . .\Merge-SysmonXml.ps1
-    Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
+    $> git clone https://github.com/olafhartong/sysmon-modular.git
+    $> cd sysmon modular
+    $> . .\Merge-SysmonXml.ps1
+    $> Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
 
 ## Use
 
