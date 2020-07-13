@@ -9,6 +9,7 @@ on:
 jobs:
   generate-config:
     runs-on: windows-latest
+    steps:
       - uses: actions/checkout@v2
       - name: Import Merge-SysmonXml.ps1
         run: . .\Merge-SysmonXml.ps1
@@ -20,4 +21,3 @@ jobs:
         with:
           name: sysmonconfig
           path: sysmonconfig.xml
-      - name: 
