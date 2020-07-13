@@ -484,7 +484,7 @@
       <!-- Event ID 10 == ProcessAccess. -->
       <ProcessAccess onmatch="include">
         <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
-        <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgore.dll</CallTrace>
+        <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
         <TargetImage condition="contains">Desktop</TargetImage>
         <Rule groupRelation="and">
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\csrss.exe</TargetImage>
