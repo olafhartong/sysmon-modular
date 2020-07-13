@@ -9,8 +9,6 @@
 
 This is a Microsoft Sysinternals Sysmon configuration repository, set up modular for easier maintenance and generation of specific configs.
 
-[Download the latest automatic build here](https://github.com/olafhartong/sysmon-modular/actions).
-
 The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run.
 
 ## NOTICE; Sysmon below 11 will not completely be compatible with this configuration
