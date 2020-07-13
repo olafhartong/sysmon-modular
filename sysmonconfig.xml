@@ -155,7 +155,7 @@
           <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains any">Mavinject.exe;mavinject64.exe</OriginalFileName>
           <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">/INJECTRUNNING</CommandLine>
         </Rule>
-        <Rule name="Mavinject" groupRelation="and">
+        <Rule name="CMSTP" groupRelation="and">
           <OriginalFileName name="technique_id=T1218.003,technique_name=CMSTP" condition="is">CMSTP.exe</OriginalFileName>
           <CommandLine name="technique_id=T1218.003,technique_name=CMSTP" condition="contains all">/ni;/s</CommandLine>
         </Rule>
