@@ -1,0 +1,22 @@
+name: Build Sysmon config with all modules
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  generate-config:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Import Merge-SysmonXml.ps1 and generate config
+        run: | 
+          Import-Module .\Merge-SysmonXml.ps1
+          Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
+        shell: pwsh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: sysmonconfig
+          path: sysmonconfig.xml
