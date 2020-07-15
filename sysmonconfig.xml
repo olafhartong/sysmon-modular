@@ -672,6 +672,8 @@
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="is">REGISTRY\MACHINE\SYSTEM\ControlSet001\Services\DNS\Parameters\ServerLevelPluginDll</TargetObject>
         <TargetObject name="technique_id=T1562.006,technique_name=Impair Defenses - Indicator Blocking" condition="end with">SOFTWARE\Microsoft\.NETFramework\ETWEnabled</TargetObject>
+        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">REGISTRY\MACHINE\SYSTEM\ControlSet001\Service\EventLog;Retention</TargetObject>
+        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">REGISTRY\MACHINE\SYSTEM\ControlSet001\Service\EventLog;MaxSize</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions</TargetObject>
         <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
         <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
