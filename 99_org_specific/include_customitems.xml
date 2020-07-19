@@ -1,0 +1,160 @@
+<Sysmon schemaversion="4.30">
+<!--
+This file will allow custom addition of organiztion specific includes. Repalce "MyOrg" with organiztion name as needed.
+Uncomment the appropriate eventID/rules/sections as required. 
+Running Merge-SysmonXML.ps1 will add the enabled items to the merged config.
+
+-->
+
+<EventFiltering>
+	<!--Organization Specific EventID 1 - ProcessCreate include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <ProcessCreate onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">MyCustomProgram.exe</Image> --> <!--Sample-->
+				<!-- <CommandLine condition="contains all">Some.custom.command.lines</CommandLine> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </ProcessCreate> -->
+    </RuleGroup>
+	
+	<!--Organization Specific EventID 2 - FileCreateTime include-->
+	<RuleGroup name="" groupRelation="or">
+		<!-- <FileCreateTime onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">My\Custom\Program.exe</Image> --> <!--Sample-->		
+			<!-- </Rule> -->
+		<!-- </FileCreateTime> -->
+	</RuleGroup>
+	
+	<!--Organization Specific EventID 3 - NetworkConnect include-->
+	<RuleGroup name="" groupRelation="or">
+		<!-- <NetworkConnect onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">My\Custom\Program.exe</Image> --> <!--Sample-->		
+			<!-- </Rule> -->
+		<!-- </NetworkConnect> -->	
+	</RuleGroup>
+	
+	<!--Organization Specific EventID 5 - ProcessTerminate include-->
+	<RuleGroup name="" groupRelation="or">
+		<!-- <ProcessTerminate onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">My\Custom\Program.exe</Image> --> <!--Sample-->		
+			<!-- </Rule> -->
+		<!-- </ProcessTerminate> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 6 - DriverLoad include-->
+	 <RuleGroup name="" groupRelation="or">
+		<!-- <DriverLoad onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Signature condition="begin with">MyCustomProgram</Signature> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </DriverLoad> -->		
+	</RuleGroup>
+
+	<!--Organization Specific EventID 7 - ImageLoad include-->
+	 <RuleGroup name="" groupRelation="or">
+		<!-- <ImageLoad onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!--COMMENT:	Can cause high system load, disabled by default.-->
+				<!-- <ImageLoaded condition="end with">.custom</ImageLoaded> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </ImageLoad> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 8 - CreateRemoteThread include-->
+	<RuleGroup name="" groupRelation="or">
+		<!-- <CreateRemoteThread onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <SourceImage condition="end with">My\Custom\Program.exe</SourceImage> --> <!--Sample-->		
+			<!-- </Rule> -->
+		<!-- </CreateRemoteThread> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 9 - RawAccessRead include-->
+	<RuleGroup name="" groupRelation="or">
+		<!-- <RawAccessRead onmatch="include"> -->	  		
+			<!--COMMENT:	Monitor for raw sector-level access to the disk, often used to bypass access control lists or access locked files.
+				Disabled by default since including even one entry here activates this component. Reward/performance/rule maintenance decision.
+				Encourage you to experiment with this feature yourself.-->
+			<!--COMMENT:	You will likely want to set this to a full capture on domain controllers, where no process should be doing raw reads.-->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">My\Custom\Program.exe</SourceImage> --> <!--Sample-->		
+			<!-- </Rule> -->	
+		<!-- </RawAccessRead> -->
+	</RuleGroup>
+	
+	<!--Organization Specific EventID 10 - ProcessAccess include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <ProcessAccess onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <SourceImage condition="end with">MyCustomProgram.exe</SourceImage> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </ProcessAccess> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 11 - FileAccess include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <FileCreate> onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">MyCustomProgram.exe</SourceImage> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </FileCreate> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 12,13,14 - Registry include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <RegistryEvent onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">MyCustomProgram.exe</SourceImage> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </RegistryEvent> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 15 - FileCreateStream (ADS) include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <FileCreateStreamHash onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <TargetFilename condition="end with">.custom</TargetFilename> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </FileCreateStreamHash> -->
+	</RuleGroup>
+	
+	<!--Organization Specific EventID 17,18 - PipeEvent include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <PipeEvent onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">MyCustomProgram.exe</SourceImage> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </PipeEvent> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 19,20,21 - WMIEvent include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <WmiEvent onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <Image condition="end with">MyCustomProgram.exe</SourceImage> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </WmiEvent> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 22 - DNSQuery include-->
+    <RuleGroup name="" groupRelation="or">
+		<!-- <DnsQuery onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <QueryName condition="end with">my.network.lan</QueryName> --> <!--Sample-->
+			<!-- </Rule> -->
+		<!-- </DnsQuery> -->
+	</RuleGroup>
+
+	<!--Organization Specific EventID 23 - FileDelete include-->
+    <RuleGroup name="" groupRelation="or">
+         <!-- <FileDelete onmatch="include"> -->
+			<!-- <Rule name="MyOrg include" groupRelation="and"> -->
+				<!-- <TargetFilename condition="contains all">MY CUSTOM FILES</TargetFilename> --> <!--Sample-->                  
+			<!-- </Rule> -->
+		 <!-- </FileDelete> -->
+    </RuleGroup>
+</EventFiltering>
+</Sysmon>
