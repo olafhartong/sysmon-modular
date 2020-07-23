@@ -22,6 +22,10 @@
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</Image>
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
+      <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\Local\</Image>
+      <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\Local\Temp\</Image>
+      <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\Roaming\</Image>
+      <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\LocalLow\</Image>
 	  </NetworkConnect>
 </RuleGroup>
 </EventFiltering>
