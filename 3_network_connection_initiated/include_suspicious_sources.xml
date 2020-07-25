@@ -26,6 +26,7 @@
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\Local\Temp\</Image>
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\Roaming\</Image>
       <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\LocalLow\</Image>
+      <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">C:\Windows\SysWOW64</Image>
 	  </NetworkConnect>
 </RuleGroup>
 </EventFiltering>
