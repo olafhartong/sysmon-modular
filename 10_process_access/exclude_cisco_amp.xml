@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.30">
+<Sysmon schemaversion="4.32">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
    <ProcessAccess onmatch="exclude">
