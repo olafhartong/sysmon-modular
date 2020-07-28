@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <RegistryEvent onmatch="include">
+			  <TargetObject name="technique_id=T1562.006,technique_name=Impair Defenses - Indicator Blocking" condition="end with">SOFTWARE\Microsoft\.NETFramework\ETWEnabled</TargetObject> <!-- @Cyb3rWard0g and  https://twitter.com/_xpn_/status/1268712093928378368-->
+		  </RegistryEvent>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

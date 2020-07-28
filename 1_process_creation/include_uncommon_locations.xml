@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.32">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
@@ -20,6 +20,7 @@
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
           <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</Image>
+          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Appdata\Local\</Image><!--Thanks to Josh Frazier-->
       </ProcessCreate>
 </RuleGroup>
 </EventFiltering>

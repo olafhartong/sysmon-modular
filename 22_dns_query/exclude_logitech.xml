@@ -1,6 +1,4 @@
 <Sysmon schemaversion="4.32">
-   <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/>
    <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <DnsQuery onmatch="exclude">

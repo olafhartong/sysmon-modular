@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <ParentCommandLine name="technique_id=T1204,technique_name=User Execution" condition="is">C:\Windows\explorer.exe</ParentCommandLine>
+      </ProcessCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

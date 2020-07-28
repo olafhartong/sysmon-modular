@@ -3,10 +3,10 @@
  <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
 			<!--Windows UAC tampering-->
-			<TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm -->
-			<TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm -->
-			<TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
-			<TargetObject name="technique_id=T1088,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
+						<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm -->
+			<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm -->
+			<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
+			<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
 			<Rule name="UACMe Dir Prep" groupRelation="and">
 			  <TargetObject name="UACMe Dir Prep" condition="begin with">HKU</TargetObject>
 			  <TargetObject name="UACMe Dir Prep" condition="contains">Environment</TargetObject>

@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="include">
+         <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x21410</GrantedAccess> <!-- misc::detours in Mimikatz, thanks @Carlos_Perez -->
+      </ProcessAccess>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

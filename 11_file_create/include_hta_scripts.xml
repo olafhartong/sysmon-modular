@@ -1,8 +1,8 @@
-<Sysmon schemaversion="4.32">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename name="technique_id=T1170,technique_name=Mshta" condition="end with">.hta</TargetFilename><!--Scripting-->
+			<TargetFilename name="technique_id=T1218.005,technique_name=Mshta" condition="end with">.hta</TargetFilename><!--Scripting-->
 		</FileCreate>
 </RuleGroup>
 </EventFiltering>

@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="and">
+      <FileCreate onmatch="include">
+			<TargetFilename condition="contains">\*lsass*.dmp\</TargetFilename> <!-- Capture LSASS dump from task manager -->
+			<Image condition="image">taskmgr.exe</Image>
+		</FileCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

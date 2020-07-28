@@ -1,10 +1,10 @@
-<Sysmon schemaversion="4.32">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-        <Rule name="Mavinject" groupRelation="and">
-          <OriginalFileName name="technique_id=T1191,technique_name=CMSTP" condition="is">CMSTP.exe</OriginalFileName><!--Microsoft Connection Manager Profile Installer-->
-          <CommandLine name="technique_id=T1191,technique_name=CMSTP" condition="contains all">/ni;/s</CommandLine>
+        <Rule name="CMSTP" groupRelation="and">
+          <OriginalFileName name="technique_id=T1218.003,technique_name=CMSTP" condition="is">CMSTP.exe</OriginalFileName><!--Microsoft Connection Manager Profile Installer-->
+          <CommandLine name="technique_id=T1218.003,technique_name=CMSTP" condition="contains all">/ni;/s</CommandLine>
         </Rule>
       </ProcessCreate>
 </RuleGroup>

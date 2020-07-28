@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+     <RuleGroup name="" groupRelation="or">
+      <FileDelete onmatch="include">
+         <Rule groupRelation="and">
+            <TargetFilename condition="contains">\Downloads\</TargetFilename> <!--User Download folder-->
+            <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+         </Rule>
+         <Rule groupRelation="and">
+            <TargetFilename condition="contains">\Appdata\Local\Temp\</TargetFilename> <!--User Temp folder-->
+            <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+         </Rule>
+         <Rule groupRelation="and">
+            <TargetFilename condition="contains">\Appdata\Local\Microsoft\Windows\INetCache\Content.Outlook\</TargetFilename> <!--Microsoft Outlook Temp folder-->
+            <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+         </Rule>                  
+      </FileDelete>
+     </RuleGroup>
+   </EventFiltering>
+</Sysmon>

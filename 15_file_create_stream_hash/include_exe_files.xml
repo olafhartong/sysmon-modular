@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.32">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">

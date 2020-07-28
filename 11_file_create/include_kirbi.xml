@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="include">
+			<TargetFilename condition="end with">.kirbi</TargetFilename><!--Mimikatz or kekeo default kerberos ticket file extention-->
+		</FileCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

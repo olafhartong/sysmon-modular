@@ -1,7 +1,4 @@
 <Sysmon schemaversion="4.32">
-   <!-- Capture all hashes -->
-   <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/>
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <WmiEvent onmatch="include">
