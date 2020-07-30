@@ -12,9 +12,17 @@
         </Rule>
         <Rule groupRelation="and">
             <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded name="technique_id=1175,technique_name=Component Object Model and Distributed COM"  condition="is">C:\Windows\SysWOW64\comsvcs.dll</ImageLoaded>
+            <ImageLoaded name="technique_id=1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\comsvcs.dll</ImageLoaded>
         </Rule>
-      </ImageLoad>
+        <Rule name="Emotet Email Stealer" groupRelation="and">
+            <Image condition="begin with">C:\Windows\SysWOW64</Image>
+            <ImageLoaded name="technique_id=1175,technique_name=Component Object Model and Distributed COM" condition="end with">MSMAPI32.dll</ImageLoaded>
+        </Rule>
+        <Rule name="Emotet Email Stealer" groupRelation="and">
+            <Image condition="contains">AppData</Image>
+            <ImageLoaded name="technique_id=1175,technique_name=Component Object Model and Distributed COM" condition="end with">MSMAPI32.dll</ImageLoaded>
+        </Rule>
+</ImageLoad>
 </RuleGroup>
 </EventFiltering>
 </Sysmon>
