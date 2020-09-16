@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <NetworkConnect onmatch="exclude">
+       <Image condition="is">C:\Program Files\Palo Alto Networks\Traps\cyserver.exe</Image> <!--Credit d4ph1l -->
+	  </NetworkConnect>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
