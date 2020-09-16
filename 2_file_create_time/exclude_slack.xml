@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <FileCreateTime onmatch="exclude">
+			<Image condition="end with">slack.exe</Image> <!--slack constantly changes files-->      
+	  </FileCreateTime>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
