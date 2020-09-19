@@ -161,6 +161,7 @@ function Merge-SysmonXml
 <Sysmon schemaversion="4.40">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
+<CaptureClipboard />
 <DnsLookup>True</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
 <EventFiltering>
