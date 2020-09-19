@@ -150,14 +150,18 @@ function Merge-SysmonXml
         FileDelete = [ordered]@{
             include = @()
             exclude = @()
-        }        
+        }
+        ClipboardChange  = [ordered]@{
+            include = @()
+            exclude = @()
+        }          
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.32">
+<Sysmon schemaversion="4.40">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
-<DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
+<DnsLookup>True</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
@@ -219,6 +223,10 @@ function Merge-SysmonXml
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 23 == FileDelete. Log all file delete-->
         <FileDelete onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 24 == ClipboardChange. Log all Clipboard changes -->
+        <ClipboardChange onmatch="exclude"/>
     </RuleGroup>
 </EventFiltering>
 </Sysmon>
