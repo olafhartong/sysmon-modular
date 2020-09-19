@@ -224,10 +224,9 @@ function Merge-SysmonXml
         <!-- Event ID 23 == FileDelete. Log all file delete-->
         <FileDelete onmatch="include"/>
     </RuleGroup>
-    <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 24 == ClipboardChange. Log all Clipboard changes -->
-        <ClipboardChange onmatch="exclude"/>
-    </RuleGroup>
+
+    <!-- Event ID 24 == ClipboardChange. Log all Clipboard changes -->
+    <ClipboardChange onmatch="exclude"/>
 </EventFiltering>
 </Sysmon>
 '@
