@@ -150,15 +150,15 @@ function Merge-SysmonXml
         FileDelete = [ordered]@{
             include = @()
             exclude = @()
-        }
-        ClipboardChange  = [ordered]@{
+        }        
+        ClipboardChange = [ordered]@{
             include = @()
             exclude = @()
         }          
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.40">
+<Sysmon schFalsersion="4.40">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
 <CaptureClipboard />
@@ -214,20 +214,13 @@ function Merge-SysmonXml
         <FileCreateStreamHash onmatch="include"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected -->
+        <!-- Event ID 17,18 ==,PipeEvent. Log Named pipe created & Named pipe connected -->
         <PipeEvent onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 19,20,21 == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
         <WmiEvent onmatch="include"/>
     </RuleGroup>
-    <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 23 == FileDelete. Log all file delete-->
-        <FileDelete onmatch="include"/>
-    </RuleGroup>
-
-    <!-- Event ID 24 == ClipboardChange. Log all Clipboard changes -->
-    <ClipboardChange onmatch="exclude"/>
 </EventFiltering>
 </Sysmon>
 '@
