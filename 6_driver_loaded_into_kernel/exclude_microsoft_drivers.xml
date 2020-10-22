@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.32">
+<Sysmon schemaversion="4.40">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <DriverLoad onmatch="exclude">
