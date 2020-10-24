@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <NetworkConnect onmatch="include">
+        <Image name="technique_id=T1068,technique_name=Exploitation for Privilege Escalation" condition="image">lsass.exe</Image> <!--Detects Netlogon Exploit attempts-->
+  	  </NetworkConnect>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
