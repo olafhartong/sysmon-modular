@@ -118,7 +118,7 @@
           <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains all">/y;/vss/d</CommandLine>
         </Rule>
         <Rule name="Domain Name" groupRelation="and">
-          <OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
           <CommandLine name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="contains">/domain_trusts</CommandLine>
         </Rule>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">ATBroker.exe</OriginalFileName>
@@ -387,46 +387,46 @@
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\vaultcli.dll</ImageLoaded>
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\wlanapi.dll</ImageLoaded>
         </Rule>
-        <ImageLoaded name="technique_id=1137,technique_name=Office Application Startup" condition="end with">.wll</ImageLoaded>
+        <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.wll</ImageLoaded>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.xll</ImageLoaded>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded name="technique_id=1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\combase.dll</ImageLoaded>
+          <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\combase.dll</ImageLoaded>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded name="technique_id=1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\coml2.dll</ImageLoaded>
+          <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\coml2.dll</ImageLoaded>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded name="technique_id=1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\comsvcs.dll</ImageLoaded>
+          <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\comsvcs.dll</ImageLoaded>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=1055,technique_name=Process Injection">
+        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="begin with">C:\Windows\assembly\</ImageLoaded>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=1055,technique_name=Process Injection">
+        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="begin with">C:\Windows\Microsoft.NET\assembly\GAC_MSIL</ImageLoaded>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=1055,technique_name=Process Injection">
+        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="end with">clr.dll</ImageLoaded>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="end with">VBE7INTL.DLL</ImageLoaded>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="end with">VBE7.DLL</ImageLoaded>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="end with">VBEUI.DLL</ImageLoaded>
         </Rule>
         <Rule groupRelation="and">
-          <Image name="technique_id=1047,technique_name=Windows Management Instrumentation" condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="is">C:\Windows\SysWOW64\wbem\wbemdisp.dll</ImageLoaded>
         </Rule>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">system.management.automation.ni.dll</ImageLoaded>
@@ -436,7 +436,7 @@
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Commands.Utility.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.ConsoleHost.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Security.dll</ImageLoaded>
-        <ImageLoaded name="technique_id=1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
+        <ImageLoaded name="technique_id=T1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1218.010,technique_name=Regsvr32" condition="end with">scrobj.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains any">admin$;c$;\\;\appdata\;\temp\</ImageLoaded>
         <ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">c:\programdata\</ImageLoaded>
@@ -519,7 +519,7 @@
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <GrantedAccess>0x143A</GrantedAccess>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=1055,technique_name=Process Injection">
+        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
           <SourceImage condition="contains all">C:\Program Files;\Microsoft Office\Root\Office</SourceImage>
           <CallTrace condition="contains">\Microsoft Shared\VBA</CallTrace>
         </Rule>
@@ -562,14 +562,14 @@
         <TargetFilename name="technique_id=T1064,technique_name=Scripting" condition="end with">.chm</TargetFilename>
         <TargetFilename condition="begin with">C:\Users\Default</TargetFilename>
         <TargetFilename condition="contains">Desktop</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="contains">AppData\Local\Microsoft\CLR_v2.0\UsageLogs\</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\cscript.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wscript.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wmic.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\mshta.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\svchost.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\regsvr32.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\rundll32.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="contains">AppData\Local\Microsoft\CLR_v2.0\UsageLogs\</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\cscript.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wscript.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wmic.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\mshta.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\svchost.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\regsvr32.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\rundll32.exe.log</TargetFilename>
         <TargetFilename condition="contains">\Downloads\</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Drivers</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\SysWOW64\Drivers</TargetFilename>

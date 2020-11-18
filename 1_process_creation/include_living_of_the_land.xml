@@ -82,7 +82,7 @@
         <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains all">/y;/vss/d</CommandLine>
       </Rule>
       <Rule name="Domain Name" groupRelation="and">
-	      <OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
+	      <OriginalFileName name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="is">nltestrk.exe</OriginalFileName>
 	      <CommandLine name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="contains">/domain_trusts</CommandLine>
     	</Rule>
       <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">ATBroker.exe</OriginalFileName>
