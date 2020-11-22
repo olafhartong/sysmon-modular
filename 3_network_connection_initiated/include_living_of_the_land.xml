@@ -18,7 +18,6 @@
 			<Image name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="image">wevtutil.exe</Image><!--Microsoft:Windows: read and modify the Windows Eventlog -->
       <Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="image">taskeng.exe</Image><!--Microsoft:Windows: taskscheduler -->
 			<Image name="technique_id=T1218.010,technique_name=Regsvr32" condition="image">regsvr32.exe</Image> <!--Mitre T1218.010--><!--Mitre T1218.011--><!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
-      <Image condition="image">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
       <Image name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="image">cmd.exe</Image><!--Microsoft:Windows: Command prompt-->
       <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</Image><!--Microsoft:Windows: PowerShell interface-->
       <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">bash.exe</Image><!--Microsoft:Windows: bash on Windows, Linux subsystem-->
@@ -31,8 +30,6 @@
       <Image name="technique_id=T1018,technique_name=Remote System Discovery" condition="image">nslookup.exe</Image> <!--Microsoft:Windows: Retrieve data over DNS -->
       <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">qwinsta.exe</Image> <!--Microsoft:Windows: Remotely query login sessions on a server or workstation | Credit @ion-storm -->
       <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">rwinsta.exe</Image> <!--Microsoft:Windows: Disconnect remote sessions | Credit @ion-storm -->
-      <Image condition="image">schtasks.exe</Image> <!--Microsoft:Windows: Command and Scripting Interpreter to local and remote tasks -->
-      <Image condition="image">taskkill.exe</Image> <!--Microsoft:Windows: Kill processes, has remote ability -->
       <Image name="technique_id=T1543.003,technique_name=Windows Service" condition="image">sc.exe</Image>
       <Image name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="image">nltest.exe</Image><!-- netlogon testing utility-->
       <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">winrs.exe</Image>
