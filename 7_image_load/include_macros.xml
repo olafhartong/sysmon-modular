@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+      <!---Thanks to Carlos Perez-->
+          <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
+          <ImageLoaded condition="end with">scrrun.dll</ImageLoaded>
+          <ImageLoaded condition="end with">vbscript.dll</ImageLoaded>
+      </ImageLoad>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
