@@ -378,6 +378,9 @@
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 7 == Image Loaded. -->
       <ImageLoad onmatch="include">
+        <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
+        <ImageLoaded condition="end with">scrrun.dll</ImageLoaded>
+        <ImageLoaded condition="end with">vbscript.dll</ImageLoaded>
         <Rule groupRelation="and">
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\samlib.dll</ImageLoaded>
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\WinSCard.dll</ImageLoaded>
@@ -385,6 +388,10 @@
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\hid.dll</ImageLoaded>
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\vaultcli.dll</ImageLoaded>
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\wlanapi.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <ImageLoaded name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="end with">jscript9.dll</ImageLoaded>
+          <Image condition="end with">mshta.exe</Image>
         </Rule>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.wll</ImageLoaded>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.xll</ImageLoaded>
@@ -437,6 +444,7 @@
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Security.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1218.010,technique_name=Regsvr32" condition="end with">scrobj.dll</ImageLoaded>
+        <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">scrobj.dll</OriginalFileName>
         <ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains any">admin$;c$;\\;\appdata\;\temp\</ImageLoaded>
         <ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">c:\programdata\</ImageLoaded>
         <ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\Media\</ImageLoaded>
