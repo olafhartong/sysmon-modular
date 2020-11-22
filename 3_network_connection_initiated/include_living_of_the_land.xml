@@ -8,7 +8,6 @@
 			<Image name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="image">netstat.exe</Image> <!--Mitre T1016--><!--Mitre T1049--><!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
 			<Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">qprocess.exe</Image> <!--Microsoft:Windows: shows information about processes -->
       <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">nslookup.exe</Image><!--Microsoft:Windows: shows DNS configuration and enables quering -->
-      <Image name="technique_id=T1018,technique_name=Remote System Discovery" condition="image">net.exe</Image> <!--Mitre T1201--><!--Mitre T1007--><!--Mitre T1124--><!--Mitre T1018--><!--Mitre T1049--><!--Mitre T1087--><!--Mitre T1135--><!--Mitre T1069--><!--Mitre T1016--><!--Mitre T1021.002--><!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
 			<Image name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="image">quser.exe</Image> <!--Microsoft:Windows: shows logged-on users -->
 			<Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">query.exe</Image> <!--Microsoft:Windows: shows information about processes -->
 			<Image name="technique_id=T1134,technique_name=Access Token Manipulation" condition="image">runas.exe</Image> <!--Microsoft:Windows: run a process as another user -->
