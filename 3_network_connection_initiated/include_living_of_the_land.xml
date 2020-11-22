@@ -47,6 +47,8 @@
       <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">ScriptRunner.exe</Image>
       <Image name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">xwizard.exe</Image><!--https://bohops.com/2018/08/18/abusing-the-com-registry-structure-part-2-loading-techniques-for-evasion-and-persistence/ -->
       <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">desktopimgdownldr.exe</Image><!--https://labs.sentinelone.com/living-off-windows-land-a-new-native-file-downldr/-->
+      <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">OpenConsole.exe</Image><!--Microsoft Windows Terminal-->
+      <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">WindowsTerminal.exe</Image><!--Microsoft Windows Terminal-->
 		</NetworkConnect>
 </RuleGroup>
 </EventFiltering>
