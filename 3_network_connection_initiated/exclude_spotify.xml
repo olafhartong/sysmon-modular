@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="exclude">
-			<Image condition="image">Spotify.exe</Image> <!--Spotify-->
+			<Image condition="end with">AppData\Roaming\Spotify\Spotify.exe</Image> <!--Spotify-->
 	  </NetworkConnect>	
 </RuleGroup>
 </EventFiltering>
