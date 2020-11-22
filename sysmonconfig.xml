@@ -1245,9 +1245,14 @@
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <DriverLoad onmatch="exclude">
-        <Signature condition="begin with">Intel </Signature>
-        <Signature condition="contains">microsoft</Signature>
-        <Signature condition="contains">windows</Signature>
+        <Rule groupRelation="and">
+          <Signature condition="begin with">Intel </Signature>
+          <SignatureStatus condition="is">Valid</SignatureStatus>
+        </Rule>
+        <Rule groupRelation="and">
+          <Signature condition="contains">Microsoft</Signature>
+          <SignatureStatus condition="is">Valid</SignatureStatus>
+        </Rule>
       </DriverLoad>
     </RuleGroup>
     <RuleGroup groupRelation="or">
