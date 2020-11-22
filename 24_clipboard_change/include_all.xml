@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.40">
+  <CaptureClipboard />
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ClipboardChange onmatch="exclude">
+         </ClipboardChange>
+      </RuleGroup>
+</EventFiltering>
+</Sysmon>
