@@ -723,7 +723,7 @@
         <TargetObject name="technique_id=T1056.001,technique_name=Input Capture - Keylogging" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\hunmanInterfaceDevice</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider</TargetObject>
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa</TargetObject>
-        <TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SecurityProviders</TargetObject>
+        <TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\</TargetObject>
         <TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">\Control\SecurityProviders\WDigest</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AntiVirusDisableNotify</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware</TargetObject>
