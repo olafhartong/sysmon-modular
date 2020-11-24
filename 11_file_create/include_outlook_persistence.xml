@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="include">
+			<TargetFilename condition="contains">Roaming\Microsoft\Outlook\VbaProject.OTM</TargetFilename> <!--https://www.mdsec.co.uk/2020/11/a-fresh-outlook-on-mail-based-persistence/-->
+      <TargetFilename condition="end with">.rwz</TargetFilename> 
+      <TargetFilename condition="contains">Roaming\Microsoft\Outlook\Outlook.xml</TargetFilename><!--https://labs.f-secure.com/archive/malicous-outlook-rules/ works in combination with exclude_outlook_profile.xml -->
+		</FileCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
