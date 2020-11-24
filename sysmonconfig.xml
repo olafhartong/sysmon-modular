@@ -608,6 +608,9 @@
         <TargetFilename condition="end with">.iqy</TargetFilename>
         <TargetFilename condition="end with">.slk</TargetFilename>
         <TargetFilename condition="contains">\Content.Outlook\</TargetFilename>
+        <TargetFilename condition="contains">Roaming\Microsoft\Outlook\VbaProject.OTM</TargetFilename>
+        <TargetFilename condition="end with">.rwz</TargetFilename>
+        <TargetFilename condition="contains">Roaming\Microsoft\Outlook\Outlook.xml</TargetFilename>
         <TargetFilename condition="end with">.rft</TargetFilename>
         <TargetFilename condition="end with">.jsp</TargetFilename>
         <TargetFilename condition="end with">.jspx</TargetFilename>
@@ -694,6 +697,7 @@
         <TargetObject condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>
         <TargetObject condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
         <TargetObject condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
+        <TargetObject condition="contains">\Software\Microsoft\Office\16.0\Outlook\Security</TargetObject>
         <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</TargetObject>
         <TargetObject name="technique_id=T1547.005,technique_name=Security Support Provider" condition="contains">SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe</TargetObject>
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\Microsoft\Cryptography\OID</TargetObject>
@@ -1330,6 +1334,10 @@
         <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
         <Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>
         <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="image">Outlook.exe</Image>
+          <TargetFilename condition="contains">Roaming\Microsoft\Outlook\Outlook.xml</TargetFilename>
+        </Rule>
         <Image condition="is">c:\windows\system32\provtool.exe</Image>
         <Image condition="is">C:\WINDOWS\CCM\CcmExec.exe</Image>
         <TargetFilename condition="begin with">C:\Windows\CCM</TargetFilename>
