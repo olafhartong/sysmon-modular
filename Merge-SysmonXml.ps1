@@ -191,7 +191,8 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 8 == CreateRemoteThread. -->
-        <CreateRemoteThread onmatch="include"/>
+        <!--Default to log all and exclude a few common processes-->
+        <CreateRemoteThread onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 9 == RawAccessRead. -->
@@ -223,7 +224,8 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 22 == DNS Queries and their results-->
-        <DnsQuery onmatch="include"/>
+        <!--Default to log all and exclude a few common processes-->        
+        <DnsQuery onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 23 == File Delete and overwrite events-->
