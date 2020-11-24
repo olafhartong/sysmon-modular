@@ -1216,7 +1216,7 @@
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 24 == Clipboard change events, only captures text, not files -->
-      <ClipboardChange onmatch="include" />
+      <ClipboardChange onmatch="exclude" />
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessCreate onmatch="exclude">
@@ -1608,9 +1608,6 @@
         <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
         <User condition="contains any">NETWORK SERVICE; LOCAL SERVICE</User>
       </FileDelete>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <ClipboardChange onmatch="exclude" />
     </RuleGroup>
   </EventFiltering>
 </Sysmon>
