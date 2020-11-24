@@ -233,7 +233,7 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 24 == Clipboard change events, only captures text, not files -->
-        <ClipboardChange onmatch="include"/>
+        <ClipboardChange onmatch="exclude"/>
     </RuleGroup>            
 </EventFiltering>
 </Sysmon>
