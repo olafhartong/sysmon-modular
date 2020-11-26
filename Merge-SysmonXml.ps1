@@ -153,12 +153,13 @@ function Merge-SysmonXml {
 
     $newDoc = [xml]@'
 <Sysmon schemaversion="4.40">
-<DriverName>SysmonDrv</DriverName>
-<HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
+<DriverName>SysDrv</DriverName>
+<HashAlgorithms>SHA256</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
-<CaptureClipboard />
+<CaptureClipboard/>
+<CopyOnDeletePE>True</CopyOnDeletePE>
 <DnsLookup>True</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
-<ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
+<ArchiveDirectory>Archive</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 1 == Process Creation. -->
