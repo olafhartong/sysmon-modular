@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
-          <Image condition="is">Program Files\Qlik\Sense\Engine\Engine.exe</Image>
+        <Image condition="is">Program Files\Qlik\Sense\Engine\Engine.exe</Image>
       </PipeEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

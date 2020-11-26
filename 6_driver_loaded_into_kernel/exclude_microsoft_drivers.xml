@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.40">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <DriverLoad onmatch="exclude">
-		<!--COMMENT:	Because drivers with bugs can be used to escalate to kernel permissions, be extremely selective
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DriverLoad onmatch="exclude">
+				<!--COMMENT:	Because drivers with bugs can be used to escalate to kernel permissions, be extremely selective
 				about what you exclude from monitoring. Low event volume, little incentive to exclude.-->
-			<Signature condition="contains">microsoft</Signature> <!--Exclude signed Microsoft drivers-->
-			<Signature condition="contains">windows</Signature> <!--Exclude signed Microsoft drivers-->
-	  </DriverLoad>		
-</RuleGroup>
-</EventFiltering>
+				<Signature condition="contains">microsoft</Signature> <!--Exclude signed Microsoft drivers-->
+				<Signature condition="contains">windows</Signature> <!--Exclude signed Microsoft drivers-->
+			</DriverLoad>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

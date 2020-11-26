@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="include">
-			<!--Terminal service execution-->
-			<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
-		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!--Terminal service execution-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

@@ -1,16 +1,16 @@
 <Sysmon schemaversion="4.40">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
-	      <Rule groupRelation="or">
+        <Rule groupRelation="or">
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\samlib.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\WinSCard.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\cryptdll.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\hid.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
           <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\vaultcli.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
-          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\wlanapi.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->      
+          <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\System32\wlanapi.dll</ImageLoaded> <!--Mitre T1098--> <!--Mitre T1075--> <!--Mitre T1003-->
         </Rule>
       </ImageLoad>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

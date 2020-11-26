@@ -1,14 +1,14 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessCreate onmatch="include">
-        <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">excel.exe</ParentImage>
-    	  <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">winword.exe</ParentImage>
-    	  <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">powerpnt.exe</ParentImage>
-    	  <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">outlook.exe</ParentImage>
-    	  <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">msaccess.exe</ParentImage>
-    	  <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">mspub.exe</ParentImage>
-      </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="include">
+				<ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">excel.exe</ParentImage>
+				<ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">winword.exe</ParentImage>
+				<ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">powerpnt.exe</ParentImage>
+				<ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">outlook.exe</ParentImage>
+				<ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">msaccess.exe</ParentImage>
+				<ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">mspub.exe</ParentImage>
+			</ProcessCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

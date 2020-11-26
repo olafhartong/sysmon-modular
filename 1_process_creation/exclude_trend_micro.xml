@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
         <Image condition="is">C:\Program Files\Trend Micro\Deep Security Agent\ds_monitor.exe</Image> <!--Credit pdoconnell -->
         <Image condition="is">C:\Program Files\Trend Micro\Deep Security Agent\dsa.exe</Image> <!--Credit pdoconnell -->
@@ -11,7 +11,7 @@
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmopExtIns32.exe</Image> <!--Credit d4ph1l -->
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmExtIns.exe</Image> <!--Credit d4ph1l -->
         <Image condition="is">C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmListen.exe</Image> <!--Credit d4ph1l -->
-			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

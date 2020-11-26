@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-          <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="is">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
+        <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="is">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
       </RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

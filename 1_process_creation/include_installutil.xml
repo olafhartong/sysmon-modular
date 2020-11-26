@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <Rule name="InstallUtil" groupRelation="and">
           <OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">InstallUtil.exe</OriginalFileName>
           <CommandLine name="technique_id=T1218.004,technique_name=InstallUtil" condition="contains all">/logfile=;/LogToConsole=false;/U</CommandLine>
         </Rule>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.40">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <CreateRemoteThread onmatch="include">
-          <StartAddress name="technique_id=T1055,technique_name=Process Injection" condition="is">0x00590000</StartAddress><!--default psinject address-->
+        <StartAddress name="technique_id=T1055,technique_name=Process Injection" condition="is">0x00590000</StartAddress> <!--default psinject address-->
       </CreateRemoteThread>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

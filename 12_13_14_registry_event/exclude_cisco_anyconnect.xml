@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="exclude">
-		<!--Cisco:Anyconnect ISE Posture module-->
-		<Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\aciseposture.exe</Image>
-		<!--Cisco:Anyconnect VPN Agent-->
-		<Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
-      </RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!--Cisco:Anyconnect ISE Posture module-->
+				<Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\aciseposture.exe</Image>
+				<!--Cisco:Anyconnect VPN Agent-->
+				<Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

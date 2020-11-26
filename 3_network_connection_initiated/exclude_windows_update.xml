@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.40">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <NetworkConnect onmatch="exclude">
-			<!--SECTION: Microsoft-->
-			<DestinationHostname condition="end with">microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname> <!--Microsoft:Update delivery-->
-	  </NetworkConnect>	
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<NetworkConnect onmatch="exclude">
+				<!--SECTION: Microsoft-->
+				<DestinationHostname condition="end with">microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname> <!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname> <!--Microsoft:Update delivery-->
+			</NetworkConnect>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

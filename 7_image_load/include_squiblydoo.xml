@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.40">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
         <ImageLoaded name="technique_id=T1218.010,technique_name=Regsvr32" condition="end with">scrobj.dll</ImageLoaded>
       </ImageLoad>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

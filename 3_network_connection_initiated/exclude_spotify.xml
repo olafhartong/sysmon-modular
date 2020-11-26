@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.40">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="exclude">
-			<Image condition="image">Spotify.exe</Image> <!--Spotify-->
-	  </NetworkConnect>	
-</RuleGroup>
-</EventFiltering>
+        <Image condition="image">Spotify.exe</Image> <!--Spotify-->
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

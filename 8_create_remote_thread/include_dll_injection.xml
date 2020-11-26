@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.40">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <CreateRemoteThread onmatch="include">
-          <StartFunction name="technique_id=T1055,technique_name=Process Injection" condition="contains">LoadLibrary</StartFunction>
-          <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\rundll32.exe</TargetImage>
-          <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\svchost.exe</TargetImage>
-          <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\sysmon.exe</TargetImage>
+        <StartFunction name="technique_id=T1055,technique_name=Process Injection" condition="contains">LoadLibrary</StartFunction>
+        <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\rundll32.exe</TargetImage>
+        <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\svchost.exe</TargetImage>
+        <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\sysmon.exe</TargetImage>
       </CreateRemoteThread>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

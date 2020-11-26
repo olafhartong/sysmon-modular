@@ -1,16 +1,16 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
-          <PipeName condition="is">\SQLLocal\MSSQLSERVER</PipeName>
-          <PipeName condition="is">\SQLLocal\INSTANCE01</PipeName>
-          <PipeName condition="is">\SQLLocal\SQLEXPRESS</PipeName>
-          <PipeName condition="is">\SQLLocal\COMMVAULT</PipeName>
-          <PipeName condition="is">\SQLLocal\RTCLOCAL</PipeName>
-          <PipeName condition="is">\SQLLocal\RTC</PipeName>
-          <PipeName condition="is">\SQLLocal\TMSM</PipeName>      
-          <Image condition="is">Program Files (x86)\Microsoft SQL Server\110\DTS\binn\dtexec.exe</Image>              
+        <PipeName condition="is">\SQLLocal\MSSQLSERVER</PipeName>
+        <PipeName condition="is">\SQLLocal\INSTANCE01</PipeName>
+        <PipeName condition="is">\SQLLocal\SQLEXPRESS</PipeName>
+        <PipeName condition="is">\SQLLocal\COMMVAULT</PipeName>
+        <PipeName condition="is">\SQLLocal\RTCLOCAL</PipeName>
+        <PipeName condition="is">\SQLLocal\RTC</PipeName>
+        <PipeName condition="is">\SQLLocal\TMSM</PipeName>
+        <Image condition="is">Program Files (x86)\Microsoft SQL Server\110\DTS\binn\dtexec.exe</Image>
       </PipeEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

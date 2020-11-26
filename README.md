@@ -12,7 +12,9 @@ This is a Microsoft Sysinternals Sysmon configuration repository, set up modular
 The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run.
 
 ## NOTICE; Sysmon below 11 will not completely be compatible with this configuration
+
 Older versions are still available in the branches, but are not as complete as the current branch
+
 - V8.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-8)
 - V9.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-9)
 - V10.4 >> [here](https://github.com/olafhartong/sysmon-modular/tree/v10.4)
@@ -23,6 +25,7 @@ To understand added features in the latest version, have a look at my [small blo
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on.
 
 ## Credits
+
 Big credit goes out to SwiftOnSecurity for laying a great foundation and making this repo possible!
 **[sysmonconfig-export.xml](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
 
@@ -31,14 +34,16 @@ Equally a huge shoutout to **[Roberto Rodriguez](https://twitter.com/cyb3rward0g
 Final thanks to **[Mathias Jessen](https://twitter.com/iisresetme)** for his Merge script, without it, this project would not have worked as well.
 
 ## Contributing
+
 Pull requests / issue tickets and new additions will be greatly appreciated!
 
 ## More information
+
 I started a series of blog posts covering this repo;
+
 - [Endpoint detection Superpowers on the cheap - part1 - MITRE ATT&CK, Sysmon and my modular configuration](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-1-e9c28201ac47)
 - [Endpoint detection Superpowers on the cheap — part 2 — Deploy and Maintain](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-2-deploy-and-maintain-d06580329fe8)
 - [Endpoint detection Superpowers on the cheap — part 3 — Sysmon Tampering](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-3-sysmon-tampering-49c2dc9bf6d9)
-
 
 ## Mitre ATT&CK
 
@@ -49,7 +54,6 @@ A current ATT&CK navigator export of all linked configurations is found [here](a
 ## Required actions
 
 I highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as litte noise as possible.
-
 
 ### Customization
 

@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
-          <Image condition="end with">PostgreSQL\9.6\bin\postgres.exe</Image>
-          <PipeName condition="contains">\pgsignal_</PipeName>
+        <Image condition="end with">PostgreSQL\9.6\bin\postgres.exe</Image>
+        <PipeName condition="contains">\pgsignal_</PipeName>
       </PipeEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

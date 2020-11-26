@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
         <ParentImage condition="end with">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</ParentImage>
-			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

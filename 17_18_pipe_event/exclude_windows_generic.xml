@@ -1,16 +1,16 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
-          <PipeName condition="is">\ntapvsrq</PipeName>
-          <PipeName condition="is">\srvsvc</PipeName>
-          <PipeName condition="is">\wkssvc</PipeName>
-          <PipeName condition="is">\lsass</PipeName>
-          <PipeName condition="is">\winreg</PipeName>
-          <PipeName condition="is">\spoolss</PipeName>
-          <PipeName condition="contains">Anonymous Pipe</PipeName>
-          <Image condition="is">c:\windows\system32\inetsrv\w3wp.exe</Image>          
+        <PipeName condition="is">\ntapvsrq</PipeName>
+        <PipeName condition="is">\srvsvc</PipeName>
+        <PipeName condition="is">\wkssvc</PipeName>
+        <PipeName condition="is">\lsass</PipeName>
+        <PipeName condition="is">\winreg</PipeName>
+        <PipeName condition="is">\spoolss</PipeName>
+        <PipeName condition="contains">Anonymous Pipe</PipeName>
+        <Image condition="is">c:\windows\system32\inetsrv\w3wp.exe</Image>
       </PipeEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>
