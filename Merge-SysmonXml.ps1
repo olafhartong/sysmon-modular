@@ -157,7 +157,6 @@ function Merge-SysmonXml {
 <HashAlgorithms>SHA256</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
 <CaptureClipboard/>
-<CopyOnDeletePE>True</CopyOnDeletePE>
 <DnsLookup>True</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Archive</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
 <EventFiltering>
