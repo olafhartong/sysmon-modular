@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="exclude">
+        <ParentImage condition="is">C:\ProgramData\CentraStage\AEMAgent\AEMAgent.exe</ParentImage> <!--DATTO RMM Agent-->
+			</ProcessCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

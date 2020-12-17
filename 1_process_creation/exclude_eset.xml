@@ -2,7 +2,10 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
-        <Image condition="is">C:\Program Files\ESET\ESET Nod32 Antivirus\ekrn.exe</Image>  <!--Credit d4ph1l -->
+        <ParentImage condition="is">C:\Program Files\ESET\ESET Nod32 Antivirus\ekrn.exe</ParentImage>  <!--Credit d4ph1l -->
+		<ParentImage condition="is">C:\ProgramData\ESET\eRMMI\bin\ermmi.exe</ParentImage> <!--eRMM agent for dattormm control of eset -->
+		<ParentImage condition="is">C:\Program Files\ESET\ESET Security\ekrn.exe</ParentImage>  <!--Credit d4ph1l -->
+		
 			</ProcessCreate>
 </RuleGroup>
 </EventFiltering>

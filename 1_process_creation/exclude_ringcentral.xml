@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="exclude">
+       <Image condition="end with">RingCentral.exe</Image>
+	  </ProcessCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
