@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+	      <Rule groupRelation="and"><!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
+          <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <ImageLoaded condition="is">C:\Windows\SysWOW64\wbem\wbemdisp.dll</ImageLoaded>
+        </Rule>
+      </ImageLoad>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

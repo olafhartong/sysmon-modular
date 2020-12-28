@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+   <ProcessAccess onmatch="exclude">
+		<SourceImage condition="is">C:\Program Files\Palo Alto Networks\Traps\cyserver.exe</SourceImage><!--Palo Alto Cortex XDR-->
+   </ProcessAccess>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

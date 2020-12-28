@@ -1,8 +1,8 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="include">
-          <PipeName name="technique_id=T1077,technique_name=Windows Admin Shares" condition="begin with">\msagent_</PipeName><!-- default cobalt strike pipe name-->
+          <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msagent_</PipeName><!-- default cobalt strike pipe name-->
       </PipeEvent>
 </RuleGroup>
 </EventFiltering>

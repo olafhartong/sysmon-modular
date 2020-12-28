@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include"><!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
+        <Rule groupRelation="and">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\combase.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\coml2.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM"  condition="is">C:\Windows\SysWOW64\comsvcs.dll</ImageLoaded>
+        </Rule>
+      </ImageLoad>
+  </RuleGroup>
+</EventFiltering>
+</Sysmon>

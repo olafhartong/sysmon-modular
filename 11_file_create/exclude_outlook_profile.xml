@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileCreate onmatch="exclude">
+            <Rule groupRelation="and">
+               <Image condition="image">Outlook.exe</Image><!--Outlook will write on every close, external tampering is still important-->
+               <TargetFilename condition="contains">Roaming\Microsoft\Outlook\Outlook.xml</TargetFilename><!--https://labs.f-secure.com/archive/malicous-outlook-rules/-->
+            </Rule>
+         </FileCreate>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

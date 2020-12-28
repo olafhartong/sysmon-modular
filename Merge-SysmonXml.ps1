@@ -32,9 +32,7 @@ function Merge-AllSysmonXml
 
     process{
         if($PSCmdlet.ParameterSetName -eq 'ByBasePath'){
-#            $JoinPath = Join-Path -Path $BasePath -ChildPath '[0-9]*\*.xml'
             $RuleList = Find-RulesInBasePath -BasePath $BasePath
-#            $Files = Get-ChildItem -Path $JoinPath
             foreach($R in $RuleList){
                 $FilePaths += (Resolve-Path -Path:$R).ProviderPath
             }
@@ -54,7 +52,7 @@ function Merge-AllSysmonXml
             if(!$BasePath){
                 throw "BasePath Required For Inclusion List."
                 return
-            }
+    }
 
             $Inclusions = Get-Content -Path $IncludeList
             foreach($Inclusion in $Inclusions){
@@ -230,13 +228,23 @@ function Merge-SysmonXml
             include = @()
             exclude = @()
         }
+        FileDelete = [ordered]@{
+            include = @()
+            exclude = @()
+        } 
+        ClipboardChange = [ordered]@{
+            include = @()
+            exclude = @()
+        }                
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.22">
-<!-- Capture all hashes -->
-<HashAlgorithms>*</HashAlgorithms>
+<Sysmon schemaversion="4.40">
+<HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
+<DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
+<ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
+<CaptureClipboard /><!--This enables capturing the Clipboard changes-->
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 1 == Process Creation. -->
@@ -264,7 +272,8 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 8 == CreateRemoteThread. -->
-        <CreateRemoteThread onmatch="include"/>
+        <!--Default to log all and exclude a few common processes-->
+        <CreateRemoteThread onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 9 == RawAccessRead. -->
@@ -291,9 +300,22 @@ function Merge-SysmonXml
         <PipeEvent onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity-->
+        <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity -->
         <WmiEvent onmatch="include"/>
     </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 22 == DNS Queries and their results-->
+        <!--Default to log all and exclude a few common processes-->        
+        <DnsQuery onmatch="exclude"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 23 == File Delete and overwrite events-->
+        <FileDelete onmatch="include"/>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 24 == Clipboard change events, only captures text, not files -->
+        <ClipboardChange onmatch="exclude"/>
+    </RuleGroup>            
 </EventFiltering>
 </Sysmon>
 '@

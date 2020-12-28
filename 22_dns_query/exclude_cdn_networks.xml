@@ -1,7 +1,5 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.30">
    <!-- special thanks to @SwiftOnSecurity for most of this -->
-   <HashAlgorithms>*</HashAlgorithms>
-   <CheckRevocation/>
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
       <DnsQuery onmatch="exclude">

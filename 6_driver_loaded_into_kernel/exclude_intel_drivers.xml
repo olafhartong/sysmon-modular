@@ -1,10 +1,12 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <DriverLoad onmatch="exclude">
-		<!--COMMENT:	Because drivers with bugs can be used to escalate to kernel permissions, be extremely selective
-				about what you exclude from monitoring. Low event volume, little incentive to exclude.-->
-			<Signature condition="begin with">Intel </Signature> <!--Exclude signed Intel drivers-->
+        <!--Exclude Intel drivers with valid signature-->
+        <Rule groupRelation="and">
+            <Signature condition="begin with">Intel </Signature>
+            <SignatureStatus condition="is">Valid</SignatureStatus>
+        </Rule>
 	  </DriverLoad>		
 </RuleGroup>
 </EventFiltering>

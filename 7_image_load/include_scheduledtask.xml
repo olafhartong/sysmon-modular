@@ -1,8 +1,8 @@
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.30">
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
-        <ImageLoaded name="technique_id=1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
+        <ImageLoaded name="technique_id=T1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
       </ImageLoad>
 </RuleGroup>
 </EventFiltering>

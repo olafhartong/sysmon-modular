@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include"><!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded condition="end with">VBE7INTL.DLL</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded condition="end with">VBE7.DLL</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded condition="end with">VBEUI.DLL</ImageLoaded>
+        </Rule>      
+      </ImageLoad>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

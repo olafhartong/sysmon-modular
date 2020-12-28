@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include"><!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
+        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded condition="begin with">C:\Windows\assembly\</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded condition="begin with">C:\Windows\Microsoft.NET\assembly\GAC_MSIL</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
+            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+            <ImageLoaded condition="end with">clr.dll</ImageLoaded>
+        </Rule>      
+      </ImageLoad>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

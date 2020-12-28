@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ 	 <RuleGroup name="" groupRelation="or">
+      <RegistryEvent onmatch="include">
+			<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject><!--https://lolbas-project.github.io/lolbas/Binaries/Wsreset/-->
+		</RegistryEvent>
+	 </RuleGroup>
+	</EventFiltering>
+</Sysmon>
