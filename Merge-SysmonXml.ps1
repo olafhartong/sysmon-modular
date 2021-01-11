@@ -154,11 +154,15 @@ function Merge-SysmonXml
         ClipboardChange = [ordered]@{
             include = @()
             exclude = @()
-        }                
+        }
+        ProcessTampering = [ordered]@{
+            include = @()
+            exclude = @()
+        }                        
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.40">
+<Sysmon schemaversion="4.50">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
@@ -233,8 +237,13 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 24 == Clipboard change events, only captures text, not files -->
-        <ClipboardChange onmatch="exclude"/>
-    </RuleGroup>            
+        <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
+        <ClipboardChange onmatch="include"/>
+    </RuleGroup> 
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 25 == Process tampering events -->
+        <ProcessTampering onmatch="exclude"/>
+    </RuleGroup>                
 </EventFiltering>
 </Sysmon>
 '@
