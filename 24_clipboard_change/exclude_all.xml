@@ -2,7 +2,7 @@
   <CaptureClipboard />
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
-         <ClipboardChange onmatch="exclude">
+         <ClipboardChange onmatch="include">
          </ClipboardChange>
       </RuleGroup>
 </EventFiltering>
