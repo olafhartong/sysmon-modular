@@ -1,4 +1,4 @@
-﻿<Sysmon schemaversion="4.40">
+﻿<Sysmon schemaversion="4.50">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
   <CheckRevocation />
@@ -764,6 +764,9 @@
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject>
         <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
         <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
+        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
+        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
+        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
         <TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="begin with">HKLM\SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject>
         <TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="contains">\Microsoft\SystemCertificates\Root\Certificates</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
@@ -1220,7 +1223,35 @@
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 24 == Clipboard change events, only captures text, not files -->
-      <ClipboardChange onmatch="exclude" />
+      <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
+      <ClipboardChange onmatch="include" />
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <!-- Event ID 25 == Process tampering events -->
+      <ProcessTampering onmatch="exclude">
+        <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+        <Image condition="is">C:\Program Files\Mozilla Firefox\updater.exe</Image>
+        <Image condition="is">C:\Program Files\Mozilla Firefox\default-browser-agent.exe</Image>
+        <Image condition="is">C:\Program Files\Mozilla Firefox\pingsender.exe</Image>
+        <Image condition="is">C:\Program Files\Git\cmd\git.exe</Image>
+        <Image condition="is">C:\Program Files\Git\mingw64\bin\git.exe</Image>
+        <Image condition="is">C:\Program Files\Git\mingw64\libexec\git-core\git.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="begin with">C:\Program Files (x86)\Microsoft\Edge\Application\</Image>
+          <Image condition="end with">\BHO\ie_to_edge_stub.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="begin with">C:\Program Files (x86)\Microsoft\Edge\Application\</Image>
+          <Image condition="end with">\identity_helper.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="begin with">C:\Program Files (x86)\Microsoft\EdgeUpdate\Install\</Image>
+          <Image condition="contains">\MicrosoftEdge_X64_</Image>
+        </Rule>
+        <Image condition="contains">unknown process</Image>
+        <Image condition="is">C:\Program Files\Microsoft VS Code\Code.exe</Image>
+      </ProcessTampering>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessCreate onmatch="exclude">
@@ -1251,7 +1282,10 @@
         <Image condition="end with">C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\UWA\updaterstartuputility.exe</Image>
         <ParentImage condition="is">C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\UWA\updaterstartuputility.exe</ParentImage>
         <ParentCommandLine condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe" -Embedding</ParentCommandLine>
-        <CommandLine condition="is">C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs</CommandLine>
+        <Rule groupRelation="and">
+          <ParentImage condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe"</ParentImage>
+          <CommandLine condition="is">C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs</CommandLine>
+        </Rule>
         <ParentImage condition="end with">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</ParentImage>
         <CommandLine condition="begin with">C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe</CommandLine>
         <Image condition="is">C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe</Image>
