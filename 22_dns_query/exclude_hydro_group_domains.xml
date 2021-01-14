@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.30">
+   <!-- special thanks to @SwiftOnSecurity for this -->
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+			<!--SECTION: McAfee Global Threat Intelligence-->
+			<QueryName condition="end with">cloud.gti.mcafee.com</QueryName> <!--McAfee Global Threat Intellignce Cloud-->
+			<!--SECTION: Dell EMC Networker-->
+			<QueryName condition="end with">hdcprdnwkrm01</QueryName> <!--Dell EMC Networker-->
+			<QueryName condition="end with">hdcprdnwkrm01.hydrotasmania.com.au</QueryName> <!--Dell EMC Networker-->
+      </DnsQuery>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
