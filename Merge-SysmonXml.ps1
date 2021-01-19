@@ -220,6 +220,10 @@ function Merge-SysmonXml {
         <!-- Event ID 24 == Detect and log clipboard changes-->
         <ClipboardChange onmatch="exclude"/>
     </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 25 == Process tampering events -->
+        <ProcessTampering onmatch="exclude"/>
+    </RuleGroup>    
 </EventFiltering>
 </Sysmon>
 '@

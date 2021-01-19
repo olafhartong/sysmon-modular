@@ -1,0 +1,8 @@
+<Sysmon schemaversion="4.50">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessTampering onmatch="exclude">
+      </ProcessTampering>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
