@@ -1,4 +1,4 @@
-﻿<Sysmon schemaversion="4.50">
+<Sysmon schemaversion="4.50">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
   <CheckRevocation />
