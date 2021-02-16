@@ -1,9 +1,0 @@
-<Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="exclude">
-			<Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
-</Sysmon>
