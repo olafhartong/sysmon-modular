@@ -373,7 +373,17 @@
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 6 == Driver Loaded. -->
-      <DriverLoad onmatch="include" />
+      <!--Default to log all and exclude only valid signed Microsoft or Intel drivers-->
+      <DriverLoad onmatch="exclude">
+        <Rule groupRelation="and">
+          <Signature condition="begin with">Intel </Signature>
+          <SignatureStatus condition="is">Valid</SignatureStatus>
+        </Rule>
+        <Rule groupRelation="and">
+          <Signature condition="contains">Microsoft</Signature>
+          <SignatureStatus condition="is">Valid</SignatureStatus>
+        </Rule>
+      </DriverLoad>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 7 == Image Loaded. -->
@@ -1475,18 +1485,6 @@
         <DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>
         <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
       </NetworkConnect>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <DriverLoad onmatch="exclude">
-        <Rule groupRelation="and">
-          <Signature condition="begin with">Intel </Signature>
-          <SignatureStatus condition="is">Valid</SignatureStatus>
-        </Rule>
-        <Rule groupRelation="and">
-          <Signature condition="contains">Microsoft</Signature>
-          <SignatureStatus condition="is">Valid</SignatureStatus>
-        </Rule>
-      </DriverLoad>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
