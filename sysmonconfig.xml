@@ -978,7 +978,7 @@
         <QueryName condition="is">safebrowsing.googleapis.com</QueryName>
         <QueryName condition="end with">.akadns.net</QueryName>
         <QueryName condition="end with">.netflix.com</QueryName>
-        <QueryName condition="end with">aspnetcdn.com</QueryName>
+        <QueryName condition="end with">.aspnetcdn.com</QueryName>
         <QueryName condition="is">ajax.googleapis.com</QueryName>
         <QueryName condition="is">cdnjs.cloudflare.com</QueryName>
         <QueryName condition="is">fonts.googleapis.com</QueryName>
@@ -1032,9 +1032,11 @@
         <QueryName condition="end with">.globalsign.net</QueryName>
         <QueryName condition="is">msocsp.com</QueryName>
         <QueryName condition="is">ocsp.msocsp.com</QueryName>
-        <QueryName condition="end with">pki.goog</QueryName>
+        <QueryName condition="is">pki.goog</QueryName>
+        <QueryName condition="end with">.pki.goog</QueryName>
         <QueryName condition="is">ocsp.godaddy.com</QueryName>
-        <QueryName condition="end with">amazontrust.com</QueryName>
+        <QueryName condition="is">amazontrust.com</QueryName>
+        <QueryName condition="end with">.amazontrust.com</QueryName>
         <QueryName condition="is">ocsp.sectigo.com</QueryName>
         <QueryName condition="is">pki-goog.l.google.com</QueryName>
         <QueryName condition="end with">.usertrust.com</QueryName>
