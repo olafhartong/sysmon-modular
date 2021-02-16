@@ -187,7 +187,8 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 6 == Driver Loaded. -->
-        <DriverLoad onmatch="include"/>
+        <!--Default to log all and exclude only valid signed Microsoft or Intel drivers-->
+        <DriverLoad onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 7 == Image Loaded. -->
