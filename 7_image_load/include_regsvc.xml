@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+	      <ImageLoaded name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="end with">wmiutils.dll</ImageLoaded>
+      </ImageLoad>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
