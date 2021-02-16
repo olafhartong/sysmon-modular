@@ -379,6 +379,7 @@
       <!-- Event ID 7 == Image Loaded. -->
       <ImageLoad onmatch="include">
         <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
+		<ImageLoaded name="technique_id=T1112,technique_name=Modify Registry" condition="end with">regsvc.dll</ImageLoaded>
         <ImageLoaded condition="end with">scrrun.dll</ImageLoaded>
         <ImageLoaded condition="end with">vbscript.dll</ImageLoaded>
         <Rule groupRelation="and">
@@ -689,6 +690,9 @@
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions</TargetObject>
         <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
         <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
+		    <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
+		    <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree</TargetObject>
+		    <TargetObject name="technique_id=T1543,technique_name=Service Creation" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services</TargetObject>
         <TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject>
         <TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject>
         <TargetObject condition="contains">\Browser Helper Objects</TargetObject>
@@ -1551,7 +1555,6 @@
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
-        <Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
       </FileCreate>
     </RuleGroup>
     <RuleGroup groupRelation="or">
