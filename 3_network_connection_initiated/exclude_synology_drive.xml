@@ -4,7 +4,6 @@
       <NetworkConnect onmatch="exclude">
 			<Image condition="end with">AppData\Local\SynologyDrive\SynologyDrive.app\bin\cloud-drive-ui.exe</Image> <!--SynologyDrive-->
 			<Image condition="end with">AppData\Local\SynologyDrive\SynologyDrive.app\bin\cloud-drive-daemon.exe</Image> <!--SynologyDrive-->
-			
 	  </NetworkConnect>	
 </RuleGroup>
 </EventFiltering>
