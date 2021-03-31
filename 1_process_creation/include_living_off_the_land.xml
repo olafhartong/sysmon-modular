@@ -3,6 +3,8 @@
     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <!--Native Windows tools - Living off the land-->
+        <OriginalFileName name="technique_id=T1218.002,technique_name=rundll32.exe" condition="contains">rundll32.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1546.008,technique_name=Windows Error Reporting" condition="contains">werfault.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">whoami.exe</OriginalFileName> <!--Microsoft:Windows: shows current user -->
         <OriginalFileName name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="is">ipconfig.exe</OriginalFileName> <!--Microsoft:Windows: shows ip configuration -->
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">tasklist.exe</OriginalFileName> <!--Mitre T1057--> <!--Mitre T1007--> <!--Microsoft:Windows: shows current running processes-->

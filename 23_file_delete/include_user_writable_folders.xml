@@ -2,6 +2,12 @@
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
          <FileDelete onmatch="include">
+            <Image condition="Contains">Downloads</Image>
+            <Image condition="contains">Temp</Image>
+            <Image condition="contains">AppData</Image>
+            <Image condition="contains">ProgramData</Image>
+            <Image condition="contains">Public</Image>
+            <TargetFilename condition="contains">INetCache/Content.Outlook</TargetFilename>
             <Rule groupRelation="and">
                <TargetFilename condition="contains">\Downloads\</TargetFilename> <!--User Download folder-->
                <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
