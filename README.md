@@ -6,13 +6,13 @@ This is a Microsoft Sysinternals Sysmon configuration repository, set up modular
 
 The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run.
 
-This is a publicly available and maintained fork that should **NOT** be used in production unless it has been thoroughly tested in your environment and tuned to your needs. While the origianl fork from [Olaf Hartong](https://github.com/olafhartong/sysmon-modular/) is reliable and stable stable, this should be considered unstable with new features being pushed more often as we make changes in our own testing, but untested for tuning. 
+This is a publicly available and maintained fork that should **NOT** be used in production unless it has been thoroughly tested in your environment and tuned to your needs. While the original fork from [Olaf Hartong](https://github.com/olafhartong/sysmon-modular/) is reliable and stable, this should be considered unstable with new features pushed more often as we make changes in our testing, but untested for tuning. 
 
 **Note:**
 We do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability, and so on.
 
 ## Credits
-Most of this work was started and is still maintained by **[Olaf Hartong](https://github.com/olafhartong)**. He is creating stable and relaible configs on a very stable schedule as new versions of Sysmon are released.
+Most of this work was started and is still maintained by **[Olaf Hartong](https://github.com/olafhartong)**. He is creating stable and reliable configs on a very stable schedule as new versions of Sysmon are released.
 
 Big credit goes out to SwiftOnSecurity for laying a great foundation and making this repo possible!
 **[sysmonconfig-export.xml](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
