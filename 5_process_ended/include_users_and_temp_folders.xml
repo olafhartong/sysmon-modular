@@ -5,6 +5,7 @@
 				<Image condition="begin with">C:\Users</Image> <!--Process terminations by user binaries-->
 				<Image condition="begin with">C:\Temp</Image> <!--Process terminations by temp binaries-->
 				<Image condition="begin with">C:\Windows\Temp</Image> <!--Process terminations by temp binaries-->
+				<Image condition="begin with">C:\ProgramData</Image>
 			</ProcessTerminate>
 		</RuleGroup>
 	</EventFiltering>
