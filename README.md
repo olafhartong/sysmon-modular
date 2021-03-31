@@ -6,10 +6,10 @@ This is a Microsoft Sysinternals Sysmon configuration repository, set up modular
 
 The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run.
 
-This is a publicly available and maintained fork that should **NOT** be used in production unless it has been thoroughly tested in your environment and tuned to your needs. While the original fork from [Olaf Hartong](https://github.com/olafhartong/sysmon-modular/) is reliable and stable, this should be considered unstable with new features pushed more often as we make changes in our testing, but untested for tuning. 
+This is a publicly available and maintained fork that should **NOT** be used in production unless it has been thoroughly tested in your environment and tuned to your needs. While the original fork from [Olaf Hartong](https://github.com/olafhartong/sysmon-modular/) is reliable and stable, this should be considered unstable with new features pushed more often as I make changes in testing, but untested for tuning. 
 
 **Note:**
-We do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability, and so on.
+I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability, and so on.
 
 ## Credits
 Most of this work was started and is still maintained by **[Olaf Hartong](https://github.com/olafhartong)**. He is creating stable and reliable configs on a very stable schedule as new versions of Sysmon are released.
@@ -27,7 +27,7 @@ Pull requests/issue tickets and new additions will be greatly appreciated!
 
 ## More information
 
-We started a series of blog posts covering this repo;
+I started a series of blog posts covering this repo;
 
 - [Endpoint detection Superpowers on the cheap - part1 - MITRE ATT&CK, Sysmon and my modular configuration](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-1-e9c28201ac47)
 - [Endpoint detection Superpowers on the cheap — part 2 — Deploy and Maintain](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-2-deploy-and-maintain-d06580329fe8)
@@ -35,13 +35,13 @@ We started a series of blog posts covering this repo;
 
 ## Mitre ATT&CK
 
-We strive to map all configurations to the ATT&CK framework whenever Sysmon is able to detect it.
+I strive to map all configurations to the ATT&CK framework whenever Sysmon is able to detect it.
 A current ATT&CK navigator export of all linked configurations is found [here](attack_matrix/Sysmon-modular.json) and can be viewed [here](https://mitre.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2Folafhartong%2Fsysmon-modular%2Fmaster%2Fattack_matrix%2FSysmon-modular.json&scoring=false&clear_annotations=false)
 ![Mapping](attack_matrix/sysmon-modular.png)
 
 ## Required actions
 
-We highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as little noise as possible.
+I highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as little noise as possible.
 
 ### Customization
 
