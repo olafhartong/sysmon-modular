@@ -24,7 +24,7 @@
           <Image condition="is not">c:\windows\system32\mmc.exe</Image>
         </Rule>
         <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">fodhelper.exe</ParentImage>
-        <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">ˆ</CommandLine>
+        <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">^</CommandLine>
         <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">../../</CommandLine>
         <ParentCommandLine name="technique_id=T1204,technique_name=User Execution" condition="is">C:\Windows\explorer.exe</ParentCommandLine>
         <Rule name="Fltmc" groupRelation="and">
