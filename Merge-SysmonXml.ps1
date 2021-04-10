@@ -167,7 +167,6 @@ function Merge-SysmonXml
 <CheckRevocation/>
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
-<CaptureClipboard /><!--This enables capturing the Clipboard changes-->
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 1 == Process Creation. -->
