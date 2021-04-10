@@ -1,4 +1,4 @@
-﻿<Sysmon schemaversion="4.40">
+﻿<Sysmon schemaversion="4.50">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
   <CheckRevocation />
@@ -6,8 +6,6 @@
   <!-- Disables lookup behavior, default is True (Boolean) -->
   <ArchiveDirectory>Sysmon</ArchiveDirectory>
   <!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
-  <CaptureClipboard />
-  <!--This enables capturing the Clipboard changes-->
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 1 == Process Creation. -->
@@ -373,7 +371,17 @@
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 6 == Driver Loaded. -->
-      <DriverLoad onmatch="include" />
+      <!--Default to log all and exclude only valid signed Microsoft or Intel drivers-->
+      <DriverLoad onmatch="exclude">
+        <Rule groupRelation="and">
+          <Signature condition="begin with">Intel </Signature>
+          <SignatureStatus condition="is">Valid</SignatureStatus>
+        </Rule>
+        <Rule groupRelation="and">
+          <Signature condition="contains">Microsoft</Signature>
+          <SignatureStatus condition="is">Valid</SignatureStatus>
+        </Rule>
+      </DriverLoad>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 7 == Image Loaded. -->
@@ -442,6 +450,7 @@
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Commands.Utility.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.ConsoleHost.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Security.dll</ImageLoaded>
+        <ImageLoaded name="technique_id=T1112,technique_name=Modify Registry" condition="end with">regsvc.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1218.010,technique_name=Regsvr32" condition="end with">scrobj.dll</ImageLoaded>
         <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">scrobj.dll</OriginalFileName>
@@ -701,7 +710,10 @@
         <TargetObject condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
         <TargetObject condition="contains">\Software\Microsoft\Office\16.0\Outlook\Security</TargetObject>
         <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</TargetObject>
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree</TargetObject>
         <TargetObject name="technique_id=T1547.005,technique_name=Security Support Provider" condition="contains">SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe</TargetObject>
+        <TargetObject name="technique_id=T1543,technique_name=Service Creation" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services</TargetObject>
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\Microsoft\Cryptography\OID</TargetObject>
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\WOW6432Node\Microsoft\Cryptography\OID</TargetObject>
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\Microsoft\Cryptography\Providers\Trust</TargetObject>
@@ -764,6 +776,9 @@
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject>
         <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
         <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
+        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
+        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
+        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
         <TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="begin with">HKLM\SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject>
         <TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="contains">\Microsoft\SystemCertificates\Root\Certificates</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
@@ -975,7 +990,7 @@
         <QueryName condition="is">safebrowsing.googleapis.com</QueryName>
         <QueryName condition="end with">.akadns.net</QueryName>
         <QueryName condition="end with">.netflix.com</QueryName>
-        <QueryName condition="end with">aspnetcdn.com</QueryName>
+        <QueryName condition="end with">.aspnetcdn.com</QueryName>
         <QueryName condition="is">ajax.googleapis.com</QueryName>
         <QueryName condition="is">cdnjs.cloudflare.com</QueryName>
         <QueryName condition="is">fonts.googleapis.com</QueryName>
@@ -1029,9 +1044,11 @@
         <QueryName condition="end with">.globalsign.net</QueryName>
         <QueryName condition="is">msocsp.com</QueryName>
         <QueryName condition="is">ocsp.msocsp.com</QueryName>
-        <QueryName condition="end with">pki.goog</QueryName>
+        <QueryName condition="is">pki.goog</QueryName>
+        <QueryName condition="end with">.pki.goog</QueryName>
         <QueryName condition="is">ocsp.godaddy.com</QueryName>
-        <QueryName condition="end with">amazontrust.com</QueryName>
+        <QueryName condition="is">amazontrust.com</QueryName>
+        <QueryName condition="end with">.amazontrust.com</QueryName>
         <QueryName condition="is">ocsp.sectigo.com</QueryName>
         <QueryName condition="is">pki-goog.l.google.com</QueryName>
         <QueryName condition="end with">.usertrust.com</QueryName>
@@ -1220,7 +1237,35 @@
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 24 == Clipboard change events, only captures text, not files -->
-      <ClipboardChange onmatch="exclude" />
+      <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
+      <ClipboardChange onmatch="include" />
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <!-- Event ID 25 == Process tampering events -->
+      <ProcessTampering onmatch="exclude">
+        <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+        <Image condition="is">C:\Program Files\Mozilla Firefox\updater.exe</Image>
+        <Image condition="is">C:\Program Files\Mozilla Firefox\default-browser-agent.exe</Image>
+        <Image condition="is">C:\Program Files\Mozilla Firefox\pingsender.exe</Image>
+        <Image condition="is">C:\Program Files\Git\cmd\git.exe</Image>
+        <Image condition="is">C:\Program Files\Git\mingw64\bin\git.exe</Image>
+        <Image condition="is">C:\Program Files\Git\mingw64\libexec\git-core\git.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="begin with">C:\Program Files (x86)\Microsoft\Edge\Application\</Image>
+          <Image condition="end with">\BHO\ie_to_edge_stub.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="begin with">C:\Program Files (x86)\Microsoft\Edge\Application\</Image>
+          <Image condition="end with">\identity_helper.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="begin with">C:\Program Files (x86)\Microsoft\EdgeUpdate\Install\</Image>
+          <Image condition="contains">\MicrosoftEdge_X64_</Image>
+        </Rule>
+        <Image condition="contains">unknown process</Image>
+        <Image condition="is">C:\Program Files\Microsoft VS Code\Code.exe</Image>
+      </ProcessTampering>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessCreate onmatch="exclude">
@@ -1251,7 +1296,10 @@
         <Image condition="end with">C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\UWA\updaterstartuputility.exe</Image>
         <ParentImage condition="is">C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\UWA\updaterstartuputility.exe</ParentImage>
         <ParentCommandLine condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe" -Embedding</ParentCommandLine>
-        <CommandLine condition="is">C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs</CommandLine>
+        <Rule groupRelation="and">
+          <ParentImage condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe"</ParentImage>
+          <CommandLine condition="is">C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs</CommandLine>
+        </Rule>
         <ParentImage condition="end with">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</ParentImage>
         <CommandLine condition="begin with">C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe</CommandLine>
         <Image condition="is">C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe</Image>
@@ -1441,18 +1489,6 @@
       </NetworkConnect>
     </RuleGroup>
     <RuleGroup groupRelation="or">
-      <DriverLoad onmatch="exclude">
-        <Rule groupRelation="and">
-          <Signature condition="begin with">Intel </Signature>
-          <SignatureStatus condition="is">Valid</SignatureStatus>
-        </Rule>
-        <Rule groupRelation="and">
-          <Signature condition="contains">Microsoft</Signature>
-          <SignatureStatus condition="is">Valid</SignatureStatus>
-        </Rule>
-      </DriverLoad>
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
         <SourceImage condition="is">C:\Windows\CarbonBlack\cb.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files\Cisco\AMP\;sfc.exe</SourceImage>
@@ -1517,7 +1553,6 @@
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
-        <Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
       </FileCreate>
     </RuleGroup>
     <RuleGroup groupRelation="or">

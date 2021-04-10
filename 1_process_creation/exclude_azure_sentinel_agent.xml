@@ -1,10 +1,13 @@
 <Sysmon schemaversion="4.30">
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-    <ProcessCreate onmatch="exclude">
-		<ParentCommandLine condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe" -Embedding</ParentCommandLine> 
-		<CommandLine condition="is">C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs</CommandLine> <!--Microsoft Sentinel SIEM agent, based on MOM - thanks d4ph1l--> 
-	</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+ 	  <RuleGroup name="" groupRelation="or">
+       <ProcessCreate onmatch="exclude">
+	    <ParentCommandLine condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe" -Embedding</ParentCommandLine>
+			<Rule groupRelation="and">
+				<ParentImage condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe"</ParentImage> 
+				<CommandLine condition="is">C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs</CommandLine> <!--Microsoft Sentinel SIEM agent, based on MOM - thanks d4ph1l--> 
+			</Rule>
+		</ProcessCreate>
+	  </RuleGroup>
+	</EventFiltering>
 </Sysmon>

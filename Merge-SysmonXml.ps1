@@ -235,16 +235,19 @@ function Merge-SysmonXml
         ClipboardChange = [ordered]@{
             include = @()
             exclude = @()
-        }                
+        }
+        ProcessTampering = [ordered]@{
+            include = @()
+            exclude = @()
+        }                        
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.40">
+<Sysmon schemaversion="4.50">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
-<CaptureClipboard /><!--This enables capturing the Clipboard changes-->
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 1 == Process Creation. -->
@@ -264,7 +267,8 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 6 == Driver Loaded. -->
-        <DriverLoad onmatch="include"/>
+        <!--Default to log all and exclude only valid signed Microsoft or Intel drivers-->
+        <DriverLoad onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 7 == Image Loaded. -->
@@ -314,8 +318,13 @@ function Merge-SysmonXml
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 24 == Clipboard change events, only captures text, not files -->
-        <ClipboardChange onmatch="exclude"/>
-    </RuleGroup>            
+        <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
+        <ClipboardChange onmatch="include"/>
+    </RuleGroup> 
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 25 == Process tampering events -->
+        <ProcessTampering onmatch="exclude"/>
+    </RuleGroup>                
 </EventFiltering>
 </Sysmon>
 '@
