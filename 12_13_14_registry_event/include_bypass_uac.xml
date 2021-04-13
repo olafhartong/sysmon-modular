@@ -2,9 +2,9 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\mscfile\shell\open\command</TargetObject>
-		      <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ms-settings\shell\open\command</TargetObject>
-          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject> <!-- Credit cyb3rop -->
+          <TargetObject name="tactic_id=TA0004,TA0005,tactic_name=Privilege Escalation, Defense Evasion,technique_id=T1548,technique_name=Abuse Elevation Control Mechanism,subtechnique_id=T1548.002,subtechnique_name=Bypass User Access Control" condition="contains">\mscfile\shell\open\command</TargetObject>
+		      <TargetObject name="tactic_id=TA0004,TA0005,tactic_name=Privilege Escalation, Defense Evasion,technique_id=T1548,technique_name=Abuse Elevation Control Mechanism,subtechnique_id=T1548.002,subtechnique_name=Bypass User Access Control" condition="contains">ms-settings\shell\open\command</TargetObject>
+          <TargetObject name="tactic_id=TA0004,TA0005,tactic_name=Privilege Escalation, Defense Evasion,technique_id=T1548,technique_name=Abuse Elevation Control Mechanism,subtechnique_id=T1548.002,subtechnique_name=Bypass User Access Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject> <!-- Credit cyb3rop -->
       </RegistryEvent>
 </RuleGroup>
 </EventFiltering>

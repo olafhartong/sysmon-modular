@@ -3,7 +3,7 @@
  <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
           <!-- Win32_OSRecoveryConfiguration class C2 maps to a change in values within the following key: -->
-          <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
+          <TargetObject name="tactic_id=TA0005,tactic_name=Execution,technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
       </RegistryEvent>
 </RuleGroup>
 </EventFiltering>
