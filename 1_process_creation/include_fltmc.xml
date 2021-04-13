@@ -3,12 +3,12 @@
      <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <Rule name="Fltmc" groupRelation="and">
-          <OriginalFileName name="technique_id=T1054,technique_name=Indicator Blocking" condition="is">fltMC.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1054,technique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
+          <OriginalFileName name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Impair Defenses,subtechnique_id=T1562.006,subtechnique_name=Indicator Blocking" condition="is">fltMC.exe</OriginalFileName>
+          <CommandLine name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Impair Defenses,subtechnique_id=T1562.006,subtechnique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
         </Rule>
         <Rule groupRelation="or">
-          <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="contains">misc::mflt</CommandLine>
+          <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1518,technique_name=Software Discovery,subtechnique_id=T1518.001,subtechnique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>
+          <CommandLine name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1518,technique_name=Software Discovery,subtechnique_id=T1518.001,subtechnique_name=Security Software Discovery" condition="contains">misc::mflt</CommandLine>
         </Rule>
       </ProcessCreate>
 </RuleGroup>

@@ -3,29 +3,29 @@
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <!--Note: Not all Sysinternals listed here, only the ones I know/suspect to be used for malicious activity -->
-        <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">PsList.exe</OriginalFileName><!--Note: Also for the pslist64.exe -->
-        <OriginalFileName name="technique_id=T1007,technique_name=System Service Discovery" condition="is">PsService.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1569.002,technique_name=Service Execution" condition="is">PsExec.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1569.002,technique_name=Service Execution" condition="is">PsExec.c</OriginalFileName><!--Note: in some versions named like this -->
-        <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsGetSID.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1089,technique_name=Disabling Security Tools" condition="is">PsKill.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1089,technique_name=Disabling Security Tools" condition="is">PKill.exe</OriginalFileName><!--Note: in some versions named like this -->
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">ProcDump</OriginalFileName><!--Note: in some versions naming differs -->
-        <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsLoggedOn.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">PsFile.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ShellRunas</OriginalFileName><!--Note: in some versions naming differs -->
-        <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">PipeList.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1083,technique_name=File and Directory Discovery" condition="is">AccessChk.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1083,technique_name=File and Directory Discovery" condition="is">AccessEnum.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">LogonSessions.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1005,technique_name=Data from Local System" condition="is">PsLogList.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">PsInfo.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1007,technique_name=System Service Discovery" condition="contains">LoadOrd</OriginalFileName><!--Note: in some versions naming differs -->
-        <OriginalFileName name="technique_id=T1098,technique_name=Account Manipulation" condition="is">PsPasswd.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="is">ru.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="contains">Regsize</OriginalFileName>
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">ProcDump</OriginalFileName><!--Note: in some versions naming differs -->
-        <CommandLine name="technique_id=T1003,technique_name=Credential Dumping"  condition="is">-ma lsass.exe</CommandLine>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1057,technique_name=Process Discovery" condition="is">PsList.exe</OriginalFileName><!--Note: Also for the pslist64.exe -->
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1007,technique_name=System Service Discovery" condition="is">PsService.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1569,technique_name=System Services,subtechnique_id=T1569.002,subtechnique_name=Service Execution" condition="is">PsExec.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1569,technique_name=System Services,subtechnique_id=T1569.002,subtechnique_name=Service Execution" condition="is">PsExec.c</OriginalFileName><!--Note: in some versions named like this -->
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsGetSID.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Impair Defenses,subtechnique_id=T1562.001,subtechnique_name=Disabling Security Tools" condition="is">PsKill.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Imapir Defenses,subtechnique_id=T1562.001,subtechnique_name=Disabling Security Tools" condition="is">PKill.exe</OriginalFileName><!--Note: in some versions named like this -->
+        <OriginalFileName name="tactic_id=TA0006,tactic_name=Credential Access,technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">ProcDump</OriginalFileName><!--Note: in some versions naming differs -->
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsLoggedOn.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0011,tactic_name=Command And Control,technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">PsFile.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0004,TA0005,tactic_name=Privilege Escalation,Defense Evasion,technique_id=T1548,technique_name=Abuse Elevation Control Mechanism,subtechnique_id=T1548.002,subtechnique_name=Bypass User Access Control" condition="contains">ShellRunas</OriginalFileName><!--Note: in some versions naming differs -->
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1057,technique_name=Process Discovery" condition="is">PipeList.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1083,technique_name=File and Directory Discovery" condition="is">AccessChk.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1083,technique_name=File and Directory Discovery" condition="is">AccessEnum.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">LogonSessions.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0009,tactic_name=Collection,technique_id=T1005,technique_name=Data from Local System" condition="is">PsLogList.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1057,technique_name=Process Discovery" condition="is">PsInfo.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1007,technique_name=System Service Discovery" condition="contains">LoadOrd</OriginalFileName><!--Note: in some versions naming differs -->
+        <OriginalFileName name="tactic_id=TA0003,tactic_name=Persistence,technique_id=T1098,technique_name=Account Manipulation" condition="is">PsPasswd.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1012,technique_name=Query Registry" condition="is">ru.exe</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1012,technique_name=Query Registry" condition="contains">Regsize</OriginalFileName>
+        <OriginalFileName name="tactic_id=TA0006,tactic_name=Credential Access,technique_id=T1003,technique_name=OS Credential Dumping" condition="is">ProcDump</OriginalFileName><!--Note: in some versions naming differs -->
+        <CommandLine name="tactic_id=TA0006,tactic_name=Credential Access,technique_id=T1003,technique_name=OS Credential Dumping"  condition="is">-ma lsass.exe</CommandLine>
       </ProcessCreate>
 </RuleGroup>
 </EventFiltering>
