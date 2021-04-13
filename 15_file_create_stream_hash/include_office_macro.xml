@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <FileCreateStreamHash onmatch="include">
+			<TargetFilename condition="end with">.doc</TargetFilename> <!--Office doc potentially with macros -->
+			<TargetFilename condition="end with">.ppt</TargetFilename> <!--Office doc potentially with macros-->
+			<TargetFilename condition="end with">.xls</TargetFilename> <!--Office doc potentially with macros -->
+		</FileCreateStreamHash>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
