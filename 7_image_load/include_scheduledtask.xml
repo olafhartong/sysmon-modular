@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
-        <ImageLoaded name="technique_id=T1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
+        <ImageLoaded name="tactic_id=TA0002,TA0003,TA0004,tactic_name=Execution, Persistence, Privilege Escalation,technique_id=T1053,technique_name=Scheduled Task/Job,subtechnique_id=T1053.005,subtechnique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
       </ImageLoad>
 </RuleGroup>
 </EventFiltering>
