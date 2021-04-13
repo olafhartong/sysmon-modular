@@ -39,25 +39,25 @@ if($null -eq $ModularConfigPath -and $null -eq $CompiledConfigPath){
     }
 }
 
-$latestMITRE = Read-Host "Would you like to load the latest MITRE ATTCK from GitHub? (Requires Internet Connectivity) (y or n)"
+$latestMITRE = Read-Host "Would you like to load the latest MITRE ATT&CK from GitHub? (Requires Internet Connectivity) (y or n)"
 if($latestMITRE -eq "y"){
     #Get latest copy of Mitre ATT&CK Framework
-    Write-Host "Getting latest MITRE ATTCK Framework!" -Foreground Green
+    Write-Host "Getting latest MITRE ATT&CK Framework!" -Foreground Green
     $mitreURL = "https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json"
     $mitre = Invoke-RestMethod $mitreURL
     if($mitre){
-        Write-Host "Latest MITRE ATTCK Framework loaded and ready for use!" -Foreground Blue
+        Write-Host "Latest MITRE ATT&CK Framework loaded and ready for use!" -Foreground Blue
     }else{
-        Write-Host "Could not download latest MITRE ATTCK Framework check your internet connection. Exiting."
+        Write-Host "Could not download latest MITRE ATT&CK Framework check your internet connection. Exiting."
         exit
     }
 }elseif($latestMITRE -eq "n"){
     $mitreLocalFile = Read-Host "Please enter the full path of the enterprise-attck.json file from MITRE's GitHub repo"
     $mitre = Get-Content $mitreLocalFile | ConvertFrom-Json
     if($mitre){
-        Write-Host "Local MITRE ATTCK Framework loaded and ready for use!" -Foreground Blue
+        Write-Host "Local MITRE ATT&CK Framework loaded and ready for use!" -Foreground Blue
     }else{
-        Write-Host "Could not load local MITRE ATTCK json. Exiting."
+        Write-Host "Could not load local MITRE ATT*CK json. Exiting."
         exit
     }
 }else{
@@ -466,7 +466,7 @@ if($CompiledConfigPath){
     #Load single xml file and pass the path name to the function to add the column for what file the TTP was found in.
     Write-Host "Using the file: $xmlFiles for analysis." -ForegroundColor Green
     $sysmon.load($CompiledConfigPath)
-    Write-Host "Extracting MITRE ATTCK Tactics, Techniques, and Subtechniques from your defined SysMon file!"
+    Write-Host "Extracting MITRE ATT&CK Tactics, Techniques, and Subtechniques from your defined SysMon file!"
     extractMitreTechniques $sysmon,$($xmlFiles.Name)
 }
 
@@ -495,7 +495,7 @@ if($ModularConfigPath){
             $arrayCounter++
         }
     }else{
-        Write-Host "No Sysmon config files starting with include_ have been found. Displaying MITRE ATTCK Windows Only." -ForegroundColor Yellow
+        Write-Host "No Sysmon config files starting with include_ have been found. Displaying MITRE ATT&CK Windows Only." -ForegroundColor Yellow
     }
 }
 
@@ -545,7 +545,7 @@ $global:sysmonEventToMitre | ForEach-Object {
 }
 
 #Validate MITRE ATT&CK found in Sysmon Config
-Write-Host "Checking to see if the MITRE ATTCK Tactic/Techniques exist in the Sysmon configuration you provided." -ForegroundColor Blue
+Write-Host "Checking to see if the MITRE ATT&CK Tactic/Techniques exist in the Sysmon configuration you provided." -ForegroundColor Blue
 $global:techniquesTable | ForEach-Object {
     if($_.technique_id -in $global:sysmonEventToMitre.technique_id){
         #Match Found
@@ -595,7 +595,13 @@ function exportForMatrix {
 
     $global:sysmonEventToMitre | Where-Object {$_.ValidMitreTechnique -eq "true"} | ForEach-Object {
         #Iterate through all tactics as each tactic must be in its own object when exporting to the attack tool for visualizing. Deuplicates may exist when rules are found to hit the same technique multiple times.
-        $splitTactics = $_.tactic_name.Split(", ")
+        if($_.tactic_name){
+            Write-Host "Tactic name found! Cleaning up and conforming to ATT&CK naming standard and adding to Attack Navigator file!"
+            $splitTactics = $_.tactic_name.Split(", ")
+        }else{
+            Write-Host "Tactic not found, this is likely because the Sysmon config does not contain that tactic name."
+        }
+        
         for ($i = 0; $i -lt $splitTactics.count; $i++) {
             $mitreAttckTemplateObject.techniques += New-Object -TypeName PSobject -Property @{
                 "techniqueID" = if($_.sub_technique_id){$_.sub_technique_id}else{$_.technique_id}; 
@@ -615,7 +621,7 @@ function exportForMatrix {
 
 }
 
-$exportForNavigater = Read-Host "Would you like to export all of the MITRE ATTCK mappings for the Attack Navigator? (y or n)"
+$exportForNavigater = Read-Host "Would you like to export all of the MITRE ATT&CK mappings for the Attack Navigator? (y or n)"
 if($exportForNavigater -eq "y"){
     #Get latest copy of Mitre ATT&CK Framework
     exportForMatrix
@@ -626,4 +632,4 @@ if($exportForNavigater -eq "y"){
 #Print out the results!
 Write-Host "Printing out tables on screen for analysis. Thanks for using this tool!" -ForegroundColor Green
 $global:sysmonEventToMitre | Out-GridView -Title "SysMon Events that map to MITRE"
-$global:techniquesTable | Out-GridView -Title "MITRE ATTCK Table with Tactics, Techniques, and Subtechniques"
+$global:techniquesTable | Out-GridView -Title "MITRE ATT&CK Table with Tactics, Techniques, and Subtechniques"
