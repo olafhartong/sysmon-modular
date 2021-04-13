@@ -2,26 +2,26 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
-			<Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users</Image> <!--Tools downloaded by users can use other processes for networking, but this is a very valuable indicator.-->
-			<Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\ProgramData</Image> <!--Normally, network communications should be sourced from "Program Files" not from ProgramData, something to look at-->
-			<Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Temp</Image> <!--Suspicious anything would communicate from the system-level temp directory-->
-			<Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Temp</Image> <!--Suspicious anything would communicate from the temp directory-->
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Intel\Logs\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Default\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Public\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\NetworkService\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Fonts\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Debug\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Media\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Help\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\addins\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\repair\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\security\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
-      <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
+			<Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users</Image> <!--Tools downloaded by users can use other processes for networking, but this is a very valuable indicator.-->
+			<Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\ProgramData</Image> <!--Normally, network communications should be sourced from "Program Files" not from ProgramData, something to look at-->
+			<Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Temp</Image> <!--Suspicious anything would communicate from the system-level temp directory-->
+			<Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Temp</Image> <!--Suspicious anything would communicate from the temp directory-->
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Intel\Logs\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Default\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Public\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\NetworkService\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Fonts\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Debug\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Media\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Help\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\addins\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\repair\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\security\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
 	  </NetworkConnect>
 </RuleGroup>
 </EventFiltering>
