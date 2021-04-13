@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include"><!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
-        <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
+        <Rule groupRelation="and" name="tactic_id=TA0005,TA0004,tactic_name=Defense Evasion, Privilege Escalation,technique_id=T1055,technique_name=Process Injection">
             <SourceImage condition="contains all">C:\Program Files;\Microsoft Office\Root\Office</SourceImage>
             <CallTrace condition="contains">\Microsoft Shared\VBA</CallTrace>
         </Rule>

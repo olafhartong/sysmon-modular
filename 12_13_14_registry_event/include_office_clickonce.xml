@@ -4,6 +4,8 @@
       <RegistryEvent onmatch="include">
 			<!--Microsoft:Office:ClickOnce-->
 			<TargetObject condition="end with">\UrlUpdateInfo</TargetObject> <!--Microsoft:Office:ClickOnce: [ https://subt0x10.blogspot.com/2016/12/mimikatz-delivery-via-clickonce-with.html ] -->
+			<TargetObject condition="end with">\InstallSource</TargetObject> <!--Windows: Source folder for certain program and component installations-->
+			<TargetObject name="Alert,Sysinternals Tool Used" condition="end with">\EulaAccepted</TargetObject> <!--Sysinternals tool launched. Lots of useful abilities for attackers -->
 		</RegistryEvent>
 </RuleGroup>
 </EventFiltering>

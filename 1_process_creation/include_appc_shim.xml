@@ -2,8 +2,10 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <OriginalFileName name="technique_id=T1546.011,technique_name=Application Shimming" condition="is">sdbinst.exe</OriginalFileName>
+          <OriginalFileName name="tactic_id=TA0003,TA0004,tactic_name=Privilege Escalation, Persistence,technique_id=T1546,technique_name=Event Triggered Execution,subtechnique_id=T1546.011,subtechnique_name=Application Shimming" condition="is">sdbinst.exe</OriginalFileName>
       </ProcessCreate>
 </RuleGroup>
 </EventFiltering>
 </Sysmon>
+
+

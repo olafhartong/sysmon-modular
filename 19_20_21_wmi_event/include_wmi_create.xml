@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <WmiEvent onmatch="include">
-	<Operation name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">Created</Operation>
+	<Operation name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">Created</Operation>
       </WmiEvent>
 </RuleGroup>
 </EventFiltering>

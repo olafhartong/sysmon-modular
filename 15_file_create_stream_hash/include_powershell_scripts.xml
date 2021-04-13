@@ -2,8 +2,8 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">
-			<TargetFilename name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">.ps1</TargetFilename> <!--Powershell-->
-			<TargetFilename name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">.ps2</TargetFilename> <!--Powershell-->
+			<TargetFilename name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1059,technique_name=Command and Scripting Interpreter,subtechnique_id=T1059.001,subtechnique_name=PowerShell" condition="end with">.ps1</TargetFilename> <!--Powershell-->
+			<TargetFilename name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1059,technique_name=Command and Scripting Interpreter,subtechnique_id=T1059.001,subtechnique_name=PowerShell" condition="end with">.ps2</TargetFilename> <!--Powershell-->
 		</FileCreateStreamHash>
 </RuleGroup>
 </EventFiltering>

@@ -3,10 +3,10 @@
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <Rule name="Eventviewer Bypass UAC" groupRelation="and">
-          <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">eventvwr.exe</ParentImage><!-- eventvwr.exe launching child process other than mmc.exe -->
+          <ParentImage name="tactic_id=TA0004,TA0005,tactic_name=Privilege Escalation, Defense Evasion,technique_id=T1548,technique_name=Abuse Elevation Control Mechanism,subtechnique_id=T1548.002,subtechnique_name=Bypass User Access Control" condition="image">eventvwr.exe</ParentImage><!-- eventvwr.exe launching child process other than mmc.exe -->
           <Image condition="is not">c:\windows\system32\mmc.exe</Image>
         </Rule>
-          <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">fodhelper.exe</ParentImage>
+          <ParentImage name="tactic_id=TA0004,TA0005,tactic_name=Privilege Escalation, Defense Evasion,technique_id=T1548,technique_name=Abuse Elevation Control Mechanism,subtechnique_id=T1548.002,subtechnique_name=Bypass User Access Control" condition="image">fodhelper.exe</ParentImage>
       </ProcessCreate>
 </RuleGroup>
 </EventFiltering>

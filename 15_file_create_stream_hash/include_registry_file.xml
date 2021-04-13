@@ -3,6 +3,7 @@
  <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">
 			<TargetFilename condition="end with">.reg</TargetFilename> <!--Registry File-->
+			<TargetFilename condition="end with">.jse</TargetFilename> <!--Registry File-->
 		</FileCreateStreamHash>
 </RuleGroup>
 </EventFiltering>

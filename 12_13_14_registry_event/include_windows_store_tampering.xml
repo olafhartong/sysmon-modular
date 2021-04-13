@@ -2,7 +2,7 @@
    <EventFiltering>
  	 <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-			<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject><!--https://lolbas-project.github.io/lolbas/Binaries/Wsreset/-->
+			<TargetObject name="tactic_id=TA0004,TA0005,tactic_name=Privilege Escalation, Defense Evasion,technique_id=T1548,technique_name=Abuse Elevation Control Mechanism,subtechnique_id=T1548.002,subtechnique_name=Bypass User Access Control" condition="begin with">HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject><!--https://lolbas-project.github.io/lolbas/Binaries/Wsreset/-->
 		</RegistryEvent>
 	 </RuleGroup>
 	</EventFiltering>

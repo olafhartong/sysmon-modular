@@ -2,8 +2,8 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">^</CommandLine><!-- https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/dosfuscation-report.pdf  -->
-          <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">../../</CommandLine><!--https://twitter.com/julianpentest/status/1270595517794451456-->
+          <CommandLine name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">ˆ</CommandLine><!-- https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/dosfuscation-report.pdf  -->
+          <CommandLine name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">../../</CommandLine><!--https://twitter.com/julianpentest/status/1270595517794451456-->
       </ProcessCreate>
 </RuleGroup>
 </EventFiltering>

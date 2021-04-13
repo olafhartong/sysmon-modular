@@ -3,6 +3,7 @@
  <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
           <Image condition="image">rundll32.exe</Image> <!-- Thanks to @c_APT-ure -->
+		  <Image condition="begin with">\Device\HarddiskVolumeShadowCopy</Image>
 		</FileCreate>
 </RuleGroup>
 </EventFiltering>

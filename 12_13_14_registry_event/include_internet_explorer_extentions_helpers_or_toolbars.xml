@@ -5,6 +5,10 @@
 			<TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject> <!--Microsoft:InternetExplorer: Machine and user-->
 			<TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject> <!--Microsoft:InternetExplorer: Machine and user-->
 			<TargetObject condition="contains">\Browser Helper Objects</TargetObject> <!--Microsoft:InternetExplorer: Machine and user [ https://msdn.microsoft.com/en-us/library/bb250436(v=vs.85).aspx ] -->
+			<TargetObject condition="end with">\DisableSecuritySettingsCheck</TargetObject>
+			<TargetObject condition="end with">\3\1206</TargetObject> <!--Microsoft:InternetExplorer: Malware sometimes assures scripting is on in Internet Zone [ https://support.microsoft.com/en-us/help/182569/internet-explorer-security-zones-registry-entries-for-advanced-users ] -->
+			<TargetObject condition="end with">\3\2500</TargetObject> <!--Microsoft:InternetExplorer: Malware sometimes disables Protected Mode in Internet Zone [ https://blog.avast.com/2013/08/12/your-documents-are-corrupted-from-image-to-an-information-stealing-trojan/ ] -->
+			<TargetObject condition="end with">\3\1809</TargetObject> <!--Microsoft:InternetExplorer: Malware sometimes disables Pop-up Blocker in Internet Zone [ https://support.microsoft.com/en-us/help/182569/internet-explorer-security-zones-registry-entries-for-advanced-users ] -->
 		</RegistryEvent>
 </RuleGroup>
 </EventFiltering>

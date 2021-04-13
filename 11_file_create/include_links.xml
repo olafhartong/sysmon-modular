@@ -2,8 +2,8 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.lnk</TargetFilename> 
-      <TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.scf</TargetFilename>
+			<TargetFilename name="tactic_id=TA0006,tactic_name=Credential Access,technique_id=T1187,technique_name=Forced Authentication" condition="end with">.lnk</TargetFilename> 
+      <TargetFilename name="tactic_id=TA0006,tactic_name=Credential Access,technique_id=T1187,technique_name=Forced Authentication" condition="end with">.scf</TargetFilename>
 		</FileCreate>
 </RuleGroup>
 </EventFiltering>

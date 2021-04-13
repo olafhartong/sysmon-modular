@@ -2,9 +2,9 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreateTime onmatch="include">
-	  	<Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Temp</Image><!--Look for timestomping in temp folders-->
-      <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Windows\Temp</Image>
-      <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Tmp</Image>
+	  	<Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1070,technique_name=Indicator Removal on Host,subtechnique_id=T1070.006,subtechnique_name=Timestomp" condition="begin with">C:\Temp</Image><!--Look for timestomping in temp folders-->
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1070,technique_name=Indicator Removal on Host,subtechnique_id=T1070.006,subtechnique_name=Timestomp" condition="begin with">C:\Windows\Temp</Image>
+      <Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1070,technique_name=Indicator Removal on Host,subtechnique_id=T1070.006,subtechnique_name=Timestomp" condition="begin with">C:\Tmp</Image>
 	  </FileCreateTime>
 </RuleGroup>
 </EventFiltering>

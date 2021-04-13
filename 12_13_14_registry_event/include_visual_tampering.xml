@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <RegistryEvent onmatch="include">
+			<TargetObject name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1564,technique_name=Hide Artifacts,subtechnique_id=T1564.001,subtechnique_name=Hidden Files and Directories" condition="end with">\Hidden</TargetObject> <!--Windows:Explorer: Some types of malware try to hide their hidden system files from the user, good signal event -->
+			<TargetObject name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1564,technique_name=Hide Artifacts,subtechnique_id=T1564.001,subtechnique_name=Hidden Files and Directories" condition="end with">\ShowSuperHidden</TargetObject> <!--Windows:Explorer: Some types of malware try to hide their hidden system files from the user, good signal event [ Example: https://www.symantec.com/security_response/writeup.jsp?docid=2007-061811-4341-99&tabid=2 ] -->
+			<TargetObject name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1564,technique_name=Hide Artifacts,subtechnique_id=T1564.001,subtechnique_name=Hidden Files and Directories" condition="end with">\HideFileExt</TargetObject> <!--Windows:Explorer: Some malware hides file extensions to make diagnosis/disinfection more daunting to novice users -->
+		</RegistryEvent>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
