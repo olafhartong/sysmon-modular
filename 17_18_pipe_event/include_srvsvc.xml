@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="include">
-          <PipeName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName><!--session enumeration-->
+          <PipeName name="tactic_id=TA0007,tactic_name=Discovery,technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName><!--session enumeration-->
       </PipeEvent>
 </RuleGroup>
 </EventFiltering>
