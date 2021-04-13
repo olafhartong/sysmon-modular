@@ -2,7 +2,9 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreateTime onmatch="include">
-	  	<Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Users</Image><!--Look for timestomping in user area-->
+	  	<Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1070,technique_name=Indicator Removal on Host,subtechnique_id=T1070.006,subtechnique_name=Timestomp" condition="begin with">C:\Users</Image><!--Look for timestomping in user area-->
+		<TargetFilename name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1070,technique_name=Indicator Removal on Host" condition="end with">.exe</TargetFilename> <!--Look for backdated executables anywhere-->
+		<Image name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1070,technique_name=Indicator Removal on Host" condition="begin with">\Device\HarddiskVolumeShadowCopy</Image> <!--Nothing should be written here | Credit: @SBousseaden [ https://twitter.com/SBousseaden/status/1133030955407630336 ] -->
 	  </FileCreateTime>
 </RuleGroup>
 </EventFiltering>
