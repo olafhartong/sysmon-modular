@@ -2,8 +2,8 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-			<TargetObject name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Impair Defenses,subtechnique_id=T1562.001,subtechnique_id=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
-      <TargetObject name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Impair Defenses,subtechnique_id=T1562.001,subtechnique_id=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
+			<TargetObject name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Impair Defenses,subtechnique_id=T1562.001,subtechnique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
+      <TargetObject name="tactic_id=TA0005,tactic_name=Defense Evasion,technique_id=T1562,technique_name=Impair Defenses,subtechnique_id=T1562.001,subtechnique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject><!--Mitre T1089--><!--Mitre T1054-->
 		</RegistryEvent>
 </RuleGroup>
 </EventFiltering>
