@@ -4,6 +4,7 @@
       <FileCreate onmatch="include">
 			<TargetFilename condition="begin with">C:\Windows\System32\Tasks</TargetFilename> <!--Mitre T1053--><!--Microsoft:ScheduledTasks-->
 			<TargetFilename condition="begin with">C:\Windows\Tasks\</TargetFilename> <!--Mitre T1053--><!--Microsoft:ScheduledTasks-->
+			<TargetFilename condition="end with">.job</TargetFilename> <!--Scheduled task-->
 		</FileCreate>
 </RuleGroup>
 </EventFiltering>

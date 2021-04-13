@@ -2,12 +2,12 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename name="technique_id=T1546.008,technique_name=Services File Permissions Weakness" condition="begin with">C:\Windows\Temp\</TargetFilename> 
-      <TargetFilename name="technique_id=T1546.008,technique_name=Services File Permissions Weakness" condition="begin with">C:\Program\</TargetFilename> 
-			<TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Temp\</TargetFilename> 
-			<TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\PerfLogs\</TargetFilename> 
-      <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Users\Public\</TargetFilename> 
-      <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="contains">\AppData\Temp\</TargetFilename>            
+			<TargetFilename name="tactic_id=TA0003,TA0004,TA0005,tactic_name=Persistence, Privilege Escalation, Defense Evasion,technique_id=T1574,technique_name=Hijack Execution Flow,subtechnique_id=T1574.010,subtechnique_name=Services File Permissions Weakness" condition="begin with">C:\Windows\Temp\</TargetFilename> 
+      <TargetFilename name="tactic_id=TA0003,TA0004,TA0005,tactic_name=Persistence, Privilege Escalation, Defense Evasion,technique_id=T1574,technique_name=Hijack Execution Flow,subtechnique_id=T1574.010,subtechnique_name=Services File Permissions Weakness" condition="begin with">C:\Program\</TargetFilename> 
+			<TargetFilename name="tactic_id=TA0003,TA0004,TA0005,tactic_name=Persistence, Privilege Escalation, Defense Evasion,technique_id=T1574,technique_name=Hijack Execution Flow,subtechnique_id=T1574.010,subtechnique_name=Services File Permissions Weakness" condition="begin with">C:\Temp\</TargetFilename> 
+			<TargetFilename name="tactic_id=TA0003,TA0004,TA0005,tactic_name=Persistence, Privilege Escalation, Defense Evasion,technique_id=T1574,technique_name=Hijack Execution Flow,subtechnique_id=T1574.010,subtechnique_name=Services File Permissions Weakness" condition="begin with">C:\PerfLogs\</TargetFilename> 
+      <TargetFilename name="tactic_id=TA0003,TA0004,TA0005,tactic_name=Persistence, Privilege Escalation, Defense Evasion,technique_id=T1574,technique_name=Hijack Execution Flow,subtechnique_id=T1574.010,subtechnique_name=Services File Permissions Weakness" condition="begin with">C:\Users\Public\</TargetFilename> 
+      <TargetFilename name="tactic_id=TA0003,TA0004,TA0005,tactic_name=Persistence, Privilege Escalation, Defense Evasion,technique_id=T1574,technique_name=Hijack Execution Flow,subtechnique_id=T1574.010,subtechnique_name=Services File Permissions Weakness" condition="contains">\AppData\Temp\</TargetFilename>            
 		</FileCreate>
 </RuleGroup>
 </EventFiltering>

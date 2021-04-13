@@ -2,7 +2,7 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename name="technique_id=T1064,technique_name=Scripting" condition="end with">.chm</TargetFilename><!--Scripting, thanks to Darkoperator-->
+			<TargetFilename name="tactic_id=TA0005,TA0002,tactic_name=Defense Evasion, Execution,technique_id=T1064,technique_name=Scripting" condition="end with">.chm</TargetFilename><!--Scripting, thanks to Darkoperator-->
 		</FileCreate>
 </RuleGroup>
 </EventFiltering>

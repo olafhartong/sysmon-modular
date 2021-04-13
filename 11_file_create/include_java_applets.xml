@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="include">
+			<TargetFilename condition="end with">.jar</TargetFilename> <!--Java applets-->
+			<TargetFilename condition="end with">.jnlp</TargetFilename> <!--Java applets-->
+			<TargetFilename condition="end with">.jse</TargetFilename> <!--Scripting [ Example: https://www.sophos.com/en-us/threat-center/threat-analyses/viruses-and-spyware/Mal~Phires-C/detailed-analysis.aspx ] -->
+		</FileCreate>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>

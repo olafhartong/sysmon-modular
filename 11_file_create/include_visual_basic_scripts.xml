@@ -2,9 +2,9 @@
    <EventFiltering>
  <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.vb</TargetFilename> <!--VisualBasicScripting files-->
-			<TargetFilename condition="end with">.vbe</TargetFilename> <!--VisualBasicScripting files-->
-			<TargetFilename condition="end with">.vbs</TargetFilename> <!--VisualBasicScripting files-->
+			<TargetFilename name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1059,technique_name=Command and Scripting Interpreter,subtechnique_id=T1059.005,subtechnique_name=Visual Basic" condition="end with">.vb</TargetFilename> <!--VisualBasicScripting files-->
+			<TargetFilename name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1059,technique_name=Command and Scripting Interpreter,subtechnique_id=T1059.005,subtechnique_name=Visual Basic" condition="end with">.vbe</TargetFilename> <!--VisualBasicScripting files-->
+			<TargetFilename name="tactic_id=TA0002,tactic_name=Execution,technique_id=T1059,technique_name=Command and Scripting Interpreter,subtechnique_id=T1059.005,subtechnique_name=Visual Basic" condition="end with">.vbs</TargetFilename> <!--VisualBasicScripting files-->
 		</FileCreate>
 </RuleGroup>
 </EventFiltering>
