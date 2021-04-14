@@ -241,6 +241,7 @@
         <Image name="technique_id=T1197,technique_name=BITS Jobs" condition="image">bitsadmin.exe</Image>
         <Image name="technique_id=T1021,technique_name=Remote Services" condition="image">omniinet.exe</Image>
         <Image name="technique_id=T1021,technique_name=Remote Services" condition="image">hpsmhd.exe</Image>
+        <Image name="technique_id=T1102,technique_name=Web Service" condition="begin with">C:\Program Files\Microsoft\HybridConnectionManager</Image>
         <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">ipconfig.exe</Image>
         <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">tasklist.exe</Image>
         <Image name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="image">netstat.exe</Image>
