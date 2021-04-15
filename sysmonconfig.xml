@@ -191,6 +191,30 @@
         <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="contains">Regsize</OriginalFileName>
         <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">ProcDump</OriginalFileName>
         <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="is">-ma lsass.exe</CommandLine>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vssadmin.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;shadow</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vssadmin.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">resize;shadowstorage</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">wmic.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;shadowcopy</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">wbadmin.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;catalog</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">bcdedit.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">recoveryenabled;no</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">bcdedit.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">bootstatuspolicy;ignoreallfailures</CommandLine>
+        </Rule>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Intel\Logs\</Image>
@@ -219,6 +243,7 @@
           <CommandLine name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains any">Add-MpPreference;RemoveDefinitions;DisableIOAVProtection</CommandLine>
         </Rule>
         <OriginalFileName name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">wsmprovhost.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">winrshost.exe</OriginalFileName>
         <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
       </ProcessCreate>
     </RuleGroup>
@@ -327,6 +352,7 @@
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">23</DestinationPort>
         <DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">25</DestinationPort>
+        <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">88</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">3389</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort>
@@ -387,6 +413,10 @@
     <RuleGroup name="" groupRelation="or">
       <!-- Event ID 7 == Image Loaded. -->
       <ImageLoad onmatch="include">
+        <Rule groupRelation="and">
+          <Image name="technique_id=T0137.005,technique_name=Boot or Logon Initialization Scripts - Startup Items" condition="end with">bginfo.exe</Image>
+          <ImageLoaded condition="contains any">System.ni.dll;System.Core.ni.dll;System.Management.Automation.ni.dll;wmiutils.dll</ImageLoaded>
+        </Rule>
         <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
         <ImageLoaded condition="end with">scrrun.dll</ImageLoaded>
         <ImageLoaded condition="end with">vbscript.dll</ImageLoaded>
@@ -440,6 +470,7 @@
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="end with">VBEUI.DLL</ImageLoaded>
         </Rule>
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
         <Rule groupRelation="and">
           <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <ImageLoaded condition="is">C:\Windows\SysWOW64\wbem\wbemdisp.dll</ImageLoaded>
@@ -1467,6 +1498,10 @@
       <NetworkConnect onmatch="exclude">
         <Image condition="end with">AppData\Roaming\Dropbox\bin\Dropbox.exe</Image>
         <Image condition="is">C:\Program Files\ESET\ESET Nod32 Antivirus\ekrn.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\lsass.exe</Image>
+          <DestinationPort condition="is">88</DestinationPort>
+        </Rule>
         <Image condition="image">OneDrive.exe</Image>
         <Image condition="image">OneDriveStandaloneUpdater.exe</Image>
         <Image condition="is">C:\Program Files\Palo Alto Networks\Traps\cyserver.exe</Image>
@@ -1488,6 +1523,14 @@
         <DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>
         <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
       </NetworkConnect>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <ImageLoad onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
+          <ImageLoaded condition="start with">C:\Windows\</ImageLoaded>
+        </Rule>
+      </ImageLoad>
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
