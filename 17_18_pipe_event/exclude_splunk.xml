@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
-          <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunkd.exe</Image>
-          <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk.exe</Image>
-          <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk-MonitorNoHandle.exe</Image>              
+        <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunkd.exe</Image>
+        <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk.exe</Image>
+        <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk-MonitorNoHandle.exe</Image>
       </PipeEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

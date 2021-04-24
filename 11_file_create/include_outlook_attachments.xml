@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename condition="contains">\Content.Outlook\</TargetFilename> <!--Microsoft:Outlook: attachments--> <!--PRIVACY WARNING-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="contains">\Content.Outlook\</TargetFilename>        <!--Microsoft:Outlook: attachments-->        <!--PRIVACY WARNING-->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

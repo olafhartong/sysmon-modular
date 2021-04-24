@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="exclude">
-			<Image condition="end with">AppData\Roaming\Dropbox\bin\Dropbox.exe</Image> <!--Dropbox-->
-	  </NetworkConnect>	
-</RuleGroup>
-</EventFiltering>
+        <Image condition="end with">AppData\Roaming\Dropbox\bin\Dropbox.exe</Image>        <!--Dropbox-->
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

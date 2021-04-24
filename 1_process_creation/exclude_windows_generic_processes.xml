@@ -1,24 +1,24 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessCreate onmatch="exclude">
-			<!--SECTION: Generic Microsoft Windows Processes-->
-			<CommandLine condition="begin with">C:\Windows\system32\DllHost.exe /Processid</CommandLine> <!--Microsoft:Windows-->
-			<CommandLine condition="is">C:\Windows\system32\SearchIndexer.exe /Embedding</CommandLine> <!--Microsoft:Windows: Search Indexer-->
-			<Image condition="end with">C:\Windows\System32\CompatTelRunner.exe</Image> <!--Microsoft:Windows:Customer Experience Improvement-->
-			<Image condition="is">C:\Windows\System32\MusNotification.exe</Image> <!--Microsoft:Windows: Update popups-->
-			<Image condition="is">C:\Windows\System32\MusNotificationUx.exe</Image> <!--Microsoft:Windows: Update popups-->
-			<Image condition="is">C:\Windows\System32\audiodg.exe</Image> <!--Microsoft:Windows: Launched constantly-->
-			<Image condition="is">C:\Windows\System32\conhost.exe</Image> <!--Microsoft:Windows: Command line interface host process-->
-			<Image condition="is">C:\Windows\System32\powercfg.exe</Image> <!--Microsoft:Power configuration management-->
-			<Image condition="is">C:\Windows\System32\wbem\WmiApSrv.exe</Image> <!--Microsoft:Windows: WMI performance adpater host process-->
-			<Image condition="is">C:\Windows\System32\wermgr.exe</Image> <!--Microsoft:Windows:Windows error reporting/telemetry-->
-			<Image condition="is">C:\Windows\SysWOW64\wermgr.exe</Image> <!--Microsoft:Windows:Windows error reporting/telemetry-->
-			<Image condition="is">C:\Windows\system32\sppsvc.exe</Image> <!--Microsoft:Windows: Software Protection Service-->
-			<IntegrityLevel condition="is">AppContainer</IntegrityLevel> <!--Microsoft:Windows: Don't care about sandboxed processes-->
-			<ParentCommandLine condition="begin with">%%SystemRoot%%\system32\csrss.exe ObjectDirectory=\Windows</ParentCommandLine> <!--Microsoft:Windows:CommandShell: Triggered when programs use the command shell, but without attribution-->
-			<ParentImage condition="is">C:\Windows\system32\SearchIndexer.exe</ParentImage> <!--Microsoft:Windows:Search: Launches many uninteresting sub-processes-->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<!--SECTION: Generic Microsoft Windows Processes-->
+				<CommandLine condition="begin with">C:\Windows\system32\DllHost.exe /Processid</CommandLine>				<!--Microsoft:Windows-->
+				<CommandLine condition="is">C:\Windows\system32\SearchIndexer.exe /Embedding</CommandLine>				<!--Microsoft:Windows: Search Indexer-->
+				<Image condition="end with">C:\Windows\System32\CompatTelRunner.exe</Image>				<!--Microsoft:Windows:Customer Experience Improvement-->
+				<Image condition="is">C:\Windows\System32\MusNotification.exe</Image>				<!--Microsoft:Windows: Update popups-->
+				<Image condition="is">C:\Windows\System32\MusNotificationUx.exe</Image>				<!--Microsoft:Windows: Update popups-->
+				<Image condition="is">C:\Windows\System32\audiodg.exe</Image>				<!--Microsoft:Windows: Launched constantly-->
+				<Image condition="is">C:\Windows\System32\conhost.exe</Image>				<!--Microsoft:Windows: Command line interface host process-->
+				<Image condition="is">C:\Windows\System32\powercfg.exe</Image>				<!--Microsoft:Power configuration management-->
+				<Image condition="is">C:\Windows\System32\wbem\WmiApSrv.exe</Image>				<!--Microsoft:Windows: WMI performance adpater host process-->
+				<Image condition="is">C:\Windows\System32\wermgr.exe</Image>				<!--Microsoft:Windows:Windows error reporting/telemetry-->
+				<Image condition="is">C:\Windows\SysWOW64\wermgr.exe</Image>				<!--Microsoft:Windows:Windows error reporting/telemetry-->
+				<Image condition="is">C:\Windows\system32\sppsvc.exe</Image>				<!--Microsoft:Windows: Software Protection Service-->
+				<IntegrityLevel condition="is">AppContainer</IntegrityLevel>				<!--Microsoft:Windows: Don't care about sandboxed processes-->
+				<ParentCommandLine condition="begin with">%%SystemRoot%%\system32\csrss.exe ObjectDirectory=\Windows</ParentCommandLine>				<!--Microsoft:Windows:CommandShell: Triggered when programs use the command shell, but without attribution-->
+				<ParentImage condition="is">C:\Windows\system32\SearchIndexer.exe</ParentImage>				<!--Microsoft:Windows:Search: Launches many uninteresting sub-processes-->
 			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessCreate onmatch="exclude">
-			<Image condition="begin with">C:\Program Files\NVIDIA Corporation\</Image> <!--Nvidia:Driver: routine actions-->
-			<Image condition="begin with">C:\Program Files\Realtek\</Image> <!--Realtek:Driver: routine actions-->
-			<ParentImage condition="end with">C:\Program Files\Realtek\Audio\HDA\RtkAudioService64.exe</ParentImage> <!--Realtek:Driver: routine actions-->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<Image condition="begin with">C:\Program Files\NVIDIA Corporation\</Image>				<!--Nvidia:Driver: routine actions-->
+				<Image condition="begin with">C:\Program Files\Realtek\</Image>				<!--Realtek:Driver: routine actions-->
+				<ParentImage condition="end with">C:\Program Files\Realtek\Audio\HDA\RtkAudioService64.exe</ParentImage>				<!--Realtek:Driver: routine actions-->
 			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

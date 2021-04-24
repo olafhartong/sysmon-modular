@@ -1,30 +1,30 @@
 <Sysmon schemaversion="4.30">
-   <!-- special thanks to @SwiftOnSecurity for this -->
-   <EventFiltering>
-      <RuleGroup name="" groupRelation="or">
-      <DnsQuery onmatch="exclude">
-			<QueryName condition="end with">-pushp.svc.ms</QueryName> <!--Microsoft: Doesn't appear to host customer content or subdomains-->
-			<QueryName condition="end with">.b-msedge.net</QueryName> <!--Microsoft: Doesn't appear to host customer content or subdomains-->
-			<QueryName condition="end with">.bing.com</QueryName> <!-- Microsoft | Microsoft default exclusion -->
-			<QueryName condition="end with">.hotmail.com</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.live.com</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.live.net</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.s-microsoft.com</QueryName> <!--Microsoft-->
-			<QueryName condition="end with">.microsoft.com</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.microsoftonline.com</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.microsoftstore.com</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.ms-acdc.office.com</QueryName> <!--Microsoft: Doesn't appear to host customer content or subdomains-->
-			<QueryName condition="end with">.msedge.net</QueryName> <!--Microsoft: Doesn't appear to host customer content or subdomains-->
-			<QueryName condition="end with">.msn.com</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.msocdn.com</QueryName> <!--Microsoft-->
-			<QueryName condition="end with">.skype.com</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.skype.net</QueryName> <!--Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.windows.com</QueryName> <!--Microsoft-->
-			<QueryName condition="end with">.windows.net.nsatc.net</QueryName> <!--Microsoft-->
-			<QueryName condition="end with">.windowsupdate.com</QueryName> <!--Microsoft-->
-			<QueryName condition="end with">.xboxlive.com</QueryName> <!--Microsoft-->
-			<QueryName condition="is">login.windows.net</QueryName> <!--Microsoft-->
-      </DnsQuery>
-</RuleGroup>
-</EventFiltering>
+	<!-- special thanks to @SwiftOnSecurity for this -->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DnsQuery onmatch="exclude">
+				<QueryName condition="end with">-pushp.svc.ms</QueryName>				<!--Microsoft: Doesn't appear to host customer content or subdomains-->
+				<QueryName condition="end with">.b-msedge.net</QueryName>				<!--Microsoft: Doesn't appear to host customer content or subdomains-->
+				<QueryName condition="end with">.bing.com</QueryName>				<!-- Microsoft | Microsoft default exclusion -->
+				<QueryName condition="end with">.hotmail.com</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.live.com</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.live.net</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.s-microsoft.com</QueryName>				<!--Microsoft-->
+				<QueryName condition="end with">.microsoft.com</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.microsoftonline.com</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.microsoftstore.com</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.ms-acdc.office.com</QueryName>				<!--Microsoft: Doesn't appear to host customer content or subdomains-->
+				<QueryName condition="end with">.msedge.net</QueryName>				<!--Microsoft: Doesn't appear to host customer content or subdomains-->
+				<QueryName condition="end with">.msn.com</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.msocdn.com</QueryName>				<!--Microsoft-->
+				<QueryName condition="end with">.skype.com</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.skype.net</QueryName>				<!--Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.windows.com</QueryName>				<!--Microsoft-->
+				<QueryName condition="end with">.windows.net.nsatc.net</QueryName>				<!--Microsoft-->
+				<QueryName condition="end with">.windowsupdate.com</QueryName>				<!--Microsoft-->
+				<QueryName condition="end with">.xboxlive.com</QueryName>				<!--Microsoft-->
+				<QueryName condition="is">login.windows.net</QueryName>				<!--Microsoft-->
+			</DnsQuery>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

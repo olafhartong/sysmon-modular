@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreateStreamHash onmatch="include">
-	  		<!--COMMENT:	Any files created with an NTFS Alternate Data Stream which match these rules will be hashed and logged.
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreateStreamHash onmatch="include">
+				<!--COMMENT:	Any files created with an NTFS Alternate Data Stream which match these rules will be hashed and logged.
 				[ https://blogs.technet.microsoft.com/askcore/2013/03/24/alternate-data-streams-in-ntfs/ ]
 				ADS's are used by browsers and email clients to mark files as originating from the Internet or other foreign sources.
 				[ https://textslashplain.com/2016/04/04/downloads-and-the-mark-of-the-web/ ] -->
-		</FileCreateStreamHash>
-</RuleGroup>
-</EventFiltering>
+			</FileCreateStreamHash>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

@@ -1,19 +1,19 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="include">
-			<!--Windows internals integrity monitoring-->
-			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject> <!--Microsoft:Windows: Malware likes changing IFEO-->
-			<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT</TargetObject> <!--Microsoft:Windows: Event log system integrity and ACLs-->
-			<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject> <!--Microsoft:Windows: Services approved to load in safe mode-->
-			<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Winlogon</TargetObject> <!--Microsoft:Windows: Providers notified by WinLogon-->
-			<TargetObject condition="end with">\FriendlyName</TargetObject> <!--Microsoft:Windows: New devices connected and remembered-->
-			<TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject> <!--Microsoft:Windows: See when WindowsInstaller is engaged-->
-			<Rule groupRelation="and">
-			 <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject> <!--Microsoft:Windows:UAC: Detect malware changes to UAC prompt level-->
-			 <Image condition="is not">C:\Windows\System32\svchost.exe</Image>
-			</Rule> 
-		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!--Windows internals integrity monitoring-->
+				<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>				<!--Microsoft:Windows: Malware likes changing IFEO-->
+				<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT</TargetObject>				<!--Microsoft:Windows: Event log system integrity and ACLs-->
+				<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject>				<!--Microsoft:Windows: Services approved to load in safe mode-->
+				<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Winlogon</TargetObject>				<!--Microsoft:Windows: Providers notified by WinLogon-->
+				<TargetObject condition="end with">\FriendlyName</TargetObject>				<!--Microsoft:Windows: New devices connected and remembered-->
+				<TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject>				<!--Microsoft:Windows: See when WindowsInstaller is engaged-->
+				<Rule groupRelation="and">
+					<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>					<!--Microsoft:Windows:UAC: Detect malware changes to UAC prompt level-->
+					<Image condition="is not">C:\Windows\System32\svchost.exe</Image>
+				</Rule>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

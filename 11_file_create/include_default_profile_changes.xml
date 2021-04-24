@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename condition="begin with">C:\Users\Default</TargetFilename> <!--Microsoft:Windows: Changes to default user profile-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="begin with">C:\Users\Default</TargetFilename>        <!--Microsoft:Windows: Changes to default user profile-->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

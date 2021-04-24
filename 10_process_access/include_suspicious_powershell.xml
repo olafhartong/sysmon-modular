@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include">
         <Rule groupRelation="and">
           <CallTrace name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">System.Management.Automation.ni.dll</CallTrace>
           <SourceImage condition="is not">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</SourceImage>
         </Rule>
       </ProcessAccess>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

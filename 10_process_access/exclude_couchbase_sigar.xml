@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessAccess onmatch="exclude">
-		<SourceImage condition="is">c:\Program Files\Couchbase\Server\bin\sigar_port.exe</SourceImage>
-      </ProcessAccess>
-</RuleGroup>
-</EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="exclude">
+            <SourceImage condition="is">c:\Program Files\Couchbase\Server\bin\sigar_port.exe</SourceImage>
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
 </Sysmon>

@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="include">
-			<TargetFilename name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="end with">.*proj</TargetFilename><!--Microsoft:MSBuild:Script More information: https://twitter.com/subTee/status/885919612969394177-->
-			<TargetFilename name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="end with">.sln</TargetFilename><!--Microsoft:MSBuild:Script More information: https://twitter.com/subTee/status/885919612969394177-->			
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="include">
+				<TargetFilename name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="end with">.*proj</TargetFilename>				<!--Microsoft:MSBuild:Script More information: https://twitter.com/subTee/status/885919612969394177-->
+				<TargetFilename name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="end with">.sln</TargetFilename>				<!--Microsoft:MSBuild:Script More information: https://twitter.com/subTee/status/885919612969394177-->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

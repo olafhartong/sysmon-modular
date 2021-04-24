@@ -1,17 +1,17 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <NetworkConnect onmatch="exclude">
-			<!--SECTION: Microsoft-->
-			<DestinationHostname condition="end with">.windowsupdate.microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">.windowsupdate.com</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">wustat.windows.com</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">go.microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">.update.microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">download.microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname> <!--Microsoft:Update delivery-->
-			<DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname> <!--Microsoft:Update delivery-->
-	  </NetworkConnect>	
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<NetworkConnect onmatch="exclude">
+				<!--SECTION: Microsoft-->
+				<DestinationHostname condition="end with">.windowsupdate.microsoft.com</DestinationHostname>				<!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">.windowsupdate.com</DestinationHostname>				<!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">wustat.windows.com</DestinationHostname>				<!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">go.microsoft.com</DestinationHostname>				<!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">.update.microsoft.com</DestinationHostname>				<!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">download.microsoft.com</DestinationHostname>				<!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>				<!--Microsoft:Update delivery-->
+				<DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>				<!--Microsoft:Update delivery-->
+			</NetworkConnect>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

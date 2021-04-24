@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessAccess onmatch="exclude">
-		<SourceImage condition="is">C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe</SourceImage>
-      </ProcessAccess>
-</RuleGroup>
-</EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="exclude">
+            <SourceImage condition="is">C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe</SourceImage>
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
 </Sysmon>

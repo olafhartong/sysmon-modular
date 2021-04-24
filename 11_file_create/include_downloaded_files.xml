@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename condition="contains">\Downloads\</TargetFilename> <!--Downloaded files. Does not include "Run" files in IE--> <!--PRIVACY WARNING-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="contains">\Downloads\</TargetFilename>        <!--Downloaded files. Does not include "Run" files in IE-->        <!--PRIVACY WARNING-->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

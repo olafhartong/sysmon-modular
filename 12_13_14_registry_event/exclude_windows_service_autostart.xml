@@ -1,18 +1,18 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="exclude">
-			<!--Sevices autostart-->
-			<TargetObject condition="end with">\services\clr_optimization_v2.0.50727_32\Start</TargetObject> <!--Microsoft:dotNet: Windows 7-->
-			<TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject> <!--Microsoft:dotNet: Windows 7-->
-			<TargetObject condition="end with">\services\clr_optimization_v4.0.30319_32\Start</TargetObject> <!--Microsoft:dotNet: Windows 10-->
-			<TargetObject condition="end with">\services\clr_optimization_v4.0.30319_64\Start</TargetObject> <!--Microsoft:dotNet: Windows 10-->
-			<TargetObject condition="end with">\services\DeviceAssociationService\Start</TargetObject> <!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
-			<TargetObject condition="end with">\services\BITS\Start</TargetObject> <!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
-			<TargetObject condition="end with">\services\TrustedInstaller\Start</TargetObject> <!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
-			<TargetObject condition="end with">\services\tunnel\Start</TargetObject> <!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
-			<TargetObject condition="end with">\services\UsoSvc\Start</TargetObject> <!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
-		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!--Sevices autostart-->
+				<TargetObject condition="end with">\services\clr_optimization_v2.0.50727_32\Start</TargetObject>				<!--Microsoft:dotNet: Windows 7-->
+				<TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject>				<!--Microsoft:dotNet: Windows 7-->
+				<TargetObject condition="end with">\services\clr_optimization_v4.0.30319_32\Start</TargetObject>				<!--Microsoft:dotNet: Windows 10-->
+				<TargetObject condition="end with">\services\clr_optimization_v4.0.30319_64\Start</TargetObject>				<!--Microsoft:dotNet: Windows 10-->
+				<TargetObject condition="end with">\services\DeviceAssociationService\Start</TargetObject>				<!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
+				<TargetObject condition="end with">\services\BITS\Start</TargetObject>				<!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
+				<TargetObject condition="end with">\services\TrustedInstaller\Start</TargetObject>				<!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
+				<TargetObject condition="end with">\services\tunnel\Start</TargetObject>				<!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
+				<TargetObject condition="end with">\services\UsoSvc\Start</TargetObject>				<!--Microsoft:Windows: Remove noise from monitoring "\Start"-->
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

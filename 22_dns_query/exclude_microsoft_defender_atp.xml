@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
    <EventFiltering>
-    <RuleGroup name="" groupRelation="or">
-      <DnsQuery onmatch="exclude">
-		<Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe</Image><!--Generates a lot of redundant queries to the originial requestor-->
-      </DnsQuery>
-	</RuleGroup>
-</EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <DnsQuery onmatch="exclude">
+            <Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe</Image>            <!--Generates a lot of redundant queries to the originial requestor-->
+         </DnsQuery>
+      </RuleGroup>
+   </EventFiltering>
 </Sysmon>

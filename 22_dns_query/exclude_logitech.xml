@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
+  <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <DnsQuery onmatch="exclude">
         <Rule groupRelation="and">
-		   <Image condition="is">C:\ProgramData\LogiShrd\LogiOptions\Software\Current\updater.exe</Image>
-         <QueryName condition="end with">.logitech.com</QueryName>
-        </Rule> 
+          <Image condition="is">C:\ProgramData\LogiShrd\LogiOptions\Software\Current\updater.exe</Image>
+          <QueryName condition="end with">.logitech.com</QueryName>
+        </Rule>
       </DnsQuery>
-	</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

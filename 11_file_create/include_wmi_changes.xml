@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Windows\System32\Wbem</TargetFilename> <!--Microsoft:WMI: [ More information: http://2014.hackitoergosum.org/slides/day1_WMI_Shell_Andrei_Dumitrescu.pdf ] -->
-			<TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Windows\SysWOW64\Wbem</TargetFilename> <!--Microsoft:WMI: [ More information: http://2014.hackitoergosum.org/slides/day1_WMI_Shell_Andrei_Dumitrescu.pdf ] -->
-      <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image> <!-- https://www.eideon.com/2018-03-02-THL03-WMIBackdoors/ -->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Windows\System32\Wbem</TargetFilename>        <!--Microsoft:WMI: [ More information: http://2014.hackitoergosum.org/slides/day1_WMI_Shell_Andrei_Dumitrescu.pdf ] -->
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Windows\SysWOW64\Wbem</TargetFilename>        <!--Microsoft:WMI: [ More information: http://2014.hackitoergosum.org/slides/day1_WMI_Shell_Andrei_Dumitrescu.pdf ] -->
+        <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>        <!-- https://www.eideon.com/2018-03-02-THL03-WMIBackdoors/ -->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

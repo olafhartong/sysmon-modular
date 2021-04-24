@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
         <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
-  			<TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
-  		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+        <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

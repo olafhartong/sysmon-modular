@@ -1,14 +1,14 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessCreate onmatch="exclude">
- 			<Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image> <!--Splunk:UniversalForwarder child processes-->
- 			<ParentImage condition="is">C:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe</ParentImage> <!--Splunk:UniversalForwarder:Daemon-->
-      <ParentImage condition="is">C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe</ParentImage> <!--Splunk:UniversalForwarder:Launcher-->
- 			<Image condition="begin with">D:\Program Files\SplunkUniversalForwarder\bin\</Image> <!--Splunk:UniversalForwarder child processes-->
- 			<ParentImage condition="is">D:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe</ParentImage> <!--Splunk:UniversalForwarder:Daemon-->
-      <ParentImage condition="is">D:\Program Files\SplunkUniversalForwarder\bin\splunk.exe</ParentImage> <!--Splunk:UniversalForwarder:Launcher-->	      
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>				<!--Splunk:UniversalForwarder child processes-->
+				<ParentImage condition="is">C:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe</ParentImage>				<!--Splunk:UniversalForwarder:Daemon-->
+				<ParentImage condition="is">C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe</ParentImage>				<!--Splunk:UniversalForwarder:Launcher-->
+				<Image condition="begin with">D:\Program Files\SplunkUniversalForwarder\bin\</Image>				<!--Splunk:UniversalForwarder child processes-->
+				<ParentImage condition="is">D:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe</ParentImage>				<!--Splunk:UniversalForwarder:Daemon-->
+				<ParentImage condition="is">D:\Program Files\SplunkUniversalForwarder\bin\splunk.exe</ParentImage>				<!--Splunk:UniversalForwarder:Launcher-->
 			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

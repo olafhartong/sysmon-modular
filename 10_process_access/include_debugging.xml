@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include">
-      	<CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
-      	<CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
+        <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
+        <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
       </ProcessAccess>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

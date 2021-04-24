@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.settingcontent-ms</TargetFilename> <!--Microsoft:Windows:SettingContent-MS (https://posts.specterops.io/the-tale-of-settingcontent-ms-files-f1ea253e4d39)-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="end with">.settingcontent-ms</TargetFilename>        <!--Microsoft:Windows:SettingContent-MS (https://posts.specterops.io/the-tale-of-settingcontent-ms-files-f1ea253e4d39)-->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

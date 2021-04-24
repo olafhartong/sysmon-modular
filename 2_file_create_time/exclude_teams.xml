@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreateTime onmatch="exclude">
-			<Image condition="end with">AppData\Local\Microsoft\Teams\current\Teams.exe</Image> <!--Teams constantly changes files-->      
-	  </FileCreateTime>
-</RuleGroup>
-</EventFiltering>
+        <Image condition="end with">AppData\Local\Microsoft\Teams\current\Teams.exe</Image>        <!--Teams constantly changes files-->
+      </FileCreateTime>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

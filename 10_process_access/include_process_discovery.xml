@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include">
-          <!--<GrantedAccess name="technique_id=T1057,technique_name=Process Discovery">0x1410</GrantedAccess>  Disabled, quite noisy --><!--Experimental: when a process accesses a lot of other processes this is process discovery through meterpreter for example-->   
+        <!--<GrantedAccess name="technique_id=T1057,technique_name=Process Discovery">0x1410</GrantedAccess>  Disabled, quite noisy -->        <!--Experimental: when a process accesses a lot of other processes this is process discovery through meterpreter for example-->
       </ProcessAccess>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

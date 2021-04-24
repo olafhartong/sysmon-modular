@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="include">
-          <PipeName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName><!--session enumeration-->
+        <PipeName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName>        <!--session enumeration-->
       </PipeEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

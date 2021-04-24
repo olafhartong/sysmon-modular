@@ -1,14 +1,14 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessCreate onmatch="exclude">
- 			<Image condition="begin with">C:\Program Files\Splunk\bin\</Image> <!--Splunk child processes-->
- 			<ParentImage condition="is">C:\Program Files\Splunk\bin\splunkd.exe</ParentImage> <!--Splunk:Daemon-->
-			<ParentImage condition="is">C:\Program Files\Splunk\bin\splunk.exe</ParentImage> <!--Splunk:Daemon-->
- 			<Image condition="begin with">D:\Program Files\Splunk\bin\</Image> <!--Splunk child processes-->
- 			<ParentImage condition="is">D:\Program Files\Splunk\bin\splunkd.exe</ParentImage> <!--Splunk:Daemon-->
-			<ParentImage condition="is">D:\Program Files\Splunk\bin\splunk.exe</ParentImage> <!--Splunk:Daemon-->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				<Image condition="begin with">C:\Program Files\Splunk\bin\</Image>				<!--Splunk child processes-->
+				<ParentImage condition="is">C:\Program Files\Splunk\bin\splunkd.exe</ParentImage>				<!--Splunk:Daemon-->
+				<ParentImage condition="is">C:\Program Files\Splunk\bin\splunk.exe</ParentImage>				<!--Splunk:Daemon-->
+				<Image condition="begin with">D:\Program Files\Splunk\bin\</Image>				<!--Splunk child processes-->
+				<ParentImage condition="is">D:\Program Files\Splunk\bin\splunkd.exe</ParentImage>				<!--Splunk:Daemon-->
+				<ParentImage condition="is">D:\Program Files\Splunk\bin\splunk.exe</ParentImage>				<!--Splunk:Daemon-->
 			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

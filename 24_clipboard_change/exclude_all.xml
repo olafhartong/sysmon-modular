@@ -4,5 +4,5 @@
          <ClipboardChange onmatch="include">
          </ClipboardChange>
       </RuleGroup>
-</EventFiltering>
+   </EventFiltering>
 </Sysmon>

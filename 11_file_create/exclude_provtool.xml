@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="exclude">
-			<!--SECTION: Microsoft:Windows-->
-			<Image condition="is">c:\windows\system32\provtool.exe</Image> <!-- Microsoft:Windows:Provisioning package runtime processing tool -->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!--SECTION: Microsoft:Windows-->
+				<Image condition="is">c:\windows\system32\provtool.exe</Image>				<!-- Microsoft:Windows:Provisioning package runtime processing tool -->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

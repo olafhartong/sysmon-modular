@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="include">
-        <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexec.exe</Image> <!--Sysinternals:PsExec client side | Credit @Cyb3rOps -->
-  			<Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexesvc.exe</Image> <!--Sysinternals:PsExec server side | Credit @Cyb3rOps -->
-  	  </NetworkConnect>
-</RuleGroup>
-</EventFiltering>
+        <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexec.exe</Image>        <!--Sysinternals:PsExec client side | Credit @Cyb3rOps -->
+        <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexesvc.exe</Image>        <!--Sysinternals:PsExec server side | Credit @Cyb3rOps -->
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

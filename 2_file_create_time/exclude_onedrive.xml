@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreateTime onmatch="exclude">
-			<Image condition="image">OneDrive.exe</Image> <!--OneDrive constantly changes file times-->
-	  </FileCreateTime>
-</RuleGroup>
-</EventFiltering>
+        <Image condition="image">OneDrive.exe</Image>        <!--OneDrive constantly changes file times-->
+      </FileCreateTime>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

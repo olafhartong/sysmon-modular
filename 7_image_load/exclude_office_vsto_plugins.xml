@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
+  <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="exclude">
-       <Rule groupRelation="and">
-        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
-        <ImageLoaded condition="begin with">C:\Windows\</ImageLoaded> 
-       </Rule>
+        <Rule groupRelation="and">
+          <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
+          <ImageLoaded condition="begin with">C:\Windows\</ImageLoaded>
+        </Rule>
       </ImageLoad>
     </RuleGroup>
   </EventFiltering>

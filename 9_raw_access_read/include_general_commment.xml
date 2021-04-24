@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RawAccessRead onmatch="include">
-	  		<!--COMMENT:	Monitor for raw sector-level access to the disk, often used to bypass access control lists or access locked files.
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RawAccessRead onmatch="include">
+				<!--COMMENT:	Monitor for raw sector-level access to the disk, often used to bypass access control lists or access locked files.
 				Disabled by default since including even one entry here activates this component. Reward/performance/rule maintenance decision.
 				Encourage you to experiment with this feature yourself.-->
-		<!--COMMENT:	You will likely want to set this to a full capture on domain controllers, where no process should be doing raw reads.-->
-		</RawAccessRead>
-</RuleGroup>
-</EventFiltering>
+				<!--COMMENT:	You will likely want to set this to a full capture on domain controllers, where no process should be doing raw reads.-->
+			</RawAccessRead>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

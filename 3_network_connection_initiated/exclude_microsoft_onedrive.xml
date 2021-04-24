@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <NetworkConnect onmatch="exclude">
-			<Image condition="image">OneDrive.exe</Image> <!--Microsoft:OneDrive-->
-			<Image condition="image">OneDriveStandaloneUpdater.exe</Image> <!--Microsoft:OneDrive-->
-	  </NetworkConnect>	
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<NetworkConnect onmatch="exclude">
+				<Image condition="image">OneDrive.exe</Image>				<!--Microsoft:OneDrive-->
+				<Image condition="image">OneDriveStandaloneUpdater.exe</Image>				<!--Microsoft:OneDrive-->
+			</NetworkConnect>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

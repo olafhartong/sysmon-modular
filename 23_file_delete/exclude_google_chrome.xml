@@ -2,9 +2,9 @@
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
          <FileDelete onmatch="exclude">
-         <Image condition="contains all">\appdata\local\google\chrome\user data\swreporter\;software_reporter_tool.exe</Image>
-         <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
+            <Image condition="contains all">\appdata\local\google\chrome\user data\swreporter\;software_reporter_tool.exe</Image>
+            <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
          </FileDelete>
       </RuleGroup>
-</EventFiltering>
+   </EventFiltering>
 </Sysmon>
