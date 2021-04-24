@@ -12,7 +12,7 @@
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
             <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded condition="end with">clr.dll</ImageLoaded>
+            <OriginalFileName condition="is">clr.dll</OriginalFileName>
         </Rule>      
       </ImageLoad>
 </RuleGroup>
