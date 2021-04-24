@@ -16,6 +16,11 @@
 				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\repair\</ImageLoaded>
 				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\security\</ImageLoaded>
 				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\Fonts\</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Downloads</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Public</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Documents</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Music</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Video</ImageLoaded>
 				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">file:</ImageLoaded>
 				<ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains">$Recycle.bin\</ImageLoaded>
 				<ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains">\Windows\IME\</ImageLoaded>

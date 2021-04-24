@@ -1,0 +1,21 @@
+<Sysmon schemaversion="4.40">
+    <EventFiltering>
+        <RuleGroup name="" groupRelation="or">
+            <ProcessCreate onmatch="include">
+                <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">FromBase64</CommandLine>
+            </ProcessCreate>
+            <ProcessCreate onmatch="include">
+                <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">gzip</CommandLine>
+            </ProcessCreate>
+            <ProcessCreate onmatch="include">
+                <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">decompress</CommandLine>
+            </ProcessCreate>
+            <ProcessCreate onmatch="include">
+                <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">http</CommandLine>
+            </ProcessCreate>
+            <ProcessCreate onmatch="include">
+                <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">replace</CommandLine> <!--Kill Unicorns-->
+            </ProcessCreate>
+        </RuleGroup>
+    </EventFiltering>
+</Sysmon>

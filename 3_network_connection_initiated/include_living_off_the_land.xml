@@ -1,0 +1,56 @@
+<Sysmon schemaversion="4.40">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <NetworkConnect onmatch="include">
+        <!--Native Windows tools - Living off the land-->
+        <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">ipconfig.exe</Image> <!--Microsoft:Windows: shows ip configuration -->
+        <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">tasklist.exe</Image> <!--Mitre T1057--> <!--Mitre T1007--> <!--Microsoft:Windows: shows current running processes-->
+        <Image name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="image">netstat.exe</Image> <!--Mitre T1016--> <!--Mitre T1049--> <!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
+        <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">qprocess.exe</Image> <!--Microsoft:Windows: shows information about processes -->
+        <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">nslookup.exe</Image> <!--Microsoft:Windows: shows DNS configuration and enables quering -->
+        <Image name="technique_id=T1018,technique_name=Remote System Discovery" condition="image">net.exe</Image> <!--Mitre T1201--> <!--Mitre T1007--> <!--Mitre T1124--> <!--Mitre T1018--> <!--Mitre T1049--> <!--Mitre T1087--> <!--Mitre T1135--> <!--Mitre T1069--> <!--Mitre T1016--> <!--Mitre T1021.002--> <!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
+        <Image name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="image">quser.exe</Image> <!--Microsoft:Windows: shows logged-on users -->
+        <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">query.exe</Image> <!--Microsoft:Windows: shows information about processes -->
+        <Image name="technique_id=T1134,technique_name=Access Token Manipulation" condition="image">runas.exe</Image> <!--Microsoft:Windows: run a process as another user -->
+        <Image name="technique_id=T1112,technique_name=Modify Registry" condition="image">reg.exe</Image> <!--Mitre T1552.002--> <!--Mitre T1012--> <!--Mitre T1112--> <!--Microsoft:Windows: reads and modifies the Windows register -->
+        <Image name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="image">netsh.exe</Image> <!--Mitre T1016--> <!--Mitre T1546.007--> <!--Mitre T1518.001--> <!--Microsoft:Windows: manipulate the firewall -->
+        <Image condition="image">klist.exe</Image> <!--Microsoft:Windows: show cached kerberos tickets -->
+        <Image name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="image">wevtutil.exe</Image> <!--Microsoft:Windows: read and modify the Windows Eventlog -->
+        <Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="image">taskeng.exe</Image> <!--Microsoft:Windows: taskscheduler -->
+        <Image name="technique_id=T1218.010,technique_name=Regsvr32" condition="image">regsvr32.exe</Image> <!--Mitre T1218.010--> <!--Mitre T1218.011--> <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
+        <Image condition="image">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
+        <Image name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="image">cmd.exe</Image> <!--Microsoft:Windows: Command prompt-->
+        <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</Image> <!--Microsoft:Windows: PowerShell interface-->
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">bash.exe</Image> <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image> <!--Microsoft:Windows: Program Compatibility Assistant)-->
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">cscript.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">wscript.exe</Image>
+        <Image name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</Image>
+        <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">nbtstat.exe</Image> <!--Microsoft:Windows: NetBIOS statistics, attackers use to enumerate local network -->
+        <Image name="technique_id=T1069,technique_name=Permission Groups Discovery" condition="image">net1.exe</Image> <!--Mitre T1018--> <!--Mitre T1021.002--> <!--Mitre T1087--> <!--Mitre T1135--> <!--Mitre T1069--> <!--Mitre T1016--> <!--Microsoft:Windows: Launched by "net.exe", but it may not detect connections either -->
+        <Image name="technique_id=T1018,technique_name=Remote System Discovery" condition="image">nslookup.exe</Image> <!--Microsoft:Windows: Retrieve data over DNS -->
+        <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">qwinsta.exe</Image> <!--Microsoft:Windows: Remotely query login sessions on a server or workstation | Credit @ion-storm -->
+        <Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">rwinsta.exe</Image> <!--Microsoft:Windows: Disconnect remote sessions | Credit @ion-storm -->
+        <Image condition="image">schtasks.exe</Image> <!--Microsoft:Windows: Command and Scripting Interpreter to local and remote tasks -->
+        <Image condition="image">taskkill.exe</Image> <!--Microsoft:Windows: Kill processes, has remote ability -->
+        <Image name="technique_id=T1543.003,technique_name=Windows Service" condition="image">sc.exe</Image>
+        <Image name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="image">nltest.exe</Image> <!-- netlogon testing utility-->
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">winrs.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">dfsvc.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Dfsvc/-->
+        <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">dnscmd.exe</Image> <!--Service Execution-->
+        <Image name="technique_id=T1096,technique_name=NTFS File Attributes" condition="image">esentutl.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Esentutl/ Multiple options-->
+        <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">expand.exe</Image>
+        <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">extrac32.exe</Image>
+        <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">IEExec.exe</Image>
+        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">Msdt.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Msdt/-->
+        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">msiexec.exe</Image>
+        <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">Print.Exe</Image>
+        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">RegisterCimProvider.exe</Image>
+        <Image name="technique_id=T1003,technique_name=Credential Dumping" condition="image">RpcPing.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Rpcping/-->
+        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">ScriptRunner.exe</Image>
+        <Image name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">xwizard.exe</Image> <!--https://bohops.com/2018/08/18/abusing-the-com-registry-structure-part-2-loading-techniques-for-evasion-and-persistence/ -->
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">desktopimgdownldr.exe</Image> <!--https://labs.sentinelone.com/living-off-windows-land-a-new-native-file-downldr/-->
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
