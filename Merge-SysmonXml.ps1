@@ -239,11 +239,15 @@ function Merge-SysmonXml
         ProcessTampering = [ordered]@{
             include = @()
             exclude = @()
-        }                        
+        } 
+        FileDeleteDetected = [ordered]@{
+            include = @()
+            exclude = @()
+        }                                
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.50">
+<Sysmon schemaversion="4.60">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
@@ -313,7 +317,7 @@ function Merge-SysmonXml
         <DnsQuery onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 23 == File Delete and overwrite events-->
+        <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir-->
         <FileDelete onmatch="include"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
@@ -324,7 +328,11 @@ function Merge-SysmonXml
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 25 == Process tampering events -->
         <ProcessTampering onmatch="exclude"/>
-    </RuleGroup>                
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 26 == File Delete and overwrite events, does NOT save the file-->
+        <FileDeleteDetected onmatch="include"/>
+    </RuleGroup>                    
 </EventFiltering>
 </Sysmon>
 '@
