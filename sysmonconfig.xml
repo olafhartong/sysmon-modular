@@ -418,26 +418,26 @@
           <ImageLoaded condition="contains any">System.ni.dll;System.Core.ni.dll;System.Management.Automation.ni.dll;wmiutils.dll</ImageLoaded>
         </Rule>
         <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
-        <ImageLoaded condition="end with">scrrun.dll</ImageLoaded>
-        <ImageLoaded condition="end with">vbscript.dll</ImageLoaded>
+        <OriginalFileName condition="is">scrrun.dll</OriginalFileName>
+        <OriginalFileName condition="is">vbscript.dll</OriginalFileName>
         <Rule groupRelation="and">
-          <ImageLoaded name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="end with">jscript9.dll</ImageLoaded>
-          <ImageLoaded name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="end with">jscript.dll</ImageLoaded>
+          <OriginalFileName name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="is">jscript9.dll</OriginalFileName>
+          <OriginalFileName name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="is">jscript.dll</OriginalFileName>
           <Image condition="end with">mshta.exe</Image>
         </Rule>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.wll</ImageLoaded>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.xll</ImageLoaded>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\combase.dll</ImageLoaded>
+          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">combase.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\coml2.dll</ImageLoaded>
+          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">coml2.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\comsvcs.dll</ImageLoaded>
+          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">comsvcs.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
@@ -449,19 +449,19 @@
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded condition="end with">clr.dll</ImageLoaded>
+          <OriginalFileName condition="is">clr.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded condition="end with">VBE7INTL.DLL</ImageLoaded>
+          <OriginalFileName condition="is">VBE7INTL.DLL</OriginalFileName>
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded condition="end with">VBE7.DLL</ImageLoaded>
+          <OriginalFileName condition="is">VBE7.DLL</OriginalFileName>
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <ImageLoaded condition="end with">VBEUI.DLL</ImageLoaded>
+          <OriginalFileName condition="is">VBEUI.DLL</OriginalFileName>
         </Rule>
         <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
         <Rule groupRelation="and">
@@ -475,8 +475,12 @@
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Commands.Utility.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.ConsoleHost.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Security.dll</ImageLoaded>
-        <ImageLoaded name="technique_id=T1112,technique_name=Modify Registry" condition="end with">regsvc.dll</ImageLoaded>
-        <ImageLoaded name="technique_id=T1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
+        <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">regsvc.dll</OriginalFileName>
+        <Rule groupRelation="and">
+          <Image condition="end">rundll32.exe</Image>
+          <OriginalFileName name="technique_id=T1003.004,technique_name=LSASS Memory" condition="is">comsvcs.dll</OriginalFileName>
+        </Rule>
+        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task" condition="is">taskschd.dll</OriginalFileName>
         <ImageLoaded name="technique_id=T1218.010,technique_name=Regsvr32" condition="end with">scrobj.dll</ImageLoaded>
         <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">scrobj.dll</OriginalFileName>
         <ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains any">admin$;c$;\\;\appdata\;\temp\</ImageLoaded>
