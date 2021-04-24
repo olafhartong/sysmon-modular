@@ -422,6 +422,7 @@
         <ImageLoaded condition="end with">vbscript.dll</ImageLoaded>
         <Rule groupRelation="and">
           <ImageLoaded name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="end with">jscript9.dll</ImageLoaded>
+          <ImageLoaded name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="end with">jscript.dll</ImageLoaded>
           <Image condition="end with">mshta.exe</Image>
         </Rule>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.wll</ImageLoaded>
