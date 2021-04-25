@@ -1,0 +1,21 @@
+<Sysmon schemaversion="4.40">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <!-- Indicators for unusual wsl (Windows Subsystem for Linux) activity.
+           Generally these could be investigated with ease as you can look for 
+           abnormal commands coming from the user and can examine bash_history for
+           other strange activity that might escape sysmon or Windows event logger -->
+        <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
+        <ParentCommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe -e</ParentCommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe -e</CommandLine> <!--This will execute local PEs on the windows host-->
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe -u root</CommandLine> <!--Run a bash command as root-->
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe --exec bash</CommandLine> <!--This will execute a command within the distro -->
+        <Rule name="Remote Copy via wsl" groupRelation="and">
+          <CommandLine name="technique_id=T1202,technique_name=Remote File Copy" condition="contains all">wsl.exe --exec bash</CommandLine>
+          <CommandLine name="technique_id=T1202,technique_name=Remote File Copy" condition="contains all">/dev/tcp</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
