@@ -1,8 +1,12 @@
-<Sysmon schemaversion="4.30">
+<Sysmon schemaversion="4.40">
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
          <FileDelete onmatch="exclude">
             <User condition="contains any">NETWORK SERVICE; LOCAL SERVICE</User>
+            <Rule name="PowerShell Profile Deletion" groupRelation="and">
+               <TargetFilename condition="contains">AppData\Local\Microsoft\Windows\PowerShell\StartupProfileData-Interactive</TargetFilename>
+               <Image condition="is">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Image>
+             </Rule>
          </FileDelete>
       </RuleGroup>
    </EventFiltering>
