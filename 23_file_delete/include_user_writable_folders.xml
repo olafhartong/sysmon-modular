@@ -18,6 +18,7 @@
             <Image condition="contains">ProgramData</Image>
             <Image condition="contains">Public</Image>
             <TargetFilename condition="contains">INetCache/Content.Outlook</TargetFilename>
+            </Rule>
             <Rule groupRelation="and">
                <TargetFilename condition="contains">\Downloads\</TargetFilename> <!--User Download folder-->
                <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
