@@ -1,19 +1,19 @@
 <Sysmon schemaversion="4.30">
-   <!-- special thanks to @SwiftOnSecurity for this -->
-   <EventFiltering>
-      <RuleGroup name="" groupRelation="or">
-      <DnsQuery onmatch="exclude">
-			<QueryName condition="end with">.activedirectory.windowsazure.com</QueryName> <!--Microsoft: AzureAD-->
-			<QueryName condition="end with">.aria.microsoft.com</QueryName> <!--Microsoft: OneDrive/SharePoint-->
-			<QueryName condition="end with">.msauth.net</QueryName>
-			<QueryName condition="end with">.msftauth.net</QueryName>
-			<QueryName condition="end with">.opinsights.azure.com</QueryName> <!--Microsoft: AzureAD/InTune client event monitoring-->
-			<QueryName condition="is">management.azure.com</QueryName> <!--Microsoft: AzureAD/InTune-->
-			<QueryName condition="is">outlook.office365.com</QueryName> <!--Microsoft: Protected by HSTS-->
-			<QueryName condition="is">portal.azure.com</QueryName> <!--Microsoft: AzureAD/InTune-->
-			<QueryName condition="is">substrate.office.com</QueryName> <!--Microsoft: Office-->
-			<QueryName condition="is">osi.office.net</QueryName> <!--Microsoft: Office-->
-      </DnsQuery>
-</RuleGroup>
-</EventFiltering>
+	<!-- special thanks to @SwiftOnSecurity for this -->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DnsQuery onmatch="exclude">
+				<QueryName condition="end with">.activedirectory.windowsazure.com</QueryName>				<!--Microsoft: AzureAD-->
+				<QueryName condition="end with">.aria.microsoft.com</QueryName>				<!--Microsoft: OneDrive/SharePoint-->
+				<QueryName condition="end with">.msauth.net</QueryName>
+				<QueryName condition="end with">.msftauth.net</QueryName>
+				<QueryName condition="end with">.opinsights.azure.com</QueryName>				<!--Microsoft: AzureAD/InTune client event monitoring-->
+				<QueryName condition="is">management.azure.com</QueryName>				<!--Microsoft: AzureAD/InTune-->
+				<QueryName condition="is">outlook.office365.com</QueryName>				<!--Microsoft: Protected by HSTS-->
+				<QueryName condition="is">portal.azure.com</QueryName>				<!--Microsoft: AzureAD/InTune-->
+				<QueryName condition="is">substrate.office.com</QueryName>				<!--Microsoft: Office-->
+				<QueryName condition="is">osi.office.net</QueryName>				<!--Microsoft: Office-->
+			</DnsQuery>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

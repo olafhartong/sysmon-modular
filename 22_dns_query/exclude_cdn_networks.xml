@@ -1,19 +1,19 @@
 <Sysmon schemaversion="4.30">
-   <!-- special thanks to @SwiftOnSecurity for most of this -->
-   <EventFiltering>
-      <RuleGroup name="" groupRelation="or">
-      <DnsQuery onmatch="exclude">
-			<QueryName condition="end with">.akadns.net</QueryName> <!--AkamaiCDN, extensively used by Microsoft | Microsoft default exclusion-->
-			<QueryName condition="end with">.netflix.com</QueryName>
-			<QueryName condition="end with">.aspnetcdn.com</QueryName> <!--Microsoft [ https://docs.microsoft.com/en-us/aspnet/ajax/cdn/overview ]-->
-			<QueryName condition="is">ajax.googleapis.com</QueryName>
-			<QueryName condition="is">cdnjs.cloudflare.com</QueryName> <!--Cloudflare: Hosts popular javascript libraries-->
-			<QueryName condition="is">fonts.googleapis.com</QueryName> <!--Google fonts-->
-			<QueryName condition="end with">.typekit.net</QueryName> <!--Adobe fonts-->
-			<QueryName condition="is">cdnjs.cloudflare.com</QueryName>
-			<QueryName condition="end with">.stackassets.com</QueryName> <!--Stack Overflow-->
-			<QueryName condition="end with">.steamcontent.com</QueryName>
-      </DnsQuery>
-</RuleGroup>
-</EventFiltering>
+	<!-- special thanks to @SwiftOnSecurity for most of this -->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DnsQuery onmatch="exclude">
+				<QueryName condition="end with">.akadns.net</QueryName>				<!--AkamaiCDN, extensively used by Microsoft | Microsoft default exclusion-->
+				<QueryName condition="end with">.netflix.com</QueryName>
+				<QueryName condition="end with">.aspnetcdn.com</QueryName>				<!--Microsoft [ https://docs.microsoft.com/en-us/aspnet/ajax/cdn/overview ]-->
+				<QueryName condition="is">ajax.googleapis.com</QueryName>
+				<QueryName condition="is">cdnjs.cloudflare.com</QueryName>				<!--Cloudflare: Hosts popular javascript libraries-->
+				<QueryName condition="is">fonts.googleapis.com</QueryName>				<!--Google fonts-->
+				<QueryName condition="end with">.typekit.net</QueryName>				<!--Adobe fonts-->
+				<QueryName condition="is">cdnjs.cloudflare.com</QueryName>
+				<QueryName condition="end with">.stackassets.com</QueryName>				<!--Stack Overflow-->
+				<QueryName condition="end with">.steamcontent.com</QueryName>
+			</DnsQuery>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

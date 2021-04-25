@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="exclude">
-			<!--SECTION: Intel-->
-			<Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image> <!--Intel: Drops bat and other files in \Windows in normal operation-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!--SECTION: Intel-->
+				<Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image>				<!--Intel: Drops bat and other files in \Windows in normal operation-->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

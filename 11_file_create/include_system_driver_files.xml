@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.sys</TargetFilename> <!--System driver files-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="end with">.sys</TargetFilename>        <!--System driver files-->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

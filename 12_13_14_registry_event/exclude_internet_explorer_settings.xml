@@ -1,14 +1,14 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="exclude">
-			<!--SECTION: InternetExplorer-->
-			<TargetObject condition="end with">Toolbar\WebBrowser</TargetObject> <!--Microsoft:IE: Extraneous activity-->
-			<TargetObject condition="end with">Toolbar\WebBrowser\ITBar7Height</TargetObject> <!--Microsoft:IE: Extraneous activity-->
-			<TargetObject condition="end with">Toolbar\ShellBrowser\ITBar7Layout</TargetObject> <!--Microsoft:Windows:Explorer: Extraneous activity-->
-			<TargetObject condition="end with">Internet Explorer\Toolbar\Locked</TargetObject> <!--Microsoft:Windows:Explorer: Extraneous activity-->
-			<TargetObject condition="end with">ShellBrowser</TargetObject> <!--Microsoft:InternetExplorer: Noise-->
-		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!--SECTION: InternetExplorer-->
+				<TargetObject condition="end with">Toolbar\WebBrowser</TargetObject>				<!--Microsoft:IE: Extraneous activity-->
+				<TargetObject condition="end with">Toolbar\WebBrowser\ITBar7Height</TargetObject>				<!--Microsoft:IE: Extraneous activity-->
+				<TargetObject condition="end with">Toolbar\ShellBrowser\ITBar7Layout</TargetObject>				<!--Microsoft:Windows:Explorer: Extraneous activity-->
+				<TargetObject condition="end with">Internet Explorer\Toolbar\Locked</TargetObject>				<!--Microsoft:Windows:Explorer: Extraneous activity-->
+				<TargetObject condition="end with">ShellBrowser</TargetObject>				<!--Microsoft:InternetExplorer: Noise-->
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

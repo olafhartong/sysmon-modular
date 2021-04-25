@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			<TargetFilename condition="contains">\Startup</TargetFilename> <!--Microsoft:Office: Changes to user's autoloaded files under AppData-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="contains">\Startup</TargetFilename>        <!--Microsoft:Office: Changes to user's autoloaded files under AppData-->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

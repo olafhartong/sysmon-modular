@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is">urlmon.dll</OriginalFileName>
+        </Rule>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

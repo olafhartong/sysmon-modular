@@ -1,14 +1,14 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="exclude">
-			<Image condition="end with">Office\root\integration\integrator.exe</Image> <!--Microsoft:Office: C2R client-->
-			<Image condition="image">C:\WINDOWS\system32\backgroundTaskHost.exe</Image> <!--Microsoft:Windows: Changes association registry keys-->
-			<Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe</Image> <!--Microsoft:Office: C2R client-->
-			<Image condition="is">C:\Program Files\Windows Defender\MsMpEng.exe</Image> <!--Microsoft:Windows:Defender-->
-			<Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image> <!--Microsoft:Cortana-->
-			<Image condition="is">C:\Program Files\Microsoft Application Virtualization\Client\AppVClient.exe</Image>
-		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<Image condition="end with">Office\root\integration\integrator.exe</Image>				<!--Microsoft:Office: C2R client-->
+				<Image condition="image">C:\WINDOWS\system32\backgroundTaskHost.exe</Image>				<!--Microsoft:Windows: Changes association registry keys-->
+				<Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe</Image>				<!--Microsoft:Office: C2R client-->
+				<Image condition="is">C:\Program Files\Windows Defender\MsMpEng.exe</Image>				<!--Microsoft:Windows:Defender-->
+				<Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>				<!--Microsoft:Cortana-->
+				<Image condition="is">C:\Program Files\Microsoft Application Virtualization\Client\AppVClient.exe</Image>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

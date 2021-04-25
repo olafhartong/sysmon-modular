@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <OriginalFileName name="technique_id=T1218.009,technique_name=Regsvcs/Regasm" condition="contains any">regsvcs.exe;regasm.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1218.009,technique_name=Regsvcs/Regasm" condition="contains any">regsvcs.exe;regasm.exe</OriginalFileName>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

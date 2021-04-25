@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <NetworkConnect onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\lsass.exe</Image>
+          <DestinationPort condition="is">88</DestinationPort>          <!--Kerberos protocol-->
+        </Rule>
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

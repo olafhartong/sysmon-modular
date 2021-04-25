@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="include">
-          <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\PSEXESVC</PipeName>
+        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\PSEXESVC</PipeName>
       </PipeEvent>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

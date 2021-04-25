@@ -1,24 +1,24 @@
 <Sysmon schemaversion="4.30">
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessAccess onmatch="include">
-         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\csrss.exe</TargetImage> <!--Mitre T1098--> <!--Mitre T1550.002--> <!--Mitre T1003--><!-- depending on what you're running on your host, this might be noisy-->
-          <GrantedAccess>0x1F1FFF</GrantedAccess>
-         </Rule>
-         <Rule groupRelation="and">         
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\wininit.exe</TargetImage> <!--Mitre T1098--> <!--Mitre T1550.002--> <!--Mitre T1003--><!-- depending on what you're running on your host, this might be noisy-->
-          <GrantedAccess>0x1F1FFF</GrantedAccess>
-         </Rule>            
-         <Rule groupRelation="and">         
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\winlogon.exe</TargetImage> <!--Mitre T1098--> <!--Mitre T1550.002--> <!--Mitre T1003--><!-- depending on what you're running on your host, this might be noisy-->
-          <GrantedAccess>0x1F1FFF</GrantedAccess>
-         </Rule>            
-         <Rule groupRelation="and">         
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\services.exe</TargetImage> <!--Mitre T1098--> <!--Mitre T1550.002--> <!--Mitre T1003--><!-- depending on what you're running on your host, this might be noisy-->
-          <GrantedAccess>0x1F1FFF</GrantedAccess>                              
-         </Rule>          
-      </ProcessAccess>
-</RuleGroup>
-</EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="include">
+            <Rule groupRelation="and">
+               <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\csrss.exe</TargetImage>               <!--Mitre T1098-->               <!--Mitre T1550.002-->               <!--Mitre T1003-->               <!-- depending on what you're running on your host, this might be noisy-->
+               <GrantedAccess>0x1F1FFF</GrantedAccess>
+            </Rule>
+            <Rule groupRelation="and">
+               <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\wininit.exe</TargetImage>               <!--Mitre T1098-->               <!--Mitre T1550.002-->               <!--Mitre T1003-->               <!-- depending on what you're running on your host, this might be noisy-->
+               <GrantedAccess>0x1F1FFF</GrantedAccess>
+            </Rule>
+            <Rule groupRelation="and">
+               <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\winlogon.exe</TargetImage>               <!--Mitre T1098-->               <!--Mitre T1550.002-->               <!--Mitre T1003-->               <!-- depending on what you're running on your host, this might be noisy-->
+               <GrantedAccess>0x1F1FFF</GrantedAccess>
+            </Rule>
+            <Rule groupRelation="and">
+               <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\services.exe</TargetImage>               <!--Mitre T1098-->               <!--Mitre T1550.002-->               <!--Mitre T1003-->               <!-- depending on what you're running on your host, this might be noisy-->
+               <GrantedAccess>0x1F1FFF</GrantedAccess>
+            </Rule>
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
 </Sysmon>

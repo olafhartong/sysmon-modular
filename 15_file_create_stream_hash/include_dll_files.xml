@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreateStreamHash onmatch="include">
+        <TargetFilename condition="end with">.dll</TargetFilename>
+      </FileCreateStreamHash>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

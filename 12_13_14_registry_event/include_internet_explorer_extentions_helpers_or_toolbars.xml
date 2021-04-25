@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="include">
-			<TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject> <!--Microsoft:InternetExplorer: Machine and user-->
-			<TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject> <!--Microsoft:InternetExplorer: Machine and user-->
-			<TargetObject condition="contains">\Browser Helper Objects</TargetObject> <!--Microsoft:InternetExplorer: Machine and user [ https://msdn.microsoft.com/en-us/library/bb250436(v=vs.85).aspx ] -->
-		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject>				<!--Microsoft:InternetExplorer: Machine and user-->
+				<TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject>				<!--Microsoft:InternetExplorer: Machine and user-->
+				<TargetObject condition="contains">\Browser Helper Objects</TargetObject>				<!--Microsoft:InternetExplorer: Machine and user [ https://msdn.microsoft.com/en-us/library/bb250436(v=vs.85).aspx ] -->
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

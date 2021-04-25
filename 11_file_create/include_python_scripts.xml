@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-			     <TargetFilename condition="end with">.py</TargetFilename> <!--Python [ More information: https://attack.mitre.org/wiki/Group/G0035 ] -->
-			     <TargetFilename condition="end with">.pyc</TargetFilename> <!--Python compiled code -->
-           <TargetFilename condition="end with">.pyw</TargetFilename> <!--Python script to be ran with console suppressed -->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="end with">.py</TargetFilename>        <!--Python [ More information: https://attack.mitre.org/wiki/Group/G0035 ] -->
+        <TargetFilename condition="end with">.pyc</TargetFilename>        <!--Python compiled code -->
+        <TargetFilename condition="end with">.pyw</TargetFilename>        <!--Python script to be ran with console suppressed -->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

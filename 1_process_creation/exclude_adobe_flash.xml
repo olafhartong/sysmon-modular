@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
-			<Image condition="end with">C:\Windows\SysWOW64\Macromed\Flash\FlashPlayerUpdateService.exe</Image> <!--Adobe:Flash: Properly hardened updater, not a risk-->
-			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+        <Image condition="end with">C:\Windows\SysWOW64\Macromed\Flash\FlashPlayerUpdateService.exe</Image>        <!--Adobe:Flash: Properly hardened updater, not a risk-->
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <CreateRemoteThread onmatch="exclude">
-	  		<!--COMMENT:	Monitor for processes injecting code into other processes. Often used by malware to cloak their actions.
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<CreateRemoteThread onmatch="exclude">
+				<!--COMMENT:	Monitor for processes injecting code into other processes. Often used by malware to cloak their actions.
 				Exclude mostly-safe sources and log anything else.-->
-			<TargetImage condition="end with">Google\Chrome\Application\chrome.exe</TargetImage>
-		</CreateRemoteThread>
-</RuleGroup>
-</EventFiltering>
+				<TargetImage condition="end with">Google\Chrome\Application\chrome.exe</TargetImage>
+			</CreateRemoteThread>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

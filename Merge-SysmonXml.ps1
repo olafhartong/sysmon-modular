@@ -8,17 +8,35 @@ function Merge-AllSysmonXml
         [Alias('PSPath')]
         [string[]]$LiteralPath,
 
+        [parameter(Mandatory=$true, ValueFromPipeline = $true,ParameterSetName = 'ByBasePath')][ValidateScript({Test-Path $_})]
+        [String]$BasePath,
+
         [switch]$AsString,
 
-        [switch]$PreserveComments
+        [switch]$PreserveComments,
+
+        [parameter(Mandatory=$false)][ValidateScript({Test-Path $_})]
+        [String]$IncludeList,
+
+        [parameter(Mandatory=$false)][ValidateScript({Test-Path $_})]
+        [String]$ExcludeList
     )
 
     begin {
         $FilePaths = @()
         $XmlDocs = @()
+        $InclusionFullPaths = @()
+        $ExclusionFullPaths = @()
+        $FilePathsWithoutExclusions = @()
     }
 
     process{
+        if($PSCmdlet.ParameterSetName -eq 'ByBasePath'){
+            $RuleList = Find-RulesInBasePath -BasePath $BasePath
+            foreach($R in $RuleList){
+                $FilePaths += (Resolve-Path -Path:$R).ProviderPath
+            }
+        }
         if($PSCmdlet.ParameterSetName -eq 'ByPath'){
             foreach($P in $Path){
                 $FilePaths += (Resolve-Path -Path:$P).ProviderPath
@@ -29,6 +47,69 @@ function Merge-AllSysmonXml
                 $FilePaths += (Resolve-Path -LiteralPath:$LP).ProviderPath
             }
         }
+
+        if($IncludeList){
+            if(!$BasePath){
+                throw "BasePath Required For Inclusion List."
+                return
+    }
+
+            $Inclusions = Get-Content -Path $IncludeList
+            foreach($Inclusion in $Inclusions){
+                $Inclusion = $Inclusion.TrimStart('\')
+                $Inclusion = Join-Path -Path $BasePath -ChildPath $Inclusion
+                if($Inclusion -like '*.xml'){
+                    if(Test-Path -Path $Inclusion){
+                        $InclusionFullPaths += $Inclusion
+                    }
+                    else{
+                        Write-Error "Referenced Rule Inclusion Not Found: $Inclusion"
+                    }
+                }
+            }
+
+            if($InclusionFullPaths){
+                Write-Verbose "Rule Inclusions:"
+                $FilePaths = $InclusionFullPaths | Sort-Object
+                Write-Verbose "$FilePaths"
+            }
+        }
+
+        if($ExcludeList){
+            if(!$BasePath){
+                throw "BasePath Required For Exclusions List."
+                return
+            }
+
+            $Exclusions = Get-Content -Path $ExcludeList
+            foreach($Exclusion in $Exclusions){
+                $Exclusion = $Exclusion.TrimStart('\')
+                $Exclusion = Join-Path -Path $BasePath -ChildPath $Exclusion
+                if($Exclusion -like '*.xml'){
+                    if(Test-Path -Path $Exclusion){
+                        $ExclusionFullPaths += $Exclusion
+                    }
+                    else{
+                        Write-Error "Referenced Rule Exclusion Not Found: $Exclusion"
+                    }
+                }
+            }
+
+            if($ExclusionFullPaths){
+                $ExclusionFullPaths = $ExclusionFullPaths | Sort-Object
+                Write-Verbose "Rule Exclusions:"
+                Write-Verbose "$ExclusionFullPaths"
+                foreach($FilePath in $FilePaths){
+                    if($FilePath -notin $ExclusionFullPaths){
+                        $FilePathsWithoutExclusions += $FilePath
+                    }
+                }
+                $FilePaths = $FilePathsWithoutExclusions
+                Write-Verbose "Processing Rules:"
+                Write-Verbose "$FilePaths"
+            }
+        }
+    
     }
 
     end{
@@ -158,16 +239,19 @@ function Merge-SysmonXml
         ProcessTampering = [ordered]@{
             include = @()
             exclude = @()
-        }                        
+        } 
+        FileDeleteDetected = [ordered]@{
+            include = @()
+            exclude = @()
+        }                                
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.50">
+<Sysmon schemaversion="4.60">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation/>
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
-<CaptureClipboard /><!--This enables capturing the Clipboard changes-->
 <EventFiltering>
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 1 == Process Creation. -->
@@ -233,7 +317,7 @@ function Merge-SysmonXml
         <DnsQuery onmatch="exclude"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
-        <!-- Event ID 23 == File Delete and overwrite events-->
+        <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir-->
         <FileDelete onmatch="include"/>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
@@ -244,7 +328,11 @@ function Merge-SysmonXml
     <RuleGroup name="" groupRelation="or">
         <!-- Event ID 25 == Process tampering events -->
         <ProcessTampering onmatch="exclude"/>
-    </RuleGroup>                
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+        <!-- Event ID 26 == File Delete and overwrite events, does NOT save the file-->
+        <FileDeleteDetected onmatch="include"/>
+    </RuleGroup>                    
 </EventFiltering>
 </Sysmon>
 '@
@@ -300,5 +388,41 @@ function Merge-SysmonXml
     }
     else {
         return $newDoc
+    }
+}
+
+function Find-RulesInBasePath
+{
+    param(
+        [parameter(Mandatory=$true, ValueFromPipeline = $true,ParameterSetName = 'ByBasePath')][ValidateScript({Test-Path $_})]
+        [String]$BasePath,
+
+        [switch]$OutputRules
+    )
+
+    begin {
+        $RuleList = @()
+    }
+
+    process{
+        if($PSCmdlet.ParameterSetName -eq 'ByBasePath'){
+            $JoinPath = Join-Path -Path $BasePath -ChildPath '[0-9]*\*.xml'
+            $RuleList = Get-ChildItem -Path $JoinPath
+
+            foreach($Rule in $RuleList){
+                $BaseRule = $Rule.FullName.Replace($BasePath,'')
+                $BaseRule = $BaseRule.TrimStart('\')
+                $Rule | Add-Member -MemberType NoteProperty -Name Rule -value $BaseRule
+            }
+
+            $RuleList = $RuleList | Sort-Object
+
+            if($OutputRules){
+                return $RuleList.Rule
+            }
+            else{
+                return $RuleList
+            }
+        }
     }
 }

@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="exclude">
-			<Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+        <Image condition="is">c:\Program Files\Microsoft Security Client\MsMpEng.exe</Image>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

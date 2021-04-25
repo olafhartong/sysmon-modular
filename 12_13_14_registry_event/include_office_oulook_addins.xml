@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-			<TargetObject condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject> <!--Microsoft:Office: Outlook add-ins-->
-      <TargetObject condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject> <!-- Uncommon place to load add-ins, especially in HKCU-->
-      <TargetObject condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject><!--Uncommon place to declare add-in metadata, especially in HKCU-->
-      <TargetObject condition="contains">\Software\Microsoft\Office\16.0\Outlook\Security</TargetObject><!--https://www.mdsec.co.uk/2020/11/a-fresh-outlook-on-mail-based-persistence/-->
-		</RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+        <TargetObject condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>        <!--Microsoft:Office: Outlook add-ins-->
+        <TargetObject condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>        <!-- Uncommon place to load add-ins, especially in HKCU-->
+        <TargetObject condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>        <!--Uncommon place to declare add-in metadata, especially in HKCU-->
+        <TargetObject condition="contains">\Software\Microsoft\Office\16.0\Outlook\Security</TargetObject>        <!--https://www.mdsec.co.uk/2020/11/a-fresh-outlook-on-mail-based-persistence/-->
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

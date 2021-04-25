@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <OriginalFileName name="technique_id=T1546.011,technique_name=Application Shimming" condition="is">sdbinst.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1546.011,technique_name=Application Shimming" condition="is">sdbinst.exe</OriginalFileName>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

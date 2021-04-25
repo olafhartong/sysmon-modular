@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
-	      <ImageLoaded name="technique_id=T1112,technique_name=Modify Registry" condition="end with">regsvc.dll</ImageLoaded>
+        <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">regsvc.dll</OriginalFileName>
       </ImageLoad>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

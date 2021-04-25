@@ -1,22 +1,22 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-    <ProcessAccess onmatch="exclude">
-  	<SourceImage condition="end with">wmiprvse.exe</SourceImage>
-  	<SourceImage condition="end with">GoogleUpdate.exe</SourceImage>
-  	<SourceImage condition="end with">LTSVC.exe</SourceImage>
-  	<SourceImage condition="end with">taskmgr.exe</SourceImage>
-  	<SourceImage condition="end with">VBoxService.exe</SourceImage> <!-- Virtual Box -->
-  	<SourceImage condition="end with">vmtoolsd.exe</SourceImage> <!-- VMWare -->
-  	<SourceImage condition="end with">\Citrix\System32\wfshell.exe</SourceImage> <!--Citrix process in C:\Program Files (x86)\Citrix\System32\wfshell.exe -->
-  	<SourceImage condition="is">C:\Windows\System32\lsm.exe</SourceImage> <!-- System process under C:\Windows\System32\lsm.exe -->
-  	<SourceImage condition="end with">Microsoft.Identity.AadConnect.Health.AadSync.Host.exe</SourceImage> <!-- Microsoft Azure AD Connect Health Sync Agent -->
-  	<SourceImage condition="begin with">C:\Program Files (x86)\Symantec\Symantec Endpoint Protection</SourceImage> <!-- Symantec -->
-	<GrantedAccess>0x1000</GrantedAccess> <!-- PROCESS_QUERY_LIMITED_INFORMATION Generic call, quite noisy and tells not much-->
-	<GrantedAccess>0x1400</GrantedAccess> <!-- PROCESS_QUERY_LIMITED_INFORMATION + PROCESS_QUERY_INFORMATION Generic call, quite noisy and tells nothing-->
-	<GrantedAccess>0x101400</GrantedAccess> <!-- PROCESS_QUERY_LIMITED_INFORMATION + PROCESS_QUERY_INFORMATION + SYNCHRONIZE Generic call, quite noisy and tells nothing-->
-	<GrantedAccess>0x101000</GrantedAccess> <!-- PROCESS_QUERY_LIMITED_INFORMATION + SYNCHRONIZE Generic call, quite noisy and tells nothing-->
-      </ProcessAccess>  
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessAccess onmatch="exclude">
+				<SourceImage condition="end with">wmiprvse.exe</SourceImage>
+				<SourceImage condition="end with">GoogleUpdate.exe</SourceImage>
+				<SourceImage condition="end with">LTSVC.exe</SourceImage>
+				<SourceImage condition="end with">taskmgr.exe</SourceImage>
+				<SourceImage condition="end with">VBoxService.exe</SourceImage>				<!-- Virtual Box -->
+				<SourceImage condition="end with">vmtoolsd.exe</SourceImage>				<!-- VMWare -->
+				<SourceImage condition="end with">\Citrix\System32\wfshell.exe</SourceImage>				<!--Citrix process in C:\Program Files (x86)\Citrix\System32\wfshell.exe -->
+				<SourceImage condition="is">C:\Windows\System32\lsm.exe</SourceImage>				<!-- System process under C:\Windows\System32\lsm.exe -->
+				<SourceImage condition="end with">Microsoft.Identity.AadConnect.Health.AadSync.Host.exe</SourceImage>				<!-- Microsoft Azure AD Connect Health Sync Agent -->
+				<SourceImage condition="begin with">C:\Program Files (x86)\Symantec\Symantec Endpoint Protection</SourceImage>				<!-- Symantec -->
+				<GrantedAccess>0x1000</GrantedAccess>				<!-- PROCESS_QUERY_LIMITED_INFORMATION Generic call, quite noisy and tells not much-->
+				<GrantedAccess>0x1400</GrantedAccess>				<!-- PROCESS_QUERY_LIMITED_INFORMATION + PROCESS_QUERY_INFORMATION Generic call, quite noisy and tells nothing-->
+				<GrantedAccess>0x101400</GrantedAccess>				<!-- PROCESS_QUERY_LIMITED_INFORMATION + PROCESS_QUERY_INFORMATION + SYNCHRONIZE Generic call, quite noisy and tells nothing-->
+				<GrantedAccess>0x101000</GrantedAccess>				<!-- PROCESS_QUERY_LIMITED_INFORMATION + SYNCHRONIZE Generic call, quite noisy and tells nothing-->
+			</ProcessAccess>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

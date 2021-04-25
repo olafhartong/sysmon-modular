@@ -1,14 +1,14 @@
 <Sysmon schemaversion="4.30">
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ProcessAccess onmatch="include">
-         <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x0800</GrantedAccess> <!-- PROCESS_SUSPEND_RESUME -->
-         <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x0810</GrantedAccess> <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_READ - possible memory dump to extract sensitive information -->
-         <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x0820</GrantedAccess> <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_WRITE - possible memory injection -->
-         <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x800</GrantedAccess> <!-- PROCESS_SUSPEND_RESUME -->
-         <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x810</GrantedAccess> <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_READ - possible memory dump to extract sensitive information -->
-         <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x820</GrantedAccess> <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_WRITE - possible memory injection -->
-      </ProcessAccess>
-</RuleGroup>
-</EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="include">
+            <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x0800</GrantedAccess>            <!-- PROCESS_SUSPEND_RESUME -->
+            <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x0810</GrantedAccess>            <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_READ - possible memory dump to extract sensitive information -->
+            <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x0820</GrantedAccess>            <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_WRITE - possible memory injection -->
+            <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x800</GrantedAccess>            <!-- PROCESS_SUSPEND_RESUME -->
+            <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x810</GrantedAccess>            <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_READ - possible memory dump to extract sensitive information -->
+            <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x820</GrantedAccess>            <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_WRITE - possible memory injection -->
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
 </Sysmon>

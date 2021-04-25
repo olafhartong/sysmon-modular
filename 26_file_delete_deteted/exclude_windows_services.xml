@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileDeleteDetected onmatch="exclude">
+            <User condition="contains any">NETWORK SERVICE; LOCAL SERVICE</User>
+         </FileDeleteDetected>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

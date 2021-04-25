@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
-        <ImageLoaded name="technique_id=T1053,technique_name=Scheduled Task" condition="end with">taskschd.dll</ImageLoaded>
+        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task" condition="is">taskschd.dll</OriginalFileName>
       </ImageLoad>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

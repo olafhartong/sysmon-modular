@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">SyncAppvPublishingServer.exe</Image>
+        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">SyncAppvPublishingServer.exe</Image>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

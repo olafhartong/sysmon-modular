@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="include">
-			<!--Info on how these are abused: https://www.vmray.com/cyber-security-blog/forgotten-ms-office-features-used-deliver-malware/-->
-			<TargetFilename condition="end with">.iqy</TargetFilename> <!--Microsoft:Office:Excel: IQY file used to pull down dropper-->
-			<TargetFilename condition="end with">.slk</TargetFilename> <!--Microsoft:Office:Excel: SLK file used for command execution-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="include">
+				<!--Info on how these are abused: https://www.vmray.com/cyber-security-blog/forgotten-ms-office-features-used-deliver-malware/-->
+				<TargetFilename condition="end with">.iqy</TargetFilename>				<!--Microsoft:Office:Excel: IQY file used to pull down dropper-->
+				<TargetFilename condition="end with">.slk</TargetFilename>				<!--Microsoft:Office:Excel: SLK file used for command execution-->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <FileCreateStreamHash onmatch="include">
-			<TargetFilename condition="end with">Temp\debug.bin</TargetFilename> <!--Bin files https://github.com/GhostPack/SafetyKatz creates debug.bin in a temp folder-->
-		</FileCreateStreamHash>
-</RuleGroup>
-</EventFiltering>
+        <TargetFilename condition="end with">Temp\debug.bin</TargetFilename>        <!--Bin files https://github.com/GhostPack/SafetyKatz creates debug.bin in a temp folder-->
+      </FileCreateStreamHash>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="exclude">
-			<!--SECTION: Microsoft:Windows:Updates-->
-			<TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename> <!-- Microsoft:Windows: Feature updates containing lots of .exe and .sys-->
-			<Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image> <!-- Microsoft:Windows: Windows update-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!--SECTION: Microsoft:Windows:Updates-->
+				<TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>				<!-- Microsoft:Windows: Feature updates containing lots of .exe and .sys-->
+				<Image condition="begin with">C:\WINDOWS\winsxs\amd64_microsoft-windows</Image>				<!-- Microsoft:Windows: Windows update-->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

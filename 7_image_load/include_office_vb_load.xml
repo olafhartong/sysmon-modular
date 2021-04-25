@@ -1,20 +1,20 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ImageLoad onmatch="include"><!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">        <!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
         <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
-            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded condition="end with">VBE7INTL.DLL</ImageLoaded>
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <OriginalFileName condition="is">VBE7INTL.DLL</OriginalFileName>
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
-            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded condition="end with">VBE7.DLL</ImageLoaded>
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <OriginalFileName condition="is">VBE7.DLL</OriginalFileName>
         </Rule>
         <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
-            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded condition="end with">VBEUI.DLL</ImageLoaded>
-        </Rule>      
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <OriginalFileName condition="is">VBEUI.DLL</OriginalFileName>
+        </Rule>
       </ImageLoad>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

@@ -1,16 +1,16 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="include">
-			  <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="contains">AppData\Local\Microsoft\CLR_v2.0\UsageLogs\</TargetFilename><!--Dotnet v2 binary started-->
-	      <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\cscript.exe.log</TargetFilename> 
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wscript.exe.log</TargetFilename> 
-	      <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wmic.exe.log</TargetFilename> 
-	      <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\mshta.exe.log</TargetFilename> 
-	      <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\svchost.exe.log</TargetFilename> 
-	      <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\regsvr32.exe.log</TargetFilename> 
-	      <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\rundll32.exe.log</TargetFilename> 
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="include">
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="contains">AppData\Local\Microsoft\CLR_v2.0\UsageLogs\</TargetFilename>				<!--Dotnet v2 binary started-->
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\cscript.exe.log</TargetFilename>
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wscript.exe.log</TargetFilename>
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wmic.exe.log</TargetFilename>
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\mshta.exe.log</TargetFilename>
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\svchost.exe.log</TargetFilename>
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\regsvr32.exe.log</TargetFilename>
+				<TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\rundll32.exe.log</TargetFilename>
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

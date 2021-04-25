@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <NetworkConnect onmatch="include">
-			<!--Critical HP services-->
-			<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">omniinet.exe</Image> <!-- HP Data Protector https://www.cvedetails.com/vulnerability-list/vendor_id-10/product_id-20499/HP-Data-Protector.html | Credit @Cyb3rOps -->
-			<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">hpsmhd.exe</Image> <!-- HP System Management Homepage https://www.cvedetails.com/vulnerability-list/vendor_id-10/product_id-7244/HP-System-Management-Homepage.html | Credit @Cyb3rOps -->
-	  </NetworkConnect>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<NetworkConnect onmatch="include">
+				<!--Critical HP services-->
+				<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">omniinet.exe</Image>				<!-- HP Data Protector https://www.cvedetails.com/vulnerability-list/vendor_id-10/product_id-20499/HP-Data-Protector.html | Credit @Cyb3rOps -->
+				<Image name="technique_id=T1021,technique_name=Remote Services" condition="image">hpsmhd.exe</Image>				<!-- HP System Management Homepage https://www.cvedetails.com/vulnerability-list/vendor_id-10/product_id-7244/HP-System-Management-Homepage.html | Credit @Cyb3rOps -->
+			</NetworkConnect>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

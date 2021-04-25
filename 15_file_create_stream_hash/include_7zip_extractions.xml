@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
    <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreateStreamHash onmatch="include">
-		<TargetFilename condition="contains">Temp\7z</TargetFilename> <!--7zip extractions-->
-		</FileCreateStreamHash>
-</RuleGroup>
-</EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileCreateStreamHash onmatch="include">
+            <TargetFilename condition="contains">Temp\7z</TargetFilename>            <!--7zip extractions-->
+         </FileCreateStreamHash>
+      </RuleGroup>
+   </EventFiltering>
 </Sysmon>

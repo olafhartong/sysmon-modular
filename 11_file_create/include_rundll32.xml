@@ -1,9 +1,9 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="include">
-          <Image condition="image">rundll32.exe</Image> <!-- Thanks to @c_APT-ure -->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+     <EventFiltering>
+          <RuleGroup name="" groupRelation="or">
+               <FileCreate onmatch="include">
+                    <Image condition="image">rundll32.exe</Image>                    <!-- Thanks to @c_APT-ure -->
+               </FileCreate>
+          </RuleGroup>
+     </EventFiltering>
 </Sysmon>

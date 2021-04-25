@@ -1,15 +1,15 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
-        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image> <!--Credit d4ph1l -->
-        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Control\swc_service.exe</Image> <!--Credit d4ph1l -->
-        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos System Protection\ssp.exe</Image> <!--Credit d4ph1l -->
-        <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\RouterNT.exe</Image> <!--Credit d4ph1l -->
-        <Image condition="is">C:\Program Files (x86)\Sophos\AutoUpdate\ALsvc.exe</Image> <!--Credit d4ph1l -->
-        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\SAVAdminService.exe</Image> <!--Credit d4ph1l -->
-        <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\ManagementAgentNT.exe</Image> <!--Credit d4ph1l -->
-			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>        <!--Credit d4ph1l -->
+        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Control\swc_service.exe</Image>        <!--Credit d4ph1l -->
+        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos System Protection\ssp.exe</Image>        <!--Credit d4ph1l -->
+        <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\RouterNT.exe</Image>        <!--Credit d4ph1l -->
+        <Image condition="is">C:\Program Files (x86)\Sophos\AutoUpdate\ALsvc.exe</Image>        <!--Credit d4ph1l -->
+        <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\SAVAdminService.exe</Image>        <!--Credit d4ph1l -->
+        <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\ManagementAgentNT.exe</Image>        <!--Credit d4ph1l -->
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

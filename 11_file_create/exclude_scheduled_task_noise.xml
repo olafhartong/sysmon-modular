@@ -1,13 +1,13 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="exclude">
-			<!--SECTION: Microsoft:Windows-->
-			<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename> <!-- Microsoft:Windows: -->
-	      		<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename> <!-- Microsoft:Windows: -->
-			<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename> <!-- Microsoft:Windows: Customer Experience Improvement Program-->
-	      		<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename> <!-- Microsoft:Windows: Customer Experience Improvement Program-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!--SECTION: Microsoft:Windows-->
+				<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>				<!-- Microsoft:Windows: -->
+				<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>				<!-- Microsoft:Windows: -->
+				<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>				<!-- Microsoft:Windows: Customer Experience Improvement Program-->
+				<TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>				<!-- Microsoft:Windows: Customer Experience Improvement Program-->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

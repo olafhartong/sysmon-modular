@@ -1,31 +1,31 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
-      <RuleGroup name="" groupRelation="or">
-      <DnsQuery onmatch="exclude">
-		<QueryName condition="end with">.digicert.com</QueryName>
-		<QueryName condition="end with">.globalsign.com</QueryName>
-		<QueryName condition="end with">.globalsign.net</QueryName>
-		<QueryName condition="is">msocsp.com</QueryName> <!--Microsoft:OCSP-->
-		<QueryName condition="is">ocsp.msocsp.com</QueryName> <!--Microsoft:OCSP-->
-        	<QueryName condition="is">pki.goog</QueryName>
-        	<QueryName condition="end with">.pki.goog</QueryName>
-	      	<QueryName condition="is">ocsp.godaddy.com</QueryName>
-        	<QueryName condition="is">amazontrust.com</QueryName>
-        	<QueryName condition="end with">.amazontrust.com</QueryName>
-	      	<QueryName condition="is">ocsp.sectigo.com</QueryName>
-		<QueryName condition="is">pki-goog.l.google.com</QueryName>
-		<QueryName condition="end with">.usertrust.com</QueryName>
-		<QueryName condition="is">ocsp.comodoca.com</QueryName>
-		<QueryName condition="is">ocsp.verisign.com</QueryName>
-		<QueryName condition="is">ocsp.entrust.net</QueryName>
-		<QueryName condition="end with">ocsp.identrust.com</QueryName>
-		<QueryName condition="is">status.rapidssl.com</QueryName>	
-        <QueryName condition="is">status.thawte.com</QueryName>
-	    <QueryName condition="is">ocsp.int-x3.letsencrypt.org</QueryName>
-		<QueryName condition="is">subca.ocsp-certum.com</QueryName>
-		<QueryName condition="is">cscasha2.ocsp-certum.com</QueryName>
-		<QueryName condition="is">crl.verisign.com</QueryName>
-      </DnsQuery>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DnsQuery onmatch="exclude">
+				<QueryName condition="end with">.digicert.com</QueryName>
+				<QueryName condition="end with">.globalsign.com</QueryName>
+				<QueryName condition="end with">.globalsign.net</QueryName>
+				<QueryName condition="is">msocsp.com</QueryName>				<!--Microsoft:OCSP-->
+				<QueryName condition="is">ocsp.msocsp.com</QueryName>				<!--Microsoft:OCSP-->
+				<QueryName condition="is">pki.goog</QueryName>
+				<QueryName condition="end with">.pki.goog</QueryName>
+				<QueryName condition="is">ocsp.godaddy.com</QueryName>
+				<QueryName condition="is">amazontrust.com</QueryName>
+				<QueryName condition="end with">.amazontrust.com</QueryName>
+				<QueryName condition="is">ocsp.sectigo.com</QueryName>
+				<QueryName condition="is">pki-goog.l.google.com</QueryName>
+				<QueryName condition="end with">.usertrust.com</QueryName>
+				<QueryName condition="is">ocsp.comodoca.com</QueryName>
+				<QueryName condition="is">ocsp.verisign.com</QueryName>
+				<QueryName condition="is">ocsp.entrust.net</QueryName>
+				<QueryName condition="end with">ocsp.identrust.com</QueryName>
+				<QueryName condition="is">status.rapidssl.com</QueryName>
+				<QueryName condition="is">status.thawte.com</QueryName>
+				<QueryName condition="is">ocsp.int-x3.letsencrypt.org</QueryName>
+				<QueryName condition="is">subca.ocsp-certum.com</QueryName>
+				<QueryName condition="is">cscasha2.ocsp-certum.com</QueryName>
+				<QueryName condition="is">crl.verisign.com</QueryName>
+			</DnsQuery>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

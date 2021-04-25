@@ -1,20 +1,20 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
+  <EventFiltering>
     <RuleGroup name="" groupRelation="or">
-      <ImageLoad onmatch="include"><!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
+      <ImageLoad onmatch="include">        <!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
         <Rule groupRelation="and">
-            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\combase.dll</ImageLoaded>
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">combase.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and">
-            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">C:\Windows\SysWOW64\coml2.dll</ImageLoaded>
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">coml2.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and">
-            <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-            <ImageLoaded name="technique_id=T1175,technique_name=Component Object Model and Distributed COM"  condition="is">C:\Windows\SysWOW64\comsvcs.dll</ImageLoaded>
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">comsvcs.dll</OriginalFileName>
         </Rule>
       </ImageLoad>
-  </RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

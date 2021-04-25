@@ -1,10 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <OriginalFileName name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">wsmprovhost.exe</OriginalFileName>
-		      <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
+        <OriginalFileName name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">wsmprovhost.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">winrshost.exe</OriginalFileName>
+        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

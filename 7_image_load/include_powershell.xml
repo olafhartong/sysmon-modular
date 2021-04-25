@@ -1,15 +1,15 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <ImageLoad onmatch="include">
-    	  <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with" >system.management.automation.ni.dll</ImageLoaded>
-	      <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with" >system.management.automation.dll</ImageLoaded>
-	      <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with" >Microsoft.PowerShell.Commands.Diagnostics.dll</ImageLoaded>
-	      <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with" >Microsoft.PowerShell.Commands.Management.dll</ImageLoaded>
-	      <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with" >Microsoft.PowerShell.Commands.Utility.dll</ImageLoaded>
-	      <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with" >Microsoft.PowerShell.ConsoleHost.dll</ImageLoaded>
-	      <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with" >Microsoft.PowerShell.Security.dll</ImageLoaded>
-      </ImageLoad>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ImageLoad onmatch="include">
+				<ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">system.management.automation.ni.dll</ImageLoaded>
+				<ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">system.management.automation.dll</ImageLoaded>
+				<ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Commands.Diagnostics.dll</ImageLoaded>
+				<ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Commands.Management.dll</ImageLoaded>
+				<ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Commands.Utility.dll</ImageLoaded>
+				<ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.ConsoleHost.dll</ImageLoaded>
+				<ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Security.dll</ImageLoaded>
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

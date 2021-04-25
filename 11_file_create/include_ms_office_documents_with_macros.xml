@@ -1,19 +1,19 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.docm</TargetFilename> <!--Microsoft:Office:Word: With Macro-->
-			<TargetFilename condition="end with">.pptm</TargetFilename> <!--Microsoft:Office:PowerPoint: With Macro-->
-			<TargetFilename condition="end with">.xlsm</TargetFilename> <!--Microsoft:Office:Excel: With Macro-->
-			<TargetFilename condition="end with">.xlm</TargetFilename> <!--Microsoft:Office:Excel: Legacy Excel With Macro-->
-			<TargetFilename condition="end with">.dotm</TargetFilename> <!--Microsoft:Office:Word: Template With Macro-->
-			<TargetFilename condition="end with">.xltm</TargetFilename> <!--Microsoft:Office:Excel: Template With Macro-->
-			<TargetFilename condition="end with">.potm</TargetFilename> <!--Microsoft:Office:PowerPoint: Template With Macro-->
-			<TargetFilename condition="end with">.ppsm</TargetFilename> <!--Microsoft:Office:PowerPoint: Slideshow With Macro-->
-			<TargetFilename condition="end with">.sldm</TargetFilename> <!--Microsoft:Office:PowerPoint: Slide With Macro-->
-			<TargetFilename condition="end with">.xlam</TargetFilename> <!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
-			<TargetFilename condition="end with">.xla</TargetFilename> <!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="include">
+				<TargetFilename condition="end with">.docm</TargetFilename>				<!--Microsoft:Office:Word: With Macro-->
+				<TargetFilename condition="end with">.pptm</TargetFilename>				<!--Microsoft:Office:PowerPoint: With Macro-->
+				<TargetFilename condition="end with">.xlsm</TargetFilename>				<!--Microsoft:Office:Excel: With Macro-->
+				<TargetFilename condition="end with">.xlm</TargetFilename>				<!--Microsoft:Office:Excel: Legacy Excel With Macro-->
+				<TargetFilename condition="end with">.dotm</TargetFilename>				<!--Microsoft:Office:Word: Template With Macro-->
+				<TargetFilename condition="end with">.xltm</TargetFilename>				<!--Microsoft:Office:Excel: Template With Macro-->
+				<TargetFilename condition="end with">.potm</TargetFilename>				<!--Microsoft:Office:PowerPoint: Template With Macro-->
+				<TargetFilename condition="end with">.ppsm</TargetFilename>				<!--Microsoft:Office:PowerPoint: Slideshow With Macro-->
+				<TargetFilename condition="end with">.sldm</TargetFilename>				<!--Microsoft:Office:PowerPoint: Slide With Macro-->
+				<TargetFilename condition="end with">.xlam</TargetFilename>				<!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
+				<TargetFilename condition="end with">.xla</TargetFilename>				<!--Microsoft:Office:Excel: Add-in Possibly With Macro-->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

@@ -1,18 +1,18 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
+  <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
-      <Rule groupRelation="and">
-        <Image condition="end with">AcroRd32.exe</Image>
-			  <CommandLine condition="contains any">/CR;channel=</CommandLine> <!--Adobe:AcrobatReader: Uninteresting sandbox subprocess-->
-			</Rule>
-        <Rule groupRelation="or">
-			   <Image condition="end with">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\AcroCEF\AcroCEF.exe</Image> <!--Adobe:Acrobat: Sandbox subprocess, still evaluating security exposure-->
-			   <ParentImage condition="end with">C:\Program Files (x86)\Common Files\Adobe\AdobeGCClient\AGSService.exe</ParentImage>
-			   <Image condition="end with">C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroCEF\RdrCEF.exe</Image> <!--Adobe:AcrobatReader: Sandbox subprocess, still evaluating security exposure-->
-			   <Image condition="end with">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\LogTransport2.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="end with">AcroRd32.exe</Image>
+          <CommandLine condition="contains any">/CR;channel=</CommandLine>          <!--Adobe:AcrobatReader: Uninteresting sandbox subprocess-->
         </Rule>
-			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+        <Rule groupRelation="or">
+          <Image condition="end with">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\AcroCEF\AcroCEF.exe</Image>          <!--Adobe:Acrobat: Sandbox subprocess, still evaluating security exposure-->
+          <ParentImage condition="end with">C:\Program Files (x86)\Common Files\Adobe\AdobeGCClient\AGSService.exe</ParentImage>
+          <Image condition="end with">C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroCEF\RdrCEF.exe</Image>          <!--Adobe:AcrobatReader: Sandbox subprocess, still evaluating security exposure-->
+          <Image condition="end with">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\LogTransport2.exe</Image>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

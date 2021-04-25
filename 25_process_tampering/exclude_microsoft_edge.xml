@@ -10,11 +10,11 @@
         <Rule groupRelation="and">
           <Image condition="begin with">C:\Program Files (x86)\Microsoft\Edge\Application\</Image>
           <Image condition="end with">\identity_helper.exe</Image>
-        </Rule> 
+        </Rule>
         <Rule groupRelation="and">
           <Image condition="begin with">C:\Program Files (x86)\Microsoft\EdgeUpdate\Install\</Image>
           <Image condition="contains">\MicrosoftEdge_X64_</Image>
-        </Rule>         
+        </Rule>
       </ProcessTampering>
     </RuleGroup>
   </EventFiltering>

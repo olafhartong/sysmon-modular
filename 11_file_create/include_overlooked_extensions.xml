@@ -1,16 +1,16 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <FileCreate onmatch="include">
-			<TargetFilename condition="end with">.rft</TargetFilename> 
-			<TargetFilename condition="end with">.jsp</TargetFilename> 
-			<TargetFilename condition="end with">.jspx</TargetFilename> 
-			<TargetFilename condition="end with">.asp</TargetFilename> 
-			<TargetFilename condition="end with">.aspx</TargetFilename> 
-			<TargetFilename condition="end with">.php</TargetFilename> 
-			<TargetFilename condition="end with">.war</TargetFilename>
-			<TargetFilename condition="end with">.ace</TargetFilename><!-- https://www.bleepingcomputer.com/news/security/over-100-exploits-found-for-19-year-old-winrar-rce-bug/ -->
-		</FileCreate>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="include">
+				<TargetFilename condition="end with">.rft</TargetFilename>
+				<TargetFilename condition="end with">.jsp</TargetFilename>
+				<TargetFilename condition="end with">.jspx</TargetFilename>
+				<TargetFilename condition="end with">.asp</TargetFilename>
+				<TargetFilename condition="end with">.aspx</TargetFilename>
+				<TargetFilename condition="end with">.php</TargetFilename>
+				<TargetFilename condition="end with">.war</TargetFilename>
+				<TargetFilename condition="end with">.ace</TargetFilename>				<!-- https://www.bleepingcomputer.com/news/security/over-100-exploits-found-for-19-year-old-winrar-rce-bug/ -->
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

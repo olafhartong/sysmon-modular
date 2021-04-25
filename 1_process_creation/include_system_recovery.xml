@@ -1,0 +1,32 @@
+<Sysmon schemaversion="4.21">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vssadmin.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;shadow</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vssadmin.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">resize;shadowstorage</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">wmic.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;shadowcopy</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">wbadmin.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;catalog</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">bcdedit.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">recoveryenabled;no</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">bcdedit.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">bootstatuspolicy;ignoreallfailures</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

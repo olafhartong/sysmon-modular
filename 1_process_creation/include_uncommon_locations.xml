@@ -1,27 +1,27 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Intel\Logs\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Default\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Public\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\NetworkService\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Fonts\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Debug\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Media\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Help\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\addins\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\repair\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\security\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">VolumeShadowCopy</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</Image>
-          <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Appdata\Local\</Image><!--Thanks to Josh Frazier-->
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Intel\Logs\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Default\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Public\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\NetworkService\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Fonts\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Debug\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Media\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Help\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\addins\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\repair\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\security\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">VolumeShadowCopy</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Appdata\Local\</Image>        <!--Thanks to Josh Frazier-->
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

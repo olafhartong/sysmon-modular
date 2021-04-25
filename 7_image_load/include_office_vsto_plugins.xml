@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

@@ -1,20 +1,20 @@
 <Sysmon schemaversion="4.30">
-   <!-- special thanks to @SwiftOnSecurity for this -->
-   <EventFiltering>
-      <RuleGroup name="" groupRelation="or">
-      <DnsQuery onmatch="exclude">
-			<QueryName condition="end with">.mozaws.net</QueryName> <!--Mozilla-->
-			<QueryName condition="end with">.mozilla.com</QueryName> <!--Mozilla-->
-			<QueryName condition="end with">.mozilla.net</QueryName> <!--Mozilla-->
-			<QueryName condition="end with">.mozilla.org</QueryName> <!--Mozilla-->
-			<QueryName condition="is">clients1.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients2.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients3.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients4.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients5.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">clients6.google.com</QueryName> <!--Google-->
-			<QueryName condition="is">safebrowsing.googleapis.com</QueryName> <!--Google-->
-      </DnsQuery>
-</RuleGroup>
-</EventFiltering>
+	<!-- special thanks to @SwiftOnSecurity for this -->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DnsQuery onmatch="exclude">
+				<QueryName condition="end with">.mozaws.net</QueryName>				<!--Mozilla-->
+				<QueryName condition="end with">.mozilla.com</QueryName>				<!--Mozilla-->
+				<QueryName condition="end with">.mozilla.net</QueryName>				<!--Mozilla-->
+				<QueryName condition="end with">.mozilla.org</QueryName>				<!--Mozilla-->
+				<QueryName condition="is">clients1.google.com</QueryName>				<!--Google-->
+				<QueryName condition="is">clients2.google.com</QueryName>				<!--Google-->
+				<QueryName condition="is">clients3.google.com</QueryName>				<!--Google-->
+				<QueryName condition="is">clients4.google.com</QueryName>				<!--Google-->
+				<QueryName condition="is">clients5.google.com</QueryName>				<!--Google-->
+				<QueryName condition="is">clients6.google.com</QueryName>				<!--Google-->
+				<QueryName condition="is">safebrowsing.googleapis.com</QueryName>				<!--Google-->
+			</DnsQuery>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

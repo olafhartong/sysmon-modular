@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="exclude">
-        <Image condition="begin with">C:\Program Files\Windows Defender\</Image> <!--Microsoft:Windows:Defender in Win10-->
-  			<Image condition="is">C:\Windows\system32\MpSigStub.exe</Image> <!--Microsoft:Windows: Microsoft Malware Protection Signature Update Stub-->
-  			<Image condition="begin with">C:\Windows\SoftwareDistribution\Download\Install\AM_</Image> <!--Microsoft:Defender: Signature updates-->
+        <Image condition="begin with">C:\Program Files\Windows Defender\</Image>        <!--Microsoft:Windows:Defender in Win10-->
+        <Image condition="is">C:\Windows\system32\MpSigStub.exe</Image>        <!--Microsoft:Windows: Microsoft Malware Protection Signature Update Stub-->
+        <Image condition="begin with">C:\Windows\SoftwareDistribution\Download\Install\AM_</Image>        <!--Microsoft:Defender: Signature updates-->
         <Image condition="is">C:\Program Files\Microsoft Security Client\MpCmdRun.exe</Image>
-			</ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

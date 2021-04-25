@@ -1,10 +1,10 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <NetworkConnect onmatch="exclude">
-       <Image condition="is">C:\Program files (x86)\Trend Micro\OfficeScan Client\tmlisten.exe</Image> <!--Credit d4ph1l -->
-       <Image condition="is">C:\Program Files (x86)\Trend Micro\BM\TMBMSRV.exe</Image> <!--Credit d4ph1l -->
-	  </NetworkConnect>
-</RuleGroup>
-</EventFiltering>
+        <Image condition="is">C:\Program files (x86)\Trend Micro\OfficeScan Client\tmlisten.exe</Image>        <!--Credit d4ph1l -->
+        <Image condition="is">C:\Program Files (x86)\Trend Micro\BM\TMBMSRV.exe</Image>        <!--Credit d4ph1l -->
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

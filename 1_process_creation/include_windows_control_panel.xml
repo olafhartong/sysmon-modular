@@ -1,12 +1,12 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <Rule name="Control Panel Items" groupRelation="or">
           <CommandLine name="technique_id=T1218.002,technique_name=Control Panel Items" condition="contains all">control;/name</CommandLine>
           <CommandLine name="technique_id=T1218.002,technique_name=Control Panel Items" condition="contains all">rundll32.exe;shell32.dll;Control_RunDLL</CommandLine>
         </Rule>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

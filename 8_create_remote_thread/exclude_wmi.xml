@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <CreateRemoteThread onmatch="exclude">
-	  		<!--COMMENT:	Monitor for processes injecting code into other processes. Often used by malware to cloak their actions.
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<CreateRemoteThread onmatch="exclude">
+				<!--COMMENT:	Monitor for processes injecting code into other processes. Often used by malware to cloak their actions.
 				Exclude mostly-safe sources and log anything else.-->
-		<SourceImage condition="is">C:\Windows\System32\wbem\WmiPrvSE.exe</SourceImage>		
-		</CreateRemoteThread>
-</RuleGroup>
-</EventFiltering>
+				<SourceImage condition="is">C:\Windows\System32\wbem\WmiPrvSE.exe</SourceImage>
+			</CreateRemoteThread>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

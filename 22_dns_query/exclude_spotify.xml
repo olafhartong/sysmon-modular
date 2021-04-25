@@ -1,11 +1,11 @@
 <Sysmon schemaversion="4.30">
-   <!-- special thanks to @SwiftOnSecurity for this -->
-   <EventFiltering>
-      <RuleGroup name="" groupRelation="or">
+  <!-- special thanks to @SwiftOnSecurity for this -->
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <DnsQuery onmatch="exclude">
-			<QueryName condition="end with">.spotify.com</QueryName> <!--Spotify-->
-			<QueryName condition="end with">.spotify.map.fastly.net</QueryName> <!--Spotify-->
+        <QueryName condition="end with">.spotify.com</QueryName>        <!--Spotify-->
+        <QueryName condition="end with">.spotify.map.fastly.net</QueryName>        <!--Spotify-->
       </DnsQuery>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

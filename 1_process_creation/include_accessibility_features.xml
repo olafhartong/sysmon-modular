@@ -1,15 +1,15 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-          <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">sethc.exe</ParentImage>
-          <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">utilman.exe</ParentImage>
-          <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">osk.exe</ParentImage>
-          <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">Magnify.exe</ParentImage>
-          <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">DisplaySwitch.exe</ParentImage>
-          <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">Narrator.exe</ParentImage>
-          <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">AtBroker.exe</ParentImage>
+        <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">sethc.exe</ParentImage>
+        <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">utilman.exe</ParentImage>
+        <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">osk.exe</ParentImage>
+        <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">Magnify.exe</ParentImage>
+        <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">DisplaySwitch.exe</ParentImage>
+        <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">Narrator.exe</ParentImage>
+        <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">AtBroker.exe</ParentImage>
       </ProcessCreate>
-</RuleGroup>
-</EventFiltering>
+    </RuleGroup>
+  </EventFiltering>
 </Sysmon>

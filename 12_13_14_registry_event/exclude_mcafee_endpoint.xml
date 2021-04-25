@@ -1,30 +1,30 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <RegistryEvent onmatch="exclude">
-		<!--McAfee:Endpoint Encryption Agent-->
-		<Image condition="is">C:\Program Files\McAfee\Endpoint Encryption Agent\MfeEpeHost.exe</Image>
-		<!--McAfee:Endpoint Security Adaptive Threat Protection-->
-		<Image condition="is">C:\Program Files\McAfee\Endpoint Security\Adaptive Threat Protection\mfeatp.exe</Image>
-		<!--McAfee:Endpoint Security Platform-->
-		<Image condition="is">C:\Program Files\McAfee\Endpoint Security\Endpoint Security Platform\mfeesp.exe</Image>
-		<!--McAfee:AMCore Updater-->
-		<Image condition="is">C:\Program Files\Common Files\McAfee\Engine\AMCoreUpdater\amupdate.exe</Image>
-		<!--McAfee:Agent-->
-		<Image condition="is">C:\Program Files\McAfee\Agent\masvc.exe</Image>
-		<!--McAfee:Agent-->
-		<Image condition="is">C:\Program Files\McAfee\Agent\x86\mfemactl.exe</Image>
-		<!--McAfee:Agent-->
-		<Image condition="is">C:\Program Files\McAfee\Agent\x86\McScript_InUse.exe</Image>
-		<!--McAfee:Agent Compatibility Service-->
-		<Image condition="is">C:\Program Files\McAfee\Agent\x86\macompatsvc.exe</Image>
-		<!--McAfee:Endpoint Security Threat Prevention-->
-		<Image condition="is">C:\Program Files\McAfee\Endpoint Security\Threat Prevention\mfeensppl.exe</Image>
-		<!--McAfee:Scan Engine-->
-		<Image condition="begin with">C:\Program Files\Common Files\McAfee\Engine\scanners</Image>
-		<!--McAfee:MCShield-->
-		<Image condition="is">C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
-	  </RegistryEvent>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!--McAfee:Endpoint Encryption Agent-->
+				<Image condition="is">C:\Program Files\McAfee\Endpoint Encryption Agent\MfeEpeHost.exe</Image>
+				<!--McAfee:Endpoint Security Adaptive Threat Protection-->
+				<Image condition="is">C:\Program Files\McAfee\Endpoint Security\Adaptive Threat Protection\mfeatp.exe</Image>
+				<!--McAfee:Endpoint Security Platform-->
+				<Image condition="is">C:\Program Files\McAfee\Endpoint Security\Endpoint Security Platform\mfeesp.exe</Image>
+				<!--McAfee:AMCore Updater-->
+				<Image condition="is">C:\Program Files\Common Files\McAfee\Engine\AMCoreUpdater\amupdate.exe</Image>
+				<!--McAfee:Agent-->
+				<Image condition="is">C:\Program Files\McAfee\Agent\masvc.exe</Image>
+				<!--McAfee:Agent-->
+				<Image condition="is">C:\Program Files\McAfee\Agent\x86\mfemactl.exe</Image>
+				<!--McAfee:Agent-->
+				<Image condition="is">C:\Program Files\McAfee\Agent\x86\McScript_InUse.exe</Image>
+				<!--McAfee:Agent Compatibility Service-->
+				<Image condition="is">C:\Program Files\McAfee\Agent\x86\macompatsvc.exe</Image>
+				<!--McAfee:Endpoint Security Threat Prevention-->
+				<Image condition="is">C:\Program Files\McAfee\Endpoint Security\Threat Prevention\mfeensppl.exe</Image>
+				<!--McAfee:Scan Engine-->
+				<Image condition="begin with">C:\Program Files\Common Files\McAfee\Engine\scanners</Image>
+				<!--McAfee:MCShield-->
+				<Image condition="is">C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>

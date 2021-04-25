@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+        <Rule groupRelation="and">
+          <Image condition="end with">rundll32.exe</Image>
+          <OriginalFileName name="technique_id=T1003.004,technique_name=LSASS Memory" condition="is">comsvcs.dll</OriginalFileName>
+        </Rule>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

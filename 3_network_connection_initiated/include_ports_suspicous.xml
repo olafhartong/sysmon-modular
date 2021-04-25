@@ -1,15 +1,16 @@
 <Sysmon schemaversion="4.30">
-   <EventFiltering>
- <RuleGroup name="" groupRelation="or">
-      <NetworkConnect onmatch="include">
-      <!--Eventhough DNS is a commmon exfil channel, you should monitor that via some other way, Sysmon is not ideal for that-->
-			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort> <!--SSH protocol-->
-			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">23</DestinationPort> <!--Telnet protocol-->
-			<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">25</DestinationPort> <!--SMTP mail protocol-->
-			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">3389</DestinationPort> <!--Microsoft:Windows:RDP-->
-			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort> <!--VNC protocol-->
-			<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort> <!--VNC protocol-->
-	  </NetworkConnect>
-</RuleGroup>
-</EventFiltering>
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<NetworkConnect onmatch="include">
+				<!--Eventhough DNS is a commmon exfil channel, you should monitor that via some other way, Sysmon is not ideal for that-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort>				<!--SSH protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">23</DestinationPort>				<!--Telnet protocol-->
+				<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">25</DestinationPort>				<!--SMTP mail protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">88</DestinationPort>				<!--Kerberos protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">3389</DestinationPort>				<!--Microsoft:Windows:RDP-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort>				<!--VNC protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort>				<!--VNC protocol-->
+			</NetworkConnect>
+		</RuleGroup>
+	</EventFiltering>
 </Sysmon>
