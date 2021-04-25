@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreateStreamHash onmatch="include">
+        <TargetFilename condition="contains">Downloads</TargetFilename> <!--Downloaded files. Does not include "Run" files in IE-->
+        <TargetFilename condition="contains">AppData</TargetFilename>
+        <TargetFilename condition="contains">Temp</TargetFilename>
+        <TargetFilename condition="contains">ProgramData</TargetFilename>
+        <TargetFilename condition="contains">Users</TargetFilename>
+      </FileCreateStreamHash>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
