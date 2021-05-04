@@ -1202,14 +1202,8 @@
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
-        <Rule name="UACMe Dir Prep" groupRelation="and">
-          <TargetObject name="UACMe Dir Prep" condition="begin with">HKU</TargetObject>
-          <TargetObject name="UACMe Dir Prep" condition="contains">Environment</TargetObject>
-        </Rule>
-        <Rule name="UACMe Dir Prep" groupRelation="and">
-          <TargetObject name="UACMe Dir Prep" condition="begin with">HKLM</TargetObject>
-          <TargetObject name="UACMe Dir Prep" condition="contains">Environment</TargetObject>
-        </Rule>
+        <TargetObject name="UACMe Dir Prep" condition="contains all">HKU;Environment</TargetObject>
+        <TargetObject name="UACMe Dir Prep" condition="contains all">HKLM;Environment</TargetObject>
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinSock</TargetObject>
         <TargetObject condition="end with">\ProxyServer</TargetObject>
         <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
