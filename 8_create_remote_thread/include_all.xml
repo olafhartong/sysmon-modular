@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.40">
+   <EventFiltering>
+ <RuleGroup name="" groupRelation="or">
+      <CreateRemoteThread onmatch="include">
+        <SourceImage name="technique_id=T1055,technique_name=Process Injection" condition="begin with">C:\</SourceImage>
+        <SourceImage name="technique_id=T1055,technique_name=Process Injection" condition="begin with">\\</SourceImage>
+      </CreateRemoteThread>
+</RuleGroup>
+</EventFiltering>
+</Sysmon>
