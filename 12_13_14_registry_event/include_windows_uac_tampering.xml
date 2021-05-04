@@ -7,14 +7,8 @@
 				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm -->
 				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
 				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
-				<Rule name="UACMe Dir Prep" groupRelation="and">
-					<TargetObject name="UACMe Dir Prep" condition="begin with">HKU</TargetObject>
-					<TargetObject name="UACMe Dir Prep" condition="contains">Environment</TargetObject>
-				</Rule>
-				<Rule name="UACMe Dir Prep" groupRelation="and">
-					<TargetObject name="UACMe Dir Prep" condition="begin with">HKLM</TargetObject>
-					<TargetObject name="UACMe Dir Prep" condition="contains">Environment</TargetObject>
-				</Rule>
+				<TargetObject name="UACMe Dir Prep" condition="contains all">HKU;Environment</TargetObject>
+				<TargetObject name="UACMe Dir Prep" condition="contains all">HKLM;Environment</TargetObject>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
