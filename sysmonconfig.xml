@@ -1104,9 +1104,7 @@
         <TargetFilename condition="end with">.bat</TargetFilename>
         <TargetFilename condition="end with">.cmd</TargetFilename>
         <TargetFilename condition="end with">Temp\debug.bin</TargetFilename>
-        <TargetFilename condition="contains">Downloads</TargetFilename>
         <TargetFilename condition="end with">.dll</TargetFilename>
-        <TargetFilename condition="contains">Downloads</TargetFilename>
         <TargetFilename condition="end with">.exe</TargetFilename>
         <TargetFilename condition="end with">.hta</TargetFilename>
         <TargetFilename condition="end with">.lnk</TargetFilename>
