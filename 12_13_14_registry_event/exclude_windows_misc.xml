@@ -27,8 +27,8 @@
 				<Image condition="begin with">C:\$WINDOWS.~BT\</Image>				<!--Microsoft:Windows: Update/Upgrade noise -->
 				<TargetObject condition="is">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters</TargetObject>
 				<Rule groupRelation="and">
-				<Image condition="is">C:\Windows\system32\lsass.exe</Image>
-				<TargetObject contains="begin with">HKLM\System\CurrentControlSet\Services</TargetObject>
+					<Image condition="is">C:\Windows\system32\lsass.exe</Image>
+					<TargetObject condition="contains">HKLM\System\CurrentControlSet\Services</TargetObject>
 				</Rule>
 			</RegistryEvent>
 		</RuleGroup>
