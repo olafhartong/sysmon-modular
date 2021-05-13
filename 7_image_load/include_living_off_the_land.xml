@@ -2,7 +2,6 @@
     <EventFiltering>
         <RuleGroup name="" groupRelation="or">
             <ImageLoad onmatch="include">
-                <ImageLoaded name="technique_id=T1047,technique_name=Blowfish Encryption for Windows" condition="end with">bcrypt.dll</ImageLoaded>
                 <ImageLoaded name="technique_id=T1047,technique_name=Windows Scheduled Tasks" condition="end with">mstask.dll</ImageLoaded>
             </ImageLoad>
         </RuleGroup>
