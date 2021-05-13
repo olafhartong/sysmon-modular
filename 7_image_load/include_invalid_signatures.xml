@@ -1,0 +1,10 @@
+<!--  This config might generate a lot of events like powershell etc which are also not signed -->>
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+        <SignatureStatus condition="is not">Valid</SignatureStatus>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
