@@ -659,17 +659,19 @@
       <ImageLoad onmatch="include">
         <Rule groupRelation="and">
           <Image name="technique_id=T0137.005,technique_name=Boot or Logon Initialization Scripts - Startup Items" condition="end with">bginfo.exe</Image>
-          <ImageLoaded condition="contains any">System.ni.dll;System.Core.ni.dll;System.Management.Automation.ni.dll;wmiutils.dll</ImageLoaded>
+          <ImageLoaded condition="contains any">System.ni.dll;System.Core.ni.dll</ImageLoaded>
         </Rule>
         <ImageLoaded name="technique_id=T1197,technique_name=BITS" condition="end with">bitsproxy.dll</ImageLoaded>
-        <ImageLoaded name="technique_id=T1047,technique_name=Blowfish Encryption for Windows" condition="end with">bcrypt.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1047,technique_name=Windows Scheduled Tasks" condition="end with">mstask.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
         <OriginalFileName condition="is">scrrun.dll</OriginalFileName>
         <OriginalFileName condition="is">vbscript.dll</OriginalFileName>
         <Rule groupRelation="and">
-          <OriginalFileName name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="is">jscript9.dll</OriginalFileName>
           <OriginalFileName name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="is">jscript.dll</OriginalFileName>
+          <Image condition="end with">mshta.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="is">jscript9.dll</OriginalFileName>
           <Image condition="end with">mshta.exe</Image>
         </Rule>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.wll</ImageLoaded>
@@ -1997,6 +1999,10 @@
     <RuleGroup groupRelation="or">
       <ImageLoad onmatch="exclude">
         <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\cscript.exe</Image>
+          <OriginalFileName condition="is">scrobj.dll</OriginalFileName>
+        </Rule>
+        <Rule groupRelation="and">
           <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
           <ImageLoaded condition="begin with">C:\Windows\</ImageLoaded>
         </Rule>
@@ -2144,6 +2150,11 @@
         <TargetObject condition="is">HKLM\SOFTWARE\Policies\Microsoft\SystemCertificates\Root\Certificates</TargetObject>
         <Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>
         <Image condition="begin with">C:\$WINDOWS.~BT\</Image>
+        <TargetObject condition="is">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters</TargetObject>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\system32\lsass.exe</Image>
+          <TargetObject contains="begin with">HKLM\System\CurrentControlSet\Services</TargetObject>
+        </Rule>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_32\Start</TargetObject>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject>
         <TargetObject condition="end with">\services\clr_optimization_v4.0.30319_32\Start</TargetObject>
@@ -2157,7 +2168,10 @@
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <PipeEvent onmatch="include">
-        <PipeName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="begin with">\</PipeName>
+        <Rule groupRelation="and">
+          <PipeName condition="begin with">\</PipeName>
+          <EventType>CreatePipe</EventType>
+        </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\atsvc</PipeName>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msagent_</PipeName>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msf-pipe</PipeName>
