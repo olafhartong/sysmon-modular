@@ -2153,7 +2153,7 @@
         <TargetObject condition="is">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters</TargetObject>
         <Rule groupRelation="and">
           <Image condition="is">C:\Windows\system32\lsass.exe</Image>
-          <TargetObject contains="begin with">HKLM\System\CurrentControlSet\Services</TargetObject>
+          <TargetObject condition="contains">HKLM\System\CurrentControlSet\Services</TargetObject>
         </Rule>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_32\Start</TargetObject>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject>
