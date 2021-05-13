@@ -4,7 +4,7 @@
       <ImageLoad onmatch="include">
         <Rule groupRelation="and">
           <Image name="technique_id=T0137.005,technique_name=Boot or Logon Initialization Scripts - Startup Items" condition="end with">bginfo.exe</Image>
-          <ImageLoaded condition="contains any">System.ni.dll;System.Core.ni.dll;System.Management.Automation.ni.dll;wmiutils.dll</ImageLoaded>
+          <ImageLoaded condition="contains any">System.ni.dll;System.Core.ni.dll</ImageLoaded>
         </Rule>
       </ImageLoad>
     </RuleGroup>
