@@ -1,1 +1,0 @@
-/Users/olafhartong/tools/sysmon-modular/8_create_remote_thread/exclude_generic_windows_processes.xml
