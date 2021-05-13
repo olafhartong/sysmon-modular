@@ -2,7 +2,10 @@
   <EventFiltering>
     <RuleGroup groupRelation="or">
         <PipeEvent onmatch="include">
-          <PipeName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="begin with">\</PipeName>
+          <Rule groupRelation="and">
+            <PipeName condition="begin with">\</PipeName>
+            <EventType>CreatePipe</EventType>
+          </Rule>
         </PipeEvent>
       </RuleGroup>
   </EventFiltering>
