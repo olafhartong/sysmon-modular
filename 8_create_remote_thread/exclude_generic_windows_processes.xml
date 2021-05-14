@@ -10,7 +10,6 @@
 				<SourceImage condition="is">C:\Windows\System32\services.exe</SourceImage>
 				<SourceImage condition="is">C:\Windows\System32\winlogon.exe</SourceImage>
 				<SourceImage condition="is">C:\Windows\System32\audiodg.exe</SourceImage>
-				<StartModule condition="is">C:\windows\system32\kernel32.dll</StartModule>
 				<Rule groupRelation="and">
 					<SourceImage condition="is">C:\Windows\System32\dwm.exe</SourceImage>
 					<TargetImage condition="is">C:\Windows\System32\csrss.exe</TargetImage>

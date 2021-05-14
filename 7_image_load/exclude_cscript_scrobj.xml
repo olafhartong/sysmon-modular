@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\cscript.exe</Image>
+          <OriginalFileName condition="is">scrobj.dll</OriginalFileName>
+        </Rule>  
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

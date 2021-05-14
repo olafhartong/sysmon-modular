@@ -25,6 +25,11 @@
 				<TargetObject condition="is">HKLM\SOFTWARE\Policies\Microsoft\SystemCertificates\Root\Certificates</TargetObject>
 				<Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>				<!--Microsoft:Windows: Remove noise from Windows 10 Cortana | Credit @ion-storm-->				<!--Win10-->
 				<Image condition="begin with">C:\$WINDOWS.~BT\</Image>				<!--Microsoft:Windows: Update/Upgrade noise -->
+				<TargetObject condition="is">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters</TargetObject>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Windows\system32\lsass.exe</Image>
+					<TargetObject condition="contains">HKLM\System\CurrentControlSet\Services</TargetObject>
+				</Rule>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
