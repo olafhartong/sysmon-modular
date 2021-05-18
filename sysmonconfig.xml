@@ -1131,7 +1131,39 @@
         <Image condition="is">Program Files (x86)\Citrix\ICA Client\Receiver\Receiver.exe</Image>
         <Image condition="is">Program Files (x86)\Citrix\ICA Client\wfcrun32.exe</Image>
         <Image condition="is">Program Files (x86)\Citrix\ICA Client\concentr.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Google\Update\Install\;setup.exe</Image>
+          <PipeName condition="begin with">\crashpad_</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Google\Chrome\Application\chrome.exe</Image>
+          <PipeName condition="begin with">\mojo.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">: C:\Program Files;\Google\Chrome\Application\;\Installer\chrmstp.exe</Image>
+          <PipeName condition="begin with">\crashpad_</PipeName>
+        </Rule>
         <PipeName condition="begin with">\Vivisimo Velocity</PipeName>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Microsoft\Edge\Application\msedge.exe</Image>
+          <PipeName condition="begin with">\LOCAL\mojo.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Microsoft\Edge\Application\msedge.exe</Image>
+          <PipeName condition="begin with">\LOCAL\chrome.sync.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Mozilla Firefox\firefox.exe</Image>
+          <PipeName condition="begin with">\cubeb-pipe-</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Mozilla Firefox\firefox.exe</Image>
+          <PipeName condition="begin with">\chrome.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Mozilla Firefox\firefox.exe</Image>
+          <PipeName condition="begin with">\gecko-crash-server-pipe.</PipeName>
+        </Rule>
         <PipeName condition="is">\SQLLocal\MSSQLSERVER</PipeName>
         <PipeName condition="is">\SQLLocal\INSTANCE01</PipeName>
         <PipeName condition="is">\SQLLocal\SQLEXPRESS</PipeName>
@@ -1365,6 +1397,7 @@
         <Image condition="contains all">C:\Program Files\SentinelOne\Sentinel Agent;\SentinelAgent.exe</Image>
         <QueryName condition="end with">.spotify.com</QueryName>
         <QueryName condition="end with">.spotify.map.fastly.net</QueryName>
+        <Image condition="contains all">C:\Windows\SystemApps\Microsoft.Windows.Search;SearchApp.exe</Image>
       </DnsQuery>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
@@ -1839,6 +1872,7 @@
         <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\OfficeSoftwareProtectionPlatform\OSPPSVC.EXE</Image>
         <CommandLine condition="begin with">"C:\Program Files\Mozilla Firefox\plugin-container.exe" --channel</CommandLine>
         <CommandLine condition="begin with">"C:\Program Files (x86)\Mozilla Firefox\plugin-container.exe" --channel</CommandLine>
+        <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Control\swc_service.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\Sophos System Protection\ssp.exe</Image>
@@ -2005,6 +2039,34 @@
           <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
           <ImageLoaded condition="begin with">C:\Windows\</ImageLoaded>
         </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileSyncTelemetryExtensions.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileCoAuthLib.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\OneDriveTelemetryStable.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\vcruntime140.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\UpdateRingSettings.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\LoggingPlatform.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileCoAuth.exe</ImageLoaded>
+        </Rule>
       </ImageLoad>
     </RuleGroup>
     <RuleGroup groupRelation="or">
@@ -2102,6 +2164,7 @@
         <Image condition="is">C:\Program Files\McAfee\Endpoint Security\Threat Prevention\mfeensppl.exe</Image>
         <Image condition="begin with">C:\Program Files\Common Files\McAfee\Engine\scanners</Image>
         <Image condition="is">C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
+        <Image condition="is">System</Image>
         <Rule groupRelation="and">
           <Image condition="is">C:\Program Files\VMware\VMware Tools\vmtoolsd.exe</Image>
           <TargetObject condition="is">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters</TargetObject>
@@ -2167,13 +2230,27 @@
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <PipeEvent onmatch="include">
+        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\svcctl</PipeName>
         <Rule groupRelation="and">
           <PipeName condition="begin with">\</PipeName>
           <EventType>CreatePipe</EventType>
         </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\atsvc</PipeName>
+        <Rule groupRelation="and">
+          <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msse-</PipeName>
+          <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="end with">\-server</PipeName>
+        </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msagent_</PipeName>
+        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\gruntsvc</PipeName>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msf-pipe</PipeName>
+        <Rule groupRelation="and">
+          <PipeName name="technique_id=T1059.001,technique_name=PowerShell" condition="begin with">\PSHost</PipeName>
+          <Image condition="is not">powershell.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <PipeName name="technique_id=T1059.001,technique_name=PowerShell" condition="begin with">\PSHost</PipeName>
+          <Image condition="is not">powershell_ise.exe</Image>
+        </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\PSEXESVC</PipeName>
         <PipeName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="begin with">\srvsvc</PipeName>
         <PipeName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="begin with">\winreg</PipeName>
