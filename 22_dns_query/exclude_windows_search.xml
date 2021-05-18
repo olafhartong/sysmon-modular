@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+	<!-- special thanks to @SwiftOnSecurity for this -->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DnsQuery onmatch="exclude">
+				<Image condition="contains all">C:\Windows\SystemApps\Microsoft.Windows.Search;SearchApp.exe</Image>
+			</DnsQuery>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
