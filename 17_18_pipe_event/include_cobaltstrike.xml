@@ -2,6 +2,10 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="include">
+        <Rule groupRelation="and">
+        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msse-</PipeName>        <!-- default cobalt strike pipe name-->
+        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="end with">\-server</PipeName>        <!-- default cobalt strike pipe name-->
+        </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msagent_</PipeName>        <!-- default cobalt strike pipe name-->
       </PipeEvent>
     </RuleGroup>

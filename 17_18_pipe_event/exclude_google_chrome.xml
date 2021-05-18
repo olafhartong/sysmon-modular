@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Google\Update\Install\;setup.exe</Image>
+          <PipeName condition="begin with">\crashpad_</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Google\Chrome\Application\chrome.exe</Image>
+          <PipeName condition="begin with">\mojo.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">: C:\Program Files;\Google\Chrome\Application\;\Installer\chrmstp.exe</Image>
+          <PipeName condition="begin with">\crashpad_</PipeName>
+        </Rule>        
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

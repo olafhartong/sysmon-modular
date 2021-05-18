@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="include">
+        <Rule groupRelation="and">
+          <PipeName name="technique_id=T1059.001,technique_name=PowerShell" condition="begin with">\PSHost</PipeName>
+          <Image condition="is not">powershell.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <PipeName name="technique_id=T1059.001,technique_name=PowerShell" condition="begin with">\PSHost</PipeName>
+          <Image condition="is not">powershell_ise.exe</Image>
+        </Rule>        
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
