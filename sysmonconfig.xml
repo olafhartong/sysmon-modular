@@ -1966,6 +1966,7 @@
         </Rule>
         <Image condition="image">OneDrive.exe</Image>
         <Image condition="image">OneDriveStandaloneUpdater.exe</Image>
+        <Image condition="end with">ownCloud\owncloud.exe</Image>
         <Image condition="is">C:\Program Files\Palo Alto Networks\Traps\cyserver.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\AutoUpdate\ALsvc.exe</Image>
@@ -1974,6 +1975,8 @@
         <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
         <Image condition="is">C:\Program Files\Sophos\Sophos Network Threat Protection\bin\SntpService.exe</Image>
         <Image condition="end with">AppData\Roaming\Spotify\Spotify.exe</Image>
+        <Image condition="end with">AppData\Local\SynologyDrive\SynologyDrive.app\bin\cloud-drive-ui.exe</Image>
+        <Image condition="end with">AppData\Local\SynologyDrive\SynologyDrive.app\bin\cloud-drive-daemon.exe</Image>
         <Image condition="is">C:\Program files (x86)\Trend Micro\OfficeScan Client\tmlisten.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Trend Micro\BM\TMBMSRV.exe</Image>
         <DestinationHostname condition="end with">.windowsupdate.microsoft.com</DestinationHostname>
@@ -2034,6 +2037,8 @@
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
+        <TargetImage condition="begin with">C:\Program Files\Autodesk\Autodesk Desktop App</TargetImage>
+        <TargetImage condition="begin with">C:\Program Files (x86)\Autodesk\Autodesk Desktop App</TargetImage>
         <SourceImage condition="is">C:\Windows\CarbonBlack\cb.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files\Cisco\AMP\;sfc.exe</SourceImage>
         <SourceImage condition="is">c:\Program Files\Couchbase\Server\bin\sigar_port.exe</SourceImage>
@@ -2110,6 +2115,8 @@
         <TargetObject condition="end with">ShellBrowser</TargetObject>
         <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
         <Image condition="is">C:\Program Files\RES Software\Workspace Manager\pfwsmgr.exe</Image>
+        <Image condition="begin with">C:\Program Files (x86)\Kaspersky Lab\Kaspersky Internet Security </Image>
+        <Image condition="begin with">C:\Program Files\Kaspersky Lab\Kaspersky Internet Security </Image>
         <Image condition="is">C:\Program Files\McAfee\Endpoint Encryption Agent\MfeEpeHost.exe</Image>
         <Image condition="is">C:\Program Files\McAfee\Endpoint Security\Adaptive Threat Protection\mfeatp.exe</Image>
         <Image condition="is">C:\Program Files\McAfee\Endpoint Security\Endpoint Security Platform\mfeesp.exe</Image>
@@ -2121,6 +2128,9 @@
         <Image condition="is">C:\Program Files\McAfee\Endpoint Security\Threat Prevention\mfeensppl.exe</Image>
         <Image condition="begin with">C:\Program Files\Common Files\McAfee\Engine\scanners</Image>
         <Image condition="is">C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
+        <Image condition="is">C:\Program Files\ownCloud\owncloud.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\ownCloud\owncloud.exe</Image>
+        <Image condition="begin with">C:\Program Files\SentinelOne\Sentinel Agent</Image>
         <Image condition="is">System</Image>
         <Rule groupRelation="and">
           <Image condition="is">C:\Program Files\VMware\VMware Tools\vmtoolsd.exe</Image>
