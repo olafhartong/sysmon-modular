@@ -1968,6 +1968,10 @@
         <Image condition="image">OneDriveStandaloneUpdater.exe</Image>
         <Image condition="end with">ownCloud\owncloud.exe</Image>
         <Image condition="is">C:\Program Files\Palo Alto Networks\Traps\cyserver.exe</Image>
+        <Rule groupRelation="and">
+          <Protocol condition="is">udp</Protocol>
+          <DestinationPort condition="is">3389</DestinationPort>
+        </Rule>
         <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\Web Intelligence\swi_service.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\AutoUpdate\ALsvc.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\RouterNT.exe</Image>
