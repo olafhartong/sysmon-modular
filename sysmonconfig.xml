@@ -770,7 +770,6 @@
         <SourceImage condition="is">C:\Windows\System32\services.exe</SourceImage>
         <SourceImage condition="is">C:\Windows\System32\winlogon.exe</SourceImage>
         <SourceImage condition="is">C:\Windows\System32\audiodg.exe</SourceImage>
-        <StartModule condition="is">C:\windows\system32\kernel32.dll</StartModule>
         <Rule groupRelation="and">
           <SourceImage condition="is">C:\Windows\System32\dwm.exe</SourceImage>
           <TargetImage condition="is">C:\Windows\System32\csrss.exe</TargetImage>
@@ -2153,7 +2152,7 @@
         <TargetObject condition="is">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters</TargetObject>
         <Rule groupRelation="and">
           <Image condition="is">C:\Windows\system32\lsass.exe</Image>
-          <TargetObject contains="begin with">HKLM\System\CurrentControlSet\Services</TargetObject>
+          <TargetObject condition="contains">HKLM\System\CurrentControlSet\Services</TargetObject>
         </Rule>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_32\Start</TargetObject>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject>
