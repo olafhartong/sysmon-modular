@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="Exclude_UDP" groupRelation="or">
+      <NetworkConnect onmatch="exclude">
+        <Rule groupRelation="and">
+          <Protocol condition="is">udp</Protocol>
+          <DestinationPort condition="is">3389</DestinationPort>
+        </Rule>
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
