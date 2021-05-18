@@ -1,0 +1,36 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileSyncTelemetryExtensions.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileCoAuthLib.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\OneDriveTelemetryStable.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\vcruntime140.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\UpdateRingSettings.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\LoggingPlatform.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileCoAuth.exe</ImageLoaded>
+        </Rule>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
