@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+    <EventFiltering>
+        <RuleGroup name="" groupRelation="or">
+            <ProcessAccess onmatch="exclude">
+                <TargetImage condition="begin with">C:\Program Files\Autodesk\Autodesk Desktop App</TargetImage>
+                <TargetImage condition="begin with">C:\Program Files (x86)\Autodesk\Autodesk Desktop App</TargetImage>
+            </ProcessAccess>
+        </RuleGroup>
+    </EventFiltering>
+</Sysmon>
