@@ -821,9 +821,17 @@
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <GrantedAccess>0x143A</GrantedAccess>
         </Rule>
+        <Rule groupRelation="and">
+          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">lsass.exe</TargetImage>
+          <SourceImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">wsmprovhost.exe</SourceImage>
+        </Rule>
         <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
           <SourceImage condition="contains all">C:\Program Files;\Microsoft Office\Root\Office</SourceImage>
           <CallTrace condition="contains">\Microsoft Shared\VBA</CallTrace>
+        </Rule>
+        <Rule groupRelation="and">
+          <CallTrace name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="contains all">C:\Windows\SYSTEM32\ntdll.dll;C:\Windows\System32\kernelbase.dll;UNKNOWN</CallTrace>
+          <GrantedAccess name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="contains any">0x1F0FFF;0x1F1FFF;0x143A;0x1410;0x1010;0x1F2FFF;0x1F3FFF;0x1FFFFF</GrantedAccess>
         </Rule>
         <GrantedAccess name="technique_id=T1093,technique_name=Process Hollowing">0x0800</GrantedAccess>
         <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x0810</GrantedAccess>
@@ -977,6 +985,7 @@
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ms-settings\shell\open\command</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject>
         <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains">Software\Classes\CLSID</TargetObject>
+        <TargetObject name="technique_id=T1003.002,technique_name=Security Account Manager" condition="contains">System\CurrentControlSet\Services\VSS</TargetObject>
         <TargetObject name="technique_id=T1098,technique_name=Account Manipulation" condition="contains">\services\Netlogon\Parameters\DisablePasswordChange</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
