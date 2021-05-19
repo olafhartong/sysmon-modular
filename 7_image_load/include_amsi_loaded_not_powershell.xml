@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ImageLoad onmatch="include">
+				<Rule groupRelation="and">
+					<OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="is">amsi.dll</OriginalFileName>
+					<Image condition="excludes any">powershell.exe;powershell_ise.exe</Image>
+				</Rule>
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
