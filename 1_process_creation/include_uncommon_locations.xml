@@ -20,6 +20,8 @@
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Downloads\</Image>
+        <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Desktop\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Appdata\Local\</Image>        <!--Thanks to Josh Frazier-->
       </ProcessCreate>
     </RuleGroup>
