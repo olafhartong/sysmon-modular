@@ -906,6 +906,10 @@
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">VBEUI.DLL</OriginalFileName>
         </Rule>
+        <Rule groupRelation="and" name="technique_id=T1137.001,technique_name=Office Application Startup - Office Template Macros">
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
+          <OriginalFileName condition="is">OUTLVBA.DLL</OriginalFileName>
+        </Rule>
         <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
         <Rule groupRelation="and">
           <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
