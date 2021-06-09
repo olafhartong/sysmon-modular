@@ -1,0 +1,36 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">        <!-- Credit https://redhead0ntherun.medium.com/detecting-net-c-injection-execute-assembly-1894dbb04ff7-->
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">clr.dll</OriginalFileName>
+            <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">clrjit.dll</OriginalFileName>
+            <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoreei.dll</OriginalFileName>
+            <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoree.dll</OriginalFileName>
+            <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoreeis.dll</OriginalFileName>
+            <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscorlib.dll</OriginalFileName>
+            <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          </Rule>
+          <Rule groupRelation="and">
+            <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscorlib.ni.dll</OriginalFileName>
+            <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          </Rule>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
