@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreateStreamHash onmatch="include">
+				<Rule name="technique_id=T1089,technique_name=Drive-by Compromise" groupRelation="and">					<!--https://twitter.com/SecurityJosh-->
+					<TargetFilename condition="end with">:Zone.Identifier</TargetFilename>
+					<Contents condition="contains any">blob:;about:internet</Contents>
+				</Rule>
+			</FileCreateStreamHash>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
