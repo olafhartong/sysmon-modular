@@ -1472,6 +1472,10 @@
         <Image condition="is">C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
         <Image condition="is">C:\Program Files\ownCloud\owncloud.exe</Image>
         <Image condition="is">C:\Program Files (x86)\ownCloud\owncloud.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="image">svchost.exe</Image>
+          <TargetImage condition="start with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetImage>
+        </Rule>
         <Image condition="begin with">C:\Program Files\SentinelOne\Sentinel Agent</Image>
         <Image condition="is">System</Image>
         <Rule groupRelation="and">
@@ -1547,6 +1551,10 @@
         <TargetFilename condition="end with">.dll</TargetFilename>
         <TargetFilename condition="end with">.exe</TargetFilename>
         <TargetFilename condition="end with">.hta</TargetFilename>
+        <Rule name="technique_id=T1089,technique_name=Drive-by Compromise" groupRelation="and">
+          <TargetFilename condition="end with">:Zone.Identifier</TargetFilename>
+          <Contents condition="contains any">blob:;about:internet</Contents>
+        </Rule>
         <TargetFilename condition="end with">.lnk</TargetFilename>
         <TargetFilename condition="contains">Content.Outlook</TargetFilename>
         <TargetFilename name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">.ps1</TargetFilename>
