@@ -858,31 +858,31 @@
         <ImageLoaded name="technique_id=T1197,technique_name=BITS" condition="end with">bitsproxy.dll</ImageLoaded>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">clr.dll</OriginalFileName>
-          <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">clrjit.dll</OriginalFileName>
-          <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoreei.dll</OriginalFileName>
-          <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoree.dll</OriginalFileName>
-          <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscoreeis.dll</OriginalFileName>
-          <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscorlib.dll</OriginalFileName>
-          <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">mscorlib.ni.dll</OriginalFileName>
-          <ParentImage condition="excludes">C:\Windows\Microsoft.NET\</ParentImage>
+          <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <ImageLoaded name="technique_id=T1047,technique_name=Windows Scheduled Tasks" condition="end with">mstask.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
@@ -1474,7 +1474,7 @@
         <Image condition="is">C:\Program Files (x86)\ownCloud\owncloud.exe</Image>
         <Rule groupRelation="and">
           <Image condition="image">svchost.exe</Image>
-          <TargetImage condition="start with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetImage>
+          <TargetObject condition="start with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
         </Rule>
         <Image condition="begin with">C:\Program Files\SentinelOne\Sentinel Agent</Image>
         <Image condition="is">System</Image>
