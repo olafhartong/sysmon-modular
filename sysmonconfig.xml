@@ -1474,7 +1474,7 @@
         <Image condition="is">C:\Program Files (x86)\ownCloud\owncloud.exe</Image>
         <Rule groupRelation="and">
           <Image condition="image">svchost.exe</Image>
-          <TargetObject condition="start with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
+          <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
         </Rule>
         <Image condition="begin with">C:\Program Files\SentinelOne\Sentinel Agent</Image>
         <Image condition="is">System</Image>
