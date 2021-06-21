@@ -4,7 +4,7 @@
 			<RegistryEvent onmatch="exclude">
 				<Rule groupRelation="and">
 				  <Image condition="image">svchost.exe</Image>
-				  <TargetObject condition="start with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
+				  <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
 				</Rule>
 			</RegistryEvent>
 		</RuleGroup>
