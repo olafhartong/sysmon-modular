@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <Rule groupRelation="and">
+          <SourceImage condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
+          <TargetImage condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</TargetImage>
+        </Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
