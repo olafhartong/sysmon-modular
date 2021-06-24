@@ -15,7 +15,6 @@
           <PipeName condition="begin with">\LOCAL\crashpad_</PipeName>
         </Rule>
       </PipeEvent>
-      </PipeEvent>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>
