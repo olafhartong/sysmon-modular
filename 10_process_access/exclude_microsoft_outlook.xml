@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="exclude">
+            <SourceImage condition="is">C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE</SourceImage>
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
