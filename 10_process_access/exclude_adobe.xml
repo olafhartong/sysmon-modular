@@ -3,6 +3,7 @@
     <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="exclude">
         <SourceImage condition="is">C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe</SourceImage>
+        <SourceImage condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</SourceImage>
       </ProcessAccess>
     </RuleGroup>
   </EventFiltering>
