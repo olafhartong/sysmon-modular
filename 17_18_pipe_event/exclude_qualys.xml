@@ -2,7 +2,7 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
-        <Image condition="contains all">C:\Program Files;\Qualys\QualysAgent\QualysAgent.exe</Image>
+        <SourceImage condition="contains all">C:\Program Files;\Qualys\QualysAgent\QualysAgent.exe</SourceImage>
       </PipeEvent>
     </RuleGroup>
   </EventFiltering>
