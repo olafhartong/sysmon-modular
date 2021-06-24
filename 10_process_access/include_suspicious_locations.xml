@@ -22,7 +22,7 @@
         <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</SourceImage>
         <Rule groupRelation="and">
           <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
-          <SourceImage condition="contains all">C:\Users;\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
         </Rule>
       </ProcessAccess>
     </RuleGroup>
