@@ -14,6 +14,7 @@
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</Image>
           <PipeName condition="begin with">\gc_pipe_</PipeName>
+        </Rule>
       </PipeEvent>
     </RuleGroup>
   </EventFiltering>
