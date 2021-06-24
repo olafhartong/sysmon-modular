@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="exclude"> 
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Microsoft\Edge\Application\msedge.exe</Image>
+          <PipeName condition="begin with">\LOCAL\crashpad_</PipeName>
+        </Rule>
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
