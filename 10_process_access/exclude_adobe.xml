@@ -4,6 +4,7 @@
       <ProcessAccess onmatch="exclude">
         <SourceImage condition="is">C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Acrobat.exe</SourceImage>
       </ProcessAccess>
     </RuleGroup>
   </EventFiltering>
