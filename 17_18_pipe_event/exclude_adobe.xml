@@ -17,7 +17,7 @@
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Common Files\Adobe\Creative Cloud Libraries\libs\node.exe</Image>
-          <PipeName condition="begin with"<\uv\</PipeName>
+          <PipeName condition="begin with">\uv\</PipeName>
         </Rule>
       </PipeEvent>
     </RuleGroup>
