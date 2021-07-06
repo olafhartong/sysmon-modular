@@ -4,6 +4,7 @@
       <ProcessAccess onmatch="exclude">
         <SourceImage condition="is">C:\Program Files\Microsoft Security Client\MsMpEng.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\Windows Defender\MsMpEng.exe</SourceImage>
+        <SourceImage condition="contains all">C:\ProgramData\Microsoft\Windows Defender\Platform\;\MsMpEng.exe</SourceImage>
       </ProcessAccess>
     </RuleGroup>
   </EventFiltering>

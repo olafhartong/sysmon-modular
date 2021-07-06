@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <SourceImage condition="is">C:\Program Files\Qualys\QualysAgent\QualysAgent.exe</SourceImage>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

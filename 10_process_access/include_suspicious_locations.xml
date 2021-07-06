@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.30">
+<Sysmon schemaversion="4.60">
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include">
@@ -20,7 +20,10 @@
         <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</SourceImage>
         <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</SourceImage>
         <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
+        <Rule groupRelation="and">
+          <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
+        </Rule>
       </ProcessAccess>
     </RuleGroup>
   </EventFiltering>

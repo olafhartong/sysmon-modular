@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <SourceImage condition="is">C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe</SourceImage>
+        <SourceImage condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Acrobat.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\AcroCEF\AcroCEF.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARMHelper.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Adobe\Adobe Photoshop 2021\Photoshop.exe</SourceImage>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
