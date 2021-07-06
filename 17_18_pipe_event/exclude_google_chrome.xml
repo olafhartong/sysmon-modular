@@ -11,7 +11,7 @@
           <PipeName condition="begin with">\mojo.</PipeName>
         </Rule>
         <Rule groupRelation="and">
-          <Image condition="contains all">: C:\Program Files;\Google\Chrome\Application\;\Installer\chrmstp.exe</Image>
+          <Image condition="contains all">C:\Program Files;\Google\Chrome\Application\;\Installer\chrmstp.exe</Image>
           <PipeName condition="begin with">\crashpad_</PipeName>
         </Rule>        
       </PipeEvent>

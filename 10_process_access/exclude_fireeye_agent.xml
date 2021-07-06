@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="exclude">
+            <SourceImage condition="contains all">C:\Program Files;\FireEye\xagt\xagt.exe</SourceImage>            <!--FireEye Agent-->
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

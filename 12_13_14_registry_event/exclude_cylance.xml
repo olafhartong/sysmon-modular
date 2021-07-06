@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.60">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<!--CylanceOptics-->
+				<Image condition="is">C:\Program Files\Cylance\Optics\CyOptics.exe</Image>
+				<!--CylanceSvc-->
+				<Image condition="is">C:\Program Files\Cylance\Desktop\CylanceSvc.exe</Image>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
