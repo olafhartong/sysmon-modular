@@ -1,14 +1,15 @@
 ﻿<Sysmon schemaversion="4.60">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
-  <CheckRevocation />
+  <CheckRevocation>False</CheckRevocation>
+  <!-- Setting this to true might impact performance -->
   <DnsLookup>False</DnsLookup>
   <!-- Disables lookup behavior, default is True (Boolean) -->
   <ArchiveDirectory>Sysmon</ArchiveDirectory>
   <!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
   <EventFiltering>
+    <!-- Event ID 1 == Process Creation - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 1 == Process Creation - Includes -->
       <ProcessCreate onmatch="include">
         <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">sethc.exe</ParentImage>
         <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">utilman.exe</ParentImage>
@@ -391,8 +392,8 @@
         </Rule>
       </ProcessCreate>
     </RuleGroup>
+    <!-- Event ID 1 == Process Creation - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 1 == Process Creation - Excludes -->
       <ProcessCreate onmatch="exclude">
         <Rule groupRelation="and">
           <Image condition="end with">AcroRd32.exe</Image>
@@ -578,8 +579,8 @@
         <ParentImage condition="is">C:\Windows\system32\SearchIndexer.exe</ParentImage>
       </ProcessCreate>
     </RuleGroup>
+    <!-- Event ID 2 == File Creation Time - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 2 == File Creation Time - Includes -->
       <FileCreateTime onmatch="include">
         <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Temp</Image>
         <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Windows\Temp</Image>
@@ -587,8 +588,8 @@
         <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Users</Image>
       </FileCreateTime>
     </RuleGroup>
+    <!-- Event ID 2 == File Creation Time - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 2 == File Creation Time - Excludes -->
       <FileCreateTime onmatch="exclude">
         <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
         <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
@@ -598,8 +599,8 @@
         <Image condition="end with">AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
       </FileCreateTime>
     </RuleGroup>
+    <!-- Event ID 3 == Network Connection - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 3 == Network Connection - Includes -->
       <NetworkConnect onmatch="include">
         <Image name="technique_id=T1021,technique_name=Remote Services" condition="image">vnc.exe</Image>
         <Image name="technique_id=T1021,technique_name=Remote Services" condition="image">vncviewer.exe</Image>
@@ -782,8 +783,8 @@
         <DestinationPort name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">5986</DestinationPort>
       </NetworkConnect>
     </RuleGroup>
+    <!-- Event ID 3 == Network Connection - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 3 == Network Connection - Excludes -->
       <NetworkConnect onmatch="exclude">
         <Image condition="end with">AppData\Roaming\Dropbox\bin\Dropbox.exe</Image>
         <Image condition="end with">winlogbeat.exe</Image>
@@ -822,16 +823,16 @@
         <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
       </NetworkConnect>
     </RuleGroup>
+    <!-- Event ID 5 == Process Terminated - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 5 == Process Terminated - Includes -->
       <ProcessTerminate onmatch="include">
         <Image condition="begin with">C:\Users</Image>
         <Image condition="begin with">C:\Temp</Image>
         <Image condition="begin with">C:\Windows\Temp</Image>
       </ProcessTerminate>
     </RuleGroup>
+    <!-- Event ID 6 == Driver Loaded - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 6 == Driver Loaded - Excludes -->
       <!--Default to log all and exclude only valid signed Microsoft or Intel drivers-->
       <DriverLoad onmatch="exclude">
         <Rule groupRelation="and">
@@ -844,8 +845,8 @@
         </Rule>
       </DriverLoad>
     </RuleGroup>
+    <!-- Event ID 7 == Image Loaded - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 7 == Image Loaded - Includes -->
       <ImageLoad onmatch="include">
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="is">amsi.dll</OriginalFileName>
@@ -987,8 +988,8 @@
         <ImageLoaded name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="end with">wmiutils.dll</ImageLoaded>
       </ImageLoad>
     </RuleGroup>
+    <!-- Event ID 7 == Image Loaded - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 7 == Image Loaded - Excludes -->
       <ImageLoad onmatch="exclude">
         <Rule groupRelation="and">
           <Image condition="is">C:\Windows\System32\cscript.exe</Image>
@@ -1028,8 +1029,8 @@
         </Rule>
       </ImageLoad>
     </RuleGroup>
+    <!-- Event ID 8 == CreateRemoteThread - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 8 == CreateRemoteThread - Excludes -->
       <!--Default to log all and exclude a few common processes-->
       <CreateRemoteThread onmatch="exclude">
         <SourceImage condition="is">C:\Windows\System32\svchost.exe</SourceImage>
@@ -1046,12 +1047,12 @@
         <SourceImage condition="is">C:\Windows\System32\wbem\WmiPrvSE.exe</SourceImage>
       </CreateRemoteThread>
     </RuleGroup>
+    <!-- Event ID 9 == RawAccessRead - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 9 == RawAccessRead - Includes -->
       <RawAccessRead onmatch="include" />
     </RuleGroup>
+    <!-- Event ID 10 == ProcessAccess - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 10 == ProcessAccess - Includes -->
       <ProcessAccess onmatch="include">
         <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
         <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
@@ -1135,8 +1136,8 @@
         </Rule>
       </ProcessAccess>
     </RuleGroup>
+    <!-- Event ID 10 == ProcessAccess - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 10 == ProcessAccess - Excludes -->
       <ProcessAccess onmatch="exclude">
         <SourceImage condition="is">C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</SourceImage>
@@ -1191,8 +1192,8 @@
         <SourceImage condition="is">C:\Program Files\WinZip\FAHWindow64.exe</SourceImage>
       </ProcessAccess>
     </RuleGroup>
+    <!-- Event ID 11 == FileCreate - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 11 == FileCreate - Includes -->
       <FileCreate onmatch="include">
         <TargetFilename name="technique_id=T1546.011,technique_name=Application Shimming" condition="contains">C:\Windows\AppPatch\Custom</TargetFilename>
         <TargetFilename condition="end with">.bat</TargetFilename>
@@ -1283,8 +1284,8 @@
         <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="contains">\AppData\Temp\</TargetFilename>
       </FileCreate>
     </RuleGroup>
+    <!-- Event ID 11 == FileCreate - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 11 == FileCreate - Excludes -->
       <FileCreate onmatch="exclude">
         <Image condition="is">C:\Program Files (x86)\Dell\CommandUpdate\InvColPC.exe</Image>
         <Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image>
@@ -1314,8 +1315,8 @@
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
       </FileCreate>
     </RuleGroup>
+    <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Includes -->
       <RegistryEvent onmatch="include">
         <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="is">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
         <TargetObject name="technique_id=T1546.011,technique_name=Application Shimming" condition="contains">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB</TargetObject>
@@ -1465,8 +1466,8 @@
         <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
       </RegistryEvent>
     </RuleGroup>
+    <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Excludes -->
       <RegistryEvent onmatch="exclude">
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\aciseposture.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
@@ -1563,8 +1564,8 @@
         <TargetObject condition="end with">\services\UsoSvc\Start</TargetObject>
       </RegistryEvent>
     </RuleGroup>
+    <!-- Event ID 15 == FileStream Created - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 15 == FileStream Created - Includes -->
       <FileCreateStreamHash onmatch="include">
         <TargetFilename condition="contains">Temp\7z</TargetFilename>
         <TargetFilename condition="end with">.bat</TargetFilename>
@@ -1592,8 +1593,8 @@
         <TargetFilename condition="end with">.vbs</TargetFilename>
       </FileCreateStreamHash>
     </RuleGroup>
+    <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Includes -->
       <PipeEvent onmatch="include">
         <Rule groupRelation="and">
           <PipeName condition="begin with">\</PipeName>
@@ -1624,8 +1625,8 @@
         <PipeName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="begin with">\winreg</PipeName>
       </PipeEvent>
     </RuleGroup>
+    <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Excludes -->
       <PipeEvent onmatch="exclude">
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Common Files\Adobe\ARM\1.0\AdobeARM.exe</Image>
@@ -1655,7 +1656,7 @@
         <Image condition="contains all">C:\Program Files;\Citrix\ICA Client\concentr.exe</Image>
         <Image condition="contains all">C:\Users\;\AppData\Local\Citrix\ICA Client\receiver\Receiver.exe</Image>
         <Image condition="contains all">C:\Users\;\AppData\Local\Citrix\ICA Client\SelfServicePlugin\SelfService.exe</Image>
-        <SourceImage condition="contains all">C:\Program Files;\FireEye\xagt\xagt.exe</SourceImage>
+        <Image condition="contains all">C:\Program Files;\FireEye\xagt\xagt.exe</Image>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Google\Update\Install\;setup.exe</Image>
           <PipeName condition="begin with">\crashpad_</PipeName>
@@ -1712,7 +1713,7 @@
         <Image condition="end with">PostgreSQL\9.6\bin\postgres.exe</Image>
         <PipeName condition="contains">\pgsignal_</PipeName>
         <Image condition="is">Program Files\Qlik\Sense\Engine\Engine.exe</Image>
-        <SourceImage condition="contains all">C:\Program Files;\Qualys\QualysAgent\QualysAgent.exe</SourceImage>
+        <Image condition="contains all">C:\Program Files;\Qualys\QualysAgent\QualysAgent.exe</Image>
         <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunkd.exe</Image>
         <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk.exe</Image>
         <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk-MonitorNoHandle.exe</Image>
@@ -1742,14 +1743,14 @@
         <Image condition="is">c:\windows\system32\inetsrv\w3wp.exe</Image>
       </PipeEvent>
     </RuleGroup>
+    <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Includes -->
       <WmiEvent onmatch="include">
         <Operation name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">Created</Operation>
       </WmiEvent>
     </RuleGroup>
+    <!-- Event ID 22 == DNS Queries and their results Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 22 == DNS Queries and their results Excludes -->
       <!--Default to log all and exclude a few common processes-->
       <DnsQuery onmatch="exclude">
         <QueryName condition="end with">.1rx.io</QueryName>
@@ -1938,8 +1939,8 @@
         <Image condition="contains all">C:\Windows\SystemApps\Microsoft.Windows.Search;SearchApp.exe</Image>
       </DnsQuery>
     </RuleGroup>
+    <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
       <FileDelete onmatch="include">
         <TargetFilename condition="contains all">C:\Program Files\Microsoft SQL Server;\Shared\ErrorDumps</TargetFilename>
         <TargetFilename condition="contains all">C:\Program Files\Microsoft SQL Server;\DataDumps</TargetFilename>
@@ -2139,8 +2140,8 @@
         </Rule>
       </FileDelete>
     </RuleGroup>
+    <!-- Event ID 23 == File Delete and overwrite events - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 23 == File Delete and overwrite events - Excludes -->
       <FileDelete onmatch="exclude">
         <Image condition="contains all">\appdata\local\google\chrome\user data\swreporter\;software_reporter_tool.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
@@ -2151,13 +2152,13 @@
         </Rule>
       </FileDelete>
     </RuleGroup>
+    <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
       <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
       <ClipboardChange onmatch="include" />
     </RuleGroup>
+    <!-- Event ID 25 == Process tampering events - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 25 == Process tampering events - Excludes -->
       <ProcessTampering onmatch="exclude">
         <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
         <Image condition="is">C:\Program Files\Mozilla Firefox\updater.exe</Image>
@@ -2183,8 +2184,8 @@
         <Image condition="is">C:\Program Files\Microsoft VS Code\Code.exe</Image>
       </ProcessTampering>
     </RuleGroup>
+    <!-- Event ID 26 == File Delete and overwrite events, does NOT save the file - Includes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 26 == File Delete and overwrite events, does NOT save the file - Includes -->
       <FileDeleteDetected onmatch="include">
         <TargetFilename condition="contains all">C:\Program Files\Microsoft SQL Server;\Shared\ErrorDumps</TargetFilename>
         <TargetFilename condition="contains all">C:\Program Files\Microsoft SQL Server;\DataDumps</TargetFilename>
@@ -2351,8 +2352,8 @@
         </Rule>
       </FileDeleteDetected>
     </RuleGroup>
+    <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
     <RuleGroup groupRelation="or">
-      <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
       <FileDeleteDetected onmatch="exclude">
         <Image condition="contains all">\appdata\local\google\chrome\user data\swreporter\;software_reporter_tool.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
