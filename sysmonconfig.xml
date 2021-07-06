@@ -1125,7 +1125,10 @@
         <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</SourceImage>
         <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</SourceImage>
         <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
+        <Rule groupRelation="and">
+          <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
+        </Rule>
         <Rule groupRelation="and">
           <CallTrace name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">System.Management.Automation.ni.dll</CallTrace>
           <SourceImage condition="is not">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</SourceImage>
@@ -1135,11 +1138,19 @@
     <RuleGroup groupRelation="or">
       <!-- Event ID 10 == ProcessAccess - Excludes -->
       <ProcessAccess onmatch="exclude">
+        <SourceImage condition="is">C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe</SourceImage>
+        <SourceImage condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Acrobat.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\AcroCEF\AcroCEF.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARMHelper.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Adobe\Adobe Photoshop 2021\Photoshop.exe</SourceImage>
         <TargetImage condition="begin with">C:\Program Files\Autodesk\Autodesk Desktop App</TargetImage>
         <TargetImage condition="begin with">C:\Program Files (x86)\Autodesk\Autodesk Desktop App</TargetImage>
         <SourceImage condition="is">C:\Windows\CarbonBlack\cb.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files\Cisco\AMP\;sfc.exe</SourceImage>
+        <SourceImage condition="contains all">C:\Users\;\AppData\Local\Cirtix\ICA Client\receiver\Receiver.exe</SourceImage>
         <SourceImage condition="is">c:\Program Files\Couchbase\Server\bin\sigar_port.exe</SourceImage>
+        <SourceImage condition="contains all">C:\Program Files;\FireEye\xagt\xagt.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\cpushld.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\cpushld.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\Ivanti\Workspace Control\cpushld.exe</SourceImage>
@@ -1160,10 +1171,18 @@
         <GrantedAccess>0x101000</GrantedAccess>
         <SourceImage condition="is">C:\Program Files\McAfee\Endpoint Security\Endpoint Security Platform\mfeesp.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\McAfee\Agent\x86\macompatsvc.exe</SourceImage>
+        <SourceImage condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\StandaloneUpdater\OneDriveSetup.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE</SourceImage>
+        <Rule groupRelation="and">
+          <SourceImage condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
+          <TargetImage condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</TargetImage>
+        </Rule>
         <SourceImage condition="is">C:\Program Files\Microsoft Security Client\MsMpEng.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\Windows Defender\MsMpEng.exe</SourceImage>
+        <SourceImage condition="contains all">C:\ProgramData\Microsoft\Windows Defender\Platform\;\MsMpEng.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\Palo Alto Networks\Traps\cyserver.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Qualys\QualysAgent\QualysAgent.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\Razer Chroma SDK\bin\RzSDKService.exe</SourceImage>
         <SourceImage condition="is">C:\WINDOWS\CCM\CcmExec.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\Splunk\bin\splunkd.exe</SourceImage>
@@ -1451,6 +1470,8 @@
       <RegistryEvent onmatch="exclude">
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\aciseposture.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
+        <Image condition="is">C:\Program Files\Cylance\Optics\CyOptics.exe</Image>
+        <Image condition="is">C:\Program Files\Cylance\Desktop\CylanceSvc.exe</Image>
         <TargetObject condition="end with">Toolbar\WebBrowser</TargetObject>
         <TargetObject condition="end with">Toolbar\WebBrowser\ITBar7Height</TargetObject>
         <TargetObject condition="end with">Toolbar\ShellBrowser\ITBar7Layout</TargetObject>
@@ -1499,7 +1520,7 @@
         <TargetObject condition="end with">\OpenWithList\MRUList</TargetObject>
         <TargetObject condition="end with">} 0xFFFF</TargetObject>
         <Image condition="end with">Office\root\integration\integrator.exe</Image>
-        <Image condition="image">C:\WINDOWS\system32\backgroundTaskHost.exe</Image>
+        <Image condition="is">C:\WINDOWS\system32\backgroundTaskHost.exe</Image>
         <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe</Image>
         <Image condition="is">C:\Program Files\Windows Defender\MsMpEng.exe</Image>
         <Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>
@@ -1574,7 +1595,6 @@
     <RuleGroup groupRelation="or">
       <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Includes -->
       <PipeEvent onmatch="include">
-        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\svcctl</PipeName>
         <Rule groupRelation="and">
           <PipeName condition="begin with">\</PipeName>
           <EventType>CreatePipe</EventType>
@@ -1582,13 +1602,14 @@
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\atsvc</PipeName>
         <Rule groupRelation="and">
           <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msse-</PipeName>
-          <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="end with">\-server</PipeName>
+          <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="end with">-server</PipeName>
         </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msagent_</PipeName>
         <PipeName name="technique_id=T1055; Possible Cobalt Strike post-exploitation jobs." condition="begin with">\postex_</PipeName>
         <PipeName name="technique_id=T1021.004,technique_name=Remote Services: SSH" condition="begin with">\postex_ssh_</PipeName>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\status_</PipeName>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\gruntsvc</PipeName>
+        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\svcctl</PipeName>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msf-pipe</PipeName>
         <Rule groupRelation="and">
           <PipeName name="technique_id=T1059.001,technique_name=PowerShell" condition="begin with">\PSHost</PipeName>
@@ -1606,11 +1627,35 @@
     <RuleGroup groupRelation="or">
       <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Excludes -->
       <PipeEvent onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Common Files\Adobe\ARM\1.0\AdobeARM.exe</Image>
+          <PipeName condition="begin with">\32B6B37A-4A7D-4e00-95F2-</PipeName>
+          <PipeName condition="end with">thsnYaVieBoda</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Adobe\Acrobat Reader DC\Reader\AcroCEF\RdrCEF.exe</Image>
+          <PipeName condition="begin with">\com.adobe.reader.rna.;\mojo</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</Image>
+          <PipeName condition="begin with">\gc_pipe_</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Common Files\Adobe\Creative Cloud Libraries\libs\node.exe</Image>
+          <PipeName condition="begin with">\uv\</PipeName>
+        </Rule>
         <Image condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe"</Image>
-        <Image condition="is">Program Files (x86)\Citrix\ICA Client\SelfServicePlugin\SelfService.exe</Image>
-        <Image condition="is">Program Files (x86)\Citrix\ICA Client\Receiver\Receiver.exe</Image>
-        <Image condition="is">Program Files (x86)\Citrix\ICA Client\wfcrun32.exe</Image>
-        <Image condition="is">Program Files (x86)\Citrix\ICA Client\concentr.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Programs\Call Manager\Call Manager.exe</Image>
+          <PipeName condition="begin with">\crashpad_;\mojo.;\uv\</PipeName>
+        </Rule>
+        <Image condition="contains all">C:\Program Files;\Citrix\ICA Client\SelfServicePlugin\SelfService.exe</Image>
+        <Image condition="contains all">C:\Program Files;\Citrix\ICA Client\Receiver\Receiver.exe</Image>
+        <Image condition="contains all">C:\Program Files;\Citrix\ICA Client\wfcrun32.exe</Image>
+        <Image condition="contains all">C:\Program Files;\Citrix\ICA Client\concentr.exe</Image>
+        <Image condition="contains all">C:\Users\;\AppData\Local\Citrix\ICA Client\receiver\Receiver.exe</Image>
+        <Image condition="contains all">C:\Users\;\AppData\Local\Citrix\ICA Client\SelfServicePlugin\SelfService.exe</Image>
+        <SourceImage condition="contains all">C:\Program Files;\FireEye\xagt\xagt.exe</SourceImage>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Google\Update\Install\;setup.exe</Image>
           <PipeName condition="begin with">\crashpad_</PipeName>
@@ -1620,7 +1665,7 @@
           <PipeName condition="begin with">\mojo.</PipeName>
         </Rule>
         <Rule groupRelation="and">
-          <Image condition="contains all">: C:\Program Files;\Google\Chrome\Application\;\Installer\chrmstp.exe</Image>
+          <Image condition="contains all">C:\Program Files;\Google\Chrome\Application\;\Installer\chrmstp.exe</Image>
           <PipeName condition="begin with">\crashpad_</PipeName>
         </Rule>
         <PipeName condition="begin with">\Vivisimo Velocity</PipeName>
@@ -1631,6 +1676,18 @@
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft\Edge\Application\msedge.exe</Image>
           <PipeName condition="begin with">\LOCAL\chrome.sync.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Microsoft\Edge\Application\msedge.exe</Image>
+          <PipeName condition="begin with">\LOCAL\crashpad_</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office16\OUTLOOK.EXE</Image>
+          <PipeName condition="is">\MsFteWds</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
+          <PipeName condition="begin with">\mojo.</PipeName>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Mozilla Firefox\firefox.exe</Image>
@@ -1655,6 +1712,7 @@
         <Image condition="end with">PostgreSQL\9.6\bin\postgres.exe</Image>
         <PipeName condition="contains">\pgsignal_</PipeName>
         <Image condition="is">Program Files\Qlik\Sense\Engine\Engine.exe</Image>
+        <SourceImage condition="contains all">C:\Program Files;\Qualys\QualysAgent\QualysAgent.exe</SourceImage>
         <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunkd.exe</Image>
         <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk.exe</Image>
         <Image condition="end with">Program Files\SplunkUniversalForwarder\bin\splunk-MonitorNoHandle.exe</Image>
