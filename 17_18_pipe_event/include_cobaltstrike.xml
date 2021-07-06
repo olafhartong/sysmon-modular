@@ -7,6 +7,9 @@
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="end with">\-server</PipeName>        <!-- default cobalt strike pipe name-->
         </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msagent_</PipeName>        <!-- default cobalt strike pipe name-->
+        <PipeName name="technique_id=T1055; Possible Cobalt Strike post-exploitation jobs." condition="begin with">\postex_</PipeName>        <!-- default cobalt strike pipe name-->
+        <PipeName name="technique_id=T1021.004,technique_name=Remote Services: SSH" condition="begin with">\postex_ssh_</PipeName>        <!-- default cobalt strike pipe name-->
+        <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\status_</PipeName>        <!-- default cobalt strike pipe name-->
       </PipeEvent>
     </RuleGroup>
   </EventFiltering>
