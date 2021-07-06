@@ -267,7 +267,7 @@ function Merge-SysmonXml
     $newDoc = [xml]@'
 <Sysmon schemaversion="4.60">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
-<CheckRevocation>True</CheckRevocation>
+<CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
 <EventFiltering>
