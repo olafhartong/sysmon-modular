@@ -1,9 +1,0 @@
-<Sysmon schemaversion="4.60">
-   <EventFiltering>
-      <RuleGroup name="" groupRelation="or">
-         <ProcessAccess onmatch="exclude">
-            <SourceImage condition="is">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Acrobat.exe</SourceImage>
-         </ProcessAccess>
-      </RuleGroup>
-   </EventFiltering>
-</Sysmon>
