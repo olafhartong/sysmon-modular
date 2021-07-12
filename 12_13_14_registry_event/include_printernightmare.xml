@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!-- https://github.com/SigmaHQ/sigma/blob/master/rules/windows/registry_event/win_registry_mimikatz_printernightmare.yml -->
+				<TargetObject name="PrinterNightmare" condition="contains">\Control\Print\Environments\Windows x64\Drivers\Version-3\QMS 810\</TargetObject>	
+				<TargetObject name="PrinterNightmare" condition="contains">\Control\Print\Environments\Windows x64\Drivers\Version-3\mimikatz</TargetObject>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
