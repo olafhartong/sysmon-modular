@@ -39,7 +39,7 @@
 			    <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService</TargetObject>
 			    <Details condition="contains">DWORD (0x00000004)</TargetObject>
 			</Rule>
-				<Rule groupRelation="and" name="Disabling Security Service">
+			<Rule groupRelation="and" name="Disabling Security Service">
 			    <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wuauserv</TargetObject>
 			    <Details condition="contains">DWORD (0x00000004)</TargetObject>
 			</Rule>
