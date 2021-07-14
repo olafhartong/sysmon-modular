@@ -24,6 +24,11 @@
 				<QueryName condition="end with">.windowsupdate.com</QueryName>				<!--Microsoft-->
 				<QueryName condition="end with">.xboxlive.com</QueryName>				<!--Microsoft-->
 				<QueryName condition="is">login.windows.net</QueryName>				<!--Microsoft-->
+				<QueryName condition="is">outlook.office.com</QueryName>			<!--Outlook-->
+				<QueryName condition="is">statics.teams.cdn.office.net</QueryName>		<!--Teams-->
+				<QueryName condition="is">acdc-direct.office.com</QueryName>			<!--Microsoft-->
+				<QueryName condition="end with">.fp.measure.office.com</QueryName>		<!--Office-->
+				<QueryName condition="end with">office365.com</QueryName>
 			</DnsQuery>
 		</RuleGroup>
 	</EventFiltering>
