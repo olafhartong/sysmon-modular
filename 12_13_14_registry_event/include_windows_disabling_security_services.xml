@@ -2,7 +2,7 @@
   <EventFiltering>
 	  <RuleGroup name="" groupRelation="or">
 		  <RegistryEvent onmatch="include">
-        	<!--https://twitter.com/JohnLaTwC/status/1415295021041979392/photo/1--> 
+			<!--https://twitter.com/JohnLaTwC/status/1415295021041979392/photo/1--> 
         		<Rule groupRelation="and" name="Disabling Security Service">
 			    <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\Sense</TargetObject>
 			    <Details condition="contains">DWORD (0x00000004)</TargetObject>
