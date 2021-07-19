@@ -5,54 +5,48 @@
 			<!--https://twitter.com/JohnLaTwC/status/1415295021041979392-->
 			<!--https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nf-winsvc-changeserviceconfiga-->
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\Sense</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\Sense</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\WinDefend</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinDefend</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\MsMpSvc</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\MsMpSvc</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\NisSrv</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\NisSrv</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\WdBoot</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdBoot</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\WdNisDrv</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisDrv</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\WdNisSvc</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisSvc</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\wscsvc</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wscsvc</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\wuauserv</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wuauserv</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<Rule groupRelation="and">
-					<TargetObject condition="contains">HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc</TargetObject>
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc</TargetObject>
 					<Details condition="contains">DWORD (0x00000004)</Details>
-				</Rule>
-			<!--https://twitter.com/JohnLaTwC/status/1413510338880839686-->
-			<!--https://docs.microsoft.com/en-us/windows/security/identity-protection/remote-credential-guard-->
-				<Rule groupRelation="and">
-					<TargetObject condition="is">HKLM\System\CurrentControlSet\Control\Lsa</TargetObject>
-					<Details condition="contains">DWORD (0x00000001)</Details>
 				</Rule>
       			</RegistryEvent>
     		</RuleGroup>
