@@ -4,7 +4,7 @@
       <PipeEvent onmatch="exclude">
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
-          <PipeName condition="begin with">\mojo</PipeName>
+          <PipeName condition="begin with">\mojo.</PipeName>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
