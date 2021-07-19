@@ -53,6 +53,7 @@
 				<Rule groupRelation="and">
 					<TargetObject condition="is">HKLM\System\CurrentControlSet\Control\Lsa</TargetObject>
 					<Details condition="contains">DWORD (0x00000001)</Details>
+				</Rule>
       			</RegistryEvent>
     		</RuleGroup>
   	</EventFiltering>
