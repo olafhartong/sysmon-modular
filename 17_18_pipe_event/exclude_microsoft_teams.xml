@@ -1,10 +1,10 @@
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.70">
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
-          <PipeName condition="begin with">\mojo.</PipeName>
+          <PipeName condition="contains any">\mojo.;\chrome.sync.</PipeName>
         </Rule>
       </PipeEvent>
     </RuleGroup>
