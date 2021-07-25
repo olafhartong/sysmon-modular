@@ -25,6 +25,10 @@
           <Image condition="is not">c:\windows\system32\mmc.exe</Image>
         </Rule>
         <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">fodhelper.exe</ParentImage>
+        <Rule groupRelation="and">
+          <CommandLine condition="contains">Set-MpPreference</CommandLine>
+          <CommandLine condition="contains any">-DisableRealTimeMonitoring $true;-DisableBehaviorMonitoring $true;-DisableBlockAtFirstSeen $true;-DisableIOAVProtection $true;-DisablePrivacyMode $true;-SignatureDisableUpdateOnStartupWithoutEngine $true;-DisableArchiveScanning $true;-DisableIntrusionPreventionSystem $true;-DisableScriptScanning $true</CommandLine>
+        </Rule>
         <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">^</CommandLine>
         <CommandLine name="technique_id=T1027,technique_name=Obfuscated Files or Information" condition="contains">../../</CommandLine>
         <ParentCommandLine name="technique_id=T1204,technique_name=User Execution" condition="is">C:\Windows\explorer.exe</ParentCommandLine>
@@ -62,6 +66,7 @@
         <OriginalFileName name="technique_id=T1063,technique_name=Security Software Discovery" condition="is">netsh.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1087,technique_name=Account Discovery" condition="is">klist.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="is">wevtutil.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="is">fsutil.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task" condition="is">taskeng.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1117,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName>
         <ParentImage name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="image">wmiprvse.exe</ParentImage>
@@ -324,7 +329,8 @@
         <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="is">ru.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="contains">Regsize</OriginalFileName>
         <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">ProcDump</OriginalFileName>
-        <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="is">-ma lsass.exe</CommandLine>
+        <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">-ma lsass.exe</CommandLine>
+        <CommandLine name="technique_id=T1036,technique_name=Process Evasion" condition="contains">-accepteula -ma</CommandLine>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vssadmin.exe</OriginalFileName>
           <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;shadow</CommandLine>
@@ -1400,7 +1406,7 @@
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject>
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
-        <TargetObject name="technique_id=T1547.003,technique_name=Time Providers" condition="contains">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders</TargetObject>
+        <TargetObject name="technique_id=T1547.003,technique_name=Time Providers" condition="contains">HKLM\System\CurrentControlSet\Services\W32Time\TimeProviders</TargetObject>
         <TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Setup\ServiceStartup</TargetObject>
         <TargetObject name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="begin with">HKLM\Software\Microsoft\WAB\DLLPath</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths</TargetObject>
@@ -1426,6 +1432,50 @@
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableScanOnRealtimeEnable</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet\SpyNetReporting</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender</TargetObject>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\Sense</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinDefend</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\MsMpSvc</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\NisSrv</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdBoot</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisDrv</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisSvc</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wscsvc</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wuauserv</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc</TargetObject>
+          <Details condition="contains">DWORD (0x00000004)</Details>
+        </Rule>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
         <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
@@ -1696,6 +1746,10 @@
           <PipeName condition="begin with">\mojo.</PipeName>
         </Rule>
         <Rule groupRelation="and">
+          <Image condition="contains all">C:\Users\;\AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
+          <PipeName condition="begin with">\chrome.sync.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Mozilla Firefox\firefox.exe</Image>
           <PipeName condition="begin with">\cubeb-pipe-</PipeName>
         </Rule>
@@ -1905,6 +1959,11 @@
         <QueryName condition="end with">.windowsupdate.com</QueryName>
         <QueryName condition="end with">.xboxlive.com</QueryName>
         <QueryName condition="is">login.windows.net</QueryName>
+        <QueryName condition="is">outlook.office.com</QueryName>
+        <QueryName condition="is">statics.teams.cdn.office.net</QueryName>
+        <QueryName condition="is">acdc-direct.office.com</QueryName>
+        <QueryName condition="end with">.fp.measure.office.com</QueryName>
+        <QueryName condition="end with">office365.com</QueryName>
         <QueryName condition="end with">.activedirectory.windowsazure.com</QueryName>
         <QueryName condition="end with">.aria.microsoft.com</QueryName>
         <QueryName condition="end with">.msauth.net</QueryName>
