@@ -1,0 +1,54 @@
+<Sysmon schemaversion="4.70">
+	<EventFiltering>
+		<RuleGroup name="Disabling Security Service" groupRelation="or">
+			<RegistryEvent onmatch="include">
+			<!--https://twitter.com/JohnLaTwC/status/1415295021041979392-->
+			<!--https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nf-winsvc-changeserviceconfiga-->
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\Sense</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinDefend</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\MsMpSvc</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\NisSrv</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdBoot</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisDrv</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisSvc</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wscsvc</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wuauserv</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc</TargetObject>
+					<Details condition="contains">DWORD (0x00000004)</Details>
+				</Rule>
+      			</RegistryEvent>
+    		</RuleGroup>
+  	</EventFiltering>
+</Sysmon>
