@@ -985,6 +985,7 @@
         <Rule groupRelation="and">
           <OriginalFileName condition="is">urlmon.dll</OriginalFileName>
         </Rule>
+        <ImageLoaded name="technique_id=T1555,technique_name=Credentials from Password Stores" condition="end with">vaultcli.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="end with">wmiutils.dll</ImageLoaded>
       </ImageLoad>
     </RuleGroup>
@@ -1026,6 +1027,10 @@
         <Rule groupRelation="and">
           <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
           <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileCoAuth.exe</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\VaultCmd.exe</Image>
+          <OriginalFileName condition="is">vaultcli.dll</OriginalFileName>
         </Rule>
       </ImageLoad>
     </RuleGroup>
