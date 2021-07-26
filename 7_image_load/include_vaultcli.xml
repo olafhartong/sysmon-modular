@@ -1,9 +1,0 @@
-<Sysmon schemaversion="4.30">
-  <EventFiltering>
-    <RuleGroup name="" groupRelation="or">
-      <ImageLoad onmatch="include">
-        <ImageLoaded name="technique_id=T1555,technique_name=Credentials from Password Stores" condition="end with">vaultcli.dll</ImageLoaded>
-      </ImageLoad>
-    </RuleGroup>
-  </EventFiltering>
-</Sysmon>
