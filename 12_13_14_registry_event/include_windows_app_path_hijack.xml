@@ -3,7 +3,7 @@
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<!--AppPaths hijacking-->
-				<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Control.exe</TargetObject>				<!--MDE-->>
+				<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Control.exe</TargetObject>				<!--MDE-->
 				<TargetObject name="technique_id=T1546.009,technique_name=AppCert DLLs" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls</TargetObject>				<!--Microsoft:Windows: Credit to @Hexacorn [ http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/ ] --><!--MDE-->
 			</RegistryEvent>
 		</RuleGroup>
