@@ -10,6 +10,15 @@ This is a Microsoft Sysinternals Sysmon [download here](https://docs.microsoft.c
 
 The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run.
 
+## Pre-Grenerated configurations
+| Config | Description|
+| --- | --- |
+| [default - sysmonconfig.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
+[verbose - ](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-excludes-only.xml) |  This is the very verbose configuration, all events are included, only the exclusion modules are applied. This should not be used in production without validation, will generate a significant amount of data and might impact performance. More information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)|
+| sysmon-mde-augmentation | A configuration to augment Defender for Endpoint, intended to augment the information and have as little overlap as possible. Coming soon |
+
+Do keep in mind that tuning per environment is _strongly_ recommended. More info on how to generate a custom config, incorporating your own modules [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)
+
 ## NOTICE; Sysmon below 13 will not completely be compatible with this configuration
 
 Older versions are still available in the branches, but are not as complete as the current branch
