@@ -1,4 +1,24 @@
-﻿<Sysmon schemaversion="4.60">
+﻿<!--                        NOTICE : This is a custom generated output of Sysmon-modular with higher verbosity                   -->
+<!--                    The log volume expected from this file is significantly larger than a more balanced log                  -->
+<!--                                the blind spots for this config are to be significantly less                                 -->
+<!--                        for more information go to https://github.com/olafhartong/sysmon-modular/wiki                        -->
+<!--                                                                                                                             -->
+<!--  //**                  ***//                                                                                                -->
+<!-- ///#(**               **%(///                                                                                               -->
+<!-- ((&&&**               **&&&((                                                                                               -->
+<!--  (&&&**   ,(((((((.   **&&&(                                                                                                -->
+<!--  ((&&**(((((//(((((((/**&&((      _____                                                            __      __               -->
+<!--   (&&///((////(((((((///&&(      / ___/__  ___________ ___  ____  ____        ____ ___  ____  ____/ /_  __/ /___ ______     -->
+<!--    &////(/////(((((/(////&       \__ \/ / / / ___/ __ `__ \/ __ \/ __ \______/ __ `__ \/ __ \/ __  / / / / / __ `/ ___/     -->
+<!--    ((//  /////(/////  /(((      ___/ / /_/ (__  ) / / / / / /_/ / / / /_____/ / / / / / /_/ / /_/ / /_/ / / /_/ / /         -->
+<!--   &(((((#.///////// #(((((&    /____/\__, /____/_/ /_/ /_/\____/_/ /_/     /_/ /_/ /_/\____/\__,_/\__,_/_/\__,_/_/          -->
+<!--    &&&&((#///////((#((&&&&          /____/                                                                                  -->
+<!--      &&&&(#/***//(#(&&&&                                                                                                    -->
+<!--        &&&&****///&&&&                                                                            by Olaf Hartong           -->
+<!--           (&    ,&.                                                                                                         -->
+<!--            .*&&*.                                                                                                           -->
+<!--                                                                                                                             -->
+<Sysmon schemaversion="4.60">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
   <CheckRevocation>False</CheckRevocation>
@@ -8,10 +28,6 @@
   <ArchiveDirectory>Sysmon</ArchiveDirectory>
   <!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
   <EventFiltering>
-    <!-- Event ID 1 == Process Creation - Includes -->
-    <RuleGroup groupRelation="or">
-      <ProcessCreate onmatch="include" />
-    </RuleGroup>
     <!-- Event ID 1 == Process Creation - Excludes -->
     <RuleGroup groupRelation="or">
       <ProcessCreate onmatch="exclude">
@@ -199,10 +215,6 @@
         <ParentImage condition="is">C:\Windows\system32\SearchIndexer.exe</ParentImage>
       </ProcessCreate>
     </RuleGroup>
-    <!-- Event ID 2 == File Creation Time - Includes -->
-    <RuleGroup groupRelation="or">
-      <FileCreateTime onmatch="include" />
-    </RuleGroup>
     <!-- Event ID 2 == File Creation Time - Excludes -->
     <RuleGroup groupRelation="or">
       <FileCreateTime onmatch="exclude">
@@ -213,10 +225,6 @@
         <Image condition="end with">slack.exe</Image>
         <Image condition="end with">AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
       </FileCreateTime>
-    </RuleGroup>
-    <!-- Event ID 3 == Network Connection - Includes -->
-    <RuleGroup groupRelation="or">
-      <NetworkConnect onmatch="include" />
     </RuleGroup>
     <!-- Event ID 3 == Network Connection - Excludes -->
     <RuleGroup groupRelation="or">
@@ -275,10 +283,6 @@
           <SignatureStatus condition="is">Valid</SignatureStatus>
         </Rule>
       </DriverLoad>
-    </RuleGroup>
-    <!-- Event ID 7 == Image Loaded - Includes -->
-    <RuleGroup groupRelation="or">
-      <ImageLoad onmatch="include" />
     </RuleGroup>
     <!-- Event ID 7 == Image Loaded - Excludes -->
     <RuleGroup groupRelation="or">
@@ -343,10 +347,6 @@
     <RuleGroup groupRelation="or">
       <RawAccessRead onmatch="include" />
     </RuleGroup>
-    <!-- Event ID 10 == ProcessAccess - Includes -->
-    <RuleGroup groupRelation="or">
-      <ProcessAccess onmatch="include" />
-    </RuleGroup>
     <!-- Event ID 10 == ProcessAccess - Excludes -->
     <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
@@ -405,10 +405,6 @@
         <SourceImage condition="is">C:\Program Files\WinZip\FAHWindow64.exe</SourceImage>
       </ProcessAccess>
     </RuleGroup>
-    <!-- Event ID 11 == FileCreate - Includes -->
-    <RuleGroup groupRelation="or">
-      <FileCreate onmatch="include" />
-    </RuleGroup>
     <!-- Event ID 11 == FileCreate - Excludes -->
     <RuleGroup groupRelation="or">
       <FileCreate onmatch="exclude">
@@ -439,10 +435,6 @@
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
       </FileCreate>
-    </RuleGroup>
-    <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Includes -->
-    <RuleGroup groupRelation="or">
-      <RegistryEvent onmatch="include" />
     </RuleGroup>
     <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Excludes -->
     <RuleGroup groupRelation="or">
@@ -542,13 +534,9 @@
         <TargetObject condition="end with">\services\UsoSvc\Start</TargetObject>
       </RegistryEvent>
     </RuleGroup>
-    <!-- Event ID 15 == FileStream Created - Includes -->
+    <!-- Event ID 15 == FileStream Created - Excludes -->
     <RuleGroup groupRelation="or">
-      <FileCreateStreamHash onmatch="include" />
-    </RuleGroup>
-    <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Includes -->
-    <RuleGroup groupRelation="or">
-      <PipeEvent onmatch="include" />
+      <FileCreateStreamHash onmatch="exclude" />
     </RuleGroup>
     <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Excludes -->
     <RuleGroup groupRelation="or">
@@ -672,9 +660,9 @@
         <Image condition="is">c:\windows\system32\inetsrv\w3wp.exe</Image>
       </PipeEvent>
     </RuleGroup>
-    <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Includes -->
+    <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Excludes -->
     <RuleGroup groupRelation="or">
-      <WmiEvent onmatch="include" />
+      <WmiEvent onmatch="exclude" />
     </RuleGroup>
     <!-- Event ID 22 == DNS Queries and their results Excludes -->
     <RuleGroup groupRelation="or">
@@ -918,10 +906,6 @@
         <Image condition="contains">unknown process</Image>
         <Image condition="is">C:\Program Files\Microsoft VS Code\Code.exe</Image>
       </ProcessTampering>
-    </RuleGroup>
-    <!-- Event ID 26 == File Delete and overwrite events, does NOT save the file - Includes -->
-    <RuleGroup groupRelation="or">
-      <FileDeleteDetected onmatch="include" />
     </RuleGroup>
     <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
     <RuleGroup groupRelation="or">
