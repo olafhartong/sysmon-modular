@@ -117,16 +117,17 @@ function Merge-AllSysmonXml
 
             if($ExclusionFullPaths){
                 $ExclusionFullPaths = $ExclusionFullPaths | Sort-Object
-                Write-Verbose "Rule Exclusions:"
+                Write-Host "Rule Exclusions:"
                 Write-Verbose "$ExclusionFullPaths"
+                Write-Host "$ExclusionFullPaths"
                 foreach($FilePath in $FilePaths){
                     if($FilePath -notin $ExclusionFullPaths){
                         $FilePathsWithoutExclusions += $FilePath
                     }
                 }
                 $FilePaths = $FilePathsWithoutExclusions
-                Write-Verbose "Processing Rules:"
-                Write-Verbose "$FilePaths"
+                Write-host "Processing Rules:"
+                Write-host "$FilePaths"
             }
         }
     }
@@ -403,10 +404,6 @@ function Merge-SysmonXml
     <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
     <RuleGroup groupRelation="or">
         <FileDelete onmatch="include"/>
-    </RuleGroup>
-    <!-- Event ID 23 == File Delete and overwrite events - Excludes -->
-    <RuleGroup groupRelation="or">
-        <FileDelete onmatch="exclude"/>
     </RuleGroup>
     <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
     <RuleGroup groupRelation="or">
