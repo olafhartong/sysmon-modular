@@ -1324,7 +1324,6 @@
     <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Includes -->
     <RuleGroup groupRelation="or">
       <RegistryEvent onmatch="include">
-        <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="is">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
         <TargetObject name="technique_id=T1546.011,technique_name=Application Shimming" condition="contains">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB</TargetObject>
         <TargetObject name="technique_id=T1546.011,technique_name=Application Shimming" condition="contains">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom</TargetObject>
         <TargetObject name="technique_id=T1547.002,technique_name=Authentication Package" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Authentication</TargetObject>
@@ -1339,46 +1338,94 @@
         <TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify</TargetObject>
         <TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit</TargetObject>
         <TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell</TargetObject>
+        <TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\VmApplet</TargetObject>
+        <TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Specialaccounts\userlist</TargetObject>
+        <TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Uihostl</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute</TargetObject>
         <TargetObject name="technique_id=T1546.001,technique_name=Change Default File Association" condition="contains">\Explorer\FileExts</TargetObject>
         <TargetObject condition="contains">\shell\install\command</TargetObject>
         <TargetObject condition="contains">\shell\open\command</TargetObject>
         <TargetObject condition="contains">\shell\open\ddeexec</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">hkcu\software\microsoft\windows nt\currentversion\accessibility\ATs\\*(1)\StartExe</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows nt\currentversion\windows\run\</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hklm\software\microsoft\command processor\autorun</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\mscfile\shell\open\command</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ms-settings\shell\open\command</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject>
-        <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains">Software\Classes\CLSID</TargetObject>
+        <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains all">Software\Classes\CLSID;inprocserver32</TargetObject>
+        <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains all">Software\Classes\CLSID;localserver32</TargetObject>
+        <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains all">Classes\CLSID\;TreatAs</TargetObject>
         <TargetObject name="technique_id=T1003.002,technique_name=Security Account Manager" condition="contains">System\CurrentControlSet\Services\VSS</TargetObject>
         <TargetObject name="technique_id=T1098,technique_name=Account Manipulation" condition="contains">\services\Netlogon\Parameters\DisablePasswordChange</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
-        <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="is">REGISTRY\MACHINE\SYSTEM\ControlSet001\Services\DNS\Parameters\ServerLevelPluginDll</TargetObject>
+        <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="contains all">\SYSTEM\;\Services\DNS\Parameters\ServerLevelPluginDll</TargetObject>
         <TargetObject name="technique_id=T1562.006,technique_name=Impair Defenses - Indicator Blocking" condition="end with">SOFTWARE\Microsoft\.NETFramework\ETWEnabled</TargetObject>
         <TargetObject name="technique_id=T1015,technique_name=Accessibility Features" condition="contains">HKCU\Environment</TargetObject>
-        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">REGISTRY\MACHINE\SYSTEM\ControlSet001\Service\EventLog;Retention</TargetObject>
-        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">REGISTRY\MACHINE\SYSTEM\ControlSet001\Service\EventLog;MaxSize</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\setup\cmdline</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\setup\upgrade</TargetObject>
+        <TargetObject condition="contains all">HKCU\Software\microsoft\ctf\langbaraddin\;\Enable</TargetObject>
+        <TargetObject condition="contains all">HKCU\Software\microsoft\ctf\langbaraddin\;\FilePath</TargetObject>
+        <TargetObject condition="contains">Software\policies\microsoft\windows\control panel\desktop\scrnsave.exe</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Classes\protocols\filter\</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Classes\protocols\handler\</TargetObject>
+        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">\SYSTEM\;\Service\EventLog;Retention</TargetObject>
+        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">\SYSTEM\;\Service\EventLog;MaxSize</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions</TargetObject>
         <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
         <TargetObject name="technique_id=T1546.012,technique_name=Image File Execution Options Injection" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
         <TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject>
         <TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject>
         <TargetObject condition="contains">\Browser Helper Objects</TargetObject>
+        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\desktop\components\Source</TargetObject>
+        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\explorer bars\</TargetObject>
+        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\Styles\MaxScriptStatements</TargetObject>
+        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\toolbar\WebBrowser\ITBarLayout</TargetObject>
+        <TargetObject condition="begin with">HKCU\software\wow6432node\microsoft\internet explorer\toolbar\WebBrowser\ITBarLayout</TargetObject>
+        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\urlsearchhooks\</TargetObject>
+        <TargetObject condition="begin with">HKLM\software\wow6432node\microsoft\internet explorer\urlsearchhooks\</TargetObject>
         <TargetObject name="technique_id=Port Monitors,technique_name=Port Monitors" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors</TargetObject>
+        <TargetObject condition="begin with">hklm\system\mounteddevices\</TargetObject>
+        <TargetObject condition="contains all">hklm\system\;\enum\usb\</TargetObject>
         <TargetObject name="technique_id=T1546.007,technique_name=Netsh Helper DLL" condition="contains">SOFTWARE\Microsoft\Netsh</TargetObject>
-        <TargetObject condition="end with">\UrlUpdateInfo</TargetObject>
-        <TargetObject condition="contains">\Security\Trusted Documents\TrustRecords</TargetObject>
-        <TargetObject condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>
-        <TargetObject condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
-        <TargetObject condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" ondition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
         <TargetObject name="technique_name=Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject>
-        <TargetObject condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>
-        <TargetObject condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
-        <TargetObject condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
-        <TargetObject condition="contains">\Software\Microsoft\Office\16.0\Outlook\Security</TargetObject>
-        <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</TargetObject>
-        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Account Name</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Display Name</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Email</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\HTTP Password</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\HTTP User</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\IMAP Password</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\IMAP User</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\MAPI Provider</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\POP3 Password</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\POP3 User</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\SMTP Password</TargetObject>
+        <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\SMTP User</TargetObject>
+        <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">hkcu\software\microsoft\office\;\outlook\security\</TargetObject>
+        <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">hkcu\software\microsoft\office\;\outlook\today\</TargetObject>
+        <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">hkcu\software\microsoft\office\;\outlook\webview\;\</TargetObject>
+        <TargetObject condition="contains all">hkcu\software\microsoft\office\;\word\options\globaldotname</TargetObject>
+        <TargetObject condition="contains all">hkcu\software\microsoft\office\16.0\common\internet\server cache\</TargetObject>
+        <TargetObject condition="contains">\Security\Trusted Documents\TrustRecords</TargetObject>
+        <TargetObject condition="end with">\UrlUpdateInfo</TargetObject>
+        <TargetObject condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\recentdocs\.docx\</TargetObject>
+        <TargetObject condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\recentdocs\.xlsx\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Clients\Mail\Microsoft Outlook\DllPath</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Clients\Mail\Microsoft Outlook\DllPathEx</TargetObject>
+        <TargetObject condition="contains">software\microsoft\Office test\special\perf\</TargetObject>
+        <TargetObject condition="contains all">hkcu\software\microsoft\office\;\Options\OPEN</TargetObject>
+        <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MaxInstanceCount</TargetObject>
+        <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\RaunSolicit</TargetObject>
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks;Actions</TargetObject>
         <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree</TargetObject>
         <TargetObject name="technique_id=T1547.005,technique_name=Security Support Provider" condition="contains">SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe</TargetObject>
         <TargetObject name="technique_id=T1543,technique_name=Service Creation" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services</TargetObject>
@@ -1386,6 +1433,7 @@
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\WOW6432Node\Microsoft\Cryptography\OID</TargetObject>
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\Microsoft\Cryptography\Providers\Trust</TargetObject>
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\WOW6432Node\Microsoft\Cryptography\Providers\Trust</TargetObject>
+        <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\Microsoft\Cryptography\Offload\ExpoOffload</TargetObject>
         <TargetObject name="technique_id=T1569.002,technique_name=Service Execution" condition="end with">\PsExec\EulaAccepted</TargetObject>
         <TargetObject name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="end with">\PsFile\EulaAccepted</TargetObject>
         <TargetObject name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="end with">\PsGetSID\EulaAccepted</TargetObject>
@@ -1403,118 +1451,12 @@
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
         <TargetObject name="technique_id=T1547.003,technique_name=Time Providers" condition="contains">HKLM\System\CurrentControlSet\Services\W32Time\TimeProviders</TargetObject>
         <TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Setup\ServiceStartup</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\Pending\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\PostRebootReporting\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired\</TargetObject>
         <TargetObject name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="begin with">HKLM\Software\Microsoft\WAB\DLLPath</TargetObject>
-        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths</TargetObject>
-        <TargetObject name="technique_id=T1546.009,technique_name=AppCert DLLs" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls</TargetObject>
-        <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="end with">\InprocServer32\(Default)</TargetObject>
-        <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains all">Classes\CLSID\;TreatAs</TargetObject>
-        <TargetObject name="technique_id=T1125,technique_name=Video Capture" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam</TargetObject>
-        <TargetObject name="technique_id=T1123,technique_name=Audio Capture" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone</TargetObject>
-        <TargetObject name="technique_id=T1123,technique_name=Audio Capture" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetooth</TargetObject>
-        <TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\usb</TargetObject>
-        <TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location</TargetObject>
-        <TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts</TargetObject>
-        <TargetObject name="technique_id=T1056.001,technique_name=Input Capture - Keylogging" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\hunmanInterfaceDevice</TargetObject>
-        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider</TargetObject>
-        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa</TargetObject>
-        <TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\</TargetObject>
-        <TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">\Control\SecurityProviders\WDigest</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AntiVirusDisableNotify</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiVirus</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableBehaviorMonitoring</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableOnAccessProtection</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableScanOnRealtimeEnable</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet\SpyNetReporting</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender</TargetObject>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\Sense</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinDefend</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\MsMpSvc</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\NisSrv</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdBoot</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisDrv</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisSvc</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wscsvc</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wuauserv</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc</TargetObject>
-          <Details condition="contains">DWORD (0x00000004)</Details>
-        </Rule>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
-        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
-        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT</TargetObject>
-        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject>
-        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Winlogon</TargetObject>
-        <TargetObject condition="end with">\FriendlyName</TargetObject>
-        <TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject>
-        <Rule groupRelation="and">
-          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
-          <Image condition="is not">C:\Windows\System32\svchost.exe</Image>
-        </Rule>
-        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\NetworkProvider\Order</TargetObject>
-        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject>
-        <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
-        <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
-        <TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="begin with">HKLM\SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject>
-        <TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="contains">\Microsoft\SystemCertificates\Root\Certificates</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
-        <TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\DisableMonitoring</TargetObject>
-        <TargetObject condition="contains">\Classes\AllFilesystemObjects</TargetObject>
-        <TargetObject condition="contains">\Classes\Directory</TargetObject>
-        <TargetObject condition="contains">\Classes\Drive</TargetObject>
-        <TargetObject condition="contains">\Classes\Folder</TargetObject>
-        <TargetObject condition="contains">\ContextMenuHandlers</TargetObject>
-        <TargetObject condition="contains">\CurrentVersion\Shell</TargetObject>
-        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellExecuteHooks</TargetObject>
-        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellServiceObjectDelayLoad</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject>
-        <TargetObject condition="contains">{AB8902B4-09CA-4bb6-B78D-A8F59079A8D5}</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
-        <TargetObject name="UACMe Dir Prep" condition="contains all">HKU;Environment</TargetObject>
-        <TargetObject name="UACMe Dir Prep" condition="contains all">HKLM;Environment</TargetObject>
-        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinSock</TargetObject>
-        <TargetObject condition="end with">\ProxyServer</TargetObject>
-        <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
-      </RegistryEvent>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Control.exe</TargetObject>&gt;
+				<TargetObject name="technique_id=T1546.009,technique_name=AppCert DLLs" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls</TargetObject><TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains">software\classes\clsid\{083863f1-70de-11d0-bd40-00a0c911ce86}\instance</TargetObject><TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains">software\classes\clsid\{7ed96837-96f0-4812-b211-f13c24117ed3}\instance</TargetObject><TargetObject name="technique_id=T1125,technique_name=Video Capture" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam</TargetObject><TargetObject name="technique_id=T1123,technique_name=Audio Capture" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone</TargetObject><TargetObject name="technique_id=T1123,technique_name=Audio Capture" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetooth</TargetObject><TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\usb</TargetObject><TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location</TargetObject><TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts</TargetObject><TargetObject name="technique_id=T1056.001,technique_name=Input Capture - Keylogging" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\hunmanInterfaceDevice</TargetObject><TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider</TargetObject><TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Plap Providers</TargetObject><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa</TargetObject><TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\</TargetObject><TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">\Control\SecurityProviders\WDigest</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AntiVirusDisableNotify</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiVirus</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableBehaviorMonitoring</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableOnAccessProtection</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableScanOnRealtimeEnable</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableIOAVProtection</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableRealtimeMonitoring</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet\SpyNetReporting</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\microsoft\microsoft antimalware\exclusions\paths\</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\microsoft\Windows Advanced Threat Protection\TelLib</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\policies\microsoft\windows advanced threat protection\</TargetObject><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\Sense</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinDefend</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\MsMpSvc</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\NisSrv</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdBoot</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisDrv</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WdNisSvc</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wscsvc</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\wuauserv</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><Rule groupRelation="and"><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc</TargetObject><Details condition="contains">DWORD (0x00000004)</Details></Rule><TargetObject condition="begin with">hklm\software\microsoft\windows script\settings\amsienable</TargetObject><TargetObject condition="begin with">hkcu\software\microsoft\windows script\settings\amsienable</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications\list</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\globallyopenports</TargetObject><TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject><TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT</TargetObject><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Winlogon</TargetObject><TargetObject condition="end with">\FriendlyName</TargetObject><TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject><Rule groupRelation="and"><TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject><Image condition="is not">C:\Windows\System32\svchost.exe</Image></Rule><Rule groupRelation="and"><TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject><Image condition="is not">C:\Windows\System32\svchost.exe</Image></Rule><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\NetworkProvider\Order</TargetObject><TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject><TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject><TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains all">software\microsoft\powershell\;\shellids\microsoft.powershell\executionpolicy</TargetObject><TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="begin with">HKLM\SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject><TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="contains">\Microsoft\SystemCertificates\Root\Certificates</TargetObject><TargetObject name="technique_id=T1130,technique_name=Install Root Certificate" condition="contains">\Microsoft\SystemCertificates\CA\Certificates</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject><TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\DisableMonitoring</TargetObject><TargetObject condition="contains">\Classes\AllFilesystemObjects</TargetObject><TargetObject condition="contains">\Classes\Directory</TargetObject><TargetObject condition="contains">\Classes\Drive</TargetObject><TargetObject condition="contains">\Classes\Folder</TargetObject><TargetObject condition="contains">\ShellEx\ContextMenuHandlers</TargetObject><TargetObject condition="contains">\CurrentVersion\Shell</TargetObject><TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellExecuteHooks</TargetObject><TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellServiceObject</TargetObject><TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows;\CurrentVersion\Print\Connections</TargetObject><TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject><TargetObject condition="contains">{AB8902B4-09CA-4bb6-B78D-A8F59079A8D5}</TargetObject><TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject><TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject><TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUsername</TargetObject><TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject><TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject><TargetObject name="UACMe Dir Prep" condition="contains all">HKU;Environment</TargetObject><TargetObject name="UACMe Dir Prep" condition="contains all">HKLM;Environment</TargetObject><TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinSock</TargetObject><TargetObject condition="end with">\ProxyServer</TargetObject><TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject><TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\autologger\senseauditlogger</TargetObject><TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\autologger\senseeventlog</TargetObject><TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\EtwMaxLoggers</TargetObject><TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\Security</TargetObject></RegistryEvent>
     </RuleGroup>
     <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Excludes -->
     <RuleGroup groupRelation="or">
