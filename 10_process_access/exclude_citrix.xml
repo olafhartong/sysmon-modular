@@ -2,7 +2,8 @@
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
          <ProcessAccess onmatch="exclude">
-            <SourceImage condition="contains all">C:\Users\;\AppData\Local\Cirtix\ICA Client\receiver\Receiver.exe</SourceImage>
+            <SourceImage condition="contains all">C:\Users\;\AppData\Local\Citrix\ICA Client\receiver\Receiver.exe</SourceImage>
+            <SourceImage condition="is">C:\Program Files (x86)\Citrix\ICA Client\Receiver\Receiver.exe</SourceImage>
          </ProcessAccess>
       </RuleGroup>
    </EventFiltering>
