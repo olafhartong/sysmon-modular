@@ -2,8 +2,11 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-        <!-- Win32_OSRecoveryConfiguration class C2 maps to a change in values within the following key: -->
-        <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject>
+        <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">SYSTEM\CurrentControlSet\Control\CrashControl</TargetObject><!--MDE--><!-- Win32_OSRecoveryConfiguration class C2 maps to a change in values within the following key: -->
+        <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\autologger\senseauditlogger</TargetObject><!--MDE-->
+        <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\autologger\senseeventlog</TargetObject><!--MDE-->
+        <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\EtwMaxLoggers</TargetObject><!--MDE-->
+        <TargetObject name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains all">HKLM\SYSTEM\;Control\WMI\Security</TargetObject><!--MDE-->
       </RegistryEvent>
     </RuleGroup>
   </EventFiltering>

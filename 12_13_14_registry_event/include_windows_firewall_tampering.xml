@@ -3,9 +3,12 @@
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<!--Microsoft Firewall tampering-->
-				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>				<!--Windows Firewall authorized applications | Credit @ion-storm -->
+				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>				<!--Windows Firewall authorized applications | Credit @ion-storm --><!--MDE-->
 				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
 				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
+				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications\list</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\globallyopenports</TargetObject><!--MDE-->
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
