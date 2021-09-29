@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="include">
+				<!--Winsock and Winsock2-->
+				<TargetObject condition="begin with">hklm\system\mounteddevices\</TargetObject><!--MDE-->
+				<TargetObject condition="contains all">hklm\system\;\enum\usb\</TargetObject><!--MDE-->
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
