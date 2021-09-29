@@ -1,0 +1,6 @@
+23_file_delete/exclude_google_chrome.xml
+23_file_delete/exclude_windows_services.xml
+23_file_delete/include_microsoft_sql_server.xml
+23_file_delete/include_qualys.xml
+23_file_delete/include_user_writable_folders.xml
+23_file_delete/include_writable_folders.xml
