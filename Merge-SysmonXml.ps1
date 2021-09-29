@@ -117,17 +117,16 @@ function Merge-AllSysmonXml
 
             if($ExclusionFullPaths){
                 $ExclusionFullPaths = $ExclusionFullPaths | Sort-Object
-                Write-Host "Rule Exclusions:"
+                Write-Verbose "Rule Exclusions:"
                 Write-Verbose "$ExclusionFullPaths"
-                Write-Host "$ExclusionFullPaths"
                 foreach($FilePath in $FilePaths){
                     if($FilePath -notin $ExclusionFullPaths){
                         $FilePathsWithoutExclusions += $FilePath
                     }
                 }
                 $FilePaths = $FilePathsWithoutExclusions
-                Write-host "Processing Rules:"
-                Write-host "$FilePaths"
+                Write-Verbose "Processing Rules:"
+                Write-Verbose "$FilePaths"
             }
         }
     }
