@@ -219,8 +219,8 @@
         <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">slmgr</CommandLine>
         <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">pubprn</CommandLine>
         <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">manage-bde</CommandLine>
-        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Exectuion" condition="contains">CL_Invocation</CommandLine>
-        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Exectuion" condition="contains">CL_Mutexverifiers</CommandLine>
+        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">CL_Invocation</CommandLine>
+        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">CL_Mutexverifiers</CommandLine>
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">vsjitdebugger.exe</ParentImage>
         <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains">vsjitdebugger</CommandLine>
