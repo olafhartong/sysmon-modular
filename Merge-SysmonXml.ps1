@@ -401,12 +401,13 @@ function Merge-SysmonXml
         <DnsQuery onmatch="exclude"/>
     </RuleGroup>
     <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
+    <!-- Default set to disabled due to disk space implications, enable with care!-->
     <RuleGroup groupRelation="or">
         <FileDelete onmatch="include"/>
     </RuleGroup>
     <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
+    <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
     <RuleGroup groupRelation="or">
-        <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
         <ClipboardChange onmatch="include"/>
     </RuleGroup>
     <!-- Event ID 25 == Process tampering events - Excludes -->
