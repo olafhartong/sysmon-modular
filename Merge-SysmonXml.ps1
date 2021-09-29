@@ -31,6 +31,8 @@ function Merge-AllSysmonXml
 
         [switch]$AsString,
 
+        [switch]$VerboseLogging,
+
         [switch]$PreserveComments,
 
         [parameter(Mandatory=$false)][ValidateScript({Test-Path $_})]
@@ -127,7 +129,6 @@ function Merge-AllSysmonXml
                 Write-Verbose "$FilePaths"
             }
         }
-    
     }
 
     end{
@@ -149,9 +150,21 @@ function Merge-AllSysmonXml
             return
         }
 
-        $newDoc = $XmlDocs[0]
-        for($i = 1; $i -lt $XmlDocs.Count; $i++){
-            $newDoc = Merge-SysmonXml -Source $newDoc -Diff $XmlDocs[$i]
+#        $newDoc = $XmlDocs[0]
+#        for($i = 1; $i -lt $XmlDocs.Count; $i++){
+#            $newDoc = Merge-SysmonXml -Source $newDoc -Diff $XmlDocs[$i]
+#        }
+        if($VerboseLogging){
+            $newDoc = $XmlDocs[0]
+            for($i = 1; $i -lt $XmlDocs.Count; $i++){
+                $newDoc = Merge-SysmonXml -Source $newDoc -Diff $XmlDocs[$i] -VerboseLogging
+            }
+        }
+        else{
+            $newDoc = $XmlDocs[0]
+            for($i = 1; $i -lt $XmlDocs.Count; $i++){
+                $newDoc = Merge-SysmonXml -Source $newDoc -Diff $XmlDocs[$i]
+            }
         }
 
         if($AsString){
@@ -182,9 +195,11 @@ function Merge-SysmonXml
         [Parameter(Mandatory = $true, ParameterSetName = 'FromXmlDoc')]
         [xml]$Diff,
 
-        [switch]$AsString
+        [switch]$AsString,
+
+        [switch]$VerboseLogging
     )
-    
+
     $Rules = [ordered]@{
         ProcessCreate = [ordered]@{
             include = @()
@@ -249,7 +264,7 @@ function Merge-SysmonXml
         FileDelete = [ordered]@{
             include = @()
             exclude = @()
-        } 
+        }
         ClipboardChange = [ordered]@{
             include = @()
             exclude = @()
@@ -257,14 +272,33 @@ function Merge-SysmonXml
         ProcessTampering = [ordered]@{
             include = @()
             exclude = @()
-        } 
+        }
         FileDeleteDetected = [ordered]@{
             include = @()
             exclude = @()
-        }                                
+        }
     }
 
-    $newDoc = [xml]@'
+    $general = [xml]@'
+<!--                       NOTICE : This is a balanced generated output of Sysmon-modular with medium verbosity                  -->
+<!--                        due to the balanced nature of this configuration there will be potential blind spots                 -->
+<!--                        for more information go to https://github.com/olafhartong/sysmon-modular/wiki                        -->
+<!--                                                                                                                             -->
+<!--  //**                  ***//                                                                                                -->
+<!-- ///#(**               **%(///                                                                                               -->
+<!-- ((&&&**               **&&&((                                                                                               -->
+<!--  (&&&**   ,(((((((.   **&&&(                                                                                                -->
+<!--  ((&&**(((((//(((((((/**&&((      _____                                                            __      __               -->
+<!--   (&&///((////(((((((///&&(      / ___/__  ___________ ___  ____  ____        ____ ___  ____  ____/ /_  __/ /___ ______     -->
+<!--    &////(/////(((((/(////&       \__ \/ / / / ___/ __ `__ \/ __ \/ __ \______/ __ `__ \/ __ \/ __  / / / / / __ `/ ___/     -->
+<!--    ((//  /////(/////  /(((      ___/ / /_/ (__  ) / / / / / /_/ / / / /_____/ / / / / / /_/ / /_/ / /_/ / / /_/ / /         -->
+<!--   &(((((#.///////// #(((((&    /____/\__, /____/_/ /_/ /_/\____/_/ /_/     /_/ /_/ /_/\____/\__,_/\__,_/_/\__,_/_/          -->
+<!--    &&&&((#///////((#((&&&&          /____/                                                                                  -->
+<!--      &&&&(#/***//(#(&&&&                                                                                                    -->
+<!--        &&&&****///&&&&                                                                            by Olaf Hartong           -->
+<!--           (&    ,&.                                                                                                         -->
+<!--            .*&&*.                                                                                                           -->
+<!--                                                                                                                             -->
 <Sysmon schemaversion="4.60">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
@@ -356,14 +390,14 @@ function Merge-SysmonXml
     <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Excludes -->
     <RuleGroup groupRelation="or">
     <PipeEvent onmatch="exclude"/>
-    </RuleGroup>    
+    </RuleGroup>
     <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Includes -->
     <RuleGroup groupRelation="or">
         <WmiEvent onmatch="include"/>
     </RuleGroup>
     <!-- Event ID 22 == DNS Queries and their results Excludes -->
     <RuleGroup groupRelation="or">
-        <!--Default to log all and exclude a few common processes-->        
+        <!--Default to log all and exclude a few common processes-->
         <DnsQuery onmatch="exclude"/>
     </RuleGroup>
     <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
@@ -378,7 +412,7 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
         <ClipboardChange onmatch="include"/>
-    </RuleGroup> 
+    </RuleGroup>
     <!-- Event ID 25 == Process tampering events - Excludes -->
     <RuleGroup groupRelation="or">
         <ProcessTampering onmatch="exclude"/>
@@ -394,6 +428,128 @@ function Merge-SysmonXml
 </EventFiltering>
 </Sysmon>
 '@
+
+    $fulllog = [xml]@'
+<!--                        NOTICE : This is a custom generated output of Sysmon-modular with higher verbosity                   -->
+<!--                    The log volume expected from this file is significantly larger than a more balanced log                  -->
+<!--                                the blind spots for this config are to be significantly less                                 -->
+<!--                        for more information go to https://github.com/olafhartong/sysmon-modular/wiki                        -->
+<!--                                                                                                                             -->
+<!--  //**                  ***//                                                                                                -->
+<!-- ///#(**               **%(///                                                                                               -->
+<!-- ((&&&**               **&&&((                                                                                               -->
+<!--  (&&&**   ,(((((((.   **&&&(                                                                                                -->
+<!--  ((&&**(((((//(((((((/**&&((      _____                                                            __      __               -->
+<!--   (&&///((////(((((((///&&(      / ___/__  ___________ ___  ____  ____        ____ ___  ____  ____/ /_  __/ /___ ______     -->
+<!--    &////(/////(((((/(////&       \__ \/ / / / ___/ __ `__ \/ __ \/ __ \______/ __ `__ \/ __ \/ __  / / / / / __ `/ ___/     -->
+<!--    ((//  /////(/////  /(((      ___/ / /_/ (__  ) / / / / / /_/ / / / /_____/ / / / / / /_/ / /_/ / /_/ / / /_/ / /         -->
+<!--   &(((((#.///////// #(((((&    /____/\__, /____/_/ /_/ /_/\____/_/ /_/     /_/ /_/ /_/\____/\__,_/\__,_/_/\__,_/_/          -->
+<!--    &&&&((#///////((#((&&&&          /____/                                                                                  -->
+<!--      &&&&(#/***//(#(&&&&                                                                                                    -->
+<!--        &&&&****///&&&&                                                                            by Olaf Hartong           -->
+<!--           (&    ,&.                                                                                                         -->
+<!--            .*&&*.                                                                                                           -->
+<!--                                                                                                                             -->
+<Sysmon schemaversion="4.60">
+<HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
+<CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
+<DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
+<ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
+<EventFiltering>
+    <!-- Event ID 1 == Process Creation - Excludes -->
+    <RuleGroup groupRelation="or">
+        <ProcessCreate onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 2 == File Creation Time - Excludes -->
+    <RuleGroup groupRelation="or">
+        <FileCreateTime onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 3 == Network Connection - Excludes -->
+    <RuleGroup groupRelation="or">
+        <NetworkConnect onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 5 == Process Terminated - Includes -->
+    <RuleGroup groupRelation="or">
+        <ProcessTerminate onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 6 == Driver Loaded - Excludes -->
+    <RuleGroup groupRelation="or">
+        <!--Default to log all and exclude only valid signed Microsoft or Intel drivers-->
+        <DriverLoad onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 7 == Image Loaded - Excludes -->
+    <RuleGroup groupRelation="or">
+        <ImageLoad onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 8 == CreateRemoteThread - Excludes -->
+    <RuleGroup groupRelation="or">
+         <!--Default to log all and exclude a few common processes-->
+        <CreateRemoteThread onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 9 == RawAccessRead - Includes -->
+    <RuleGroup groupRelation="or">
+        <RawAccessRead onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 10 == ProcessAccess - Excludes -->
+    <RuleGroup groupRelation="or">
+        <ProcessAccess onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 11 == FileCreate - Excludes -->
+    <RuleGroup groupRelation="or">
+    <FileCreate onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Excludes -->
+    <RuleGroup groupRelation="or">
+        <RegistryEvent onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 15 == FileStream Created - Excludes -->
+    <RuleGroup groupRelation="or">
+        <FileCreateStreamHash onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Excludes -->
+    <RuleGroup groupRelation="or">
+    <PipeEvent onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Excludes -->
+    <RuleGroup groupRelation="or">
+        <WmiEvent onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 22 == DNS Queries and their results Excludes -->
+    <RuleGroup groupRelation="or">
+        <!--Default to log all and exclude a few common processes-->
+        <DnsQuery onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
+    <RuleGroup groupRelation="or">
+        <FileDelete onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 23 == File Delete and overwrite events - Excludes -->
+    <RuleGroup groupRelation="or">
+        <FileDelete onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
+    <RuleGroup groupRelation="or">
+        <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
+        <ClipboardChange onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 25 == Process tampering events - Excludes -->
+    <RuleGroup groupRelation="or">
+        <ProcessTampering onmatch="exclude"/>
+    </RuleGroup>
+        <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
+    <RuleGroup groupRelation="or">
+        <FileDeleteDetected onmatch="exclude"/>
+    </RuleGroup>
+</EventFiltering>
+</Sysmon>
+'@
+
+    if($VerboseLogging){
+        $newDoc = $fulllog
+    }
+    else {
+        $newDoc = $general
+    }
 
     $EventFilteringRoot = $newDoc.SelectSingleNode('//Sysmon/EventFiltering')
 
