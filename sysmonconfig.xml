@@ -1398,7 +1398,7 @@
         <TargetObject name="technique_id=T1546.007,technique_name=Netsh Helper DLL" condition="contains">SOFTWARE\Microsoft\Netsh</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
-        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" ondition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
         <TargetObject name="technique_name=Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject>
         <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Account Name</TargetObject>
         <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Display Name</TargetObject>
