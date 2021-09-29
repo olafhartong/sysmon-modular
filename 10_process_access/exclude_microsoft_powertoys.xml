@@ -3,6 +3,7 @@
     <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="exclude">
         <SourceImage condition="is">C:\Program Files\PowerToys\modules\KeyboardManager\KeyboardManagerEngine\PowerToys.KeyboardManagerEngine.exe</SourceImage>
+      </ProcessAccess>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>
