@@ -1250,6 +1250,8 @@
         <TargetFilename name="technique_id=T1218.005,technique_name=Mshta" condition="end with">.hta</TargetFilename>
         <TargetFilename condition="end with">.iso</TargetFilename>
         <TargetFilename condition="end with">.img</TargetFilename>
+        <TargetFilename name="technique_id=T1059.007,technique_name=JavaScript" condition="end with">.js</TargetFilename>
+        <TargetFilename name="technique_id=T1059.007,technique_name=JavaScript" condition="end with">.javascript</TargetFilename>
         <TargetFilename condition="end with">.kirbi</TargetFilename>
         <TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.lnk</TargetFilename>
         <TargetFilename name="technique_id=T1187,technique_name=Forced Authentication" condition="end with">.scf</TargetFilename>
