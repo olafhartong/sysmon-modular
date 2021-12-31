@@ -2,8 +2,6 @@
 	<EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
-				<!--Terminal service execution-->
-				<TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
 				<!-- https://blog.menasec.net/2019/02/threat-hunting-rdp-hijacking-via.html--> 
 				<TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\services\TermService\Parameters\ServiceDll</TargetObject>
 				<TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\fSingleSessionPerUser</TargetObject>
