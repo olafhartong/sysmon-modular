@@ -1451,6 +1451,10 @@
         <TargetObject condition="begin with">HKLM\SOFTWARE\Clients\Mail\Microsoft Outlook\DllPathEx</TargetObject>
         <TargetObject condition="contains">software\microsoft\Office test\special\perf\</TargetObject>
         <TargetObject condition="contains all">hkcu\software\microsoft\office\;\Options\OPEN</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\VBAWarnings</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\DisableInternetFilesInPV</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\DisableUnsafeLocationsInPV</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\DisableAttachementsInPV</TargetObject>
         <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MaxInstanceCount</TargetObject>
         <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\RaunSolicit</TargetObject>
         <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\services\TermService\Parameters\ServiceDll</TargetObject>
@@ -2205,22 +2209,6 @@
         </Rule>
         <Rule groupRelation="and">
           <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\ReportQueue</TargetFilename>
-          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
-          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
-          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
-          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
-        </Rule>
-        <Rule groupRelation="and">
-          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
           <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
         </Rule>
         <Rule groupRelation="and">
