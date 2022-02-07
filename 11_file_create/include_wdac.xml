@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="include">
+        <Rule groupRelation="and">  <!-- Windows 10 build 1903 and newer + Windows Server  2016 and above -->
+         <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="begin with">C:\Windows\System32\CodeIntegrity\CIPolicies\Active\</TargetFilename>
+         <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="end with">.cip</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">  <!-- Pre Windows 10 build 1903 -->
+         <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="begin with">C:\Windows\System32\CodeIntegrity\</TargetFilename>
+         <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="end with">.p7b</TargetFilename>
+        </Rule>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
