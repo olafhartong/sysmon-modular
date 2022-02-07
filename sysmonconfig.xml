@@ -1307,6 +1307,14 @@
         <TargetFilename condition="end with">.vb</TargetFilename>
         <TargetFilename condition="end with">.vbe</TargetFilename>
         <TargetFilename condition="end with">.vbs</TargetFilename>
+        <Rule groupRelation="and">
+          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="begin with">C:\Windows\System32\CodeIntegrity\CIPolicies\Active\</TargetFilename>
+          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="end with">.cip</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="begin with">C:\Windows\System32\CodeIntegrity\</TargetFilename>
+          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="end with">.p7b</TargetFilename>
+        </Rule>
         <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Windows\System32\Wbem</TargetFilename>
         <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Windows\SysWOW64\Wbem</TargetFilename>
         <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
