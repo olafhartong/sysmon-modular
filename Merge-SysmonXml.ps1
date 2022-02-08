@@ -86,6 +86,13 @@ function Merge-AllSysmonXml
                         Write-Error "Referenced Rule Inclusion Not Found: $Inclusion"
                     }
                 }
+                elseif((Test-Path $Inclusion) -and ($InclusionFolder = Get-ChildItem -Path $BasePath -Directory -Name $Inclusion ))
+                {
+                    foreach($Inclusion in Get-ChildItem -Path $InclusionFolder -File -Filter "*.xml")
+                    {
+                        $InclusionFullPaths += $Inclusion.FullName
+                    }
+                }
             }
 
             if($InclusionFullPaths){
