@@ -155,6 +155,7 @@ foreach($rg in $sysmonconfig.SelectNodes("/Sysmon/EventFiltering/RuleGroup [*/@o
         $comment = $sysmonconfig.CreateComment($message)
         $rg.AppendChild($comment) | Out-Null
     }
+}
 ```
 
 Include/Exclude List Format Example (for entire rule/event families):
