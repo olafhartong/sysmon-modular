@@ -130,7 +130,7 @@ Example:
 # generate the config
 $sysmonconfig =  Merge-AllSysmonXml  -BasePath . -IncludeList $workingFolder\include.txt -VerboseLogging -PreserveComments
 
-# flip of any rule groups where rules were not imported
+# flip off any rule groups where rules were not imported
 foreach($rg in $sysmonconfig.SelectNodes("/Sysmon/EventFiltering/RuleGroup [*/@onmatch]"))
 {
     $ruleNodes = $rg.SelectNodes("./* [@onmatch]")
@@ -145,7 +145,6 @@ foreach($rg in $sysmonconfig.SelectNodes("/Sysmon/EventFiltering/RuleGroup [*/@o
     # RuleGroup with only one rule node
     $ruleNode = $ruleNodes[0]
 
-    Write-Warning ("{1}/{0} {3} count: {2}" -f $ruleNode.Name,$rg.Name,$ruleNode.ChildNodes.count,$ruleNode.onmatch)
     if($ruleNode.onmatch -eq "exclude" -and $ruleNode.ChildNodes.count -eq 0 )
     {
         $message = "{0} {1} has no matching conditions.  Toggled to 'include' to limit output" -f $ruleNode.Name,$rg.Name
