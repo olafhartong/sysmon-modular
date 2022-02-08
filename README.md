@@ -123,7 +123,7 @@ Include/Exclude List Format Example:
 ```
 
 
-**Building a config with all sysmon-modular rules for certain event IDs and then disabling all others**
+**Building a config with all sysmon-modular rules for certain event IDs (include whole directory) and then disabling all event ids without imported rules**
 
 Example:
 ```
