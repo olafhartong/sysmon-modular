@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="include">
+        <Rule groupRelation="and">
+          <PipeName condition="begin with">\TSVCPIPE</PipeName>
+        </Rule>
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
