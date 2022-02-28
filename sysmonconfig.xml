@@ -1459,6 +1459,9 @@
         <TargetObject condition="begin with">HKLM\SOFTWARE\Clients\Mail\Microsoft Outlook\DllPathEx</TargetObject>
         <TargetObject condition="contains">software\microsoft\Office test\special\perf\</TargetObject>
         <TargetObject condition="contains all">hkcu\software\microsoft\office\;\Options\OPEN</TargetObject>
+        <TargetObject name="T1559.002,office" condition="end with">\Word\Security\AllowDDE</TargetObject>
+        <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLaunch</TargetObject>
+        <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLookup</TargetObject>
         <TargetObject name="T1562,office" condition="end with">\VBAWarnings</TargetObject>
         <TargetObject name="T1562,office" condition="end with">\DisableInternetFilesInPV</TargetObject>
         <TargetObject name="T1562,office" condition="end with">\DisableUnsafeLocationsInPV</TargetObject>
