@@ -1430,7 +1430,7 @@
         <TargetObject condition="begin with">hklm\system\mounteddevices\</TargetObject>
         <TargetObject condition="contains all">hklm\system\;\enum\usb\</TargetObject>
         <TargetObject name="technique_id=T1546.007,technique_name=Netsh Helper DLL" condition="contains">SOFTWARE\Microsoft\Netsh</TargetObject>
-        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Microsoft\Office\Outlook\Addins</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains all">\Microsoft\Office;\Outlook\Addins</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
         <TargetObject name="technique_name=Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject>
@@ -1452,6 +1452,7 @@
         <TargetObject condition="contains all">hkcu\software\microsoft\office\;\word\options\globaldotname</TargetObject>
         <TargetObject condition="contains all">hkcu\software\microsoft\office\16.0\common\internet\server cache\</TargetObject>
         <TargetObject condition="contains">\Security\Trusted Documents\TrustRecords</TargetObject>
+        <TargetObject condition="contains">\Security\Trusted Documents\</TargetObject>
         <TargetObject condition="end with">\UrlUpdateInfo</TargetObject>
         <TargetObject condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\recentdocs\.docx\</TargetObject>
         <TargetObject condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\recentdocs\.xlsx\</TargetObject>
@@ -1459,6 +1460,7 @@
         <TargetObject condition="begin with">HKLM\SOFTWARE\Clients\Mail\Microsoft Outlook\DllPathEx</TargetObject>
         <TargetObject condition="contains">software\microsoft\Office test\special\perf\</TargetObject>
         <TargetObject condition="contains all">hkcu\software\microsoft\office\;\Options\OPEN</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains all">\Microsoft\Office;\PowerPoint\Addins</TargetObject>
         <TargetObject name="T1559.002,office" condition="end with">\Word\Security\AllowDDE</TargetObject>
         <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLaunch</TargetObject>
         <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLookup</TargetObject>
@@ -1474,6 +1476,7 @@
         <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Shadow</TargetObject>
         <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks;Actions</TargetObject>
         <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree</TargetObject>
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\</TargetObject>
         <TargetObject name="technique_id=T1547.005,technique_name=Security Support Provider" condition="contains">SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe</TargetObject>
         <TargetObject name="technique_id=T1543,technique_name=Service Creation" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services</TargetObject>
         <TargetObject name="technique_id=T1553.003,technique_name=SIP and Trust Provider Hijacking" condition="begin with">HKLM\SOFTWARE\Microsoft\Cryptography\OID</TargetObject>
