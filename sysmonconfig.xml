@@ -767,10 +767,15 @@
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">23</DestinationPort>
         <DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">25</DestinationPort>
-        <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">88</DestinationPort>
+        <Rule groupRelation="and">
+          <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">88</DestinationPort>
+          <Image condition="is not">C:\Windows\System32\lsass.exe</Image>
+        </Rule>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">3389</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort>
+        <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5985</DestinationPort>
+        <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5986</DestinationPort>
         <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexec.exe</Image>
         <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexesvc.exe</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users</Image>
