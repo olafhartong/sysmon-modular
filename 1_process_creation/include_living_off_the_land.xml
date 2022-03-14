@@ -21,7 +21,7 @@
         <OriginalFileName name="technique_id=T1134,technique_name=Access Token Manipulation" condition="is">runas.exe</OriginalFileName> <!--Microsoft:Windows: run a process as another user -->
         <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">reg.exe</OriginalFileName> <!--Mitre T1214--> <!--Mitre T1012--> <!--Mitre T1112--> <!--Microsoft:Windows: reads and modifies the Windows register -->
         <OriginalFileName condition="is">taskkill.exe</OriginalFileName> <!--Microsoft:Windows: stops processes -->
-        <OriginalFileName name="technique_id=T1063,technique_name=Security Software Discovery" condition="is">netsh.exe</OriginalFileName> <!--Mitre T1016--> <!--Mitre T1128--> <!--Mitre T1063--> <!--Microsoft:Windows: manipulate the firewall -->
+        <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">netsh.exe</OriginalFileName> <!--Mitre T1016--> <!--Mitre T1128--> <!--Mitre T1063--> <!--Microsoft:Windows: manipulate the firewall -->
         <OriginalFileName name="technique_id=T1087,technique_name=Account Discovery" condition="is">klist.exe</OriginalFileName> <!--Microsoft:Windows: show cached kerberos tickets -->
         <OriginalFileName name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="is">wevtutil.exe</OriginalFileName> <!--Microsoft:Windows: read and modify the Windows Eventlog -->
         <OriginalFileName name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="is">fsutil.exe</OriginalFileName> <!--Microsoft:Windows: read and modify the Windows Eventlog -->
@@ -41,7 +41,7 @@
         <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell.exe</ParentImage> <!--Microsoft:Windows: PowerShell interface-->
         <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell_ise.exe</ParentImage> <!--Microsoft:Windows: PowerShell interface-->
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">bash.exe</OriginalFileName> <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
-        <OriginalFileName name="technique_id=T1073,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</OriginalFileName> <!--Microsoft:Windows: allows for driver loads -->
+        <OriginalFileName name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</OriginalFileName> <!--Microsoft:Windows: allows for driver loads -->
         <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image> <!--Microsoft:Windows: Program Compatibility Assistant)-->
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">cscript.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wscript.exe</OriginalFileName>
@@ -115,9 +115,7 @@
         <ParentImage name="technique=T1218,technique_name=Signed Binary Proxy Execution with FTP" condition="is">ftp.exe</ParentImage>
         <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
         <CommandLine name="technique_id=1218,technique_name=Signed Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
-        <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Tools" condition="contains">ilasm</CommandLine>
-        <OriginalFileName name="technique_id=T1118,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1127,technique_name=Javascript compilation" condition="is">jsc.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
         <Rule name="Alternate Data Streams with Print" groupRelation="and">
@@ -218,10 +216,9 @@
         <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">csc.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dfsvc.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1569.002,technique_name=Service Execution" condition="is">dnscmd.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1096,technique_name=NTFS File Attributes" condition="is">esentutl.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand</OriginalFileName>
+        <OriginalFileName name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">esentutl.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">extexport.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1096,technique_name=NTFS File Attributes" condition="is">extrac32.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">extrac32.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">IEExec.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">ilasm.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</OriginalFileName>

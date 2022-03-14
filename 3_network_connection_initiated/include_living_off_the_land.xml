@@ -38,7 +38,7 @@
         <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">winrs.exe</Image>
         <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">dfsvc.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Dfsvc/-->
         <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">dnscmd.exe</Image> <!--Service Execution-->
-        <Image name="technique_id=T1096,technique_name=NTFS File Attributes" condition="image">esentutl.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Esentutl/ Multiple options-->
+        <Image name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="image">esentutl.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Esentutl/ Multiple options-->
         <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">expand.exe</Image>
         <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">extrac32.exe</Image>
         <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">IEExec.exe</Image>

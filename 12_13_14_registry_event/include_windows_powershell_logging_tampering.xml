@@ -3,10 +3,10 @@
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<!--Windows Powershell logging tampering -->
-				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
-				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
-				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
-				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="contains all">software\microsoft\powershell\;\shellids\microsoft.powershell\executionpolicy</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
+				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
+				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
+				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains all">software\microsoft\powershell\;\shellids\microsoft.powershell\executionpolicy</TargetObject><!--MDE-->
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>

@@ -33,7 +33,7 @@
 				<Image name="technique_id=T1218.009,technique_name=Regsvcs/Regasm" condition="image">regsvcs.exe</Image>				<!--Microsoft:Windows: [ https://www.hybrid-analysis.com/sample/3f94d7080e6c5b8f59eeecc3d44f7e817b31562caeba21d02ad705a0bfc63d67?environmentId=100 ] -->
 				<Image name="technique_id=T1057,technique_name=Process Discovery" condition="image">rwinsta.exe</Image>				<!--Microsoft:Windows: Disconnect remote sessions | Credit @ion-storm -->
 				<Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="image">schtasks.exe</Image>				<!--Microsoft:Windows: Command and Scripting Interpreter to local and remote tasks -->
-				<Image name="technique_id=T1089,technique_name=Disabling Security Tools" condition="image">taskkill.exe</Image>				<!--Microsoft:Windows: Kill processes, has remote ability -->
+				<Image name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="image">taskkill.exe</Image>				<!--Microsoft:Windows: Kill processes, has remote ability -->
 				<Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">replace.exe</Image>
 			</NetworkConnect>
 		</RuleGroup>
