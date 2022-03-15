@@ -25,8 +25,8 @@
         <OriginalFileName name="technique_id=T1087,technique_name=Account Discovery" condition="is">klist.exe</OriginalFileName> <!--Microsoft:Windows: show cached kerberos tickets -->
         <OriginalFileName name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="is">wevtutil.exe</OriginalFileName> <!--Microsoft:Windows: read and modify the Windows Eventlog -->
         <OriginalFileName name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="is">fsutil.exe</OriginalFileName> <!--Microsoft:Windows: read and modify the Windows Eventlog -->
-        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task" condition="is">taskeng.exe</OriginalFileName> <!--Microsoft:Windows: taskscheduler -->
-        <OriginalFileName name="technique_id=T1117,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName> <!--Mitre T1117--> <!--Mitre T1085--> <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
+        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskeng.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName> <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
         <ParentImage name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="image">wmiprvse.exe</ParentImage>
         <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">wmiprvse.exe</OriginalFileName>
         <OriginalFileName condition="is">hh.exe</OriginalFileName> <!--Microsoft:Windows: HTML Helper-->
@@ -35,11 +35,11 @@
           <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">hh.exe</ParentImage> <!--Always build overlapping detections, PEs -->
           <CommandLine condition="contains">.exe</CommandLine>
         </Rule>
-        <OriginalFileName name="technique_id=T1059,technique_name=Command-Line Interface" condition="is">cmd.exe</OriginalFileName> <!--Microsoft:Windows: Command prompt-->
-        <ParentImage name="technique_id=T1059,technique_name=Command-Line Interface" condition="image">cmd.exe</ParentImage> <!--Microsoft:Windows: Command prompt-->
-        <Image name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell.exe</Image> <!--Microsoft:Windows: PowerShell interface-->
-        <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell.exe</ParentImage> <!--Microsoft:Windows: PowerShell interface-->
-        <ParentImage name="technique_id=T1086,technique_name=PowerShell" condition="image">powershell_ise.exe</ParentImage> <!--Microsoft:Windows: PowerShell interface-->
+        <OriginalFileName name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="is">cmd.exe</OriginalFileName>
+        <ParentImage name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="image">cmd.exe</ParentImage>
+        <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</Image>
+        <ParentImage name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</ParentImage>
+        <ParentImage name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell_ise.exe</ParentImage>
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">bash.exe</OriginalFileName> <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
         <OriginalFileName name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</OriginalFileName> <!--Microsoft:Windows: allows for driver loads -->
         <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image> <!--Microsoft:Windows: Program Compatibility Assistant)-->
@@ -62,10 +62,10 @@
           <OriginalFileName name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="is">cscript.exe</OriginalFileName> <!-- Catch cscript executing javascript locally-->
           <CommandLine condition="contains">.js</CommandLine>
         </Rule>
-        <ParentImage name="technique_id=T1170,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
+        <ParentImage name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
         <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">control.exe</ParentImage> <!-- https://twitter.com/rikvduijn/status/853251879320662017 -->
-        <OriginalFileName name="technique_id=T1170,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1158,technique_name=Hidden Files and DirectoriesHidden Files and Directories" condition="is">attrib.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1564.001,technique_name=Hidden Files and Directories" condition="is">attrib.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1087,technique_name=Account Discovery" condition="is">cmdkey.exe</OriginalFileName> <!--Microsoft:Windows: creates, lists, and deletes stored user names and passwords or credentials.-->
         <Rule groupRelation="and">
           <ParentImage name="technique_id=T1087,technique_name=Account Discovery" condition="is">cmdkey.exe</ParentImage> <!--Local code compilation-->
@@ -75,14 +75,14 @@
         <OriginalFileName name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="contains any">nbtstat.exe;nbtinfo.exe</OriginalFileName> <!--Microsoft:Windows: NetBIOS statistics, attackers use to enumerate local network -->
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">qwinsta.exe</OriginalFileName> <!--Microsoft:Windows: Remotely query login sessions on a server or workstation | Credit @ion-storm -->
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">rwinsta.exe</OriginalFileName> <!--Microsoft:Windows: Disconnect remote sessions | Credit @ion-storm -->
-        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Tasks" condition="contains any">schtasks.exe;sctasks.exe</OriginalFileName> <!--Microsoft:Windows: Command-line interface to local and remote tasks -->
+        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="contains any">schtasks.exe;sctasks.exe</OriginalFileName> <!--Microsoft:Windows: Command-line interface to local and remote tasks -->
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">replace.exe</OriginalFileName>
         <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">jjs.exe</Image>
         <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">appcmd.exe</Image>
-        <OriginalFileName name="technique_id=T1031,technique_name=Modify Existing Service" condition="is">sc.exe</OriginalFileName>
+                <OriginalFileName name="technique_id=T1543.003,technique_name=Windows Service" condition="is">sc.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">certutil.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1081,technique_name=Credentials in Files" condition="is">findstr.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1081,technique_name=Credentials in Files" condition="is">where.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1552.001,technique_name=Credentials in Files" condition="is">findstr.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1552.001,technique_name=Credentials in Files" condition="is">where.exe</OriginalFileName>
         <Image name="technique_id=T1222,technique_name=File Permissions Modification" condition="image">forfiles.exe</Image>
         <OriginalFileName name="technique_id=T1222,technique_name=File Permissions Modification" condition="contains any">icacls.exe;cacls.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1074,technique_name=Data Staged" condition="is">xcopy.exe</OriginalFileName>
@@ -111,6 +111,7 @@
         <ParentImage name="technique=T1218,technique_name=Signed Binary Proxy Execution with FTP" condition="is">ftp.exe</ParentImage>
         <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
         <CommandLine name="technique_id=1218,technique_name=Signed Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
+        <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">ilasm</CommandLine>
         <OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
@@ -179,21 +180,7 @@
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">taskmgr.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">regedit.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">netsh.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskeng.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="is">cmd.exe</OriginalFileName>
-        <ParentImage name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="image">cmd.exe</ParentImage>
-        <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</Image>
-        <ParentImage name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</ParentImage>
-        <ParentImage name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell_ise.exe</ParentImage>
-        <ParentImage name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
-        <OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1564.001,technique_name=Hidden Files and DirectoriesHidden Files and Directories" condition="is">attrib.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="contains any">schtasks.exe;sctasks.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1543.003,technique_name=Windows Service" condition="is">sc.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">desktopimgdownldr.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1552.001,technique_name=Credentials in Files" condition="is">findstr.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1552.001,technique_name=Credentials in Files" condition="is">where.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">computerdefaults.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">dism.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">fodhelper.exe</OriginalFileName>
@@ -213,6 +200,7 @@
         <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dfsvc.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1569.002,technique_name=Service Execution" condition="is">dnscmd.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">esentutl.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">extexport.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">extrac32.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">IEExec.exe</OriginalFileName>

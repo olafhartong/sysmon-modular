@@ -2,19 +2,19 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">        <!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
-        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Visual Basic">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">VBE7INTL.DLL</OriginalFileName>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Visual Basic">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">VBE7.DLL</OriginalFileName>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Visual Basic">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">VBEUI.DLL</OriginalFileName>
         </Rule>  
-        <Rule groupRelation="and" name="technique_id=T1137.001,technique_name=Office Application Startup - Office Template Macros">        <!-- Credit to  @HeirhabarovT -->
+        <Rule groupRelation="and" name="technique_id=T1137.001,technique_name=Office Template Macros">        <!-- Credit to  @HeirhabarovT -->
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">OUTLVBA.DLL</OriginalFileName>
         </Rule>
