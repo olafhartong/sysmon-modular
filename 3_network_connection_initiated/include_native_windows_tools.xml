@@ -5,7 +5,7 @@
 				<!--Native Windows tools - Living off the land-->
 				<Image name="technique_id=T1053,technique_name=Scheduled Task" condition="image">at.exe</Image>				<!--Microsoft:Windows: Remote task scheduling | Credit @ion-storm -->
 				<Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">certutil.exe</Image>				<!--Microsoft:Windows: Certificate tool can contact outbound | Credit @ion-storm and @FVT [ https://twitter.com/FVT/status/834433734602530817 ] -->
-				<Image name="technique_id=T1218,technique_name=Signed Script Proxy Execution" condition="image">cscript.exe</Image>				<!--Microsoft:WindowsScriptingHost: | Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
+				<Image name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="image">cscript.exe</Image>				<!--Microsoft:WindowsScriptingHost: | Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
 				<Image condition="image">java.exe</Image>				<!--Java: Monitor usage of vulnerable application | Credit @ion-storm -->
 				<Image name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</Image>				<!--Microsoft:Windows: HTML application executes scripts without IE protections | Credit @ion-storm [ https://en.wikipedia.org/wiki/HTML_Application ] -->
 				<Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">msiexec.exe</Image>				<!--Microsoft:Windows: Can install from http:// paths | Credit @vector-sec -->
@@ -16,7 +16,7 @@
 				<Image name="technique_id=T1218.011,technique_name=Rundll32" condition="image">rundll32.exe</Image>				<!--Microsoft:Windows: [ https://blog.cobaltstrike.com/2016/07/22/why-is-rundll32-exe-connecting-to-the-internet/ ] -->
 				<Image name="technique_id=T1543.003,technique_name=Windows Service" condition="image">sc.exe</Image>				<!--Microsoft:Windows: Remotely change Windows service settings from command line | Credit @ion-storm -->
 				<Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="image">wmic.exe</Image>				<!--T1047-->				<!--Mitre T1135-->				<!--Microsoft:WindowsManagementInstrumentation: Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
-				<Image name="technique_id=T1218,technique_name=Signed Script Proxy Execution" condition="image">wscript.exe</Image>				<!--Microsoft:WindowsScriptingHost: | Credit @arekfurt -->
+				<Image name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="image">wscript.exe</Image>				<!--Microsoft:WindowsScriptingHost: | Credit @arekfurt -->
 				<Image condition="image">driverquery.exe</Image>				<!--Microsoft:Windows: Remote recognisance of system configuration, oudated/vulnerable drivers -->
 				<Image name="technique_id=T1069,technique_name=Permission Groups Discovery" condition="image">dsquery.exe</Image>				<!--Microsoft: Query Active Directory -->
 				<Image name="technique_id=T1069,technique_name=Permission Groups Discovery" condition="image">AdFind.exe</Image>

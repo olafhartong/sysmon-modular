@@ -93,11 +93,8 @@
         <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vassadmin.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="contains any">nltest.exe;nltestk.exe</OriginalFileName> <!-- netlogon testing utility-->
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">winrs.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1088,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">mofcomp.exe</OriginalFileName> <!-- Microsoft:MOF Compiler -used to compile custom MOF files for WMI use -->
-        <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="is">Microsoft.Workflow.Compiler.exe</OriginalFileName> <!--https://lolbas-project.github.io/lolbas/Binaries/Microsoft.Workflow.Compiler/-->
+        <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">Microsoft.Workflow.Compiler.exe</OriginalFileName> <!--https://lolbas-project.github.io/lolbas/Binaries/Microsoft.Workflow.Compiler/-->
         <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
         <OriginalFileName name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">ScrCons</OriginalFileName>
         <Rule name="Extensible Storage Engine Utilities" groupRelation="and">
@@ -107,24 +104,23 @@
         <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">vssadmin.exe delete</CommandLine> <!-- Possible Ransomeware detection or any kind of backup prevention  https://attack.mitre.org/techniques/T1490/-->
         <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">wbadmin.exe delete</CommandLine> <!-- Deletion of Backup Catalog  https://attack.mitre.org/techniques/T1490/-->
         <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">bcedit.exe /set</CommandLine> <!-- Modify Windows Recovery features by modifying boot config data  https://attack.mitre.org/techniques/T1490/-->
-        <CommandLine name="technique_id=T1127,technique_name=dfsvc.exe Making Network Connections" condition="contains">rundll32.exe dfshim.dll,ShOpenVerbApplication http://</CommandLine> <!--This only applies to versions of Windows Server-->
+        <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">rundll32.exe dfshim.dll,ShOpenVerbApplication http://</CommandLine> <!--This only applies to versions of Windows Server--> <!-- https://lolbas-project.github.io/lolbas/Binaries/Dfsvc/ -->
         <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">diskshadow.exe</Image> <!--This only applies to versions of Windows Server-->
         <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">diskshadow.exe /s</CommandLine> <!--This only applies to versions of Windows Server-->
-        <ParentImage name="technique_id=T1103,technique_name=Credential Dumping" condition="is">diskshadow.exe</ParentImage> <!--This only applies to versions of Windows Server-->
-        <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy with Expand" condition="is">expand.exe</OriginalFileName>
+        <ParentImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">diskshadow.exe</ParentImage> <!--This only applies to versions of Windows Server-->
         <ParentImage name="technique=T1218,technique_name=Signed Binary Proxy Execution with FTP" condition="is">ftp.exe</ParentImage>
-        <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
         <CommandLine name="technique_id=1218,technique_name=Signed Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
         <OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
         <Rule name="Alternate Data Streams with Print" groupRelation="and">
-          <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">print.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains">:</CommandLine>
+          <OriginalFileName name="technique_id=T1544,technique_name=Remote File Copy" condition="is">print.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1544,technique_name=Remote File Copy" condition="contains">:</CommandLine>
         </Rule>
         <Rule name="Alternate Data Streams with Regedit.exe" groupRelation="and">
-          <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">regedit.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains">:</CommandLine>
+          <OriginalFileName name="technique_id=T1544,technique_name=Remote File Copy" condition="is">regedit.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1544,technique_name=Remote File Copy" condition="contains">:</CommandLine>
         </Rule>
         <OriginalFileName name="technique_id=1218,technique_name=Signed Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">rpcping.exe</OriginalFileName>
@@ -132,8 +128,8 @@
         <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">Scriptrunner.exe -appvscript</CommandLine>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">Scriptrunner.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">tttracer.exe</OriginalFileName>
-        <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="contains">vbc.exe /target:exe</CommandLine>
-        <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities" condition="contains">vbc.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vbc.exe /target:exe</CommandLine>
+        <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vbc.exe</OriginalFileName>
         <ParentImage name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">wab.exe</ParentImage>
         <ParentImage name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">wsreset.exe</ParentImage>
         <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">xwizard RunWizard</CommandLine>
@@ -151,24 +147,24 @@
           <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="end with">.dll</CommandLine>
         </Rule>
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is"></OriginalFileName>
-        <CommandLine name="technique_id=T1217,technique_name=Trusted Script Proxy Execution" condition="contains">pester</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Script Proxy Execution" condition="contains">winrm</CommandLine> <!--This is something to keep an eye on always -->
-        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">slmgr</CommandLine>
-        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">pubprn</CommandLine>
-        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">manage-bde</CommandLine>
-        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">CL_Invocation</CommandLine>
-        <CommandLine name="technique_id=T1216,technique_name=Trusted Script Proxy Execution" condition="contains">CL_Mutexverifiers</CommandLine>
-        <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
-        <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">vsjitdebugger.exe</ParentImage>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains">vsjitdebugger</CommandLine>
-        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">update --download</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe --update</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe --ProcessStart</CommandLine>
-        <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">tracker.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">te.exe</OriginalFileName>
-        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">squirrel --download</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">squirrel.exe --update</CommandLine>
-        <OriginalFileName name="technique_id=1086,technique_name=Powershell" condition="contains">Sqlps.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="contains">pester</CommandLine>
+        <CommandLine name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="contains">winrm</CommandLine> <!--This is something to keep an eye on always -->
+        <CommandLine name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="contains">slmgr</CommandLine>
+        <CommandLine name="technique_id=T1216.001,technique_name=PubPrn" condition="contains">pubprn</CommandLine>
+        <CommandLine name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="contains">manage-bde</CommandLine>
+        <CommandLine name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="contains">CL_Invocation</CommandLine>
+        <CommandLine name="technique_id=T1216,technique_name=Signed Script Proxy Execution" condition="contains">CL_Mutexverifiers</CommandLine>
+        <ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wsl.exe</ParentImage> <!-- https://lolbas-project.github.io/lolbas/OtherMSBinaries/Wsl/ -->
+        <ParentImage name="technique_id=T1227,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">vsjitdebugger.exe</ParentImage>
+        <CommandLine name="technique_id=T1227,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vsjitdebugger</CommandLine>
+        <CommandLine name="technique_id=T1544,technique_name=Remote File Copy" condition="contains all">update --download</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">update.exe --update</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">update.exe --ProcessStart</CommandLine>
+        <OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">tracker.exe</OriginalFileName> <!-- https://lolbas-project.github.io/lolbas/OtherMSBinaries/Tracker/ -->
+        <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">te.exe</OriginalFileName> <!-- https://lolbas-project.github.io/lolbas/OtherMSBinaries/Te/ -->
+        <CommandLine name="technique_id=T1544,technique_name=Remote File Copy" condition="contains all">squirrel --download</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">squirrel.exe --update</CommandLine> <!-- https://lolbas-project.github.io/lolbas/OtherMSBinaries/Squirrel/ -->
+        <OriginalFileName name="technique_id=T1059.001,technique_name=Powershell" condition="contains">Sqlps.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">sqldumper.exe</OriginalFileName> <!-- Should rarely be ran -->
         <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">rcsi.exe</OriginalFileName>
         <Rule name="AD Dump with ntdsutil" groupRelation="and">
