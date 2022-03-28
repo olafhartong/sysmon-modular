@@ -1,0 +1,25 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - feature/*
+      - fix/*
+
+pr: none
+
+resources:
+  repositories:
+    - repository: pipeline-library
+      type: github
+      endpoint: quantum-sec-github
+      name: quantum-sec/pipeline-library
+
+jobs:
+  - template: templates/jobs/default.yml@pipeline-library
+    parameters:
+      validationSteps:
+        - powershell: |
+            . .\Merge-SysmonXml.ps1
+            Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmon-rules/quantum-sysmonconfig.xml
+          displayName: Generate Quantum Sysmon Config
