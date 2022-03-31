@@ -1,4 +1,4 @@
-﻿<!--                       NOTICE : This is a balanced generated output of Sysmon-modular with medium verbosity                  -->
+<!--                       NOTICE : This is a balanced generated output of Sysmon-modular with medium verbosity                  -->
 <!--                        due to the balanced nature of this configuration there will be potential blind spots                 -->
 <!--                        for more information go to https://github.com/olafhartong/sysmon-modular/wiki                        -->
 <!--                                                                                                                             -->
@@ -501,18 +501,18 @@
         <Image condition="is">C:\Program Files (x86)\Sophos\AutoUpdate\ALsvc.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\Sophos Anti-Virus\SAVAdminService.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Sophos\Remote Management System\ManagementAgentNT.exe</Image>
-        <Image condition="begin with">C:\Program Files\Splunk\bin\</Image>
-        <ParentImage condition="is">C:\Program Files\Splunk\bin\splunkd.exe</ParentImage>
-        <ParentImage condition="is">C:\Program Files\Splunk\bin\splunk.exe</ParentImage>
-        <Image condition="begin with">D:\Program Files\Splunk\bin\</Image>
-        <ParentImage condition="is">D:\Program Files\Splunk\bin\splunkd.exe</ParentImage>
-        <ParentImage condition="is">D:\Program Files\Splunk\bin\splunk.exe</ParentImage>
         <Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
         <ParentImage condition="is">C:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe</ParentImage>
         <ParentImage condition="is">C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe</ParentImage>
         <Image condition="begin with">D:\Program Files\SplunkUniversalForwarder\bin\</Image>
         <ParentImage condition="is">D:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe</ParentImage>
         <ParentImage condition="is">D:\Program Files\SplunkUniversalForwarder\bin\splunk.exe</ParentImage>
+        <Image condition="begin with">C:\Program Files\Splunk\bin\</Image>
+        <ParentImage condition="is">C:\Program Files\Splunk\bin\splunkd.exe</ParentImage>
+        <ParentImage condition="is">C:\Program Files\Splunk\bin\splunk.exe</ParentImage>
+        <Image condition="begin with">D:\Program Files\Splunk\bin\</Image>
+        <ParentImage condition="is">D:\Program Files\Splunk\bin\splunkd.exe</ParentImage>
+        <ParentImage condition="is">D:\Program Files\Splunk\bin\splunk.exe</ParentImage>
         <CommandLine condition="is">C:\Windows\system32\svchost.exe -k appmodel -s StateRepository</CommandLine>
         <CommandLine condition="is">C:\Windows\system32\svchost.exe -k appmodel</CommandLine>
         <CommandLine condition="is">C:\WINDOWS\system32\svchost.exe -k appmodel -p -s tiledatamodelsvc</CommandLine>
@@ -1439,6 +1439,13 @@
         <TargetObject condition="begin with">hklm\system\mounteddevices\</TargetObject>
         <TargetObject condition="contains all">hklm\system\;\enum\usb\</TargetObject>
         <TargetObject name="technique_id=T1546.007,technique_name=Netsh Helper DLL" condition="contains">SOFTWARE\Microsoft\Netsh</TargetObject>
+        <TargetObject name="T1559.002,office" condition="end with">\Word\Security\AllowDDE</TargetObject>
+        <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLaunch</TargetObject>
+        <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLookup</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\VBAWarnings</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\DisableInternetFilesInPV</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\DisableUnsafeLocationsInPV</TargetObject>
+        <TargetObject name="T1562,office" condition="end with">\DisableAttachementsInPV</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains all">\Microsoft\Office;\Outlook\Addins</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
@@ -1470,13 +1477,6 @@
         <TargetObject condition="contains">software\microsoft\Office test\special\perf\</TargetObject>
         <TargetObject condition="contains all">hkcu\software\microsoft\office\;\Options\OPEN</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains all">\Microsoft\Office;\PowerPoint\Addins</TargetObject>
-        <TargetObject name="T1559.002,office" condition="end with">\Word\Security\AllowDDE</TargetObject>
-        <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLaunch</TargetObject>
-        <TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLookup</TargetObject>
-        <TargetObject name="T1562,office" condition="end with">\VBAWarnings</TargetObject>
-        <TargetObject name="T1562,office" condition="end with">\DisableInternetFilesInPV</TargetObject>
-        <TargetObject name="T1562,office" condition="end with">\DisableUnsafeLocationsInPV</TargetObject>
-        <TargetObject name="T1562,office" condition="end with">\DisableAttachementsInPV</TargetObject>
         <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MaxInstanceCount</TargetObject>
         <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\RaunSolicit</TargetObject>
         <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\services\TermService\Parameters\ServiceDll</TargetObject>
@@ -2134,7 +2134,204 @@
     <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
     <!-- Default set to disabled due to disk space implications, enable with care!-->
     <RuleGroup groupRelation="or">
-      <FileDelete onmatch="include" />
+      <FileDelete onmatch="include">
+        <TargetFilename condition="contains all">C:\Program Files\Microsoft SQL Server;\Shared\ErrorDumps</TargetFilename>
+        <TargetFilename condition="contains all">C:\Program Files\Microsoft SQL Server;\DataDumps</TargetFilename>
+        <TargetFilename condition="contains all">C:\Program Files (X86)\Microsoft SQL Server\;Shared\ErrorDumps</TargetFilename>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Program Files\Qualys\QualysAgent</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="contains">\Downloads\</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="contains">\Appdata\Local\Temp\</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="contains">\Appdata\Local\Microsoft\Windows\INetCache\Content.Outlook\</TargetFilename>
+          <Image condition="Contains">Downloads</Image>
+          <Image condition="contains">Temp</Image>
+          <Image condition="contains">AppData</Image>
+          <Image condition="contains">ProgramData</Image>
+          <Image condition="contains">Public</Image>
+          <TargetFilename condition="contains">INetCache/Content.Outlook</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="contains">\Downloads\</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="contains">\Appdata\</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="contains">\Appdata\Local\Microsoft\Windows\INetCache\Content.Outlook\</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\Temp</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\System32</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\SysWOW64</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">AppData</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Intel</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Mozilla</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\chocolatey\logs</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\DeviceSync</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\PlayReady</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\User Account Pictures</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Crypto\DSS\MachineKeys</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Crypto\RSA\MachineKeys</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\NetFramework\BreadcrumbStore</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Office\Heartbeat</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\ReportQueue</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER\Temp</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Intel</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Mozilla</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\chocolatey\logs</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\DeviceSync</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\PlayReady</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\User Account Pictures</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\Crypto\DSS\MachineKeys</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\Crypto\RSA\MachineKeys</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\NetFramework\BreadcrumbStore</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\Office\Heartbeat</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\Windows\WER\ReportArchive</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\Windows\WER\ReportQueue</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Users\All Users\Microsoft\Windows\WER\Temp</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\Tasks</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\tracing</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\Registration\CRMLog</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\System32\Tasks</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\System32\Microsoft\Crypto\RSA\MachineKeys</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\System32\spool\drivers\color</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\SysWOW64\Tasks</TargetFilename>
+          <TargetFilename condition="contains any">.com;.bat;.exe;.reg;.ps1;.vbs;.vba;.lnk;.doc;.xls;.hta;.bin;.7z;.dll;.xla;.cmd;.sh;.lnk;.pptm;.scr;.msi;.sct</TargetFilename>
+        </Rule>
+      </FileDelete>
     </RuleGroup>
     <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
     <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
@@ -2333,6 +2530,17 @@
         <SourceImage name="technique_id=T1055,technique_name=Process Injection" condition="begin with">C:\</SourceImage>
         <SourceImage name="technique_id=T1055,technique_name=Process Injection" condition="begin with">\\</SourceImage>
       </CreateRemoteThread>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileDelete onmatch="exclude">
+        <Image condition="contains all">\appdata\local\google\chrome\user data\swreporter\;software_reporter_tool.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
+        <User condition="contains any">NETWORK SERVICE; LOCAL SERVICE</User>
+        <Rule name="PowerShell Profile Deletion" groupRelation="and">
+          <TargetFilename condition="contains">AppData\Local\Microsoft\Windows\PowerShell\StartupProfileData-Interactive</TargetFilename>
+          <Image condition="is">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Image>
+        </Rule>
+      </FileDelete>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>

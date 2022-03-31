@@ -14,8 +14,8 @@ The sysmonconfig.xml within the repo is automatically generated after a successf
 ## Pre-Grenerated configurations
 | Config | Description|
 | --- | --- |
-| [default - sysmonconfig.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
-[verbose - sysmonconfig-excludes-only.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-excludes-only.xml) |  This is the very verbose configuration, all events are included, only the exclusion modules are applied. This should not be used in production without validation, will generate a significant amount of data and might impact performance. More information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)|
+| [default - sysmonconfig.xml](https://raw.githubusercontent.com/quantum-sec/sysmon-modular/master/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
+[verbose - sysmonconfig-excludes-only.xml](https://raw.githubusercontent.com/quantum-sec/sysmon-modular/master/sysmonconfig-excludes-only.xml) |  This is the very verbose configuration, all events are included, only the exclusion modules are applied. This should not be used in production without validation, will generate a significant amount of data and might impact performance. More information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)|
 | sysmon-mde-augmentation | A configuration to augment Defender for Endpoint, intended to augment the information and have as little overlap as possible. Coming soon |
 
 Do keep in mind that tuning per environment is _strongly_ recommended. More info on how to generate a custom config, incorporating your own modules [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)
@@ -71,7 +71,7 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
 #### PowerShell
 
-    $> git clone https://github.com/olafhartong/sysmon-modular.git
+    $> git clone https://github.com/quantum-sec/sysmon-modular.git
     $> cd sysmon modular
     $> . .\Merge-SysmonXml.ps1
     $> Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
@@ -80,7 +80,7 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
 Below functions with great thanks to mbmy
 
-**New Function:** 
+**New Function:**
 `Find-RulesInBasePath` - takes a base path (i.e. C:\folder\sysmon-modular\) and finds all candidate xml rule files based upon regex pattern
 
 Example:

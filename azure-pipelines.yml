@@ -1,0 +1,26 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - quantum
+      - feature/*
+      - fix/*
+
+pr: none
+
+resources:
+  repositories:
+    - repository: pipeline-library
+      type: github
+      endpoint: quantum-sec-github
+      name: quantum-sec/pipeline-library
+
+jobs:
+  - template: templates/jobs/default.yml@pipeline-library
+    parameters:
+      containerImage: quantumci.azurecr.io/quantum-ci-powershell:latest
+      validationSteps:
+        - pwsh: |
+            . .\Merge-SysmonXml.ps1
+            Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File quantum-sysmonconfig.xml
+          displayName: Generate Quantum Security Sysmon Rules
