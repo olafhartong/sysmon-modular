@@ -2,7 +2,7 @@ trigger:
   batch: true
   branches:
     include:
-      - master
+      - quantum
       - feature/*
       - fix/*
 
@@ -18,8 +18,9 @@ resources:
 jobs:
   - template: templates/jobs/default.yml@pipeline-library
     parameters:
+      containerImage: quantumci.azurecr.io/quantum-ci-powershell:latest
       validationSteps:
-        - powershell: |
+        - pwsh: |
             . .\Merge-SysmonXml.ps1
-            Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmon-rules/quantum-sysmonconfig.xml
-          displayName: Generate Quantum Sysmon Config
+            Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File quantum-sysmonconfig.xml
+          displayName: Generate Quantum Security Sysmon Rules
