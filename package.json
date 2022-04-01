@@ -1,0 +1,10 @@
+{
+  "name": "sysmon-modular",
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:quantum-sec/sysmon-modular.git"
+  },
+  "author": "Quantum Security Pte. Ltd.",
+  "license": "SEE LICENSE IN LICENSE"
+}
