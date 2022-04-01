@@ -2,7 +2,7 @@
 	<EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
-				<TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows;\CurrentVersion\Print\Connections</TargetObject> 
+				<TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows;\CurrentVersion\Print\Connections</TargetObject>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>

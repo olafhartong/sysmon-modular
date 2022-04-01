@@ -22,7 +22,7 @@
         <Rule groupRelation="and">
           <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">lsass.exe</TargetImage>          <!--https://pentestlab.blog/2018/05/15/lateral-movement-winrm/-->
           <SourceImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">wsmprovhost.exe</SourceImage>
-        </Rule>        
+        </Rule>
       </ProcessAccess>
     </RuleGroup>
   </EventFiltering>

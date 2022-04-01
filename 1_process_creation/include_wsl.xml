@@ -3,7 +3,7 @@
     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <!-- Indicators for unusual wsl (Windows Subsystem for Linux) activity.
-           Generally these could be investigated with ease as you can look for 
+           Generally these could be investigated with ease as you can look for
            abnormal commands coming from the user and can examine bash_history for
            other strange activity that might escape sysmon or Windows event logger -->
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>

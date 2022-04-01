@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Import Merge-SysmonXml.ps1 and generate config
-        run: | 
+        run: |
           Import-Module .\Merge-SysmonXml.ps1
           Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
         shell: pwsh

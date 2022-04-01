@@ -5,7 +5,7 @@
         <Rule groupRelation="and">
           <Image condition="is">C:\Windows\System32\cscript.exe</Image>
           <OriginalFileName condition="is">scrobj.dll</OriginalFileName>
-        </Rule>  
+        </Rule>
       </ImageLoad>
     </RuleGroup>
   </EventFiltering>

@@ -5,7 +5,7 @@
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains all">\Microsoft\Office;\Outlook\Addins</TargetObject> <!--Microsoft:Office: Outlook add-ins-->
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject> <!-- Uncommon place to load add-ins, especially in HKCU-->
         <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject> <!--Uncommon place to declare add-in metadata, especially in HKCU-->
-        <TargetObject name="technique_name=Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject> 
+        <TargetObject name="technique_name=Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject>
         <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Account Name</TargetObject> <!--MDE-->
         <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Display Name</TargetObject> <!--MDE-->
         <TargetObject condition="contains all">HKCU\SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Email</TargetObject> <!--MDE-->

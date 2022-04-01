@@ -12,7 +12,7 @@
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1170,technique_name=MSHTA with AMSI Bypass" condition="is">jscript9.dll</OriginalFileName>
           <Image condition="end with">mshta.exe</Image>
-        </Rule>        
+        </Rule>
       </ImageLoad>
     </RuleGroup>
   </EventFiltering>

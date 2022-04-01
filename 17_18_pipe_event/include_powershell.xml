@@ -9,7 +9,7 @@
         <Rule groupRelation="and">
           <PipeName name="technique_id=T1059.001,technique_name=PowerShell" condition="begin with">\PSHost</PipeName>
           <Image condition="is not">powershell_ise.exe</Image>
-        </Rule>        
+        </Rule>
       </PipeEvent>
     </RuleGroup>
   </EventFiltering>

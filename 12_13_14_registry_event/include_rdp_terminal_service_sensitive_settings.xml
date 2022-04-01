@@ -2,7 +2,7 @@
 	<EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
-				<!-- https://blog.menasec.net/2019/02/threat-hunting-rdp-hijacking-via.html--> 
+				<!-- https://blog.menasec.net/2019/02/threat-hunting-rdp-hijacking-via.html-->
 				<TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\services\TermService\Parameters\ServiceDll</TargetObject>
 				<TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\fSingleSessionPerUser</TargetObject>
 				<TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\fDenyTSConnections</TargetObject>

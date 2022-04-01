@@ -1,4 +1,4 @@
-  
+
 <Sysmon schemaversion="4.60">
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">

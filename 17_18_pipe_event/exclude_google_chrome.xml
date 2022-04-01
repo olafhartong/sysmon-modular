@@ -13,7 +13,7 @@
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Google\Chrome\Application\;\Installer\chrmstp.exe</Image>
           <PipeName condition="begin with">\crashpad_</PipeName>
-        </Rule>        
+        </Rule>
       </PipeEvent>
     </RuleGroup>
   </EventFiltering>

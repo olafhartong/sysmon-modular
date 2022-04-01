@@ -4,9 +4,9 @@
 			<RegistryEvent onmatch="include">
 				<!--Microsoft:Office:Security _features-->
 				<!--https://msrc.microsoft.com/update-guide/vulnerability/ADV170021-->
-				<TargetObject name="T1559.002,office" condition="end with">\Word\Security\AllowDDE</TargetObject> 
+				<TargetObject name="T1559.002,office" condition="end with">\Word\Security\AllowDDE</TargetObject>
 				<TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLaunch</TargetObject>
-				<TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLookup</TargetObject> 		
+				<TargetObject name="T1559.002,office" condition="end with">\Excel\Security\DisableDDEServerLookup</TargetObject>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>

@@ -4,10 +4,10 @@
 			<RegistryEvent onmatch="include">
 				<!--Microsoft:Office:Security _features-->
 				<!--https://github.com/SigmaHQ/sigma/blob/master/rules/windows/registry_event/sysmon_disable_microsoft_office_security_features.yml-->
-				<TargetObject name="T1562,office" condition="end with">\VBAWarnings</TargetObject> 
+				<TargetObject name="T1562,office" condition="end with">\VBAWarnings</TargetObject>
 				<TargetObject name="T1562,office" condition="end with">\DisableInternetFilesInPV</TargetObject>
-				<TargetObject name="T1562,office" condition="end with">\DisableUnsafeLocationsInPV</TargetObject> 
-				<TargetObject name="T1562,office" condition="end with">\DisableAttachementsInPV</TargetObject>				
+				<TargetObject name="T1562,office" condition="end with">\DisableUnsafeLocationsInPV</TargetObject>
+				<TargetObject name="T1562,office" condition="end with">\DisableAttachementsInPV</TargetObject>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
