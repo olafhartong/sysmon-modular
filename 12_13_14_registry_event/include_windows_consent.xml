@@ -8,7 +8,7 @@
 				<TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\usb</TargetObject>
 				<TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location</TargetObject>
 				<TargetObject name="technique_id=T1005,technique_name=Data from Local System" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts</TargetObject>
-				<TargetObject name="technique_id=T1056.001,technique_name=Input Capture - Keylogging" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\hunmanInterfaceDevice</TargetObject>
+				<TargetObject name="technique_id=T1056.001,technique_name=Input Capture - Keylogging" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\humanInterfaceDevice</TargetObject>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
