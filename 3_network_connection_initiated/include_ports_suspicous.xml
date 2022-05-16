@@ -6,10 +6,15 @@
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">22</DestinationPort>				<!--SSH protocol-->
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">23</DestinationPort>				<!--Telnet protocol-->
 				<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">25</DestinationPort>				<!--SMTP mail protocol-->
-				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">88</DestinationPort>				<!--Kerberos protocol-->
+				<Rule groupRelation="and">
+					<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">88</DestinationPort>				<!--Kerberos protocol-->
+					<Image condition="is not">C:\Windows\System32\lsass.exe</Image>															<!--exclude LSASS for Kerberos protocol-->
+        		</Rule>
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">3389</DestinationPort>				<!--Microsoft:Windows:RDP-->
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5800</DestinationPort>				<!--VNC protocol-->
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort>				<!--VNC protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5985</DestinationPort>				<!--WinRM protocol-->
+				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5986</DestinationPort>				<!--WinRM protocol-->
 			</NetworkConnect>
 		</RuleGroup>
 	</EventFiltering>

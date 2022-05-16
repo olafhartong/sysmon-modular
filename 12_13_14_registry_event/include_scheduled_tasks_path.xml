@@ -4,6 +4,7 @@
       <RegistryEvent onmatch="include">
         <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks;Actions</TargetObject><!--MDE-->
         <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree</TargetObject><!--MDE-->
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\</TargetObject><!--MDE-->
       </RegistryEvent>
     </RuleGroup>
   </EventFiltering>

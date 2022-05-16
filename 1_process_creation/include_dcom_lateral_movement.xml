@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule name="technique_id=T1021.003,technique_name=Distributed Component Object Model" groupRelation="and">
+          <ParentCommandLine condition="contains">-Embedding</ParentCommandLine>
+          <ParentImage condition="is">c:\windows\system32\mmc.exe</ParentImage>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
