@@ -123,6 +123,51 @@ Include/Exclude List Format Example:
 ```
 
 
+**Building a config with all sysmon-modular rules for certain event IDs (include whole directory) and then disabling all event ids without imported rules**
+
+Example:
+```
+# generate the config
+$sysmonconfig =  Merge-AllSysmonXml  -BasePath . -IncludeList $workingFolder\include.txt -VerboseLogging -PreserveComments
+
+# flip off any rule groups where rules were not imported
+foreach($rg in $sysmonconfig.SelectNodes("/Sysmon/EventFiltering/RuleGroup [*/@onmatch]"))
+{
+    $ruleNodes = $rg.SelectNodes("./* [@onmatch]")
+
+    if(     $ruleNodes -eq $null `
+        -or $ruleNodes.ChildNodes.count -gt 0)
+    {
+        # no rule nodes found (unlikely) or more than one rule found
+        continue
+    }
+
+    # RuleGroup with only one rule node
+    $ruleNode = $ruleNodes[0]
+
+    if($ruleNode.onmatch -eq "exclude" -and $ruleNode.ChildNodes.count -eq 0 )
+    {
+        $message = "{0} {1} has no matching conditions.  Toggled to 'include' to limit output" -f $ruleNode.Name,$rg.Name
+        Write-Warning $message
+
+        $ruleNode.onmatch = "include"
+        $comment = $sysmonconfig.CreateComment($message)
+        $rg.AppendChild($comment) | Out-Null
+    }
+}
+```
+
+Include/Exclude List Format Example (for entire rule/event families):
+
+```
+1_process_creation
+5_process_ended
+11_file_create
+23_file_delete
+7_image_load
+17_18_pipe_event
+```
+
 ## Use
 
 ### Install
