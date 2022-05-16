@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileDeleteDetected onmatch="include">
+            <Rule groupRelation="and">
+               <TargetFilename condition="contains all">C:\PS-Transcripts\;PowerShell_transcript</TargetFilename>               <!--Default PowerShell transcript folder-->
+               <TargetFilename condition="contains">.txt</TargetFilename>
+            </Rule>
+         </FileDeleteDetected>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
