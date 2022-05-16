@@ -1,7 +1,7 @@
 # sysmon-modular | A Sysmon configuration repository for everybody to customise
 
 [![license](https://img.shields.io/github/license/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/blob/master/license.md)
-![Maintenance](https://img.shields.io/maintenance/yes/2021.svg?style=flat-square)
+![Maintenance](https://img.shields.io/maintenance/yes/2022.svg?style=flat-square)
 [![GitHub last commit](https://img.shields.io/github/last-commit/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/commit/master)
 ![Build Sysmon config with all modules](https://github.com/olafhartong/sysmon-modular/workflows/Build%20Sysmon%20config%20with%20all%20modules/badge.svg)
 [![Twitter](https://img.shields.io/twitter/follow/olafhartong.svg?style=social&label=Follow)](https://twitter.com/olafhartong)
@@ -55,8 +55,7 @@ I started a series of blog posts covering this repo;
 ## Mitre ATT&CK
 
 I strive to map all configurations to the ATT&CK framework whenever Sysmon is able to detect it.
-A current ATT&CK navigator export of all linked configurations is found [here](attack_matrix/Sysmon-modular.json) and can be viewed [here](https://mitre-attack.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2Folafhartong%2Fsysmon-modular%2Fmaster%2Fattack_matrix%2FSysmon-modular.json&scoring=false&clear_annotations=false)
-![Mapping](attack_matrix/sysmon-modular.png)
+Please note this is a possible log entry that might lead to a detection, not in all cases is this the only telemetry for that technique. Additionally there might be more techniques releated to that rule, the one mapped is the one I deemed most likely.
 
 ## Required actions
 
