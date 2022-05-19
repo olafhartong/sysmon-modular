@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileCreate onmatch="exclude">
+            <Rule groupRelation="and">
+               <Image condition="begin with">C:\Program Files\Elastic\Agent\data\</Image> <!--The executables in the Elastic Agent directory log to ndjson and json files, creating much noise -->
+               <TargetFilename condition="contains all">C:\Program Files\Elastic\Agent\data\;.json</TargetFilename>
+               <TargetFilename condition="contains all">C:\Program Files\Elastic\Agent\data\;.ndjson</TargetFilename>
+            </Rule>
+         </FileCreate>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
