@@ -3,8 +3,13 @@
       <RuleGroup name="" groupRelation="or">
          <FileCreate onmatch="exclude">
             <Rule groupRelation="and">
-               <Image condition="begin with">C:\Program Files\Elastic\Agent\data\</Image> <!--The executables in the Elastic Agent directory log to ndjson and json files, creating much noise -->
-               <TargetFilename condition="contains all">C:\Program Files\Elastic\Agent\data\;.json</TargetFilename>
+               <!--Elasticcreates last-document-id.json as state file for the endpoint agent-->
+               <Image condition="is">C:\Program Files\Elastic\Endpoint\elastic-endpoint.exe</Image> 
+               <TargetFilename condition="is">C:\Program Files\Elastic\Endpoint\state\last-document-id.json</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <!--The executables in the Elastic Agent directory log to ndjson acreating much noise -->
+               <Image condition="begin with">C:\Program Files\Elastic\Agent\data\</Image> 
                <TargetFilename condition="contains all">C:\Program Files\Elastic\Agent\data\;.ndjson</TargetFilename>
             </Rule>
          </FileCreate>
