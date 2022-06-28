@@ -3,8 +3,8 @@
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<!--Microsoft Security Center tampering | Credit @ion-storm -->
-				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
-				<TargetObject name="technique_id=T1089,technique_name=Disabling Security Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\DisableMonitoring</TargetObject>
+				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
+				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\DisableMonitoring</TargetObject>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>

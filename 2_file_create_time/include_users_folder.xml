@@ -2,7 +2,7 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <FileCreateTime onmatch="include">
-        <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">C:\Users</Image>        <!--Look for timestomping in user area-->
+        <Image name="technique_id=T1070.006,technique_name=Timestomp" condition="begin with">C:\Users</Image>        <!--Look for timestomping in user area-->
       </FileCreateTime>
     </RuleGroup>
   </EventFiltering>

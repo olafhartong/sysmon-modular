@@ -4,15 +4,15 @@
       <ImageLoad onmatch="include">        <!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">combase.dll</OriginalFileName>
+          <OriginalFileName name="technique_id=T1559.001,technique_name=Component Object Model" condition="is">combase.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">coml2.dll</OriginalFileName>
+          <OriginalFileName name="technique_id=T1559.001,technique_name=Component Object Model" condition="is">coml2.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
-          <OriginalFileName name="technique_id=T1175,technique_name=Component Object Model and Distributed COM" condition="is">comsvcs.dll</OriginalFileName>
+          <OriginalFileName name="technique_id=T1559.001,technique_name=Component Object Model" condition="is">comsvcs.dll</OriginalFileName>
         </Rule>
       </ImageLoad>
     </RuleGroup>

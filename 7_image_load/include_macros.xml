@@ -3,7 +3,7 @@
     <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
         <!---Thanks to Carlos Perez-->
-        <ImageLoaded name="technique_id=T1064,technique_name=Windows Scripting Host Component" condition="end with">wshom.ocx</ImageLoaded>
+        <ImageLoaded name="technique_id=T1059,technique_name=Command and Scripting Interpreter" condition="end with">wshom.ocx</ImageLoaded>
         <OriginalFileName condition="is">scrrun.dll</OriginalFileName>
         <OriginalFileName condition="is">vbscript.dll</OriginalFileName>
       </ImageLoad>
