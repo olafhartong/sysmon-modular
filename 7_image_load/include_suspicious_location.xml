@@ -2,28 +2,28 @@
 	<EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<ImageLoad onmatch="include">
-				<ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains any">admin$;c$;\\;\appdata\;\temp\</ImageLoaded>				<!-- loaded from network file share -->
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">c:\programdata\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\Media\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\addins\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\system32\config\systemprofile\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\Debug\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\Temp</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\PerfLogs\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\Help\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Intel\Logs\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Temp</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\repair\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\security\</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">C:\Windows\Fonts\</ImageLoaded>
-				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Downloads</ImageLoaded>
-				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Public</ImageLoaded>
-				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Documents</ImageLoaded>
-				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Music</ImageLoaded>
-				<ImageLoaded condition="contains" name="technique_id=T1073,technique_name=DLL Side-Loading">Video</ImageLoaded>
-				<ImageLoaded condition="begin with" name="technique_id=T1073,technique_name=DLL Side-Loading">file:</ImageLoaded>
-				<ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains">$Recycle.bin\</ImageLoaded>
-				<ImageLoaded name="technique_id=T1073,technique_name=DLL Side-Loading" condition="contains">\Windows\IME\</ImageLoaded>
+				<ImageLoaded name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="contains any">admin$;c$;\\;\appdata\;\temp\</ImageLoaded>				<!-- loaded from network file share -->
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">c:\programdata\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Media\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\addins\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\system32\config\systemprofile\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Debug\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Temp</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\PerfLogs\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Help\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Intel\Logs\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Temp</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\repair\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\security\</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Fonts\</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Downloads</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Public</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Documents</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Music</ImageLoaded>
+				<ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Video</ImageLoaded>
+				<ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">file:</ImageLoaded>
+				<ImageLoaded name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="contains">$Recycle.bin\</ImageLoaded>
+				<ImageLoaded name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="contains">\Windows\IME\</ImageLoaded>
 			</ImageLoad>
 		</RuleGroup>
 	</EventFiltering>

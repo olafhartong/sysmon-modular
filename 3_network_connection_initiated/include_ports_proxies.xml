@@ -3,9 +3,9 @@
 		<RuleGroup name="" groupRelation="or">
 			<NetworkConnect onmatch="include">
 				<!--Ports: Proxy-->
-				<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">1080</DestinationPort>				<!--Socks proxy port | Credit @ion-storm-->
-				<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">3128</DestinationPort>				<!--Socks proxy port | Credit @ion-storm-->
-				<DestinationPort name="technique_id=T1043,technique_name=Commonly Used Port" condition="is">8080</DestinationPort>				<!--Socks proxy port | Credit @ion-storm-->
+				<DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">1080</DestinationPort>				<!--Socks proxy port | Credit @ion-storm-->
+				<DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">3128</DestinationPort>				<!--Socks proxy port | Credit @ion-storm-->
+				<DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">8080</DestinationPort>				<!--Socks proxy port | Credit @ion-storm-->
 			</NetworkConnect>
 		</RuleGroup>
 	</EventFiltering>

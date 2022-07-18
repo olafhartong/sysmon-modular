@@ -3,8 +3,8 @@
     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <Rule name="Fltmc" groupRelation="and">
-          <OriginalFileName name="technique_id=T1054,technique_name=Indicator Blocking" condition="is">fltMC.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1054,technique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
+          <OriginalFileName name="technique_id=T1562.006,technique_name=Indicator Blocking" condition="is">fltMC.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1562.006,technique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
         </Rule>
         <Rule groupRelation="or">
           <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>

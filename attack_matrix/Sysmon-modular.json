@@ -1,6 +1,6 @@
 {
 	"name": "Sysmon-modular",
-	"version": "2.1",
+	"version": "4.3",
 	"domain": "mitre-enterprise",
 	"description": "",
 	"filters": {
@@ -16,7 +16,7 @@
 	"hideDisabled": false,
 	"techniques": [
 		{
-			"techniqueID": "T1015",
+			"techniqueID": "T1546.008",
 			"tactic": "persistence",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -25,7 +25,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1015",
+			"techniqueID": "T1546.008",
 			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -52,7 +52,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1103",
+			"techniqueID": "T1546.010",
 			"tactic": "persistence",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -61,7 +61,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1103",
+			"techniqueID": "T1546.010",
 			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -97,7 +97,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1088",
+			"techniqueID": "T1548.002",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -106,7 +106,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1088",
+			"techniqueID": "T1548.002",
 			"tactic": "privilege-escalation",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -178,7 +178,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1118",
+			"techniqueID": "T1218.004",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -187,7 +187,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1118",
+			"techniqueID": "T1218.004",
 			"tactic": "execution",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -205,7 +205,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1170",
+			"techniqueID": "T1218.005",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -214,7 +214,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1170",
+			"techniqueID": "T1218.005",
 			"tactic": "execution",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -277,7 +277,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1086",
+			"techniqueID": "T1059.001",
 			"tactic": "execution",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -340,7 +340,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1117",
+			"techniqueID": "T1218.010",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -349,7 +349,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1117",
+			"techniqueID": "T1218.010",
 			"tactic": "execution",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -421,7 +421,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1063",
+			"techniqueID": "T1518.001",
 			"tactic": "discovery",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -691,7 +691,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1130",
+			"techniqueID": "T1553.004",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -754,16 +754,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1064",
-			"tactic": "defense-evasion",
-			"score": 100,
-			"color": "#fd8d3c",
-			"comment": "",
-			"enabled": true,
-			"metadata": []
-		},
-		{
-			"techniqueID": "T1064",
+			"techniqueID": "T1059",
 			"tactic": "execution",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -835,7 +826,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1099",
+			"techniqueID": "T1070.006",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -871,7 +862,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1158",
+			"techniqueID": "T1564.001",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -880,7 +871,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1158",
+			"techniqueID": "T1564.001",
 			"tactic": "persistence",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -925,7 +916,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1054",
+			"techniqueID": "T1562.006",
 			"tactic": "defense-evasion",
 			"score": 100,
 			"color": "#fd8d3c",
@@ -961,7 +952,7 @@
 			"metadata": []
 		},
 		{
-			"techniqueID": "T1031",
+			"techniqueID": "T1543.003",
 			"tactic": "persistence",
 			"score": 100,
 			"color": "#fd8d3c",

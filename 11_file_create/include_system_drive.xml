@@ -2,9 +2,9 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-        <TargetFilename name="technique_id=T1044,technique_name=File System Permissions Weakness" condition="begin with">C:\Windows\SysWoW64</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Windows\System32</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Windows\</TargetFilename>
+        <TargetFilename name="technique_id=T1574.010,technique_name=Services File Permissions Weakness" condition="begin with">C:\Windows\SysWoW64</TargetFilename>
+        <TargetFilename name="technique_id=T1574.010,technique_name=Services File Permissions Weakness" condition="begin with">C:\Windows\System32</TargetFilename>
+        <TargetFilename name="technique_id=T1574.010,technique_name=Services File Permissions Weakness" condition="begin with">C:\Windows\</TargetFilename>
       </FileCreate>
     </RuleGroup>
   </EventFiltering>
