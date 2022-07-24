@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="exclude">
+        <Image condition="begin with">C:\program files (x86)\desktopcentral_agent\bin\</Image>
+        <Image condition="begin with">C:\program files\desktopcentral_server\bin\</Image>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
