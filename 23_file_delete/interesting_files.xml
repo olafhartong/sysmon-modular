@@ -3,6 +3,9 @@
   <EventFiltering>
     <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir!-->
 	<!-- for specifc extension collection - i've focused on end with for performance.-->
+	<!-- Collect interesting files designed to be used with Velociraptor Sysmon Arcive monitoring/management -->
+	<!-- https://docs.velociraptor.app/exchange/artifacts/pages/sysmonarchive -->
+	<!-- https://docs.velociraptor.app/exchange/artifacts/pages/sysmonarchivemonitor/ -->
 	<RuleGroup groupRelation="or">
 		<FileDelete onmatch="include">
 			<Rule  name="Executables" groupRelation="and">
