@@ -17,7 +17,7 @@
 			<Rule name="Office documents" groupRelation="or">
 				<TargetFilename condition="end with">.doc</TargetFilename>
 				<TargetFilename condition="end with">.dot</TargetFilename>
-				<TargetFilename condition="end with">.docx;</TargetFilename>
+				<TargetFilename condition="end with">.docx</TargetFilename>
 				<TargetFilename condition="end with">.docm</TargetFilename>
 				<TargetFilename condition="end with">.doc</TargetFilename>
 				<TargetFilename condition="end with">.dot</TargetFilename>
