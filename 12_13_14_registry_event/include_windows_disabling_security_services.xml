@@ -49,7 +49,7 @@
 					<Details condition="contains">DWORD (0x00000004)</Details>
 				</Rule>
 				<TargetObject condition="begin with">hklm\software\microsoft\windows script\settings\amsienable</TargetObject><!--MDE-->
-				<TargetObject condition="begin with">hkcu\software\microsoft\windows script\settings\amsienable</TargetObject><!--MDE-->
+				<TargetObject condition="contains">\software\microsoft\windows script\settings\amsienable</TargetObject><!--MDE-->
       			</RegistryEvent>
     		</RuleGroup>
   	</EventFiltering>
