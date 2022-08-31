@@ -22,7 +22,7 @@
         <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">software\microsoft\office\;\outlook\today\</TargetObject> <!--MDE-->
         <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">software\microsoft\office\;\outlook\webview\;\</TargetObject> <!--MDE-->
         <TargetObject condition="contains all">software\microsoft\office\;\word\options\globaldotname</TargetObject> <!--MDE-->
-        <TargetObject condition="contains all">software\microsoft\office\16.0\common\internet\server cache\</TargetObject> <!--MDE-->
+        <TargetObject condition="contains all">software\microsoft\office\;\common\internet\server cache\</TargetObject> <!--MDE-->
         <TargetObject condition="contains">\Security\Trusted Documents\TrustRecords</TargetObject>        <!--Microsoft:Office: Trusted Documents, Macros Enabled-->
         <TargetObject condition="contains">\Security\Trusted Documents\</TargetObject>        <!--Microsoft:Office: Trusted Documents, Macros Enabled-->
         <TargetObject condition="end with">\UrlUpdateInfo</TargetObject>				<!--Microsoft:Office:ClickOnce: [ https://subt0x10.blogspot.com/2016/12/mimikatz-delivery-via-clickonce-with.html ] -->

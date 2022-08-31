@@ -26,12 +26,12 @@
 				<TargetObject condition="contains">\shell\open\command</TargetObject>				<!--Microsoft:Windows: Sensitive subkey under file associations and CLSID that map to launch command--><!--MDE-->
 				<TargetObject condition="contains">\shell\open\ddeexec</TargetObject>				<!--Microsoft:Windows: Sensitive subkey under file associations and CLSID that map to launch command-->
 				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">hkcu\software\microsoft\windows nt\currentversion\accessibility\ATs\\*(1)\StartExe</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows nt\currentversion\windows\run\</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hklm\software\microsoft\command processor\autorun</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">software\microsoft\windows nt\currentversion\accessibility\ATs\;\StartExe</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows nt\currentversion\windows\run\</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin wi">hklm\software\microsoft\command processor\autorun</TargetObject><!--MDE-->
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
