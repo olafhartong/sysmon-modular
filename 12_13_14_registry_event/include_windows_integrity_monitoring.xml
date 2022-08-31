@@ -17,6 +17,7 @@
 					<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>					<!--Microsoft:Windows:UAC: Detect malware changes to UAC prompt level--><!--MDE-->
 					<Image condition="is not">C:\Windows\System32\svchost.exe</Image>
 				</Rule>
+				
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>

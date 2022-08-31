@@ -20,7 +20,10 @@
 				<TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Uihostl</TargetObject><!--MDE-->
 				<TargetObject condition="begin with">HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>				<!--Microsoft:Windows: Legacy driver loading | Credit @ion-storm --><!--MDE-->
 				<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>				<!--Microsoft:Windows: Legacy driver loading | Credit @ion-storm --><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute</TargetObject>				<!--Microsoft:Windows: Autorun | Credit @ion-storm | [ https://www.cylance.com/windows-registry-persistence-part-2-the-run-keys-and-search-order ] --><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\BootExecute</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\excludefromknowndlls</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\safedllsearchmode</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\setupexecute</TargetObject><!--MDE-->
 				<TargetObject name="technique_id=T1546.001,technique_name=Change Default File Association" condition="contains">\Explorer\FileExts</TargetObject>				<!--Microsoft:Windows: Changes to file extension mapping-->
 				<TargetObject condition="contains">\shell\install\command</TargetObject>				<!--Microsoft:Windows: Sensitive subkey under file associations and CLSID that map to launch command-->
 				<TargetObject condition="contains">\shell\open\command</TargetObject>				<!--Microsoft:Windows: Sensitive subkey under file associations and CLSID that map to launch command--><!--MDE-->
