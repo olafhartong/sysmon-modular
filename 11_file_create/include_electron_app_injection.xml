@@ -1,31 +1,33 @@
 <Sysmon schemaversion="4.30">
 	<EventFiltering>
-		<RuleGroup name="" groupRelation="and">
+		<RuleGroup name="" groupRelation="or">
 			<FileCreate onmatch="include">
-				<TargetFilename condition="end with">.js</TargetFilename>
-				<TargetFilename condition="contains">Appdata\Local\whatsapp\</TargetFilename>
-				<Image condition="excludes">Appdata\Local\whatsapp\</Image> <!--self updates are trusted-->
-			</FileCreate>
-			<FileCreate onmatch="include">
-				<TargetFilename condition="end with">.js</TargetFilename>
-				<TargetFilename condition="contains">Appdata\Local\Microsoft\Teams\</TargetFilename>
-				<Image condition="excludes">Appdata\Local\Microsoft\Teams\</Image> <!--self updates are trusted-->
-			</FileCreate>
-			<FileCreate onmatch="include">
-				<TargetFilename condition="end with">.js</TargetFilename>
-				<TargetFilename condition="contains">Appdata\Local\slack\</TargetFilename>
-				<Image condition="excludes">Appdata\Local\slack\</Image> <!--self updates are trusted-->
-			</FileCreate>
-			<FileCreate onmatch="include">
-				<TargetFilename condition="end with">.js</TargetFilename>
-				<TargetFilename condition="contains">Appdata\Local\discord\</TargetFilename>
-				<Image condition="excludes">Appdata\Local\discord\</Image> <!--self updates are trusted-->
-			</FileCreate>
-			<FileCreate onmatch="include">
-				<TargetFilename condition="end with">.js</TargetFilename>
-				<TargetFilename condition="contains">Appdata\Local\signal\</TargetFilename>
-				<Image condition="excludes">Appdata\Local\signal\</Image> <!--self updates are trusted-->
-			</FileCreate>
+				<Rule groupRelation="and">
+					<TargetFilename condition="end with">.js</TargetFilename>
+					<TargetFilename condition="contains">Appdata\Local\whatsapp\</TargetFilename>
+					<Image condition="excludes">Appdata\Local\whatsapp\</Image> <!--self updates are trusted-->
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetFilename condition="end with">.js</TargetFilename>
+					<TargetFilename condition="contains">Appdata\Local\Microsoft\Teams\</TargetFilename>
+					<Image condition="excludes">Appdata\Local\Microsoft\Teams\</Image> <!--self updates are trusted-->
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetFilename condition="end with">.js</TargetFilename>
+					<TargetFilename condition="contains">Appdata\Local\slack\</TargetFilename>
+					<Image condition="excludes">Appdata\Local\slack\</Image> <!--self updates are trusted-->
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetFilename condition="end with">.js</TargetFilename>
+					<TargetFilename condition="contains">Appdata\Local\discord\</TargetFilename>
+					<Image condition="excludes">Appdata\Local\discord\</Image> <!--self updates are trusted-->
+				</Rule>
+				<Rule groupRelation="and">
+					<TargetFilename condition="end with">.js</TargetFilename>
+					<TargetFilename condition="contains">Appdata\Local\signal\</TargetFilename>
+					<Image condition="excludes">Appdata\Local\signal\</Image> <!--self updates are trusted-->
+				</Rule>
+			</FileCreate>	
 		</RuleGroup>
 	</EventFiltering>
 </Sysmon>
