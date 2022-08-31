@@ -5,14 +5,8 @@
 				<Rule groupRelation="and">
 					<SourcePort name="technique_id=T1557,technique_name=Adversary-in-the-Middle" condition="is any">445;389;8492;636;3268;3269</SourcePort>
 					<Image condition="is not">C:\Windows\System32\lsass.exe</Image>
-        		</Rule>
-				<Rule groupRelation="and">
-					<SourcePort name="technique_id=T1557,technique_name=Adversary-in-the-Middle" condition="is any">445;389;8492;636;3268;3269</SourcePort>
-					<Image condition="is not">c:\Windows\System32\dsamain.exe</Image>
-        		</Rule>
-				<Rule groupRelation="and">
-					<SourcePort name="technique_id=T1557,technique_name=Adversary-in-the-Middle" condition="is any">445;389;8492;636;3268;3269</SourcePort>
-					<ProcessId condition="is not">4</ProcessId>
+        			<Image condition="is not">c:\Windows\System32\dsamain.exe</Image>
+        			<ProcessId condition="is not">4</ProcessId>
         		</Rule>
 			</NetworkConnect>
 		</RuleGroup>
