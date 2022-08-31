@@ -1427,6 +1427,7 @@
         <TargetObject name="technique_id=T1546.011,technique_name=Application Shimming" condition="contains">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom</TargetObject>
         <TargetObject name="technique_id=T1547.002,technique_name=Authentication Package" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Authentication</TargetObject>
         <TargetObject name="technique_id=T1547.002,technique_name=Authentication Package" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\RunAsPPL</TargetObject>
+        <TargetObject name="technique_id=T1547.002,technique_name=Authentication Package" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\NtlmMinClientSec</TargetObject>
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">\CurrentVersion\Run</TargetObject>
         <TargetObject condition="contains">\Group Policy\Scripts</TargetObject>
         <TargetObject name="technique_id=T1037,technique_name=Boot or Logon Initialization Scripts" condition="contains">\Windows\System\Scripts</TargetObject>
@@ -1442,7 +1443,10 @@
         <TargetObject name="technique_id=T1547.004,technique_name=Winlogon Helper DLL" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Uihostl</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\BootExecute</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\excludefromknowndlls</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\safedllsearchmode</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\setupexecute</TargetObject>
         <TargetObject name="technique_id=T1546.001,technique_name=Change Default File Association" condition="contains">\Explorer\FileExts</TargetObject>
         <TargetObject condition="contains">\shell\install\command</TargetObject>
         <TargetObject condition="contains">\shell\open\command</TargetObject>
@@ -1462,8 +1466,8 @@
         <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains all">Classes\CLSID\;TreatAs</TargetObject>
         <TargetObject name="technique_id=T1003.002,technique_name=Security Account Manager" condition="contains">System\CurrentControlSet\Services\VSS</TargetObject>
         <TargetObject name="technique_id=T1098,technique_name=Account Manipulation" condition="contains">\services\Netlogon\Parameters\DisablePasswordChange</TargetObject>
-        <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
-        <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
+        <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="contains all">HKLM\SOFTWARE\;Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
+        <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="contains all">HKLM\SOFTWARE\;Microsoft\Windows NT\CurrentVersion\Windows\loadappinit_dlls</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="contains all">\SYSTEM\;\Services\DNS\Parameters\ServerLevelPluginDll</TargetObject>
         <TargetObject name="technique_id=T1562.006,technique_name=Impair Defenses - Indicator Blocking" condition="end with">SOFTWARE\Microsoft\.NETFramework\ETWEnabled</TargetObject>
         <TargetObject name="technique_id=T1546.008,technique_name=Accessibility Features" condition="contains">\Environment\</TargetObject>
@@ -1514,6 +1518,8 @@
         <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">software\microsoft\office\;\outlook\webview\;\</TargetObject>
         <TargetObject condition="contains all">software\microsoft\office\;\word\options\globaldotname</TargetObject>
         <TargetObject condition="contains all">software\microsoft\office\;\common\internet\server cache\</TargetObject>
+        <TargetObject condition="contains all">software\;microsoft\office\;\addins\</TargetObject>
+        <TargetObject condition="contains all">software\;microsoft\office\;\Common\COM Compatibility</TargetObject>
         <TargetObject condition="contains">\Security\Trusted Documents\TrustRecords</TargetObject>
         <TargetObject condition="contains">\Security\Trusted Documents\</TargetObject>
         <TargetObject condition="end with">\UrlUpdateInfo</TargetObject>
@@ -1590,7 +1596,7 @@
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableRealtimeMonitoring</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet\SpyNetReporting</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\microsoft\microsoft antimalware\exclusions\paths\</TargetObject>
+        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\lmicrosoft\microsoft antimalware\exclusions\</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\microsoft\Windows Advanced Threat Protection\TelLib</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windows advanced threat protection\</TargetObject>
         <Rule groupRelation="and">
@@ -1681,6 +1687,7 @@
         <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellExecuteHooks</TargetObject>
         <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellServiceObject</TargetObject>
         <TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows;\CurrentVersion\Print\Connections</TargetObject>
+        <TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\System;\control\print\monitors</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject>
         <TargetObject condition="contains">{AB8902B4-09CA-4bb6-B78D-A8F59079A8D5}</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject>
