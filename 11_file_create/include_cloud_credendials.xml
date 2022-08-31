@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename condition="contains all">C:\Users\;\.azure\accesstokens.json</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.aws\credentials</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\config\gcloud</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.alibabacloud\credentials</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.kube\config</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
