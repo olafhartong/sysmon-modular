@@ -1252,6 +1252,12 @@
         <TargetFilename condition="end with">.bat</TargetFilename>
         <TargetFilename condition="end with">.cmd</TargetFilename>
         <TargetFilename name="technique_id=T1059,technique_name=Command and Scripting Interpreter" condition="end with">.chm</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.azure\accesstokens.json</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.aws\credentials</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\config\gcloud</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.alibabacloud\credentials</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.kube\config</TargetFilename>
+        <TargetFilename condition="contains all">C:\Users\;\.ssh\</TargetFilename>
         <TargetFilename condition="begin with">C:\Users\Default</TargetFilename>
         <TargetFilename condition="contains">Desktop</TargetFilename>
         <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="contains">AppData\Local\Microsoft\CLR_v2.0\UsageLogs\</TargetFilename>
@@ -1338,6 +1344,7 @@
         <TargetFilename condition="end with">.py</TargetFilename>
         <TargetFilename condition="end with">.pyc</TargetFilename>
         <TargetFilename condition="end with">.pyw</TargetFilename>
+        <TargetFilename condition="end with">.rdp</TargetFilename>
         <Image condition="image">rundll32.exe</Image>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\Tasks\</TargetFilename>
