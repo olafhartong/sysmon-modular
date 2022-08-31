@@ -169,12 +169,13 @@
           <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">esentutl.exe</OriginalFileName>
           <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains all">/y;/vss/d</CommandLine>
         </Rule>
-        <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">vssadmin.exe delete</CommandLine>
-        <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">wbadmin.exe delete</CommandLine>
-        <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">bcedit.exe /set</CommandLine>
+        <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">vssadmin.exe;delete</CommandLine>
+        <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">wbadmin.exe;delete</CommandLine>
+        <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">bcedit.exe;set</CommandLine>
         <CommandLine name="technique_id=T1127,technique_name=dfsvc.exe Making Network Connections" condition="contains">rundll32.exe dfshim.dll,ShOpenVerbApplication http://</CommandLine>
         <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">diskshadow.exe</Image>
-        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">diskshadow.exe /s</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">diskshadow.exe;/s</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains all">diskshadow.exe;-s</CommandLine>
         <ParentImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">diskshadow.exe</ParentImage>
         <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy with Expand" condition="is">expand.exe</OriginalFileName>
         <ParentImage name="technique=T1218,technique_name=Signed Binary Proxy Execution with FTP" condition="is">ftp.exe</ParentImage>
@@ -212,7 +213,7 @@
         <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">csi.exe</OriginalFileName>
         <ParentCommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">devtoolslauncher.exe LaunchForDeploy</ParentCommandLine>
         <ParentImage name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">devtoolslauncher.exe</ParentImage>
-        <CommandLine name="technique_id=T1218,technique_name=Proxy Execution of unsigned C# Code" condition="contains all">dnx.exe consoleapp</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Proxy Execution of unsigned C# Code" condition="contains all">dnx.exe;consoleapp</CommandLine>
         <Rule name="Alternate Data Streams with Regedit.exe" groupRelation="and">
           <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="is">dotnet.exe</OriginalFileName>
           <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="end with">.dll</CommandLine>
@@ -228,13 +229,13 @@
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">vsjitdebugger.exe</ParentImage>
         <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains">vsjitdebugger</CommandLine>
-        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">update --download</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe --update</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe --ProcessStart</CommandLine>
+        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">update;--download</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe;--update</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">update.exe;--ProcessStart</CommandLine>
         <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">tracker.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">te.exe</OriginalFileName>
-        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">squirrel --download</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">squirrel.exe --update</CommandLine>
+        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">squirrel;--download</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">squirrel.exe;--update</CommandLine>
         <OriginalFileName name="technique_id=1086,technique_name=Powershell" condition="contains">Sqlps.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">sqldumper.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">rcsi.exe</OriginalFileName>
@@ -246,7 +247,8 @@
         <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains">msdeploy.exe -verb:sync -source:RunCommand</CommandLine>
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">mftrace.exe</ParentImage>
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">dxcap.exe</ParentImage>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">dxcap.exe -c</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">dxcap.exe;-c</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">dxcap.exe;/c</CommandLine>
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">taskmgr.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">regedit.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">netsh.exe</OriginalFileName>
@@ -411,12 +413,15 @@
         <OriginalFileName name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">winrshost.exe</OriginalFileName>
         <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
         <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
-        <ParentCommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe -e</ParentCommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe -e</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe -u root</CommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe --exec bash</CommandLine>
+        <ParentCommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;-e</ParentCommandLine>
+        <ParentCommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;/e</ParentCommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;-e</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;/e</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;-u root</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;/u root</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;--exec bash</CommandLine>
         <Rule name="Remote Copy via wsl" groupRelation="and">
-          <CommandLine name="technique_id=T1202,technique_name=Remote File Copy" condition="contains all">wsl.exe --exec bash</CommandLine>
+          <CommandLine name="technique_id=T1202,technique_name=Remote File Copy" condition="contains all">wsl.exe;--exec bash</CommandLine>
           <CommandLine name="technique_id=T1202,technique_name=Remote File Copy" condition="contains all">/dev/tcp</CommandLine>
         </Rule>
       </ProcessCreate>
