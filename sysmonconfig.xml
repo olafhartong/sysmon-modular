@@ -1447,11 +1447,11 @@
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="begin with">HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="contains all">\SYSTEM\;\Services\DNS\Parameters\ServerLevelPluginDll</TargetObject>
         <TargetObject name="technique_id=T1562.006,technique_name=Impair Defenses - Indicator Blocking" condition="end with">SOFTWARE\Microsoft\.NETFramework\ETWEnabled</TargetObject>
-        <TargetObject name="technique_id=T1546.008,technique_name=Accessibility Features" condition="contains">HKCU\Environment</TargetObject>
+        <TargetObject name="technique_id=T1546.008,technique_name=Accessibility Features" condition="contains">\Environment\</TargetObject>
         <TargetObject condition="begin with">HKLM\SYSTEM\setup\cmdline</TargetObject>
         <TargetObject condition="begin with">HKLM\SYSTEM\setup\upgrade</TargetObject>
-        <TargetObject condition="contains all">HKCU\Software\microsoft\ctf\langbaraddin\;\Enable</TargetObject>
-        <TargetObject condition="contains all">HKCU\Software\microsoft\ctf\langbaraddin\;\FilePath</TargetObject>
+        <TargetObject condition="contains all">Software\microsoft\ctf\langbaraddin\;\Enable</TargetObject>
+        <TargetObject condition="contains all">Software\microsoft\ctf\langbaraddin\;\FilePath</TargetObject>
         <TargetObject condition="contains">Software\policies\microsoft\windows\control panel\desktop\scrnsave.exe</TargetObject>
         <TargetObject condition="begin with">HKLM\Software\Classes\protocols\filter\</TargetObject>
         <TargetObject condition="begin with">HKLM\Software\Classes\protocols\handler\</TargetObject>
@@ -1463,13 +1463,13 @@
         <TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject>
         <TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject>
         <TargetObject condition="contains">\Browser Helper Objects</TargetObject>
-        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\desktop\components\Source</TargetObject>
-        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\explorer bars\</TargetObject>
-        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\Styles\MaxScriptStatements</TargetObject>
-        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\toolbar\WebBrowser\ITBarLayout</TargetObject>
-        <TargetObject condition="begin with">HKCU\software\wow6432node\microsoft\internet explorer\toolbar\WebBrowser\ITBarLayout</TargetObject>
-        <TargetObject condition="begin with">HKCU\software\microsoft\internet explorer\urlsearchhooks\</TargetObject>
-        <TargetObject condition="begin with">HKLM\software\wow6432node\microsoft\internet explorer\urlsearchhooks\</TargetObject>
+        <TargetObject condition="contains">\software\microsoft\internet explorer\desktop\components\Source</TargetObject>
+        <TargetObject condition="contains">\software\microsoft\internet explorer\explorer bars\</TargetObject>
+        <TargetObject condition="contains">\software\microsoft\internet explorer\Styles\MaxScriptStatements</TargetObject>
+        <TargetObject condition="contains">\software\microsoft\internet explorer\toolbar\WebBrowser\ITBarLayout</TargetObject>
+        <TargetObject condition="contains">\software\wow6432node\microsoft\internet explorer\toolbar\WebBrowser\ITBarLayout</TargetObject>
+        <TargetObject condition="contains">\software\microsoft\internet explorer\urlsearchhooks\</TargetObject>
+        <TargetObject condition="contains">HKLM\software\wow6432node\microsoft\internet explorer\urlsearchhooks\</TargetObject>
         <TargetObject name="technique_id=Port Monitors,technique_name=Port Monitors" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors</TargetObject>
         <TargetObject condition="begin with">hklm\system\mounteddevices\</TargetObject>
         <TargetObject condition="contains all">hklm\system\;\enum\usb\</TargetObject>
@@ -1619,7 +1619,7 @@
           <Details condition="contains">DWORD (0x00000004)</Details>
         </Rule>
         <TargetObject condition="begin with">hklm\software\microsoft\windows script\settings\amsienable</TargetObject>
-        <TargetObject condition="begin with">hkcu\software\microsoft\windows script\settings\amsienable</TargetObject>
+        <TargetObject condition="contains">\software\microsoft\windows script\settings\amsienable</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
@@ -1637,13 +1637,13 @@
           <Image condition="is not">C:\Windows\System32\svchost.exe</Image>
         </Rule>
         <Rule groupRelation="and">
-          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
+          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
           <Image condition="is not">C:\Windows\System32\svchost.exe</Image>
         </Rule>
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\NetworkProvider\Order</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject>
         <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
-        <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="begin with">HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
+        <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="contains">\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
         <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
@@ -1662,7 +1662,7 @@
         <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellExecuteHooks</TargetObject>
         <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellServiceObject</TargetObject>
         <TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows;\CurrentVersion\Print\Connections</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject>
         <TargetObject condition="contains">{AB8902B4-09CA-4bb6-B78D-A8F59079A8D5}</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject>
