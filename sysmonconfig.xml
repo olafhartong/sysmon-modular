@@ -1424,12 +1424,12 @@
         <TargetObject condition="contains">\shell\open\command</TargetObject>
         <TargetObject condition="contains">\shell\open\ddeexec</TargetObject>
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">hkcu\software\microsoft\windows nt\currentversion\accessibility\ATs\\*(1)\StartExe</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows nt\currentversion\windows\run\</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hkcu\software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hklm\software\microsoft\command processor\autorun</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">software\microsoft\windows nt\currentversion\accessibility\ATs\;\StartExe</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows nt\currentversion\windows\run\</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin wi">hklm\software\microsoft\command processor\autorun</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\mscfile\shell\open\command</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ms-settings\shell\open\command</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject>
@@ -1489,7 +1489,7 @@
         <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">software\microsoft\office\;\outlook\today\</TargetObject>
         <TargetObject name="technique_id=T1137.004,technique_name=Outlook Home Page" condition="contains all">software\microsoft\office\;\outlook\webview\;\</TargetObject>
         <TargetObject condition="contains all">software\microsoft\office\;\word\options\globaldotname</TargetObject>
-        <TargetObject condition="contains all">software\microsoft\office\16.0\common\internet\server cache\</TargetObject>
+        <TargetObject condition="contains all">software\microsoft\office\;\common\internet\server cache\</TargetObject>
         <TargetObject condition="contains">\Security\Trusted Documents\TrustRecords</TargetObject>
         <TargetObject condition="contains">\Security\Trusted Documents\</TargetObject>
         <TargetObject condition="end with">\UrlUpdateInfo</TargetObject>
