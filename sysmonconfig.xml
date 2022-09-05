@@ -1464,7 +1464,7 @@
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject>
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject>
         <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject>
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin wi">hklm\software\microsoft\command processor\autorun</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hklm\software\microsoft\command processor\autorun</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\mscfile\shell\open\command</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ms-settings\shell\open\command</TargetObject>
         <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject>
