@@ -34,7 +34,7 @@
 				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject><!--MDE-->
 				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject><!--MDE-->
 				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin wi">hklm\software\microsoft\command processor\autorun</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hklm\software\microsoft\command processor\autorun</TargetObject><!--MDE-->
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
