@@ -47,7 +47,7 @@ There are three major Sysmon configurations:
  : This repo, which focuses on being very maintainable with detailed rule notes for guided response and SIEM.
  
 An excellent community guide by @darkoperator
- [https://github.com/trustedsec/SysmonCommunityGuide[(https://github.com/trustedsec/SysmonCommunityGuide)
+ [https://github.com/trustedsec/SysmonCommunityGuide](https://github.com/trustedsec/SysmonCommunityGuide)
 
 ## Contributing
 
