@@ -34,12 +34,20 @@ To understand added features in the latest version, have a look at my [small blo
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on. But do make tailored configurations for Domain Controllers, Servers and workstations.
 
-## Credits
+## Sysmon Community
 
-Big credit goes out to SwiftOnSecurity for laying a great foundation and making this repo possible!
-**[sysmonconfig-export.xml](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
-
-Final thanks to **[Mathias Jessen](https://twitter.com/iisresetme)** for his Merge script, without it, this project would not have worked as well.
+There are three major Sysmon configurations:
+@SwiftOnSecurity
+ : A great introductory walkthrough of many of the settings. Get started with 1 command
+ : **[https://github.com/SwiftOnSecurity/sysmon-config/](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
+@cyb3rops
+ : A fork of SwiftOnSecurity, bleeding-edge and proactive.
+ : **[https://github.com/Neo23x0/sysmon-config](https://github.com/Neo23x0/sysmon-config)
+@olafhartong
+ : This repo, which focuses on being very maintainable with detailed rule notes for guided response and SIEM.
+ 
+An excellent community guide by @darkoperator
+ [https://github.com/trustedsec/SysmonCommunityGuide[(https://github.com/trustedsec/SysmonCommunityGuide)
 
 ## Contributing
 
@@ -51,6 +59,8 @@ I started a series of blog posts covering this repo;
 - [Endpoint detection Superpowers on the cheap - part1 - MITRE ATT&CK, Sysmon and my modular configuration](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-1-e9c28201ac47)
 - [Endpoint detection Superpowers on the cheap — part 2 — Deploy and Maintain](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-2-deploy-and-maintain-d06580329fe8)
 - [Endpoint detection Superpowers on the cheap — part 3 — Sysmon Tampering](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-3-sysmon-tampering-49c2dc9bf6d9)
+
+- [A comparison between Sysmon and Microsoft Defender for Endpoint](https://medium.com/falconforce/sysmon-vs-microsoft-defender-for-endpoint-mde-internals-0x01-1e5663b10347) 
 
 ## Mitre ATT&CK
 
