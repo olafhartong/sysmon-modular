@@ -37,16 +37,14 @@ I do recommend using a minimal number of configurations within your environment 
 ## Sysmon Community
 
 There are three major Sysmon configurations:
-@SwiftOnSecurity
- : A great introductory walkthrough of many of the settings. Get started with 1 command
- : **[https://github.com/SwiftOnSecurity/sysmon-config/](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
-@cyb3rops
- : A fork of SwiftOnSecurity, bleeding-edge and proactive.
- : **[https://github.com/Neo23x0/sysmon-config](https://github.com/Neo23x0/sysmon-config)
-@olafhartong
- : This repo, which focuses on being very maintainable with detailed rule notes for guided response and SIEM.
+
+- [@SwiftOnSecurity](https://twitter/com/SwiftOnSecurity):  great introductory walkthrough of many of the settings. Get started with 1 command **[https://github.com/SwiftOnSecurity/sysmon-config/](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
+
+- [@cyb3rops](https://twitter.com/cyb3rops):  A fork of SwiftOnSecurity, bleeding-edge and proactive. **[https://github.com/Neo23x0/sysmon-config](https://github.com/Neo23x0/sysmon-config)
+
+- [@olafhartong](https://twitter.com/olafhartong): This repo, which focuses on being very maintainable with detailed rule notes for guided response and SIEM.
  
-An excellent community guide by @darkoperator
+- An excellent community guide by [@Carlos_Perez](https:twitter.com/Carlos_Perez):
  [https://github.com/trustedsec/SysmonCommunityGuide](https://github.com/trustedsec/SysmonCommunityGuide)
 
 ## Contributing
