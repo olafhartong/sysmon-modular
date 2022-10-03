@@ -1,0 +1,75 @@
+﻿<!--                   		       NOTICE : This is a RESEARCH ONLY configuration with extreme verbosity                	      -->
+<!--                    The log volume expected from this file is significantly high, really DO NOT USE IN PRODUCTION!           -->
+<!--                                This config is only for research, this will use way more CPU/Memory                          -->
+<!--                  Only enable prior to running the to be investigated technique, when done load a lighter config			 -->
+<!--                                                                                                                             -->
+<!--  //**                  ***//                                                                                                -->
+<!-- ///#(**               **%(///                                                                                               -->
+<!-- ((&&&**               **&&&((                                                                                               -->
+<!--  (&&&**   ,(((((((.   **&&&(                                                                                                -->
+<!--  ((&&**(((((//(((((((/**&&((      _____                                                            __      __               -->
+<!--   (&&///((////(((((((///&&(      / ___/__  ___________ ___  ____  ____        ____ ___  ____  ____/ /_  __/ /___ ______     -->
+<!--    &////(/////(((((/(////&       \__ \/ / / / ___/ __ `__ \/ __ \/ __ \______/ __ `__ \/ __ \/ __  / / / / / __ `/ ___/     -->
+<!--    ((//  /////(/////  /(((      ___/ / /_/ (__  ) / / / / / /_/ / / / /_____/ / / / / / /_/ / /_/ / /_/ / / /_/ / /         -->
+<!--   &(((((#.///////// #(((((&    /____/\__, /____/_/ /_/ /_/\____/_/ /_/     /_/ /_/ /_/\____/\__,_/\__,_/_/\__,_/_/          -->
+<!--    &&&&((#///////((#((&&&&          /____/                                                                                  -->
+<!--      &&&&(#/***//(#(&&&&                                                                                                    -->
+<!--        &&&&****///&&&&                                                                            by Olaf Hartong           -->
+<!--           (&    ,&.                                                                                                         -->
+<!--            .*&&*.                                                                                                           -->
+<!--                                                                                                                             -->
+<Sysmon schemaversion="4.83">
+  <HashAlgorithms>*</HashAlgorithms>
+  <CheckRevocation />
+  <DnsLookup>False</DnsLookup>
+  <ArchiveDirectory>Research</ArchiveDirectory>
+  <EventFiltering>
+      <ProcessCreate onmatch="exclude">
+		<Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
+		<Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
+	  </ProcessCreate>
+      <FileCreateTime onmatch="exclude"/>
+      <NetworkConnect onmatch="exclude"/>
+      <ProcessTerminate onmatch="exclude">
+		<Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
+		<Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
+	  </ProcessTerminate>
+      <DriverLoad onmatch="exclude" />
+      <ImageLoad onmatch="exclude">
+		<Image condition="is">C:\Tools\Sysinternals\Sysmon64.exe</Image>
+		<Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
+		<Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
+	  </ImageLoad>
+      <CreateRemoteThread onmatch="exclude"/>
+      <RawAccessRead onmatch="exclude" />
+      <ProcessAccess onmatch="exclude">
+		<SourceImage condition="is">C:\windows\system32\csrss.exe</SourceImage>
+		<SourceImage condition="is">C:\windows\system32\lsass.exe</SourceImage>
+		<SourceImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</SourceImage>
+		<SourceImage condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</SourceImage>
+	  </ProcessAccess>
+      <FileCreate onmatch="exclude"/>
+      <RegistryEvent onmatch="exclude">
+		<Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
+		<Image condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</Image>
+		<Image condition="is">C:\tools\sysinternals\Sysmon64.exe</Image>
+		<Image condition="is">C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe</Image>
+		<Image condition="is">C:\windows\Sysmon64.exe</Image>
+		<Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
+	  </RegistryEvent>
+      <FileCreateStreamHash onmatch="exclude"/>
+      <PipeEvent onmatch="exclude">
+		<Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
+		<Image condition="begin with">C:\Program Files\Microsoft Monitoring Agent\Agent\</Image>
+		<Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
+	  </PipeEvent>
+      <WmiEvent onmatch="exclude"/>
+      <DnsQuery onmatch="exclude"/>
+      <FileDelete onmatch="include"/>
+	  <ClipboardChange onmatch="exclude"/>
+	  <ProcessTampering onmatch="exclude"/>
+	  <FileDeleteDetected onmatch="exclude"/>
+	  <FileBlockExecutable onmatch="exclude"/>
+	  <FileBlockShredding onmatch="exclude"/>
+  </EventFiltering>
+</Sysmon>
