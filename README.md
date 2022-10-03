@@ -7,18 +7,39 @@
 [![Twitter](https://img.shields.io/twitter/follow/olafhartong.svg?style=social&label=Follow)](https://twitter.com/olafhartong)
 [![Discord Shield](https://discordapp.com/api/guilds/715302469751668787/widget.png?style=shield)](https://discord.gg/B5n6skNTwy)
 
-This is a Microsoft Sysinternals Sysmon [download here](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon) configuration repository, set up modular for easier maintenance and generation of specific configs.
+This is a Microsoft Sysinternals Sysmon [download here](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon) configuration repository, set up modular for easier maintenance and generation of specific configs. 
 
-The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run.
+Please keep in mind that any of these configurations should be considered a starting point, tuning per environment is **strongly** recommended.
+
+The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run. More info on how to generate a custom config, incorporating your own modules [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)
 
 ## Pre-Grenerated configurations
-| Config | Description|
-| --- | --- |
-| [default - sysmonconfig.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
-[verbose - sysmonconfig-excludes-only.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-excludes-only.xml) |  This is the very verbose configuration, all events are included, only the exclusion modules are applied. This should not be used in production without validation, will generate a significant amount of data and might impact performance. More information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)|
-| sysmon-mde-augmentation | A configuration to augment Defender for Endpoint, intended to augment the information and have as little overlap as possible. Coming soon |
+| Type | Config | Description|
+| --- | --- | --- |
+| default | [sysmonconfig.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
+| verbose | [sysmonconfig-excludes-only.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-excludes-only.xml) |  This is the very verbose configuration, all events are included, only the exclusion modules are applied. This should not be used in production without validation, will generate a significant amount of data and might impact performance. More information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)|
+| super verbose | [sysmonconfig-research.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-research.xml) | A configuration with extreme verbosity. The log volume expected from this file is significantly high, really DO NOT USE IN PRODUCTION! This config is only for research, this will use way more CPU/Memory. Only enable prior to running the to be investigated technique, when done load a lighter config. |
+| MDE augment | [sysmonconfig-mde-augmentation.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-mde-augment.xml) | A configuration to augment Defender for Endpoint, intended to augment the information and have as little overlap as possible. This is based on the default/balanced config and will *not generate all events* for Sysmon, there are comments in the config. In the benefit of IR, consider using the excludes only config and only ingest the enriching events. (Blog with more rationale soon)|
 
-Do keep in mind that tuning per environment is _strongly_ recommended. More info on how to generate a custom config, incorporating your own modules [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)
+---
+
+### Index
+
+  * [Required actions](#required-actions)
+    + [Customization](#customization)
+    + [Generating a config](#generating-a-config)
+      - [PowerShell](#powershell)
+    + [Generating custom configs](#generating-custom-configs)
+  * [Use](#use)
+    + [Install](#install)
+    + [Update existing configuration](#update-existing-configuration)
+  * [Sysmon Community](#sysmon-community)
+  * [Contributing](#contributing)
+  * [More information](#more-information)
+  * [Mitre ATT&CK](#mitre-attack)
+  * [NOTICE Sysmon below 13 will not completely be compatible with this configuration](#notice-sysmon-below-13-will-not-completely-be-compatible-with-this-configuration)    
+  
+---
 
 ## NOTICE; Sysmon below 13 will not completely be compatible with this configuration
 
@@ -60,10 +81,12 @@ I started a series of blog posts covering this repo;
 
 - [A comparison between Sysmon and Microsoft Defender for Endpoint](https://medium.com/falconforce/sysmon-vs-microsoft-defender-for-endpoint-mde-internals-0x01-1e5663b10347) 
 
-## Mitre ATT&CK
+## MITRE ATTACK
 
 I strive to map all configurations to the ATT&CK framework whenever Sysmon is able to detect it.
 Please note this is a possible log entry that might lead to a detection, not in all cases is this the only telemetry for that technique. Additionally there might be more techniques releated to that rule, the one mapped is the one I deemed most likely.
+
+---
 
 ## Required actions
 
