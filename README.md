@@ -113,6 +113,8 @@ Example:
 ```PS C:\Users\sysmon\sysmon-modular> Merge-AllSysmonXml -AsString -BasePath C:\Users\sysmon\sysmon-modular\ -IncludeList C:\users\sysmon\sysmon-modular\include_rules.txt```
 
 
+**NOTE** The BasePath needs to be the full path to the sysmon-modular files (for example c:\tools\sysmon-modular), otherwise PowerShell will not be able to locate them, resulting in a default config.
+
 Include/Exclude List Format Example:
 
 ```1_process_creation\exclude_adobe_acrobat.xml
