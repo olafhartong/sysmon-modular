@@ -33,6 +33,8 @@ function Merge-AllSysmonXml
 
         [switch]$VerboseLogging,
 
+        [switch]$MDEaugment,
+
         [switch]$PreserveComments,
 
         [parameter(Mandatory=$false)][ValidateScript({Test-Path $_})]
@@ -548,8 +550,145 @@ function Merge-SysmonXml
 </Sysmon>
 '@
 
+$mdeaugmentlog = [xml]@'
+<!--                        NOTICE : This is a custom generated output of Sysmon-modular to fill in the gaps of                  -->
+<!--                       Microsoft Defender for Endpoint (MDE). This is based on a balanced generated output of                -->
+<!--                              Sysmon-modular with medium verbosity due to the balanced nature of this                        -->
+<!--                                        configuration there will be potential blind spots.                                   -->
+<!--                                                                                                                             -->
+<!--        Alternatively, in the benefit of IR, consider using the excludes only config and only ingest the enriching events.   -->
+<!--                                                                                                                             -->
+<!--  //**                  ***//                                                                                                -->
+<!-- ///#(**               **%(///                                                                                               -->
+<!-- ((&&&**               **&&&((                                                                                               -->
+<!--  (&&&**   ,(((((((.   **&&&(                                                                                                -->
+<!--  ((&&**(((((//(((((((/**&&((      _____                                                            __      __               -->
+<!--   (&&///((////(((((((///&&(      / ___/__  ___________ ___  ____  ____        ____ ___  ____  ____/ /_  __/ /___ ______     -->
+<!--    &////(/////(((((/(////&       \__ \/ / / / ___/ __ `__ \/ __ \/ __ \______/ __ `__ \/ __ \/ __  / / / / / __ `/ ___/     -->
+<!--    ((//  /////(/////  /(((      ___/ / /_/ (__  ) / / / / / /_/ / / / /_____/ / / / / / /_/ / /_/ / /_/ / / /_/ / /         -->
+<!--   &(((((#.///////// #(((((&    /____/\__, /____/_/ /_/ /_/\____/_/ /_/     /_/ /_/ /_/\____/\__,_/\__,_/_/\__,_/_/          -->
+<!--    &&&&((#///////((#((&&&&          /____/                                                                                  -->
+<!--      &&&&(#/***//(#(&&&&                                                                                                    -->
+<!--        &&&&****///&&&&                                                                            by Olaf Hartong           -->
+<!--           (&    ,&.                                                                                                         -->
+<!--            .*&&*.                                                                                                           -->
+<!--                                                                                                                             -->
+<Sysmon schemaversion="4.60">
+<HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
+<CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
+<DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
+<ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
+<EventFiltering>
+    <!-- Event ID 1 == Process Creation - Sysmon will not provide notable additional visibility over MDE. -->
+    <!-- The biggest improvement there would be the per process GUIDs for easier correlation. -->
+    <!-- Additionally, the IMPHASH can provide additional insight at the expense of generating process creation events. -->
+    <RuleGroup groupRelation="or">
+        <ProcessCreate onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 2 == File Creation Time - Sysmon will not provide notable additional visibility over MDE. -->
+    <RuleGroup groupRelation="or">
+        <FileCreateTime onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 3 == Network Connection - Sysmon will provide way more visibility here, since there is no cap restriction. -->
+    <RuleGroup groupRelation="or">
+        <NetworkConnect onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 3 == Network Connection - Excludes. -->
+    <RuleGroup groupRelation="or">
+        <NetworkConnect onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 5 == Process Terminated - Sysmon will provide way more visibility here, MDE does not record this. -->
+    <RuleGroup groupRelation="or">
+        <ProcessTerminate onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 6 == Driver Loaded - Sysmon will not provide notable additional visibility over MDE. -->
+    <RuleGroup groupRelation="or">
+        <DriverLoad onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 7 == Image Loaded - Sysmon will provide way more visibility here, since there is no cap restriction. -->
+    <RuleGroup groupRelation="or">
+        <ImageLoad onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 7 == Image Loaded - Excludes. -->
+    <RuleGroup groupRelation="or">
+        <ImageLoad onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 8 == CreateRemoteThread - Sysmon will not provide notable additional visibility over MDE. -->
+    <RuleGroup groupRelation="or">
+        <CreateRemoteThread onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 9 == RawAccessRead - Disabled -->
+    <RuleGroup groupRelation="or">
+        <RawAccessRead onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 10 == ProcessAccess - Sysmon will provide way more visibility here, since there is no cap and process restriction. -->
+    <RuleGroup groupRelation="or">
+        <ProcessAccess onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 10 == ProcessAccess - Excludes. -->
+    <RuleGroup groupRelation="or">
+        <ProcessAccess onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 11 == FileCreate - Sysmon will not provide notable additional visibility over MDE in the most common folders. Enable for your company specific folders. -->
+    <RuleGroup groupRelation="or">
+    <FileCreate onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Sysmon will not provide notable additional visibility over MDE. Enable for your company specific keys. -->
+    <RuleGroup groupRelation="or">
+        <RegistryEvent onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 15 == FileStream Created - Sysmon will provide way more visibility here, the current equivalent in MDE is unreliable. -->
+    <RuleGroup groupRelation="or">
+        <FileCreateStreamHash onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 15 == FileStream Created - Excludes. -->
+    <RuleGroup groupRelation="or">
+        <FileCreateStreamHash onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Sysmon will not provide notable additional visibility over MDE for most users. -->
+    <RuleGroup groupRelation="or">
+    <PipeEvent onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Sysmon will not provide notable additional visibility over MDE. -->
+    <RuleGroup groupRelation="or">
+        <WmiEvent onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 22 == DNS Queries and their results - Sysmon will provide way more visibility here. MDE only records responses to successful requests and less query types. -->
+    <RuleGroup groupRelation="or">
+        <!--Default to log all and exclude a few common processes-->
+        <DnsQuery onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 22 == DNS Queries and their results - Excludes. -->
+    <RuleGroup groupRelation="or">
+        <!--Default to log all and exclude a few common processes-->
+        <DnsQuery onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Only use in IR -->
+    <RuleGroup groupRelation="or">
+        <FileDelete onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 24 == Clipboard change events, only captures text, not files - Only use in IR -->
+    <RuleGroup groupRelation="or">
+        <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
+        <ClipboardChange onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 25 == Process tampering events - Sysmon will provide some more visibility here. MDE records this behavior but does not expose the telemetry (yet) -->
+    <RuleGroup groupRelation="or">
+        <ProcessTampering onmatch="exclude"/>
+    </RuleGroup>
+        <!-- Event ID 26 == File Delete and overwrite events - Sysmon will not provide notable additional visibility over MDE in the most common folders. Enable for your company specific folders. -->
+    <RuleGroup groupRelation="or">
+        <FileDeleteDetected onmatch="include"/>
+    </RuleGroup>
+</EventFiltering>
+</Sysmon>
+'@
+
     if($VerboseLogging){
         $newDoc = $fulllog
+    }
+    elseif ($MDEaugment) {
+        $newDoc = $mdeaugmentlog
     }
     else {
         $newDoc = $general
