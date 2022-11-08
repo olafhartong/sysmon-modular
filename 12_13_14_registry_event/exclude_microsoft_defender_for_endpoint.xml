@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude"> <!--Microsoft:MDE: Quite noisy, excluding is acceptable because injecting into MDE is hard due to PPL + ELAM-->
+				<Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe</Image>				
+				<Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\SenseCncProxy.exe</Image>
+				<Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\SenseIR.exe</Image>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
