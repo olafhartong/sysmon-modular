@@ -1026,6 +1026,16 @@
         <SourceImage condition="is">C:\Program Files (x86)\Razer Chroma SDK\bin\RzSDKService.exe</SourceImage>
         <SourceImage condition="is">C:\WINDOWS\CCM\CcmExec.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\Splunk\bin\splunkd.exe</SourceImage>
+        <Rule groupRelation="and">
+          <SourceImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</SourceImage>
+          <TargetImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</TargetImage>
+          <GrantedAccess condition="is">0x100000</GrantedAccess>
+        </Rule>
+        <Rule groupRelation="and">
+          <SourceImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</SourceImage>
+          <TargetImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</TargetImage>
+          <GrantedAccess condition="is">0x1401</GrantedAccess>
+        </Rule>
         <SourceImage condition="is">C:\Program Files (x86)\VMware\VMWare Player\vmware-authd.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\VMware\VMware Workstation\vmware-authd.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\WinZip\FAHWindow64.exe</SourceImage>
