@@ -1,0 +1,18 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <Rule groupRelation="and">
+          <SourceImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</SourceImage>
+          <TargetImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</TargetImage>
+          <GrantedAccess condition="is">0x100000</GrantedAccess> <!--SYNCHRONIZE access to its children -->
+        </Rule>
+        <Rule groupRelation="and">
+          <SourceImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</SourceImage>
+          <TargetImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</TargetImage>
+          <GrantedAccess condition="is">0x1401</GrantedAccess> <!--PROCESS_QUERY_LIMITED_INFORMATION,PROCESS_QUERY_INFORMATION and PROCESS_TERMINATE access to its children-->
+        </Rule>        
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
