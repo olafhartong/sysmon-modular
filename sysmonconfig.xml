@@ -1744,6 +1744,13 @@
         <Image condition="is">C:\Program Files\McAfee\Endpoint Security\Threat Prevention\mfeensppl.exe</Image>
         <Image condition="begin with">C:\Program Files\Common Files\McAfee\Engine\scanners</Image>
         <Image condition="is">C:\Program Files\Common Files\McAfee\AVSolution\mcshield.exe</Image>
+        <Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe</Image>
+        <Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\SenseCncProxy.exe</Image>
+        <Image condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\SenseIR.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</Image>
+          <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\HealthService\Parameters\Management Groups</TargetObject>
+        </Rule>
         <Image condition="is">C:\Program Files\ownCloud\owncloud.exe</Image>
         <Image condition="is">C:\Program Files (x86)\ownCloud\owncloud.exe</Image>
         <Rule groupRelation="and">
