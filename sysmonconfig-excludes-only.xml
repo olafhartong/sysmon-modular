@@ -561,6 +561,12 @@
           <Image condition="is">C:\Windows\system32\lsass.exe</Image>
           <TargetObject condition="contains">HKLM\System\CurrentControlSet\Services</TargetObject>
         </Rule>
+        <Rule groupRelation="and">
+          <TargetObject condition="contains">SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization</TargetObject>
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+        </Rule>
+        <TargetObject condition="is">HKLM\System\CurrentControlSet\Services\W32Time\Config\LastKnownGoodTime</TargetObject>
+        <TargetObject condition="is">HKLM\System\CurrentControlSet\Services\SmsRouter\State\Registration\Ids</TargetObject>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_32\Start</TargetObject>
         <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject>
         <TargetObject condition="end with">\services\clr_optimization_v4.0.30319_32\Start</TargetObject>
