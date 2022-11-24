@@ -8,8 +8,7 @@
             </Rule>
             <Rule groupRelation="and">
                <Image condition="is">C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe</Image> 
-               <TargetFilename condition="contains all">C:\Windows\Temp;__PSScriptPolicyTest;.ps1</TargetFilename>
-               <User condition="is">NT AUTHORITY\SYSTEM</User>
+               <TargetFilename condition="contains all">C:\Windows\Temp;__PSScriptPolicyTest;.ps1</TargetFilename>               
             </Rule>
          </FileCreate>
       </RuleGroup>
