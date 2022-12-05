@@ -79,6 +79,7 @@ function Merge-AllSysmonXml
             $Inclusions = Get-Content -Path $IncludeList
             foreach($Inclusion in $Inclusions){
                 $Inclusion = $Inclusion.TrimStart('\')
+                $InclusionFragment = $Inclusion
                 $Inclusion = Join-Path -Path $BasePath -ChildPath $Inclusion
                 if($Inclusion -like '*.xml'){
                     if(Test-Path -Path $Inclusion){
@@ -88,7 +89,7 @@ function Merge-AllSysmonXml
                         Write-Error "Referenced Rule Inclusion Not Found: $Inclusion"
                     }
                 }
-                elseif((Test-Path $Inclusion) -and ($InclusionFolder = Get-ChildItem -Path $BasePath -Directory -Name $Inclusion ))
+                elseif((Test-Path $Inclusion) -and ($InclusionFolder = Get-ChildItem -Path $BasePath -Directory -Name $InclusionFragment ))
                 {
                     foreach($Inclusion in Get-ChildItem -Path $InclusionFolder -File -Filter "*.xml")
                     {
