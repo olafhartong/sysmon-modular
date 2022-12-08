@@ -155,7 +155,7 @@
         <OriginalFileName name="technique_id=T1222,technique_name=File Permissions Modification" condition="is">takeown.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T,technique_name=" condition="is">makecab.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T,technique_name=" condition="is">wusa.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vassadmin.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vssadmin.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="contains any">nltest.exe;nltestk.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">winrs.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
