@@ -76,7 +76,7 @@ function Merge-AllSysmonXml
                 return
     }
 
-            $Inclusions = Get-Content -Path $IncludeList
+            $Inclusions = Get-Content -Path $IncludeList | Where-Object { $_.Trim() -ne '' }
             foreach($Inclusion in $Inclusions){
                 $Inclusion = $Inclusion.TrimStart('\')
                 $InclusionFragment = $Inclusion
