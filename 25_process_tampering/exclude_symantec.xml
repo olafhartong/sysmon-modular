@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.50">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessTampering onmatch="exclude">
+        <Image condition="is">C:\Program Files (x86)\Symantec\Symantec Endpoint Protection Manager\bin\XDelta64\xdelta3.exe</Image>
+      </ProcessTampering>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
