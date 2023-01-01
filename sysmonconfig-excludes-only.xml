@@ -947,8 +947,10 @@
           <Image condition="begin with">C:\Program Files (x86)\Microsoft\EdgeUpdate\Install\</Image>
           <Image condition="contains">\MicrosoftEdge_X64_</Image>
         </Rule>
+        <Image condition="is">C:\Program Files (x86)\Symantec\Symantec Endpoint Protection Manager\bin\XDelta64\xdelta3.exe</Image>
         <Image condition="contains">unknown process</Image>
         <Image condition="is">C:\Program Files\Microsoft VS Code\Code.exe</Image>
+        <Image condition="is">C:\Windows\System32\wbem\WMIADAP.exe</Image>
       </ProcessTampering>
     </RuleGroup>
     <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
