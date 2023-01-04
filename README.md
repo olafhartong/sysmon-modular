@@ -41,6 +41,12 @@ The sysmonconfig.xml within the repo is automatically generated after a successf
   
 ---
 
+Next to the documentation below, there is also [a video](https://youtu.be/Cx_zrM8Hu7Y) on how to use this project.
+
+[![how to use this project](https://img.youtube.com/vi/Cx_zrM8Hu7Y/0.jpg)](https://www.youtube.com/watch?v=Cx_zrM8Hu7Y)
+
+---
+
 ## NOTICE; Sysmon below 13 will not completely be compatible with this configuration
 
 Older versions are still available in the branches, but are not as complete as the current branch
