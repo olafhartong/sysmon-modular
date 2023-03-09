@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+      <FileDelete onmatch="exclude">
+        <TargetFilename condition="begin with">C:\ProgramData\Sophos</TargetFilename>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <TargetFilename condition="end with">.tmp</TargetFilename>
+        </Rule>
+      </FileDelete>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
