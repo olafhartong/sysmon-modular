@@ -18,7 +18,7 @@ jobs:
           grep -Po "(technique_id=T\d+(?:\.\d+)?)" sysmonconfig.xml | sort | uniq -c | sed -E 's/^\s*([0-9]+)\s+technique_id=(\S+)/{"score": \1, "technique_id": "\2"}/' | jq -s 'map({techniqueID: .technique_id, score: .score})' > "$tmpfile"
           jq --argfile techniques "$tmpfile" '.techniques = $techniques' ./attack_matrix/Sysmon-modular.json > attack_matrix.json
           rm "$tmpfile"
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: matrix
           path: attack_matrix.json
