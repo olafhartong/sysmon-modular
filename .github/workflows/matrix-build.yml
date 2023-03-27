@@ -1,4 +1,4 @@
-name: Build Attack Matrix when 
+name: Build Attack Matrix
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  generate-config:
+  generate-matrix:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
