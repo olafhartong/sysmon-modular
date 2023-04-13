@@ -278,13 +278,13 @@
           <!--Mitre T1049-->
           <!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
         </Rule>
-        <Rule name="technique_id=1482,technique_name=Domain Trust Discovery" groupRelation="and">
+        <Rule name="technique_id=T1482,technique_name=Domain Trust Discovery" groupRelation="and">
           <!-- Rule is from olaf's original -->
           <OriginalFileName condition="is">nltestrk.exe</OriginalFileName>
           <CommandLine condition="contains">/domain_trusts</CommandLine>
         </Rule>
         <Rule name="Domain Trust Discovery" groupRelation="or">
-          <OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltest.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="is">nltest.exe</OriginalFileName>
         </Rule>
         <Rule name="Query Registry" groupRelation="or">
           <!-- General catch-all for registry access -->
@@ -351,19 +351,19 @@
           <!-- Catch cscript executing javascript locally-->
           <CommandLine condition="contains">.js</CommandLine>
         </Rule>
+        <OriginalFileName name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</OriginalFileName>
+        <!--Microsoft:Windows: HTML Helper-->
+        <ParentImage name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</ParentImage>
+        <!--Microsoft:Windows: HTML Helper-->
+        <OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
+        <ParentImage name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
+        <OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName>
+        <!--Mitre T1218.010-->
+        <!--Mitre T1085-->
+        <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
+        <OriginalFileName name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</OriginalFileName>
         <Rule name="System Binary Proxy Execution" groupRelation="or">
-          <OriginalFileName name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</OriginalFileName>
-          <!--Microsoft:Windows: HTML Helper-->
-          <ParentImage name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</ParentImage>
-          <!--Microsoft:Windows: HTML Helper-->
-          <OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
-          <ParentImage name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
-          <OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
-          <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName>
-          <!--Mitre T1218.010-->
-          <!--Mitre T1085-->
-          <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
-          <OriginalFileName name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</OriginalFileName>
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">extexport.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msconfig.EXE</OriginalFileName>
@@ -393,7 +393,7 @@
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">tttracer.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
-          <OriginalFileName name="technique_id=1218,technique_name=System Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
           <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">diskshadow.exe</Image>
           <!--This only applies to versions of Windows Server-->
           <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">diskshadow.exe;/s</CommandLine>
@@ -403,7 +403,7 @@
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">replace.exe</OriginalFileName>
           <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">jjs.exe</Image>
           <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">appcmd.exe</Image>
-          <CommandLine name="technique_id=1218,technique_name=System Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
+          <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
         </Rule>
         <Rule name="Trusted Developer Utilities Proxy Execution" groupRelation="or">
           <CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vbc.exe /target:exe</CommandLine>
@@ -984,7 +984,7 @@
         <!--MDE-->
         <TargetObject condition="contains">HKLM\software\wow6432node\microsoft\internet explorer\urlsearchhooks\</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=Port Monitors,technique_name=Port Monitors" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors</TargetObject>
+        <TargetObject name="technique_id=T1547.010,technique_name=Port Monitors" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors</TargetObject>
         <!--MDE-->
         <!--Winsock and Winsock2-->
         <TargetObject condition="begin with">hklm\system\mounteddevices\</TargetObject>
@@ -3316,7 +3316,7 @@
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Commands.Utility.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.ConsoleHost.dll</ImageLoaded>
         <ImageLoaded name="technique_id=T1059.001,technique_name=PowerShell" condition="end with">Microsoft.PowerShell.Security.dll</ImageLoaded>
-        <ImageLoaded name="technique_id=1210,technique_name=Exploitation of Remote Services" condition="begin with">C:\Windows\System32\spool\drivers\</ImageLoaded>
+        <ImageLoaded name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="begin with">C:\Windows\System32\spool\drivers\</ImageLoaded>
         <!--In order to detect PrintNightmare on servers-->
         <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">regsvc.dll</OriginalFileName>
         <Rule groupRelation="and">
