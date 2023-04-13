@@ -1,4 +1,5 @@
 filepath,priority
+1_process_creation/include_all.xml,0
 1_process_creation/include_living_off_the_land.xml,10
 1_process_creation/include_shells.xml,1
 1_process_creation/exclude_adobe_acrobat.xml,10

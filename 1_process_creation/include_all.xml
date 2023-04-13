@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+    <EventFiltering>
+        <RuleGroup name="" groupRelation="or">
+            <ProcessCreate onmatch="include">
+                <!-- Include All -->
+                <OriginalFileName condition="contains">\</OriginalFileName>
+            </ProcessCreate>
+        </RuleGroup>
+    </EventFiltering>
+</Sysmon>
