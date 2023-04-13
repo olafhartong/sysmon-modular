@@ -194,12 +194,12 @@
 					<OriginalFileName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="is">netstat.exe</OriginalFileName> <!--Mitre T1016--> <!--Mitre T1049--> <!--Microsoft:Windows: shows protocol statistics and current TCP/IP network connections -->
 				</Rule>
 
-				<Rule name="technique_id=1482,technique_name=Domain Trust Discovery" groupRelation="and"> <!-- Rule is from olaf's original -->
+				<Rule name="technique_id=T1482,technique_name=Domain Trust Discovery" groupRelation="and"> <!-- Rule is from olaf's original -->
 					<OriginalFileName condition="is">nltestrk.exe</OriginalFileName>
 					<CommandLine condition="contains">/domain_trusts</CommandLine>
 				</Rule>
 				<Rule name="Domain Trust Discovery" groupRelation="or">
-					<OriginalFileName name="technique_id=1482,technique_name=Domain Trust Discovery" condition="is">nltest.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1482,technique_name=Domain Trust Discovery" condition="is">nltest.exe</OriginalFileName>
 				</Rule>
 
 				<Rule name="Query Registry" groupRelation="or"> <!-- General catch-all for registry access -->
@@ -294,14 +294,14 @@
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">tttracer.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=1218,technique_name=System Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
 					<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">diskshadow.exe</Image> <!--This only applies to versions of Windows Server-->
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">diskshadow.exe;/s</CommandLine> <!--This only applies to versions of Windows Server-->
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">diskshadow.exe;-s</CommandLine> <!--This only applies to versions of Windows Server-->
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">replace.exe</OriginalFileName>
 					<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">jjs.exe</Image>
 					<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">appcmd.exe</Image>
-					<CommandLine name="technique_id=1218,technique_name=System Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
+					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">ieexec.exe http</CommandLine>
 				</Rule>
 				<Rule name="Trusted Developer Utilities Proxy Execution" groupRelation="or">
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vbc.exe /target:exe</CommandLine>
