@@ -54,6 +54,13 @@
 					<CommandLine condition="contains">ifm</CommandLine>
 				</Rule>
 				<ParentImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">diskshadow.exe</ParentImage> <!--This only applies to versions of Windows Server-->
+				<Rule name="technique_id=T1003,technique_name=Credential Dumping (Likely)" groupRelation="and">
+					<!-- Implementation of this Sigma detection https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/process_creation/win_susp_rpcping.yml --> 
+					<OriginalFileName condition="image">rpcping.exe</OriginalFileName>
+					<CommandLine condition="contains any">\s;-s</CommandLine>
+					<CommandLine condition="contains any">-u;\u;-t;\t</CommandLine>
+					<CommandLine condition="contains any">NTLM;ncacn_np</CommandLine>
+				</Rule>
 				<OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">rpcping.exe</OriginalFileName>
 				
 				<Rule name="Ingress Tool Transfer" groupRelation="or">
