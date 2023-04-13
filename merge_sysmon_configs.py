@@ -91,7 +91,7 @@ def read_file_list(file_path: str, file_format: str) -> List[Dict[str, Union[str
     logging.info(f"Detected {len(file_list)} items in {file_path}")
     return file_list
 
-def merge_sysmon_configs(file_list: List[Dict[str, Union[str, int]]]) -> etree.Element:
+def merge_sysmon_configs(file_list: List[Dict[str, Union[str, int]]], force_grouprelation_or : bool) -> etree.Element:
     """
     Merge Sysmon config files based on their type, subtype, and priority.
 
@@ -119,6 +119,8 @@ def merge_sysmon_configs(file_list: List[Dict[str, Union[str, int]]]) -> etree.E
                 logging.exception(f"Error parsing version {version} in file {file_path}, skipping file")
                 continue
             rule_group = tree.find(".//RuleGroup")
+            if force_grouprelation_or:
+                rule_group.set("groupRelation","or")
             for event in rule_group:
                 event_type = event.tag
                 onmatch = event.get("onmatch")
@@ -175,6 +177,7 @@ def main() -> None:
     parser.add_argument("-o", "--outfile", type=argparse.FileType("w"), default="-", help="File to output to, defaults to stdout")
     parser.add_argument("-b", "--base-config", type=argparse.FileType("r"), help="Path to the base config file with top-level Sysmon elements")
     parser.add_argument("--debug", action="store_true", default=False, help="Enable debug logging")
+    parser.add_argument("--no-force-grouprelation-or", dest="force_grouprelation_or", action="store_false", default=True, help="Disable forcing groupRelation attribute for rules to 'or' (default: force to 'or')")
 
     args = parser.parse_args()
 
@@ -199,7 +202,7 @@ def main() -> None:
         exit(1)
 
     try:
-        merged_sysmon = merge_sysmon_configs(file_list)
+        merged_sysmon = merge_sysmon_configs(file_list, args.force_grouprelation_or)
         if args.base_config:
             merged_sysmon = merge_with_base_config(merged_sysmon, args.base_config)
     except TypeError as e:

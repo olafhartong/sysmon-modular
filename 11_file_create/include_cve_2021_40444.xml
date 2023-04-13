@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.30">
 	<FileCreate>
-		<RuleGroup name="" groupRelation="and">
+		<RuleGroup name="" groupRelation="or">
 			<FileCreate onmatch="include">
 				<Rule groupRelation="and">
 					<!-- CVE-2021-40444 https://twitter.com/RonnyTNL/status/1436334640617373699 -->
