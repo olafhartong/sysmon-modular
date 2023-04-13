@@ -1,0 +1,17 @@
+<Sysmon schemaversion="4.30">
+    <EventFiltering>
+        <RuleGroup name="" groupRelation="or">
+            <RegistryEvent onmatch="exclude">
+                <!-- COMMENT: Filter out some frequent key accesses that seem to generate excess noise -->
+                <Rule groupRelation="and">
+                    <Image condition="image">svchost.exe</Image>
+                    <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\DNSRegisteredAdapters</TargetObject>
+                </Rule>
+                <Rule groupRelation="and">
+                    <Image condition="image">svchost.exe</Image>
+                    <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces</TargetObject>
+                </Rule>
+            </RegistryEvent>
+        </RuleGroup>
+    </EventFiltering>
+</Sysmon>

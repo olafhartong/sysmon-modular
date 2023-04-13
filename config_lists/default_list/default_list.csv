@@ -116,9 +116,11 @@ filepath,priority
 11_file_create/include_wdac.xml,10
 11_file_create/include_wmi_changes.xml,10
 11_file_create/include_writable_folders.xml,10
+12_13_14_registry_event/exclude_hklm_ccs_tcpip.xml,10
 12_13_14_registry_event/exclude_internet_explorer_settings.xml,10
 12_13_14_registry_event/exclude_microsoft_defender_for_endpoint.xml,10
 12_13_14_registry_event/exclude_microsoft_monitoring_agent.xml,10
+12_13_14_registry_event/exclude_noise.xml,10
 12_13_14_registry_event/exclude_scheduled_task_cache.xml,10
 12_13_14_registry_event/exclude_system_process.xml,10
 12_13_14_registry_event/exclude_webroot.xml,10
@@ -153,6 +155,7 @@ filepath,priority
 12_13_14_registry_event/include_rdp_terminal_service_sensitive_settings.xml,10
 12_13_14_registry_event/include_scheduled_tasks_path.xml,10
 12_13_14_registry_event/include_security_support_provider.xml,10
+12_13_14_registry_event/include_services.xml,1
 12_13_14_registry_event/include_sip_trust_provider_hijacking.xml,10
 12_13_14_registry_event/include_sysinternals.xml,10
 12_13_14_registry_event/include_sysmon.xml,10
@@ -161,6 +164,7 @@ filepath,priority
 12_13_14_registry_event/include_windows_address_book.xml,10
 12_13_14_registry_event/include_windows_app_path_hijack.xml,10
 12_13_14_registry_event/include_windows_com_objects.xml,10
+12_13_14_registry_event/include_windows_consent.xml,100
 12_13_14_registry_event/include_windows_credential_providers.xml,10
 12_13_14_registry_event/include_windows_defender_tampering.xml,10
 12_13_14_registry_event/include_windows_disabling_security_services.xml,10

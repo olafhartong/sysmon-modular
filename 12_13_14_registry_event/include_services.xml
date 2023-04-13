@@ -2,7 +2,8 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-        <TargetObject name="technique_id=T1543,technique_name=Service Creation" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services</TargetObject><!--MDE-->
+        <!-- COMMENT: Removed the services technique id - this event is captured for visibility, not because it indicates an attack -->
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services</TargetObject>
       </RegistryEvent>
     </RuleGroup>
   </EventFiltering>
