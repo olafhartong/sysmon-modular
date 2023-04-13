@@ -60,6 +60,7 @@ filepath,priority
 10_process_access/include_suspicious_locations.xml,10
 10_process_access/include_suspicious_powershell.xml,10
 10_process_access/include_syscalls.xml,10
+11_file_create/exclude_elastic_logs.xml,10
 11_file_create/exclude_intel_gfx_service.xml,10
 11_file_create/exclude_microsoft_click2run.xml,10
 11_file_create/exclude_microsoft_services.xml,10
@@ -71,17 +72,18 @@ filepath,priority
 11_file_create/exclude_psscriptpolicytest.xml,10
 11_file_create/exclude_sccm.xml,10
 11_file_create/exclude_scheduled_task_noise.xml,10
+11_file_create/exclude_windows_heartbeat.xml,10
 11_file_create/include_appc_shim.xml,10
 11_file_create/include_batch_files.xml,10
 11_file_create/include_chm_files.xml,10
 11_file_create/include_cloud_credendials.xml,10
 11_file_create/include_credendials.xml,10
+11_file_create/include_cve_2021_40444.xml,100
 11_file_create/include_default_profile_changes.xml,10
 11_file_create/include_desktop.xml,10
 11_file_create/include_dotnet.xml,10
 11_file_create/include_downloaded_files.xml,10
 11_file_create/include_drivers_added.xml,10
-11_file_create/exclude_elastic_logs.xml,10
 11_file_create/include_electron_app_injection.xml,10
 11_file_create/include_executables.xml,10
 11_file_create/include_group_policy_changes.xml,10

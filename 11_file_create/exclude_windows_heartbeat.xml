@@ -1,0 +1,17 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!-- Exclude Heartbeat -->
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Windows\System32\svchost.exe</Image>
+					<TargetFilename condition="is">C:\Windows\ServiceProfiles\LocalService\AppData\Local\lastalive0.dat</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Windows\System32\svchost.exe</Image>
+					<TargetFilename condition="is">C:\Windows\ServiceProfiles\LocalService\AppData\Local\lastalive1.dat</TargetFilename>
+				</Rule>
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
