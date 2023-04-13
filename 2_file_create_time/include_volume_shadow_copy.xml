@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30"> <!-- Taken from SwiftOnSecurity rules-->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreateTime onmatch="include">
+				<Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">\Device\HarddiskVolumeShadowCopy</Image> <!--Nothing should be written here | Credit: @SBousseaden [ https://twitter.com/SBousseaden/status/1133030955407630336 ] -->
+			</FileCreateTime>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

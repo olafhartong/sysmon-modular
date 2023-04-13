@@ -209,12 +209,15 @@ filepath,priority
 17_18_pipe_event/include_tsvcpipe.xml,10
 17_18_pipe_event/include_winreg.xml,10
 2_file_create_time/exclude_chrome.xml,10
+2_file_create_time/exclude_nvidia.xml,10
 2_file_create_time/exclude_onedrive.xml,10
 2_file_create_time/exclude_setups.xml,10
 2_file_create_time/exclude_slack.xml,10
 2_file_create_time/exclude_teams.xml,10
+2_file_create_time/include_executables.xml,10
 2_file_create_time/include_temp_folder.xml,10
 2_file_create_time/include_users_folder.xml,10
+2_file_create_time/include_volume_shadow_copy.xml,10
 22_dns_query/exclude_ads.xml,10
 22_dns_query/exclude_browser_updates.xml,10
 22_dns_query/exclude_cdn_networks.xml,10
