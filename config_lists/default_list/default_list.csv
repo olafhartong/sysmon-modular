@@ -217,6 +217,7 @@ filepath,priority
 17_18_pipe_event/include_srvsvc.xml,10
 17_18_pipe_event/include_tsvcpipe.xml,10
 17_18_pipe_event/include_winreg.xml,10
+19_20_21_wmi_event/exclude_wmi_none.xml,10
 2_file_create_time/exclude_chrome.xml,10
 2_file_create_time/exclude_nvidia.xml,10
 2_file_create_time/exclude_onedrive.xml,10
