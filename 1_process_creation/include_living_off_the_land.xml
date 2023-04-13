@@ -258,7 +258,6 @@
 					<OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName> <!--Mitre T1218.010--> <!--Mitre T1085--> <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
 					<OriginalFileName name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">ATBroker.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">extexport.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msconfig.EXE</OriginalFileName>

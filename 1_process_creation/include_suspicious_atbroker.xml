@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+    <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+        <ProcessCreate onmatch="include">
+          <Rule name="technique_id=T1218,technique_name=System Binary Proxy Execution" groupRelation="and">
+            <OriginalFileName condition="is">ATBroker.exe</OriginalFileName>
+            <CommandLine condition="contains">start</CommandLine>
+          </Rule>
+        </ProcessCreate>
+      </RuleGroup>
+    </EventFiltering>
+  </Sysmon>
+  

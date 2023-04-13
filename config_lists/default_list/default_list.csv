@@ -1,7 +1,4 @@
 filepath,priority
-1_process_creation/include_all.xml,0
-1_process_creation/include_living_off_the_land.xml,10
-1_process_creation/include_shells.xml,1
 1_process_creation/exclude_adobe_acrobat.xml,10
 1_process_creation/exclude_adobe_creative_cloud.xml,10
 1_process_creation/exclude_adobe_flash.xml,10
@@ -16,6 +13,7 @@ filepath,priority
 1_process_creation/exclude_windows_defender.xml,10
 1_process_creation/exclude_windows_generic_processes.xml,10
 1_process_creation/include_accessibility_features.xml,10
+1_process_creation/include_all.xml,0
 1_process_creation/include_appc_shim.xml,10
 1_process_creation/include_bitsadmin.xml,10
 1_process_creation/include_bypass_uac.xml,100
@@ -25,11 +23,14 @@ filepath,priority
 1_process_creation/include_explorer.xml,10
 1_process_creation/include_fltmc.xml,10
 1_process_creation/include_installutil.xml,10
+1_process_creation/include_living_off_the_land.xml,10
 1_process_creation/include_mavinject.xml,10
 1_process_creation/include_microsoft_cmstp.xml,10
 1_process_creation/include_msbuild.xml,10
 1_process_creation/include_msoffice.xml,10
 1_process_creation/include_regsvcs_regasm.xml,10
+1_process_creation/include_shells.xml,1
+1_process_creation/include_suspicious_atbroker.xml,100
 1_process_creation/include_suspicious_powershell.xml,100
 1_process_creation/include_syncappvpublishingserver.xml,10
 1_process_creation/include_sysinternals.xml,10
