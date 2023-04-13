@@ -325,17 +325,6 @@
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">ilasm</CommandLine> <!-- https://lolbas-project.github.io/lolbas/Binaries/Ilasm/ -->
 					<OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">jsc.exe</OriginalFileName> <!-- https://lolbas-project.github.io/lolbas/Binaries/Jsc/ -->
 				</Rule>
-				<!-- COMMENT: T1059 Section - Command and Scripting Interpreter -->
-				<Rule name="Windows Command Shell" groupRelation="or">
-					<OriginalFileName name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="is">cmd.exe</OriginalFileName>
-					<Image name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="image">cmd.exe</Image>
-				</Rule>
-				<Rule name="PowerShell" groupRelation="or">
-					<OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell_ise.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">Sqlps.exe</OriginalFileName>
-					<CommandLine name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">pester</CommandLine>
-				</Rule>
 			</ProcessCreate>
 		</RuleGroup>
 	</EventFiltering>
