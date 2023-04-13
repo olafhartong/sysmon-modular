@@ -264,6 +264,7 @@ filepath,priority
 6_driver_loaded_into_kernel/exclude_intel_drivers.xml,10
 6_driver_loaded_into_kernel/exclude_microsoft_drivers.xml,10
 7_image_load/exclude_cscript_scrobj.xml,10
+7_image_load/exclude_dotnet_load_powershell.xml,10
 7_image_load/exclude_office_vsto_plugins.xml,10
 7_image_load/exclude_onedrive.xml,10
 7_image_load/include_amsi_loaded_not_powershell.xml,10
