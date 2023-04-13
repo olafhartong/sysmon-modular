@@ -39,6 +39,8 @@ filepath,priority
 1_process_creation/include_windows_defender_tampering.xml,10
 1_process_creation/include_windows_remote_management.xml,10
 1_process_creation/include_wsl.xml,10
+10_process_access/exclude_chrome_sw_reporter_all.xml,10
+10_process_access/exclude_chrome_sw_reporter.xml,10
 10_process_access/exclude_lsass_noise.xml,10
 10_process_access/exclude_microsoft_onedrive.xml,10
 10_process_access/exclude_microsoft_teams.xml,10
