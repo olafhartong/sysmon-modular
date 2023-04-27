@@ -1,0 +1,15 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="include">
+        <Rule groupRelation="and">
+          <CallTrace name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="contains all">C:\Windows\SYSTEM32\ntdll.dll;C:\Windows\System32\kernelbase.dll;UNKNOWN</CallTrace>          <!--@darkquassar-->
+          <GrantedAccess name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="contains any">0x1F0FFF;0x1F1FFF;0x143A;0x1410;0x1010;0x1F2FFF;0x1F3FFF;0x1FFFFF;0x147A</GrantedAccess>
+          <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Windows\System32\</SourceImage>
+          <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Program Files\</SourceImage>
+          <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Program Files (x86)\</SourceImage>
+        </Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
