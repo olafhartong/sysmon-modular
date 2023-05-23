@@ -1109,6 +1109,30 @@
           <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Program Files\</SourceImage>
           <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Program Files (x86)\</SourceImage>
         </Rule>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Intel\Logs\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Default\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Public\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\NetworkService\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Fonts\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Debug\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Media\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Help\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\addins\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\repair\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\security\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">VolumeShadowCopy</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</SourceImage>
+        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</SourceImage>
+        <Rule groupRelation="and">
+          <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Programs\Opera GX\opera.exe</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Programs\Microsoft VS Code\Code.exe</SourceImage>
+        </Rule>
         <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
         <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
         <TargetImage condition="contains">Desktop</TargetImage>
@@ -1159,28 +1183,6 @@
         <GrantedAccess name="technique_id=T1055.012,technique_name=Process Hollowing">0x800</GrantedAccess>
         <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x810</GrantedAccess>
         <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x820</GrantedAccess>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\PerfLogs\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\$Recycle.bin\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Intel\Logs\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Default\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\Public\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Users\NetworkService\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Fonts\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Debug\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Media\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\Help\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\addins\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\repair\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\security\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="begin with">C:\Windows\system32\config\systemprofile\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">VolumeShadowCopy</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\htdocs\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\wwwroot\</SourceImage>
-        <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Temp\</SourceImage>
-        <Rule groupRelation="and">
-          <SourceImage name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\</SourceImage>
-          <SourceImage condition="not end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
-        </Rule>
         <Rule groupRelation="and">
           <CallTrace name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">System.Management.Automation.ni.dll</CallTrace>
           <SourceImage condition="is not">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</SourceImage>
