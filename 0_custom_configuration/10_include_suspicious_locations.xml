@@ -25,6 +25,7 @@
           <SourceImage condition="not end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
           <SourceImage condition="not end with">\AppData\Local\Programs\Opera GX\opera.exe</SourceImage>
           <SourceImage condition="not end with">\AppData\Local\Programs\Microsoft VS Code\Code.exe</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Microsoft\OneDrive\OneDrive.exe</SourceImage>
         </Rule>
       </ProcessAccess>
     </RuleGroup>
