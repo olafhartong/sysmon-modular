@@ -1132,6 +1132,7 @@
           <SourceImage condition="not end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
           <SourceImage condition="not end with">\AppData\Local\Programs\Opera GX\opera.exe</SourceImage>
           <SourceImage condition="not end with">\AppData\Local\Programs\Microsoft VS Code\Code.exe</SourceImage>
+          <SourceImage condition="not end with">\AppData\Local\Microsoft\OneDrive\OneDrive.exe</SourceImage>
         </Rule>
         <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
         <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
