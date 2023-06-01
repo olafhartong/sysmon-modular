@@ -1081,6 +1081,10 @@
     <RuleGroup groupRelation="or">
       <!--Default to log all and exclude a few common processes-->
       <CreateRemoteThread onmatch="exclude">
+        <Rule groupRelation="and">
+          <SourceImage condition="end with">\WinZip\FAHWindow64.exe</SourceImage>
+          <TargetImage condition="end with">\Windows\explorer.exe</TargetImage>
+        </Rule>
         <SourceImage condition="is">C:\Windows\System32\svchost.exe</SourceImage>
         <SourceImage condition="is">C:\Windows\System32\wininit.exe</SourceImage>
         <SourceImage condition="is">C:\Windows\System32\csrss.exe</SourceImage>
