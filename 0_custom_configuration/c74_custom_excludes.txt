@@ -1,6 +1,7 @@
 7_image_load/include_printer_drivers.xml
 10_process_access/include_possible_dll_injection.xml
 10_process_access/include_suspicious_locations.xml
+10_process_access/include_desktop.xml
 23_file_delete/exclude_google_chrome.xml
 23_file_delete/exclude_windows_services.xml
 23_file_delete/include_microsoft_sql_server.xml

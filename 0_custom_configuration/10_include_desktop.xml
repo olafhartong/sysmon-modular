@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="include">
+        <Rule groupRelation="and">
+          <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="contains">\Users\</TargetImage>
+					<TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="contains">Desktop</TargetImage>        <!--Files on the Desktop-->
+				</Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
