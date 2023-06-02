@@ -8,6 +8,7 @@
           <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Windows\System32\</SourceImage>
           <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Program Files\</SourceImage>
           <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\Program Files (x86)\</SourceImage>
+          <SourceImage name="technique_id=T1055.001,technique_name=Dynamic-link Library Injection" condition="not begin with">C:\ProgramData\CentraStage\AEMAgent\</SourceImage>
         </Rule>
       </ProcessAccess>
     </RuleGroup>

@@ -5,7 +5,8 @@
 				<!--COMMENT:	Monitor for processes injecting code into other processes. Often used by malware to cloak their actions.
 				Exclude mostly-safe sources and log anything else.-->
 				<Rule groupRelation="and">
-					<SourceImage condition="end with">\WinZip\FAHWindow64.exe</SourceImage>
+					<SourceImage condition="contains">\WinZip\</SourceImage>
+					<SourceImage condition="end with">FAHWindow64.exe</SourceImage>
 					<TargetImage condition="end with">\Windows\explorer.exe</TargetImage>
 				</Rule>
 			</CreateRemoteThread>
