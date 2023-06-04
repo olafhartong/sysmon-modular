@@ -3,6 +3,8 @@
   <EventFiltering>
     <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir!-->
 	<!-- for specifc extension collection - i've focused on end with for performance.-->
+	<!-- In order to create a Sysmon file archive quota using builtin capabilities; WMI and PowerShell: -->
+	<!-- https://blog.nviso.eu/2022/06/30/enforcing-a-sysmon-archive-quota/ -->
 	<!-- Collect interesting files designed to be used with Velociraptor Sysmon Arcive monitoring/management -->
 	<!-- https://docs.velociraptor.app/exchange/artifacts/pages/sysmonarchive -->
 	<!-- https://docs.velociraptor.app/exchange/artifacts/pages/sysmonarchivemonitor/ -->
