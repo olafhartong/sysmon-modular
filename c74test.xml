@@ -1411,6 +1411,10 @@
     <!-- Event ID 11 == FileCreate - Excludes -->
     <RuleGroup groupRelation="or">
       <FileCreate onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="begin with">C:\Windows\LTSvc\</Image>
+          <TargetFilename condition="begin with">C:\Windows\LTSvc\</TargetFilename>
+        </Rule>
         <Image condition="is">C:\Program Files (x86)\Dell\CommandUpdate\InvColPC.exe</Image>
         <Rule groupRelation="and">
           <Image condition="is">C:\Program Files\Elastic\Endpoint\elastic-endpoint.exe</Image>

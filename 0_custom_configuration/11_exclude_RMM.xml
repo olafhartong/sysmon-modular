@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileCreate onmatch="exclude">
+            <Rule groupRelation="and">
+               <Image condition="begin with">C:\Windows\LTSvc\</Image> 
+               <TargetFilename condition="begin with">C:\Windows\LTSvc\</TargetFilename>
+            </Rule>
+         </FileCreate>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
