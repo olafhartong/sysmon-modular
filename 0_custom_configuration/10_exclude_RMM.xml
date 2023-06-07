@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <Rule groupRelation="and">
+          <SourceImage condition="contains any">WerFault.exe;NCentralRDLdr.exe</SourceImage> <!--Windows Error Reporting process/Solarwinds N-able MSP Anywhere-->
+          <TargetImage condition="contains all">C:\Users\;\tkcuploader.exe</TargetImage> <!--Solarwinds N-able MSP Anywhere-->
+        </Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

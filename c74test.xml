@@ -1208,6 +1208,10 @@
     <!-- Event ID 10 == ProcessAccess - Excludes -->
     <RuleGroup groupRelation="or">
       <ProcessAccess onmatch="exclude">
+        <Rule groupRelation="and">
+          <SourceImage condition="contains any">WerFault.exe;NCentralRDLdr.exe</SourceImage>
+          <TargetImage condition="contains all">C:\Users\;\tkcuploader.exe</TargetImage>
+        </Rule>
         <SourceImage condition="is">C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Acrobat.exe</SourceImage>
