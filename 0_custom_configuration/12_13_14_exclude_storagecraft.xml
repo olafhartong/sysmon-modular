@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.30">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<RegistryEvent onmatch="exclude">
+				<Rule groupRelation="and">
+					<Image condition="end with">\StorageCraft\ShadowProtect\ShadowProtectSvc.exe</Image>
+					<TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\ShadowProtectSvc\volsettings\</TargetObject>
+				</Rule>
+			</RegistryEvent>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

@@ -1761,6 +1761,10 @@
           <Image condition="is">C:\WINDOWS\system32\svchost.exe</Image>
           <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\DeviceAssociationService\State\Store\Bluetooth</TargetObject>
         </Rule>
+        <Rule groupRelation="and">
+          <Image condition="end with">\StorageCraft\ShadowProtect\ShadowProtectSvc.exe</Image>
+          <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\ShadowProtectSvc\volsettings\</TargetObject>
+        </Rule>
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\aciseposture.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
         <Image condition="is">C:\Program Files\Cylance\Optics\CyOptics.exe</Image>
