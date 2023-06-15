@@ -1944,6 +1944,10 @@
     <RuleGroup groupRelation="or">
       <PipeEvent onmatch="exclude">
         <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files (x86)\Kaseya\;\AgentMon.exe</Image>
+          <PipeName condition="begin with">\kaseyaUser</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Common Files\Adobe\ARM\1.0\AdobeARM.exe</Image>
           <PipeName condition="begin with">\32B6B37A-4A7D-4e00-95F2-</PipeName>
           <PipeName condition="end with">thsnYaVieBoda</PipeName>

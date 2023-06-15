@@ -1,0 +1,13 @@
+  
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files (x86)\Kaseya\;\AgentMon.exe</Image>
+          <PipeName condition="begin with">\kaseyaUser</PipeName>
+        </Rule>
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
