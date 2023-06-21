@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+    <EventFiltering>
+        <RuleGroup name="" groupRelation="or">
+            <!-- COMMENT:   Sysmon already performs some filtering on WMI events - it only logs ActiveScript and CommandLine consumers, since Attackers abuse those -->
+            <!-- COMMENT:   The recommendation is to log everything for WMI: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/chapters/WMI-events.md -->
+            <WmiEvent onmatch="exclude">
+            </WmiEvent>
+        </RuleGroup>
+    </EventFiltering>
+</Sysmon>

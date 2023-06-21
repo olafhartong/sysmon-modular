@@ -1,0 +1,19 @@
+<Sysmon schemaversion="4.40">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="include">
+				<!-- COMMENT: T1059 Section - Command and Scripting Interpreter -->
+				<Rule name="Windows Command Shell" groupRelation="or">
+					<OriginalFileName name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="is">cmd.exe</OriginalFileName>
+					<Image name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="image">cmd.exe</Image>
+				</Rule>
+				<Rule name="PowerShell" groupRelation="or">
+					<OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell_ise.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">Sqlps.exe</OriginalFileName>
+					<CommandLine name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">pester</CommandLine>
+				</Rule>
+			</ProcessCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

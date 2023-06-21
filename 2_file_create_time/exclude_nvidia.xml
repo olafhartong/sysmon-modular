@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30"> <!-- Taken from SwiftOnSecurity rules-->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreateTime onmatch="exclude">
+				<TargetFilename condition="contains">\NVIDIA\NvBackend\ApplicationOntology\</TargetFilename> <!--NVIDIA GeForce Experience Application Ontology, 1000's of events in user profile-->
+			</FileCreateTime>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

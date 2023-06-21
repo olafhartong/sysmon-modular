@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.30"> <!-- Taken from SwiftOnSecurity rules-->
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreateTime onmatch="include">
+				<TargetFilename name="technique_id=T1099,technique_name=Timestomp" condition="end with">.exe</TargetFilename> <!--Look for backdated executables anywhere-->
+			</FileCreateTime>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

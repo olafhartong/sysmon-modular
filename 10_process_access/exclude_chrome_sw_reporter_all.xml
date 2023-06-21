@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <!--  COMMENT: Chrome's SW Reporter allegedly scans many different processes, functioning more as AV than chrome integrity verification https://twitter.com/swagitda_/status/979477998142476289 -->
+        <!--  COMMENT: This rule excludes all process access from software reporter. -->
+        <Rule name="Exclude Chrome SW Reporter Accessing Anything" groupRelation="and">
+          <SourceImage condition="image">software_reporter_tool.exe</SourceImage>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
+        </Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

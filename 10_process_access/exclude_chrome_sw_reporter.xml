@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <!--  COMMENT: Chrome's SW Reporter allegedly scans many different processes, functioning more as AV than chrome integrity verification https://twitter.com/swagitda_/status/979477998142476289 -->
+        <!--  COMMENT: The most noise seems to come from software_reporter_tool scanning itself and chrome with these perms - 1410 is read and write access to the process's virtual memory -->
+        <Rule name="Exclude Chrome SW Reporter into Reporter" groupRelation="and">
+          <SourceImage condition="image">software_reporter_tool.exe</SourceImage>
+          <TargetImage condition="image">software_reporter_tool.exe</TargetImage>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
+        </Rule>
+        <Rule name="Exclude Chrome SW Reporter into Chrome" groupRelation="and">
+          <SourceImage condition="image">software_reporter_tool.exe</SourceImage>
+          <TargetImage condition="image">chrome.exe</TargetImage>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
+        </Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
