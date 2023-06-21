@@ -533,10 +533,6 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <FileDelete onmatch="include"/>
     </RuleGroup>
-    <!-- Event ID 23 == File Delete and overwrite events - Excludes -->
-    <RuleGroup groupRelation="or">
-        <FileDelete onmatch="exclude"/>
-    </RuleGroup>
     <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
     <RuleGroup groupRelation="or">
         <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
