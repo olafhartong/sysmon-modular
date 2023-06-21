@@ -139,7 +139,7 @@
         <Rule name="File Permissions Modification" groupRelation="or">
           <OriginalFileName name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="is">takeown.exe</OriginalFileName>
           <Image name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="image">forfiles.exe</Image>
-          <OriginalFileName name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="contains any">icacls.exe;cacls.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="contains any">icacls.exe;cacls.exe;xcacls.exe</OriginalFileName>
         </Rule>
         <Rule name="Access Token Manipulation" groupRelation="or">
           <OriginalFileName name="technique_id=T1134,technique_name=Access Token Manipulation" condition="is">runas.exe</OriginalFileName>
