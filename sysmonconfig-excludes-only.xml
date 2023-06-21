@@ -220,6 +220,7 @@
       <FileCreateTime onmatch="exclude">
         <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
         <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
+        <TargetFilename condition="contains">\NVIDIA\NvBackend\ApplicationOntology\</TargetFilename>
         <Image condition="image">OneDrive.exe</Image>
         <Image condition="contains">setup</Image>
         <Image condition="end with">slack.exe</Image>
@@ -292,6 +293,10 @@
           <OriginalFileName condition="is">scrobj.dll</OriginalFileName>
         </Rule>
         <Rule groupRelation="and">
+          <Image condition="is">powershell.exe</Image>
+          <OriginalFileName condition="excludes all">mscoree.dll;mscoreei.dll;mscoreeis.dll;clr.dll;clrjit.dll</OriginalFileName>
+        </Rule>
+        <Rule groupRelation="and">
           <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">VSTOInstaller.exe</Image>
           <ImageLoaded condition="begin with">C:\Windows\</ImageLoaded>
         </Rule>
@@ -359,6 +364,20 @@
         <TargetImage condition="begin with">C:\Program Files\Autodesk\Autodesk Desktop App</TargetImage>
         <TargetImage condition="begin with">C:\Program Files (x86)\Autodesk\Autodesk Desktop App</TargetImage>
         <SourceImage condition="is">C:\Windows\CarbonBlack\cb.exe</SourceImage>
+        <Rule name="Exclude Chrome SW Reporter into Reporter" groupRelation="and">
+          <SourceImage condition="image">software_reporter_tool.exe</SourceImage>
+          <TargetImage condition="image">software_reporter_tool.exe</TargetImage>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
+        </Rule>
+        <Rule name="Exclude Chrome SW Reporter into Chrome" groupRelation="and">
+          <SourceImage condition="image">software_reporter_tool.exe</SourceImage>
+          <TargetImage condition="image">chrome.exe</TargetImage>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
+        </Rule>
+        <Rule name="Exclude Chrome SW Reporter Accessing Anything" groupRelation="and">
+          <SourceImage condition="image">software_reporter_tool.exe</SourceImage>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
+        </Rule>
         <SourceImage condition="contains all">C:\Program Files\Cisco\AMP\;sfc.exe</SourceImage>
         <SourceImage condition="contains all">C:\Users\;\AppData\Local\Citrix\ICA Client\receiver\Receiver.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\Citrix\ICA Client\Receiver\Receiver.exe</SourceImage>
@@ -462,6 +481,14 @@
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\SoftwareProtectionPlatform\SvcRestartTask</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector</TargetFilename>
         <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant</TargetFilename>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <TargetFilename condition="is">C:\Windows\ServiceProfiles\LocalService\AppData\Local\lastalive0.dat</TargetFilename>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <TargetFilename condition="is">C:\Windows\ServiceProfiles\LocalService\AppData\Local\lastalive1.dat</TargetFilename>
+        </Rule>
       </FileCreate>
     </RuleGroup>
     <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Excludes -->
@@ -471,6 +498,14 @@
         <Image condition="is">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</Image>
         <Image condition="is">C:\Program Files\Cylance\Optics\CyOptics.exe</Image>
         <Image condition="is">C:\Program Files\Cylance\Desktop\CylanceSvc.exe</Image>
+        <Rule groupRelation="and">
+          <Image condition="image">svchost.exe</Image>
+          <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\DNSRegisteredAdapters</TargetObject>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="image">svchost.exe</Image>
+          <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces</TargetObject>
+        </Rule>
         <TargetObject condition="end with">Toolbar\WebBrowser</TargetObject>
         <TargetObject condition="end with">Toolbar\WebBrowser\ITBar7Height</TargetObject>
         <TargetObject condition="end with">Toolbar\ShellBrowser\ITBar7Layout</TargetObject>
@@ -498,6 +533,9 @@
           <Image condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</Image>
           <TargetObject condition="begin with">HKLM\System\CurrentControlSet\Services\HealthService\Parameters\Management Groups</TargetObject>
         </Rule>
+        <TargetObject condition="contains">\{CAFEEFAC-</TargetObject>
+        <EventType condition="is">CreateKey</EventType>
+        <TargetObject condition="begin with">HKLM\COMPONENTS</TargetObject>
         <Image condition="is">C:\Program Files\ownCloud\owncloud.exe</Image>
         <Image condition="is">C:\Program Files (x86)\ownCloud\owncloud.exe</Image>
         <Rule groupRelation="and">
