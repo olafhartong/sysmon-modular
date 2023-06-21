@@ -818,6 +818,7 @@
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5985</DestinationPort>
         <DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5986</DestinationPort>
+        <DestinationPort name="technique_id=T1087.002,technique_name=Account Discovery: Domain Account" condition="is">9389</DestinationPort>
         <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexec.exe</Image>
         <Image name="technique_id=T1569.002,technique_name=Service Execution" condition="image">psexesvc.exe</Image>
         <Rule groupRelation="and">
