@@ -146,6 +146,9 @@ function Merge-AllSysmonXml
             $doc = [xml]::new()
             Write-Verbose "Loading doc from '$FilePath'..."
             $doc.Load($FilePath)
+            if(!$?){
+                Write-Error "Could not load file '$FilePath'"
+            }
             if(-not $PreserveComments){
                 Write-Verbose "Stripping comments for '$FilePath'"
                 $commentNodes = $doc.SelectNodes('//comment()')
