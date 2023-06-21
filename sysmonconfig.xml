@@ -2330,66 +2330,7 @@
     <!-- Event ID 23 == File Delete and overwrite events which saves a copy to the archivedir - Includes -->
     <!-- Default set to disabled due to disk space implications, enable with care!-->
     <RuleGroup groupRelation="or">
-      <FileDelete onmatch="include">
-        <Rule name="Executables" groupRelation="and">
-          <IsExecutable>True</IsExecutable>
-          <Image condition="is not">C:\Windows\system32\cleanmgr.exe</Image>
-          <TargetFilename condition="not end with">.mui</TargetFilename>
-        </Rule>
-        <Rule name="Office documents" groupRelation="or">
-          <TargetFilename condition="end with">.doc</TargetFilename>
-          <TargetFilename condition="end with">.dot</TargetFilename>
-          <TargetFilename condition="end with">.docx</TargetFilename>
-          <TargetFilename condition="end with">.docm</TargetFilename>
-          <TargetFilename condition="end with">.doc</TargetFilename>
-          <TargetFilename condition="end with">.dot</TargetFilename>
-          <TargetFilename condition="end with">.docx</TargetFilename>
-          <TargetFilename condition="end with">.docm</TargetFilename>
-          <TargetFilename condition="end with">.dotx</TargetFilename>
-          <TargetFilename condition="end with">.dotm</TargetFilename>
-          <TargetFilename condition="end with">.docb</TargetFilename>
-          <TargetFilename condition="end with">.xls</TargetFilename>
-          <TargetFilename condition="end with">.xlt</TargetFilename>
-          <TargetFilename condition="end with">.xlm</TargetFilename>
-          <TargetFilename condition="end with">.xlsx</TargetFilename>
-          <TargetFilename condition="end with">.xlsm</TargetFilename>
-          <TargetFilename condition="end with">.xltx</TargetFilename>
-          <TargetFilename condition="end with">.xltm</TargetFilename>
-          <TargetFilename condition="end with">.xlsb</TargetFilename>
-          <TargetFilename condition="end with">.ppt</TargetFilename>
-          <TargetFilename condition="end with">.pptx</TargetFilename>
-          <TargetFilename condition="end with">.pptm</TargetFilename>
-          <TargetFilename condition="end with">.potx</TargetFilename>
-          <TargetFilename condition="end with">.potm</TargetFilename>
-          <TargetFilename condition="end with">.odt</TargetFilename>
-          <TargetFilename condition="end with">.ods</TargetFilename>
-          <TargetFilename condition="end with">.odp</TargetFilename>
-          <TargetFilename condition="end with">.pdf</TargetFilename>
-          <TargetFilename condition="end with">.rtf</TargetFilename>
-        </Rule>
-        <Rule name="Scripts and payloads" groupRelation="or">
-          <TargetFilename condition="end with">.aspx</TargetFilename>
-          <TargetFilename condition="end with">.bat</TargetFilename>
-          <TargetFilename condition="end with">.ps1</TargetFilename>
-          <TargetFilename condition="end with">.vbs</TargetFilename>
-          <TargetFilename condition="end with">.vba</TargetFilename>
-          <TargetFilename condition="end with">.hta</TargetFilename>
-          <TargetFilename condition="end with">.jar</TargetFilename>
-          <TargetFilename condition="end with">.js</TargetFilename>
-          <TargetFilename condition="end with">.cmd</TargetFilename>
-          <TargetFilename condition="end with">.sh</TargetFilename>
-          <TargetFilename condition="end with">.sct</TargetFilename>
-          <TargetFilename condition="end with">.lnk</TargetFilename>
-        </Rule>
-        <Rule name="other interesting files" groupRelation="or">
-          <TargetFilename condition="end with">.bin</TargetFilename>
-          <TargetFilename condition="end with">.iso</TargetFilename>
-          <TargetFilename condition="end with">.7z</TargetFilename>
-          <TargetFilename condition="end with">.msi</TargetFilename>
-          <TargetFilename condition="end with">.dmp</TargetFilename>
-          <TargetFilename condition="end with">.reg</TargetFilename>
-        </Rule>
-      </FileDelete>
+      <FileDelete onmatch="include" />
     </RuleGroup>
     <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
     <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
@@ -2597,19 +2538,6 @@
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <WmiEvent onmatch="exclude" />
-    </RuleGroup>
-    <RuleGroup groupRelation="or">
-      <FileDelete onmatch="exclude">
-        <TargetFilename condition="begin with">C:\ProgramData\Sophos</TargetFilename>
-        <Rule groupRelation="and">
-          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
-          <TargetFilename condition="end with">.tmp</TargetFilename>
-        </Rule>
-        <Rule groupRelation="and">
-          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
-          <TargetFilename condition="end with">.tmp</TargetFilename>
-        </Rule>
-      </FileDelete>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>
