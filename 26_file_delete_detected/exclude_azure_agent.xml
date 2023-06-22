@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileDeleteDetected onmatch="exclude">
+            <Image condition="contains all">C:\WindowsAzure\GuestAgent;\WindowsAzureGuestAgent.exe</Image>
+            <Image condition="contains all">C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\;\AMAExtHealthMonitor.exe</Image>
+            <TargetFilename condition="begin with">C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus</TargetFilename>
+         </FileDeleteDetected>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
