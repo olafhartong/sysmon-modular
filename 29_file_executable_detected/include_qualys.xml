@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.90">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileExecutableDetected onmatch="include">
+            <TargetFilename condition="begin with">C:\Program Files\Qualys\QualysAgent</TargetFilename>               <!--Writable for all users-->
+         </FileExecutableDetected>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
