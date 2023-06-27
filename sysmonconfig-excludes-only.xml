@@ -18,7 +18,7 @@
 <!--           (&    ,&.                                                                                                         -->
 <!--            .*&&*.                                                                                                           -->
 <!--                                                                                                                             -->
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.90">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
   <CheckRevocation>False</CheckRevocation>
@@ -63,6 +63,8 @@
           <CommandLine condition="is">"C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs"</CommandLine>
         </Rule>
         <ParentImage condition="end with">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</ParentImage>
+        <Image condition="begin with">C:\program files (x86)\desktopcentral_agent\bin\</Image>
+        <Image condition="begin with">C:\program files\desktopcentral_server\bin\</Image>
         <CommandLine condition="begin with">C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe</CommandLine>
         <Image condition="is">C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe</Image>
         <Image condition="is">C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe</Image>
@@ -430,6 +432,11 @@
           <TargetImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</TargetImage>
           <GrantedAccess condition="is">0x1401</GrantedAccess>
         </Rule>
+        <Rule groupRelation="and">
+          <SourceImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</SourceImage>
+          <TargetImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</TargetImage>
+          <GrantedAccess condition="is">0x1401</GrantedAccess>
+        </Rule>
         <SourceImage condition="is">C:\Program Files (x86)\VMware\VMWare Player\vmware-authd.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\VMware\VMware Workstation\vmware-authd.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\WinZip\FAHWindow64.exe</SourceImage>
@@ -451,6 +458,7 @@
         <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
         <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
         <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe</Image>
+        <TargetFilename condition="contains all">C:\Windows\Prefetch;.pf</TargetFilename>
         <Image condition="is">C:\Windows\System32\smss.exe</Image>
         <Image condition="is">C:\Windows\system32\CompatTelRunner.exe</Image>
         <Image condition="is">C:\Windows\system32\wbem\WMIADAP.EXE</Image>
@@ -982,10 +990,28 @@
     <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
     <RuleGroup groupRelation="or">
       <FileDeleteDetected onmatch="exclude">
+        <Image condition="contains all">C:\WindowsAzure\GuestAgent;\WindowsAzureGuestAgent.exe</Image>
+        <Image condition="contains all">C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\;\AMAExtHealthMonitor.exe</Image>
+        <TargetFilename condition="begin with">C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus</TargetFilename>
         <Image condition="contains all">\appdata\local\google\chrome\user data\swreporter\;software_reporter_tool.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
+        <TargetFilename condition="contains all">C:\Windows\Prefetch;.pf</TargetFilename>
         <User condition="contains any">NETWORK SERVICE; LOCAL SERVICE</User>
       </FileDeleteDetected>
+    </RuleGroup>
+    <!-- Event ID 27 == File Block Executable and overwrite events - Includes -->
+    <!-- Default set to disabled due to potential unwanted blocks, enable with care!-->
+    <RuleGroup groupRelation="or">
+      <FileBlockExecutable onmatch="include" />
+    </RuleGroup>
+    <!-- Event ID 28 == Fileblock Shredding events - Includes -->
+    <!-- Default set to disabled due to disk space implications, enable with care!-->
+    <RuleGroup groupRelation="or">
+      <FileBlockShredding onmatch="include" />
+    </RuleGroup>
+    <!-- Event ID 29 == File Executable Detected events - Excludes -->
+    <RuleGroup groupRelation="or">
+      <FileExecutableDetected onmatch="exclude" />
     </RuleGroup>
   </EventFiltering>
 </Sysmon>

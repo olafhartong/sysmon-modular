@@ -20,7 +20,7 @@
 <!--           (&    ,&.                                                                                                         -->
 <!--            .*&&*.                                                                                                           -->
 <!--                                                                                                                             -->
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.90">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
   <CheckRevocation>False</CheckRevocation>
@@ -1085,6 +1085,11 @@
         <Rule groupRelation="and">
           <SourceImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</SourceImage>
           <TargetImage condition="is">C:\Program Files\Microsoft VS Code\Code.exe</TargetImage>
+          <GrantedAccess condition="is">0x1401</GrantedAccess>
+        </Rule>
+        <Rule groupRelation="and">
+          <SourceImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</SourceImage>
+          <TargetImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</TargetImage>
           <GrantedAccess condition="is">0x1401</GrantedAccess>
         </Rule>
         <SourceImage condition="is">C:\Program Files (x86)\VMware\VMWare Player\vmware-authd.exe</SourceImage>
@@ -2267,6 +2272,20 @@
         </Rule>
       </FileDeleteDetected>
     </RuleGroup>
+    <!-- Event ID 27 == File Block Executable and overwrite events - Includes -->
+    <!-- Default set to disabled due to potential unwanted blocks, enable with care!-->
+    <RuleGroup groupRelation="or">
+      <FileBlockExecutable onmatch="include" />
+    </RuleGroup>
+    <!-- Event ID 28 == Fileblock Shredding events - Includes -->
+    <!-- Default set to disabled due to disk space implications, enable with care!-->
+    <RuleGroup groupRelation="or">
+      <FileBlockShredding onmatch="include" />
+    </RuleGroup>
+    <!-- Event ID 29 == File Executable Detected events - Excludes -->
+    <RuleGroup groupRelation="or">
+      <FileExecutableDetected onmatch="exclude" />
+    </RuleGroup>
     <RuleGroup groupRelation="or">
       <ProcessCreate onmatch="exclude">
         <Rule groupRelation="and">
@@ -2301,6 +2320,8 @@
           <CommandLine condition="is">"C:\Windows\system32\cscript.exe" /nologo "MonitorKnowledgeDiscovery.vbs"</CommandLine>
         </Rule>
         <ParentImage condition="end with">C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnagent.exe</ParentImage>
+        <Image condition="begin with">C:\program files (x86)\desktopcentral_agent\bin\</Image>
+        <Image condition="begin with">C:\program files\desktopcentral_server\bin\</Image>
         <CommandLine condition="begin with">C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe</CommandLine>
         <Image condition="is">C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe</Image>
         <Image condition="is">C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe</Image>
@@ -2507,6 +2528,7 @@
         <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
         <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
         <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe</Image>
+        <TargetFilename condition="contains all">C:\Windows\Prefetch;.pf</TargetFilename>
         <Image condition="is">C:\Windows\System32\smss.exe</Image>
         <Image condition="is">C:\Windows\system32\CompatTelRunner.exe</Image>
         <Image condition="is">C:\Windows\system32\wbem\WMIADAP.EXE</Image>
@@ -2817,10 +2839,126 @@
     </RuleGroup>
     <RuleGroup groupRelation="or">
       <FileDeleteDetected onmatch="exclude">
+        <Image condition="contains all">C:\WindowsAzure\GuestAgent;\WindowsAzureGuestAgent.exe</Image>
+        <Image condition="contains all">C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\;\AMAExtHealthMonitor.exe</Image>
+        <TargetFilename condition="begin with">C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus</TargetFilename>
         <Image condition="contains all">\appdata\local\google\chrome\user data\swreporter\;software_reporter_tool.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Image>
+        <TargetFilename condition="contains all">C:\Windows\Prefetch;.pf</TargetFilename>
         <User condition="contains any">NETWORK SERVICE; LOCAL SERVICE</User>
       </FileDeleteDetected>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileExecutableDetected onmatch="include">
+        <Image name="technique_id=T1546.008,technique_name=Windows Error Reporting" condition="contains">werfault.exe</Image>
+        <Image name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</Image>
+        <Image name="technique_id=T1027.004,technique_name=Compile After Delivery" condition="is">csc.exe</Image>
+        <Image name="technique_id=T1543.003,technique_name=Windows Service" condition="is">sc.exe</Image>
+        <Image name="technique_id=T1489,technique_name=Service Stop" condition="is">taskkill.exe</Image>
+        <Image name="technique_id=T1074,technique_name=Data Staged" condition="is">xcopy.exe</Image>
+        <Image name="technique_id=T1074,technique_name=Data Staged" condition="is">robocopy.exe</Image>
+        <Image name="technique_id=T,technique_name=" condition="is">makecab.exe</Image>
+        <Image name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</Image>
+        <Image name="technique_id=T1105,technique_name=Remote File Copy" condition="is">expand.exe</Image>
+        <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">curl.exe</Image>
+        <Image name="technique=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</Image>
+        <Image name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">extrac32.exe</Image>
+        <Image name="technique_id=T1053.005,technique_name=Scheduled Task/Job" condition="contains any">schtasks.exe;sctasks.exe</Image>
+        <Image name="technique=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</Image>
+        <Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskeng.exe</Image>
+        <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
+        <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">wmiprvse.exe</Image>
+        <Image condition="is">wevtutil.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">cscript.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wscript.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">bash.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">certutil.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">winrs.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">control.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">desktopimgdownldr.exe</Image>
+        <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wsl.exe</Image>
+        <Image name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</Image>
+        <Image name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</Image>
+        <Image name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</Image>
+        <Image name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</Image>
+        <Image name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</Image>
+        <Image name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">extexport.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msconfig.EXE</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msiexec.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">odbcconf.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">PresentationHost.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">rasdlui.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">RegisterCimProvider2.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">RegisterCimProvider.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">ScriptRunner.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">verclsid.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wab.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wab.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wsreset.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Appvlp.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">csi.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">devtoolslauncher.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">Scriptrunner.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">tttracer.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msdt.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">rasautou.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Register-cimprovider.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">diskshadow.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">replace.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">jjs.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">appcmd.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vbc.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">csc.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dfsvc.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">mftrace.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dxcap.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">ilasm.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">jsc.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">vbc.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">Microsoft.Workflow.Compiler.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">vsjitdebugger.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">tracker.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">te.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">rcsi.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">Microsoft.Workflow.Compiler.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">jsc.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">MSBuild.exe</Image>
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">excel.exe</Image>
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">winword.exe</Image>
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">powerpnt.exe</Image>
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">outlook.exe</Image>
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">msaccess.exe</Image>
+        <Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">mspub.exe</Image>
+        <TargetFilename condition="begin with">C:\Program Files\Qualys\QualysAgent</TargetFilename>
+        <Image name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="is">cmd.exe</Image>
+        <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</Image>
+        <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">pwsh.exe</Image>
+        <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell_ise.exe</Image>
+        <Image name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">Sqlps.exe</Image>
+        <TargetFilename condition="contains">\Downloads\</TargetFilename>
+        <TargetFilename condition="contains">\Appdata\Local\Temp\</TargetFilename>
+        <TargetFilename condition="contains">\Appdata\Local\Microsoft\Windows\INetCache\Content.Outlook\</TargetFilename>
+        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">wsmprovhost.exe</Image>
+        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">winrshost.exe</Image>
+        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
+        <TargetFilename condition="begin with">C:\ProgramData\Intel</TargetFilename>
+        <TargetFilename condition="begin with">C:\ProgramData\Mozilla</TargetFilename>
+        <TargetFilename condition="begin with">C:\ProgramData\chocolatey\</TargetFilename>
+        <TargetFilename condition="begin with">C:\ProgramData\Microsoft\DeviceSync</TargetFilename>
+        <TargetFilename condition="begin with">C:\ProgramData\Microsoft\PlayReady</TargetFilename>
+        <TargetFilename condition="begin with">C:\ProgramData\Microsoft\User Account Pictures</TargetFilename>
+        <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Office\Heartbeat</TargetFilename>
+        <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER</TargetFilename>
+        <TargetFilename condition="begin with">C:\Users\All Users\</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\Tasks</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\tracing</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\Tasks</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\System32\spool\drivers\color</TargetFilename>
+        <TargetFilename condition="begin with">C:\Windows\SysWOW64\Tasks</TargetFilename>
+      </FileExecutableDetected>
     </RuleGroup>
   </EventFiltering>
 </Sysmon>
