@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.90">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileExecutableDetected onmatch="include">
+				<Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">excel.exe</Image>
+				<Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">winword.exe</Image>
+				<Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">powerpnt.exe</Image>
+				<Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">outlook.exe</Image>
+				<Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">msaccess.exe</Image>
+				<Image name="technique_id=T1137,technique_name=Office Application Startup" condition="image">mspub.exe</Image>
+			</FileExecutableDetected>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

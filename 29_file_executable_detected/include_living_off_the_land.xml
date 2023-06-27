@@ -1,0 +1,83 @@
+<Sysmon schemaversion="4.90">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileExecutableDetected onmatch="include">
+				<Image name="technique_id=T1546.008,technique_name=Windows Error Reporting" condition="contains">werfault.exe</Image>
+				<Image name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
+				<Image name="technique_id=T1027.004,technique_name=Compile After Delivery" condition="is">csc.exe</Image>
+				<Image name="technique_id=T1543.003,technique_name=Windows Service" condition="is">sc.exe</Image>
+				<Image name="technique_id=T1489,technique_name=Service Stop" condition="is">taskkill.exe</Image>
+				<Image name="technique_id=T1074,technique_name=Data Staged" condition="is">xcopy.exe</Image>
+				<Image name="technique_id=T1074,technique_name=Data Staged" condition="is">robocopy.exe</Image>
+				<Image name="technique_id=T,technique_name=" condition="is">makecab.exe</Image>
+				<Image name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</Image>
+				<Image name="technique_id=T1105,technique_name=Remote File Copy" condition="is">expand.exe</Image>
+				<Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">curl.exe</Image>
+				<Image name="technique=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</Image>
+				<Image name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">extrac32.exe</Image>
+				<Image name="technique_id=T1053.005,technique_name=Scheduled Task/Job" condition="contains any">schtasks.exe;sctasks.exe</Image>
+				<Image name="technique=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</Image>
+				<Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskeng.exe</Image>
+				<Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
+				<Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">wmiprvse.exe</Image>
+				<Image condition="is">wevtutil.exe</Image>
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image> <!--Microsoft:Windows: Program Compatibility Assistant)-->
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">cscript.exe</Image>
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wscript.exe</Image>
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">bash.exe</Image> <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">certutil.exe</Image>
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">winrs.exe</Image>
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">control.exe</Image> <!-- https://twitter.com/rikvduijn/status/853251879320662017 -->
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">desktopimgdownldr.exe</Image>
+				<Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wsl.exe</Image>
+				<Image name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</Image> <!--Microsoft:Windows: HTML Helper-->
+				<Image name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</Image>
+				<Image name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</Image>
+				<Image name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</Image>
+				<Image name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</Image> <!--Mitre T1218.010--> <!--Mitre T1085--> <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
+				<Image name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">extexport.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msconfig.EXE</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msiexec.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">odbcconf.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">PresentationHost.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">rasdlui.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">RegisterCimProvider2.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">RegisterCimProvider.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">ScriptRunner.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">verclsid.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wab.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wab.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wsreset.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Appvlp.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">csi.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">devtoolslauncher.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">Scriptrunner.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">tttracer.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msdt.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">rasautou.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Register-cimprovider.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">diskshadow.exe</Image> <!--This only applies to versions of Windows Server-->
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">replace.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">jjs.exe</Image>
+				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">appcmd.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vbc.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">csc.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dfsvc.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">mftrace.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dxcap.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">ilasm.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">jsc.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">vbc.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">Microsoft.Workflow.Compiler.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">vsjitdebugger.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">tracker.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">te.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">rcsi.exe</Image>
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">Microsoft.Workflow.Compiler.exe</Image> <!--https://lolbas-project.github.io/lolbas/Binaries/Microsoft.Workflow.Compiler/-->
+				<Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">jsc.exe</Image> <!-- https://lolbas-project.github.io/lolbas/Binaries/Jsc/ -->
+			</FileExecutableDetected>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

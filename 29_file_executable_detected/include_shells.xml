@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.90">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileExecutableDetected onmatch="include">
+				<Image name="technique_id=T1059.003,technique_name=Windows Command Shell" condition="is">cmd.exe</Image>
+				<Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell.exe</Image>
+				<Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">pwsh.exe</Image>
+				<Image name="technique_id=T1059.001,technique_name=PowerShell" condition="image">powershell_ise.exe</Image>
+				<Image name="technique_id=T1059.001,technique_name=PowerShell" condition="contains">Sqlps.exe</Image>
+			</FileExecutableDetected>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
