@@ -11,6 +11,8 @@ This is a Microsoft Sysinternals Sysmon [download here](https://docs.microsoft.c
 
 Please keep in mind that any of these configurations should be considered a starting point, tuning per environment is **strongly** recommended.
 
+**Note:** to get even more value out of the FileExecutable event, consider getting the most up to date version of the LOLdrivers config merged into the config as well. You can easily do that by grabbing the file and adding it in the 29_file_execute_detected folder and generate a new config. 
+
 The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run. More info on how to generate a custom config, incorporating your own modules [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)
 
 ## Pre-Grenerated configurations
@@ -47,7 +49,7 @@ Next to the documentation below, there is also [a video](https://youtu.be/Cx_zrM
 
 ---
 
-## NOTICE; Sysmon below 13 will not completely be compatible with this configuration
+## NOTICE; Sysmon below 15 will not completely be compatible with this configuration
 
 Older versions are still available in the branches, but are not as complete as the current branch
 
@@ -55,8 +57,9 @@ Older versions are still available in the branches, but are not as complete as t
 - V9.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-9)
 - V10.4 >> [here](https://github.com/olafhartong/sysmon-modular/tree/v10.4)
 - V12.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-12)
+- V13.x / 14.x >> [here](https://github.com/olafhartong/sysmon-modular/tree/version-13-14)
 
-To understand added features in the latest version, have a look at my [small blog post](https://medium.com/falconforce/sysmon-11-dns-improvements-and-filedelete-events-7a74f17ca842) or watch my [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
+To understand added features in the versions, have a look at my [small blog post](https://medium.com/falconforce/sysmon-11-dns-improvements-and-filedelete-events-7a74f17ca842) and newer articles or watch my [DerbyCon talk](http://www.irongeek.com/i.php?page=videos/derbycon9/stable-36-endpoint-detection-super-powers-on-the-cheap-with-sysmon-olaf-hartong)
 
 **Note:**
 I do recommend using a minimal number of configurations within your environment for multiple obvious reasons, like; maintenance, output equality, manageability and so on. But do make tailored configurations for Domain Controllers, Servers and workstations.
