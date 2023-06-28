@@ -1,0 +1,15 @@
+<Sysmon schemaversion="4.30">
+	<FileCreate>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="include">
+				<Rule groupRelation="and">
+					<!-- CVE-2021-40444 https://twitter.com/RonnyTNL/status/1436334640617373699 -->
+					<!--	COMMENT: Taken from https://github.com/Neo23x0/sysmon-config/blob/935685e5b2689a6e1bbe81bbf4ccebff92d45a91/sysmonconfig-export.xml#L609 -->
+					<!-- Further investigation needed for full CVE coverage: https://billdemirkapi.me/unpacking-cve-2021-40444-microsoft-office-rce/  -->
+					<Image condition="end with">\WINWORD.EXE</Image>
+					<TargetFilename condition="contains any">.cab;.inf</TargetFilename>
+				</Rule>
+			</FileCreate>
+		</RuleGroup>
+	</FileCreate>
+</Sysmon>

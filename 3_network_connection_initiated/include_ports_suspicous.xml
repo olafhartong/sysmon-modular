@@ -15,6 +15,7 @@
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5900</DestinationPort>				<!--VNC protocol-->
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5985</DestinationPort>				<!--WinRM protocol-->
 				<DestinationPort name="technique_id=T1021,technique_name=Remote Services" condition="is">5986</DestinationPort>				<!--WinRM protocol-->
+				<DestinationPort name="technique_id=T1087.002,technique_name=Account Discovery: Domain Account" condition="is">9389</DestinationPort>				<!--ADWS port-->
 			</NetworkConnect>
 		</RuleGroup>
 	</EventFiltering>

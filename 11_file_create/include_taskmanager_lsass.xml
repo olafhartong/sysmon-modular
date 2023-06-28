@@ -1,9 +1,13 @@
 <Sysmon schemaversion="4.30">
 	<EventFiltering>
-		<RuleGroup name="" groupRelation="and">
+		<RuleGroup name="" groupRelation="or">
 			<FileCreate onmatch="include">
-				<TargetFilename condition="contains">\*lsass*.dmp\</TargetFilename>				<!-- Capture LSASS dump from task manager -->
-				<Image condition="image">taskmgr.exe</Image>
+				<Rule name="technique_id=T1003.001,technique_name=OS Credential Dumping: LSASS Memory" groupRelation="and">
+					<!-- Capture LSASS dump from task manager -->
+					<TargetFilename condition="contains">lsass</TargetFilename>
+					<TargetFilename condition="contains any">dmp;DMP</TargetFilename>
+					<Image condition="image">taskmgr.exe</Image>
+				</Rule>
 			</FileCreate>
 		</RuleGroup>
 	</EventFiltering>

@@ -1,0 +1,22 @@
+<Sysmon schemaversion="4.90">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileExecutableDetected onmatch="include">
+               <TargetFilename condition="begin with">C:\ProgramData\Intel</TargetFilename>
+               <TargetFilename condition="begin with">C:\ProgramData\Mozilla</TargetFilename>
+               <TargetFilename condition="begin with">C:\ProgramData\chocolatey\</TargetFilename>
+               <TargetFilename condition="begin with">C:\ProgramData\Microsoft\DeviceSync</TargetFilename>
+               <TargetFilename condition="begin with">C:\ProgramData\Microsoft\PlayReady</TargetFilename>
+               <TargetFilename condition="begin with">C:\ProgramData\Microsoft\User Account Pictures</TargetFilename>
+               <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Office\Heartbeat</TargetFilename>
+               <TargetFilename condition="begin with">C:\ProgramData\Microsoft\Windows\WER</TargetFilename>
+               <TargetFilename condition="begin with">C:\Users\All Users\</TargetFilename>
+               <TargetFilename condition="begin with">C:\Windows\Tasks</TargetFilename>
+               <TargetFilename condition="begin with">C:\Windows\tracing</TargetFilename>
+               <TargetFilename condition="begin with">C:\Windows\System32\Tasks</TargetFilename>
+               <TargetFilename condition="begin with">C:\Windows\System32\spool\drivers\color</TargetFilename>
+               <TargetFilename condition="begin with">C:\Windows\SysWOW64\Tasks</TargetFilename>
+         </FileExecutableDetected>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

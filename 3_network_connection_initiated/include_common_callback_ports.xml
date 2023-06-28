@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1571,technique_name=Non-Standard Port" groupRelation="or">
+      <NetworkConnect onmatch="include">
+        <DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">4444</DestinationPort>      <!--Metasploit-based reverse shells-->
+        <DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">31337</DestinationPort>     <!--Back Orifice, BO2K-->
+        <DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">6667</DestinationPort>     <!--IRC-based botnets-->
+        <DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">5555</DestinationPort>     <!--Satori, ADB.Miner-->
+        <DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">5353</DestinationPort>     <!--DNSMessenger-->
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

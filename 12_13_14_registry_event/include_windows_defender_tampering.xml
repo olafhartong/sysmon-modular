@@ -13,7 +13,7 @@
 				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableRealtimeMonitoring</TargetObject><!--MDE-->
 				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet\SpyNetReporting</TargetObject><!--MDE-->
 				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender</TargetObject>				<!--Microsoft:Defender: Detect changes to Defender administrative settings to monitor for disablement--><!--MDE-->
-				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\lmicrosoft\microsoft antimalware\exclusions\</TargetObject><!--MDE-->
+				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\microsoft\microsoft antimalware\exclusions\</TargetObject><!--MDE-->
 				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\microsoft\Windows Advanced Threat Protection\TelLib</TargetObject><!--MDE-->
 				<TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windows advanced threat protection\</TargetObject><!--MDE-->
 			</RegistryEvent>

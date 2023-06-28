@@ -1,0 +1,31 @@
+<Sysmon schemaversion="4.21">
+    <!--                       NOTICE : This is a modified version of Sysmon-Modular that is restructured to enhance                 -->
+    <!--                        config layering and MITRE ATT&CK Technique mapping                                                   -->
+    <!--                        for more information go to https://github.com/olafhartong/sysmon-modular/wiki                        -->
+    <!--                                                                                                                             -->
+    <!--  //**                  ***//                                                                                                -->
+    <!-- ///#(**               **%(///                                                                                               -->
+    <!-- ((&&&**               **&&&((                                                                                               -->
+    <!--  (&&&**   ,(((((((.   **&&&(                                                                                                -->
+    <!--  ((&&**(((((//(((((((/**&&((      _____                                                            __      __               -->
+    <!--   (&&///((////(((((((///&&(      / ___/__  ___________ ___  ____  ____        ____ ___  ____  ____/ /_  __/ /___ ______     -->
+    <!--    &////(/////(((((/(////&       \__ \/ / / / ___/ __ `__ \/ __ \/ __ \______/ __ `__ \/ __ \/ __  / / / / / __ `/ ___/     -->
+    <!--    ((//  /////(/////  /(((      ___/ / /_/ (__  ) / / / / / /_/ / / / /_____/ / / / / / /_/ / /_/ / /_/ / / /_/ / /         -->
+    <!--   &(((((#.///////// #(((((&    /____/\__, /____/_/ /_/ /_/\____/_/ /_/     /_/ /_/ /_/\____/\__,_/\__,_/_/\__,_/_/          -->
+    <!--    &&&&((#///////((#((&&&&          /____/                                                                                  -->
+    <!--      &&&&(#/***//(#(&&&&                                                                                                    -->
+    <!--        &&&&****///&&&&                                                                            by Olaf Hartong           -->
+    <!--           (&    ,&.                                                                                  & friends              -->
+    <!--            .*&&*.                                                                                                           -->
+    <!--                                                                                                                             -->
+  <HashAlgorithms>*</HashAlgorithms>
+  <!-- This now also determines the file names of the files preserved (String) -->
+  <CheckRevocation>False</CheckRevocation>
+  <!-- Setting this to true might impact performance -->
+  <DnsLookup>False</DnsLookup>
+  <!-- Disables lookup behavior, default is True (Boolean) -->
+  <ArchiveDirectory>Sysmon</ArchiveDirectory>
+  <!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
+  <EventFiltering>
+  </EventFiltering>
+</Sysmon>

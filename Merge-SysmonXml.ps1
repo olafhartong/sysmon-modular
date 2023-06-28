@@ -146,6 +146,9 @@ function Merge-AllSysmonXml
             $doc = [xml]::new()
             Write-Verbose "Loading doc from '$FilePath'..."
             $doc.Load($FilePath)
+            if(!$?){
+                Write-Error "Could not load file '$FilePath'"
+            }
             if(-not $PreserveComments){
                 Write-Verbose "Stripping comments for '$FilePath'"
                 $commentNodes = $doc.SelectNodes('//comment()')
@@ -287,6 +290,18 @@ function Merge-SysmonXml
             include = @()
             exclude = @()
         }
+        FileBlockExecutable = [ordered]@{
+            include = @()
+            exclude = @()
+        }
+        FileBlockShredding = [ordered]@{
+            include = @()
+            exclude = @()
+        }
+        FileExecutableDetected = [ordered]@{
+            include = @()
+            exclude = @()
+        }
     }
 
     $general = [xml]@'
@@ -309,7 +324,7 @@ function Merge-SysmonXml
 <!--           (&    ,&.                                                                                                         -->
 <!--            .*&&*.                                                                                                           -->
 <!--                                                                                                                             -->
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.90">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
@@ -428,9 +443,19 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <FileDeleteDetected onmatch="include"/>
     </RuleGroup>
-        <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
+    <!-- Event ID 27 == File Block Executable and overwrite events - Includes -->
+    <!-- Default set to disabled due to potential unwanted blocks, enable with care!-->
     <RuleGroup groupRelation="or">
-        <FileDeleteDetected onmatch="exclude"/>
+        <FileBlockExecutable onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 28 == Fileblock Shredding events - Includes -->
+    <!-- Default set to disabled due to disk space implications, enable with care!-->
+    <RuleGroup groupRelation="or">
+        <FileBlockShredding onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 29 == File Executable Detected events - Excludes -->
+    <RuleGroup groupRelation="or">
+        <FileExecutableDetected onmatch="exclude"/>                        
     </RuleGroup>
 </EventFiltering>
 </Sysmon>
@@ -457,7 +482,7 @@ function Merge-SysmonXml
 <!--           (&    ,&.                                                                                                         -->
 <!--            .*&&*.                                                                                                           -->
 <!--                                                                                                                             -->
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.90">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
@@ -530,10 +555,6 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <FileDelete onmatch="include"/>
     </RuleGroup>
-    <!-- Event ID 23 == File Delete and overwrite events - Excludes -->
-    <RuleGroup groupRelation="or">
-        <FileDelete onmatch="exclude"/>
-    </RuleGroup>
     <!-- Event ID 24 == Clipboard change events, only captures text, not files - Includes -->
     <RuleGroup groupRelation="or">
         <!-- Default set to disabled due to privacy implications and potential data you leave for attackers, enable with care!-->
@@ -546,6 +567,20 @@ function Merge-SysmonXml
         <!-- Event ID 26 == File Delete and overwrite events - Excludes -->
     <RuleGroup groupRelation="or">
         <FileDeleteDetected onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 27 == File Block Executable and overwrite events - Includes -->
+    <!-- Default set to disabled due to potential unwanted blocks, enable with care!-->
+    <RuleGroup groupRelation="or">
+        <FileBlockExecutable onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 28 == Fileblock Shredding events - Includes -->
+    <!-- Default set to disabled due to disk space implications, enable with care!-->
+    <RuleGroup groupRelation="or">
+        <FileBlockShredding onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 29 == File Executable Detected events - Excludes -->
+    <RuleGroup groupRelation="or">
+        <FileExecutableDetected onmatch="exclude"/>                        
     </RuleGroup>
 </EventFiltering>
 </Sysmon>
@@ -574,7 +609,7 @@ $mdeaugmentlog = [xml]@'
 <!--           (&    ,&.                                                                                                         -->
 <!--            .*&&*.                                                                                                           -->
 <!--                                                                                                                             -->
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.90">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
@@ -680,6 +715,20 @@ $mdeaugmentlog = [xml]@'
         <!-- Event ID 26 == File Delete and overwrite events - Sysmon will not provide notable additional visibility over MDE in the most common folders. Enable for your company specific folders. -->
     <RuleGroup groupRelation="or">
         <FileDeleteDetected onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 27 == File Block Executable and overwrite events - Includes -->
+    <!-- Default set to disabled due to potential unwanted blocks, enable with care!-->
+    <RuleGroup groupRelation="or">
+        <FileBlockExecutable onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 28 == Fileblock Shredding events - Includes -->
+    <!-- Default set to disabled due to disk space implications, enable with care!-->
+    <RuleGroup groupRelation="or">
+        <FileBlockShredding onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 29 == File Executable Detected events - Excludes -->
+    <RuleGroup groupRelation="or">
+        <FileExecutableDetected onmatch="exclude"/>                        
     </RuleGroup>
 </EventFiltering>
 </Sysmon>

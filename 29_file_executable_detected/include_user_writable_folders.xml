@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.90">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileExecutableDetected onmatch="include">
+            <TargetFilename condition="contains">\Downloads\</TargetFilename>               <!--User Download folder-->
+            <TargetFilename condition="contains">\Appdata\Local\Temp\</TargetFilename>               <!--User Temp folder-->
+            <TargetFilename condition="contains">\Appdata\Local\Microsoft\Windows\INetCache\Content.Outlook\</TargetFilename>               <!--Microsoft Outlook Temp folder-->
+         </FileExecutableDetected>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

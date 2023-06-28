@@ -8,15 +8,15 @@ on:
 
 jobs:
   generate-config:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Import Merge-SysmonXml.ps1 and generate config
         run: | 
           Import-Module .\Merge-SysmonXml.ps1
           Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
         shell: pwsh
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: sysmonconfig
           path: sysmonconfig.xml
