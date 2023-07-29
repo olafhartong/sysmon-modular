@@ -1,7 +1,7 @@
-﻿<!--                   		       NOTICE : This is a RESEARCH ONLY configuration with extreme verbosity                	      -->
+﻿<!--                               NOTICE : This is a RESEARCH ONLY configuration with extreme verbosity                         -->
 <!--                    The log volume expected from this file is significantly high, really DO NOT USE IN PRODUCTION!           -->
 <!--                                This config is only for research, this will use way more CPU/Memory                          -->
-<!--                  Only enable prior to running the to be investigated technique, when done load a lighter config			 -->
+<!--                  Only enable prior to running the to be investigated technique, when done load a lighter config             -->
 <!--                                                                                                                             -->
 <!--  //**                  ***//                                                                                                -->
 <!-- ///#(**               **%(///                                                                                               -->
@@ -18,7 +18,7 @@
 <!--           (&    ,&.                                                                                                         -->
 <!--            .*&&*.                                                                                                           -->
 <!--                                                                                                                             -->
-<Sysmon schemaversion="4.83">
+<Sysmon schemaversion="4.90">
   <HashAlgorithms>*</HashAlgorithms>
   <CheckRevocation />
   <DnsLookup>False</DnsLookup>
@@ -66,10 +66,11 @@
       <WmiEvent onmatch="exclude"/>
       <DnsQuery onmatch="exclude"/>
       <FileDelete onmatch="include"/>
-	  <ClipboardChange onmatch="exclude"/>
-	  <ProcessTampering onmatch="exclude"/>
-	  <FileDeleteDetected onmatch="exclude"/>
-	  <FileBlockExecutable onmatch="exclude"/>
-	  <FileBlockShredding onmatch="exclude"/>
+      <ClipboardChange onmatch="exclude"/>
+      <ProcessTampering onmatch="exclude"/>
+      <FileDeleteDetected onmatch="exclude"/>
+      <FileBlockExecutable onmatch="exclude"/>
+      <FileBlockShredding onmatch="exclude"/>
+      <FileExecutableDetected onmatch="exclude"/>
   </EventFiltering>
 </Sysmon>
