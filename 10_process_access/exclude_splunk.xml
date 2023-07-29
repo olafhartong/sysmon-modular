@@ -1,8 +1,11 @@
-<Sysmon schemaversion="4.30">
+<Sysmon schemaversion="4.60">
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="exclude">
         <SourceImage condition="is">C:\Program Files\Splunk\bin\splunkd.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Splunk\bin\btool.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Splunk\bin\Python3.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Splunk\bin\splunk.exe</SourceImage>
       </ProcessAccess>
     </RuleGroup>
   </EventFiltering>
