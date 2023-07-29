@@ -1,0 +1,40 @@
+<Sysmon schemaversion="4.60">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Bitdefender\Bitdefender Security\downloader.exe</Image>
+					<TargetFilename condition="is">C:\Program Files\Bitdefender\Bitdefender Security\installer\wslib.m</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Bitdefender\Bitdefender Security\downloader.exe</Image>
+					<TargetFilename condition="is">C:\Program Files\Bitdefender\Bitdefender Security\installer\BDUpdateV1.xml</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Bitdefender\Bitdefender Security\downloader.exe</Image>
+					<TargetFilename condition="begin with">C:\Program Files\Common Files\Bitdefender\Bitdefender Threat Scanner\Antivirus-</TargetFilename>
+					<TargetFilename condition="contains any">.upd;\cache;.dat</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Bitdefender\Bitdefender Security\downloader.exe</Image>
+					<TargetFilename condition="begin with">C:\Program Files\Common Files\Bitdefender\Bitdefender Threat Scanner\Antivirus-</TargetFilename>
+					<TargetFilename condition="contains">-emalware.</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Bitdefender\Bitdefender Security\bdservicehost.exe</Image>
+					<TargetFilename condition="contains">_restore_profile.json</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Bitdefender\Bitdefender Security\bdservicehost.exe</Image>
+					<TargetFilename condition="begin with">C:\Windows\Temp\</TargetFilename>
+					<TargetFilename condition="contains">.tmp</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Bitdefender\Bitdefender Security\Vulnerability.Scan.exe</Image>
+					<TargetFilename condition="begin with">C:\Windows\Temp\</TargetFilename>
+					<TargetFilename condition="end with">.tmp</TargetFilename>
+				</Rule>
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
