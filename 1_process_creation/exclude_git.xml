@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.60">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ProcessCreate onmatch="exclude">
+				  <Rule groupRelation="and">
+          		<Image condition="is">C:\Program Files\Git\cmd\git.exe</Image>
+          		<ParentImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</ParentImage>
+        	</Rule>
+				  <Rule groupRelation="and">
+          		<Image condition="is">C:\Program Files\Git\mingw64\bin\git.exe</Image>
+          		<ParentImage condition="is">C:\Program Files\Git\cmd\git.exe</ParentImage>
+        	</Rule>
+				  <Rule groupRelation="and">
+          		<Image condition="is">C:\Program Files\Git\mingw64\libexec\git-core\git.exe</Image>
+          		<ParentImage condition="is">C:\Program Files\Git\mingw64\libexec\git-core\git.exe</ParentImage>
+        	</Rule>
+			</ProcessCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
