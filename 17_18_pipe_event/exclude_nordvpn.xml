@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="image">C:\Program Files\NordVPN\NordVPN.exe</Image>
+          <PipeName condition="begin with">\NordSec\NordVpn\</PipeName>
+        </Rule>
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
