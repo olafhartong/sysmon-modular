@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.60">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<DnsQuery onmatch="exclude">
+				<QueryName condition="is">dns.bitdefender.net</QueryName>				
+				<QueryName condition="begin with">bitdefender.</QueryName>
+			</DnsQuery>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
