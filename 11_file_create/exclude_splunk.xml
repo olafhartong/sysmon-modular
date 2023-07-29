@@ -1,0 +1,38 @@
+<Sysmon schemaversion="4.60">
+	<EventFiltering>
+		<RuleGroup groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!-- Exclude Splunk -->
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Splunk\bin\mongod.exe</Image>
+					<TargetFilename condition="is">C:\Program Files\Splunk\var\lib\splunk\kvstore\mongo\WiredTiger.turtle.set</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Splunk\bin\splunk-optimize.exe</Image>
+					<TargetFilename condition="contains">.manifest</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Splunk\bin\splunkd.exe</Image>
+					<TargetFilename condition="contains any">.tmp;.tmp.gz;.py;.xml</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Splunk\bin\Python3.exe</Image>
+					<TargetFilename condition="is">C:\Program Files\Splunk\quarantined_files\quarantine_manifest.json</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Splunk\bin\Python3.exe</Image>
+					<TargetFilename condition="is">C:\Program Files\Splunk\var\lib\splunk\modinputs\app_permissions_manager\merged</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Splunk\bin\Python3.exe</Image>
+          <!--Splunk Enterprise Security-->
+					<TargetFilename condition="is">C:\Program Files\Splunk\var\lib\splunk\modinputs\ess_content_importer\ess_content_importer</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Splunk\bin\Python3.exe</Image>
+					<TargetFilename condition="begin with">C:\Windows\Temp\</TargetFilename>
+				</Rule>
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
