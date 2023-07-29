@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude">
+        <Rule groupRelation="and">
+          <SourceImage condition="end with">\AppData\Roaming\Spotify\Spotify.exe</SourceImage>
+          <TargetImage condition="is">C:\WINDOWS\Explorer.EXE</TargetImage>
+          <GrantedAccess condition="is">0x40</GrantedAccess>
+        </Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
