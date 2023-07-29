@@ -1,0 +1,48 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileCreate onmatch="exclude">
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Roaming\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">prefs-</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Roaming\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">.sqlite-shm</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Roaming\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">.sqlite-wal</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Roaming\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">.sqlite-journal</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Roaming\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">.usage-journal</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Roaming\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">.data.safe.tmp</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Roaming\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">.proto.metadata</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Program Files\Mozilla Firefox\firefox.exe</Image>
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Local\Mozilla\Firefox\Profiles\</TargetFilename>
+               <TargetFilename condition="end with">.tmp</TargetFilename>
+            </Rule>
+         </FileCreate>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>
