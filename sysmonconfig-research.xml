@@ -69,7 +69,7 @@
 	  <ClipboardChange onmatch="exclude"/>
 	  <ProcessTampering onmatch="exclude"/>
 	  <FileDeleteDetected onmatch="exclude"/>
-	  <FileBlockExecutable onmatch="exclude"/>
+	  <FileBlockExecutable onmatch="include"/>
 	  <FileBlockShredding onmatch="exclude"/>
   </EventFiltering>
 </Sysmon>
