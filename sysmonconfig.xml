@@ -1,4 +1,4 @@
-﻿<!--                       NOTICE : This is a balanced generated output of Sysmon-modular with medium verbosity                  -->
+<!--                       NOTICE : This is a balanced generated output of Sysmon-modular with medium verbosity                  -->
 <!--                        due to the balanced nature of this configuration there will be potential blind spots                 -->
 <!--                        for more information go to https://github.com/olafhartong/sysmon-modular/wiki                        -->
 <!--                                                                                                                             -->
@@ -686,6 +686,7 @@
     <RuleGroup groupRelation="or">
       <FileCreateTime onmatch="exclude">
         <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
+        <Image condition="end with">Program Files (x86)\Kaspersky Lab\Kaspersky Security for Windows Server\kavfswp.exe</Image>
         <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
         <TargetFilename condition="contains">\NVIDIA\NvBackend\ApplicationOntology\</TargetFilename>
         <Image condition="image">OneDrive.exe</Image>
@@ -1468,6 +1469,9 @@
           <TargetFilename condition="contains all">C:\Program Files\Elastic\Agent\data\;.ndjson</TargetFilename>
         </Rule>
         <Image condition="is">C:\Windows\system32\igfxCUIService.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Kaspersky Lab\NetworkAgent\klnagent.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Kaspersky Lab\Endpoint Agent\soyuz.exe</Image>
+        <Image condition="is">C:\Program Files (x86)\Kaspersky Lab\Kaspersky Security for Windows Server\kavshell.exe</Image>
         <Image condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\pfwsmgr.exe</Image>
         <Image condition="is">C:\Program Files (x86)\RES Software\Workspace Manager\pfwsmgr.exe</Image>
         <Image condition="is">C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe</Image>
