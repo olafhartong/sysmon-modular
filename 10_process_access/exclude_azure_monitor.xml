@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.30">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="exclude">
+            <Rule groupRelation="and">
+               <SourceImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe</SourceImage>
+               <TargetImage condition="is">C:\Windows\system32\cscript.exe</TargetImage>
+            </Rule>
+            <SourceImage condition="contains all">C:\WindowsAzure\GuestAgent_;CollectGuestLogs.exe</SourceImage>
+            <SourceImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</SourceImage>
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

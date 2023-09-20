@@ -1,0 +1,25 @@
+ <!--COMMENT:	Filtering these commonly loaded DLLs, which are so verbose they incur a lot of cost and have limited to no detection value-->
+<Sysmon schemaversion="4.30">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\netapi32.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\msvcp110_win.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\dsreg.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\perfctrs.dll</ImageLoaded>
+        </Rule>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
