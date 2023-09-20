@@ -3,7 +3,7 @@
     <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
         <Rule groupRelation="and">
-          <ImageLoaded name="technique_id=1210,technique_name=Exploitation of Remote Services" condition="begin with">C:\Windows\System32\spool\drivers\</ImageLoaded><!--In order to detect PrintNightmare on servers-->
+          <ImageLoaded name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="begin with">C:\Windows\System32\spool\drivers\</ImageLoaded><!--In order to detect PrintNightmare on servers-->
           <Signed condition="is not">true</Signed>
         </Rule>
       </ImageLoad>
