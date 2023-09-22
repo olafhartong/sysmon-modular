@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+        <QueryName condition="is">education.github.com</QueryName>
+        <QueryName condition="is">marketplace.visualstudio.com</QueryName>
+        <Rule groupRelation="and">
+          <Image condition="image">Code.exe</Image>
+          <QueryName condition="is">update.code.visualstudio.com</QueryName>
+          <QueryResults condition="contains">vscode-update</QueryResults>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="image">Code.exe</Image>
+          <QueryName condition="is">wpad</QueryName>
+          <QueryResults condition="is">-</QueryResults>
+        </Rule>
+      </DnsQuery>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

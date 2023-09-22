@@ -1,0 +1,23 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="exclude">
+        <Rule groupRelation="and">
+					<Image condition="is">C:\Program Files (x86)\Google\Update\GoogleUpdate.exe</Image>
+					<TargetFilename condition="begin with">C:\Windows\SystemTemp\</TargetFilename>
+					<TargetFilename condition="end with">.tmp</TargetFilename>
+				</Rule>
+        <Rule groupRelation="and">
+					<Image condition="image">GoogleCrashHandler.exe</Image>
+					<TargetFilename condition="begin with">C:\Windows\SystemTemp\</TargetFilename>
+					<TargetFilename condition="end with">.tmp</TargetFilename>
+				</Rule>
+        <Rule groupRelation="and">
+					<Image condition="image">GoogleCrashHandler64.exe</Image>
+					<TargetFilename condition="begin with">C:\Windows\SystemTemp\</TargetFilename>
+					<TargetFilename condition="end with">.tmp</TargetFilename>
+				</Rule>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

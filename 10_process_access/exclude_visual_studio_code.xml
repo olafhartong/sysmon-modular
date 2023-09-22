@@ -16,7 +16,22 @@
           <SourceImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</SourceImage>
           <TargetImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</TargetImage>
           <GrantedAccess condition="is">0x1401</GrantedAccess> <!--PROCESS_QUERY_LIMITED_INFORMATION,PROCESS_QUERY_INFORMATION and PROCESS_TERMINATE access to its children-->
+        </Rule>     
+        <Rule groupRelation="and">
+          <SourceImage condition="is">C:\WINDOWS\Explorer.EXE</SourceImage>
+          <TargetImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</TargetImage>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
         </Rule>        
+        <Rule groupRelation="and">
+          <SourceImage condition="end with">\Microsoft VS Code\Code.exe</SourceImage>
+          <TargetImage condition="is">C:\Program Files\Git\cmd\git.exe</TargetImage>
+          <GrantedAccess condition="is">0x1FFFFF</GrantedAccess>
+        </Rule>
+        <Rule groupRelation="and">
+          <SourceImage condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</SourceImage>
+          <CallTrace condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\resources\app\</CallTrace>
+          <GrantedAccess condition="is">0x1410</GrantedAccess>
+        </Rule>
       </ProcessAccess>
     </RuleGroup>
   </EventFiltering>

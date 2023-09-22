@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="exclude">
+            <SourceImage condition="is">C:\Program Files\NordVPN\nordvpn-service.exe</SourceImage>
+            <SourceImage condition="is">C:\Program Files\NordUpdater\NordUpdateService.exe</SourceImage>
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

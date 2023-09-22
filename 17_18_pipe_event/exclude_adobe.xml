@@ -12,6 +12,10 @@
           <PipeName condition="begin with">\com.adobe.reader.rna.;\mojo</PipeName>
         </Rule>
         <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Adobe\Acrobat DC\Acrobat\acrocef_1\AcroCEF.exe</Image>
+          <PipeName condition="begin with">\com.adobe.reader.rna.;\mojo</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</Image>
           <PipeName condition="begin with">\gc_pipe_</PipeName>
         </Rule>

@@ -1,0 +1,28 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</Image>
+          <PipeName condition="begin with">\mojo.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</Image>
+          <PipeName condition="begin with">\conpty-</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</Image>
+          <PipeName condition="begin with">\uv\0</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</Image>
+          <PipeName condition="begin with">\uv\F</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Users\;\AppData\Local\Programs\Microsoft VS Code\Code.exe</Image>
+          <PipeName condition="begin with">\vscode-git-</PipeName>
+        </Rule>
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

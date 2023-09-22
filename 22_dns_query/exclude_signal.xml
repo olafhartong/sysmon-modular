@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Users\;\AppData\Local\Programs\signal-desktop\Signal.exe</Image>
+          <QueryName condition="contains any">chat.signal.org;updates2.signal.org;wpad</QueryName>
+          <QueryResults condition="is">-</QueryResults>
+        </Rule>
+      </DnsQuery>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

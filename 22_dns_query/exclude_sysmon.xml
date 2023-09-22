@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+        <Image condition="image">C:\Windows\sysmon64.exe</Image>
+			  <Image condition="image">C:\Windows\sysmon.exe</Image>
+      </DnsQuery>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

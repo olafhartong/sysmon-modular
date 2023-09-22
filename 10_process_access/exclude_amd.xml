@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <ProcessAccess onmatch="exclude">
+            <SourceImage condition="is">C:\Program Files\AMD\Performance Profile Client\AUEPMaster.exe</SourceImage>
+         </ProcessAccess>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

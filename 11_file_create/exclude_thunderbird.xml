@@ -1,0 +1,17 @@
+<Sysmon schemaversion="4.60">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<FileCreate onmatch="exclude">
+				<!--SECTION: Mozilla Thunderbird-->
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Mozilla Thunderbird\thunderbird.exe</Image>
+					<TargetFilename condition="contains">\prefs-</TargetFilename>
+				</Rule>
+				<Rule groupRelation="and">
+					<Image condition="is">C:\Program Files\Mozilla Thunderbird\thunderbird.exe</Image>
+					<TargetFilename condition="end with">\folderCache-1.json</TargetFilename>
+				</Rule>
+			</FileCreate>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>

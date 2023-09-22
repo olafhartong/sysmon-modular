@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.60">
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="exclude">
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Git\mingw64\bin\git.exe</Image>
+          <PipeName condition="begin with">\winansi</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Git\mingw64\libexec\git-core\git-remote-https.exe</Image>
+          <PipeName condition="begin with">\winansi</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Git\mingw64\libexec\git-core\git.exe</Image>
+          <PipeName condition="begin with">\winansi</PipeName>
+        </Rule>
+      </PipeEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
