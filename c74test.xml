@@ -37,6 +37,7 @@
         <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">DisplaySwitch.exe</ParentImage>
         <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">Narrator.exe</ParentImage>
         <ParentImage name="technique_id=T1546.008,technique_name=Accessibility Features" condition="image">AtBroker.exe</ParentImage>
+        <OriginalFileName condition="contains">\</OriginalFileName>
         <OriginalFileName name="technique_id=T1546.011,technique_name=Application Shimming" condition="is">sdbinst.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1197,technique_name=BITS Jobs" condition="is">bitsadmin.exe</OriginalFileName>
         <Rule name="Eventviewer Bypass UAC" groupRelation="and">

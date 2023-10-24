@@ -9,4 +9,3 @@
 23_file_delete/include_user_writable_folders.xml
 23_file_delete/include_writable_folders.xml
 23_file_delete/include_interesting_files.xml
-1_process_creation/include_all.xml
