@@ -330,6 +330,22 @@
           <Image condition="contains all"> C:\Users\;\AppData\Local\Microsoft\OneDrive;\FileCoAuth.exe</Image>
           <ImageLoaded condition="contains all">C:\Users\;\AppData\Local\Microsoft\OneDrive\;\FileCoAuth.exe</ImageLoaded>
         </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\netapi32.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\msvcp110_win.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\dsreg.dll</ImageLoaded>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+          <ImageLoaded condition="is">C:\Windows\System32\perfctrs.dll</ImageLoaded>
+        </Rule>
       </ImageLoad>
     </RuleGroup>
     <!-- Event ID 8 == CreateRemoteThread - Excludes -->
@@ -365,6 +381,12 @@
         <SourceImage condition="is">C:\Program Files\Adobe\Adobe Photoshop 2021\Photoshop.exe</SourceImage>
         <TargetImage condition="begin with">C:\Program Files\Autodesk\Autodesk Desktop App</TargetImage>
         <TargetImage condition="begin with">C:\Program Files (x86)\Autodesk\Autodesk Desktop App</TargetImage>
+        <Rule groupRelation="and">
+          <SourceImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe</SourceImage>
+          <TargetImage condition="is">C:\Windows\system32\cscript.exe</TargetImage>
+        </Rule>
+        <SourceImage condition="contains all">C:\WindowsAzure\GuestAgent_;CollectGuestLogs.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</SourceImage>
         <SourceImage condition="is">C:\Windows\CarbonBlack\cb.exe</SourceImage>
         <Rule name="Exclude Chrome SW Reporter into Reporter" groupRelation="and">
           <SourceImage condition="image">software_reporter_tool.exe</SourceImage>
@@ -384,6 +406,8 @@
         <SourceImage condition="contains all">C:\Users\;\AppData\Local\Citrix\ICA Client\receiver\Receiver.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\Citrix\ICA Client\Receiver\Receiver.exe</SourceImage>
         <SourceImage condition="is">c:\Program Files\Couchbase\Server\bin\sigar_port.exe</SourceImage>
+        <SourceImage condition="is">C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe</SourceImage>
+        <SourceImage condition="contains all">C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\DataCollection\;\OpenHandleCollector.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files\Elastic\Agent\data\;\metricbeat.exe</SourceImage>
         <SourceImage condition="contains all">C:\Program Files;\FireEye\xagt\xagt.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\Ivanti\Workspace Control\cpushld.exe</SourceImage>
