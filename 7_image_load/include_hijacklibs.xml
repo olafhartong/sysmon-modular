@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.40">
 	<EventFiltering>
-		<RuleGroup groupRelation="or">
+		<RuleGroup name="" groupRelation="or">
 			<ImageLoad onmatch="include">
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">aclui.dll</ImageLoaded> <!-- https://www.hexacorn.com/blog/2016/03/10/beyond-good-ol-run-key-part-36/ -->
