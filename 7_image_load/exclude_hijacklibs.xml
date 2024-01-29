@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.40">
 	<EventFiltering>
-		<RuleGroup groupRelation="or">
+		<RuleGroup name="" groupRelation="or">
 			<ImageLoad onmatch="exclude">
 				<Rule groupRelation="and">
 					<OriginalFileName condition="is">wdscore.dll</OriginalFileName>
