@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.40">
+	<EventFiltering>
+		<RuleGroup groupRelation="or">
+			<ImageLoad onmatch="exclude">
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is">wdscore.dll</OriginalFileName>
+					<Image condition="is">C:\Windows\servicing\TrustedInstaller.exe</Image> <!-- Windows Updates Installer -->			  
+				</Rule>
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is any">wdscore.dll;dpx.dll</OriginalFileName>
+					<Image condition="contains all">\Windows\WinSxS\amd64_microsoft-windows-servicingstack;TiWorker.exe</Image> <!-- Windows Updates Installer -->			  
+				</Rule>
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
