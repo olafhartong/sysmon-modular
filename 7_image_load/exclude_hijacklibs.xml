@@ -7,9 +7,37 @@
 					<Image condition="is">C:\Windows\servicing\TrustedInstaller.exe</Image> <!-- Windows Updates Installer -->			  
 				</Rule>
 				<Rule groupRelation="and">
-					<OriginalFileName condition="is any">wdscore.dll;dpx.dll</OriginalFileName>
-					<Image condition="contains all">\Windows\WinSxS\amd64_microsoft-windows-servicingstack;TiWorker.exe</Image> <!-- Windows Updates Installer -->			  
+					<OriginalFileName condition="is any">wdscore.dll;dpx.dll;shell32.dll;NetSetupApi.dll;drvstore.dll</OriginalFileName>
+					<Image condition="contains all">\Windows\WinSxS\;TiWorker.exe</Image> <!-- Windows Updates Installer -->			  
 				</Rule>
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is any">msvcr100.dll;msvcr100_clr0400.dll</OriginalFileName>
+					<ImageLoaded condition="contains">\Program Files\Microsoft Office\</ImageLoaded> <!-- Microsoft Office Noise -->
+				</Rule>
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is any">msvcr100.dll;AppVPolicy.dll;msvcr100_clr0400.dll</OriginalFileName>
+					<ImageLoaded condition="contains all">\Common Files\;\ClickToRun\</ImageLoaded> <!-- Microsoft Office Noise -->		  
+				</Rule>			
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is any">rastls.dll;dbgeng.dll</OriginalFileName> <!-- Known legit location, not in excludes for Hijacklibs API -->
+					<ImageLoaded condition="contains">\Windows\System32\</ImageLoaded> 			  
+				</Rule>
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is">mintdh.dll</OriginalFileName> <!-- Microsoft Microsoft Intune -->
+					<ImageLoaded condition="contains">\Windows\SysWOW64\</ImageLoaded> 			  
+				</Rule>
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is">d3dcompiler_47.dll</OriginalFileName> 
+					<ImageLoaded condition="contains all">\Microsoft\Edge;\Application\</ImageLoaded> <!-- Expected/Common application usage -->
+				</Rule>
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is">d3dcompiler_47.dll</OriginalFileName>
+					<ImageLoaded condition="contains">\Google\Chrome\Application\</ImageLoaded> <!-- Expected/Common application usage -->
+				</Rule>
+				<Rule groupRelation="and">
+					<OriginalFileName condition="is any">d3dcompiler_47.dll;acrodistdll.dll</OriginalFileName>
+					<ImageLoaded condition="contains all">\Adobe\;Acrobat</ImageLoaded> <!-- Expected/Common application usage -->
+				</Rule>				
 			</ImageLoad>
 		</RuleGroup>
 	</EventFiltering>
