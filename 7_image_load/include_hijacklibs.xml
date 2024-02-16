@@ -1,0 +1,1824 @@
+<Sysmon schemaversion="4.40">
+	<EventFiltering>
+		<RuleGroup name="" groupRelation="or">
+			<ImageLoad onmatch="include">
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">aclui.dll</ImageLoaded> <!-- https://www.hexacorn.com/blog/2016/03/10/beyond-good-ol-run-key-part-36/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">acrodistdll.dll</ImageLoaded> <!-- https://go.recordedfuture.com/hubfs/reports/cta-2022-1223.pdf -->
+					<ImageLoaded condition="excludes any">\Program Files\Adobe\Acrobat;\Acrobat\acrodistdll</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">activeds.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">adsldpc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">aepic.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">apphelp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">applicationframe.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">appvpolicy.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">appwiz.cpl</ImageLoaded> <!-- https://www.hexacorn.com/blog/2024/01/06/1-little-known-secret-of-fondue-exe/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">appxalluserstore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">appxdeploymentclient.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">archiveint.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ashldres.dll</ImageLoaded> <!-- https://www.sophos.com/en-us/medialibrary/PDFs/technical%20papers/sophos-rotten-tomato-campaign.pdf -->
+					<ImageLoaded condition="excludes any">\Program Files\McAfee.com\VSO</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">atl.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">atltracetoolui.dll</ImageLoaded> <!-- https://decoded.avast.io/threatintel/apt-treasure-trove-avast-suspects-chinese-apt-group-mustang-panda-is-collecting-data-from-burmese-government-agencies-and-opposition-groups/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Microsoft Visual Studio 11.0\Common7\Tools</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">audioses.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">auditpolcore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">authfwcfg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">authz.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">avrt.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">basicnetutils.dll</ImageLoaded> <!-- https://news.sophos.com/en-us/2023/05/03/doubled-dll-sideloading-dragon-breath/ -->
+					<ImageLoaded condition="excludes any">\Appdata\local\Temp\;\Program Files\BAIDU\BAIDUPINYIN\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">batmeter.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">bcd.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">bcp47langs.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">bcp47mrm.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">bcrypt.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">bderepair.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">bootmenuux.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">bootux.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cabinet.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">cabview.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">certcli.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">certenroll.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cfgmgr32.dll</ImageLoaded> 
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">chrome_frame_helper.dll</ImageLoaded> <!-- https://www.hexacorn.com/blog/2016/03/10/beyond-good-ol-run-key-part-36/ -->
+					<ImageLoaded condition="excludes any">\Appdata\local\Google\Chrome\Application;\Program Files\Google\Chrome\Application</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ciscosparklauncher.dll</ImageLoaded> <!-- https://news.sophos.com/en-us/2022/11/03/family-tree-dll-sideloading-cases-may-be-related/ -->
+					<ImageLoaded condition="excludes any">\Appdata\local\CiscoSparkLauncher;\AppData\Local\Programs\Cisco Spark\CiscoSparkLauncher</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">classicexplorer32.dll</ImageLoaded> <!-- https://blogs.blackberry.com/en/2022/12/mustang-panda-uses-the-russian-ukrainian-war-to-attack-europe-and-asia-pacific-targets -->
+					<ImageLoaded condition="excludes any">\Program Files\Classic Shell;\Program Files\Open-Shell</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cldapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">clipc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">clusapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cmpbk32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cmutil.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">coloradapterclient.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">colorui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">comdlg32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">commfunc.dll</ImageLoaded> <!-- https://blog.trendmicro.com/trendlabs-security-intelligence/new-wave-of-plugx-targets-legitimate-apps/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Lenovo\Communications Utility</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">configmanager2.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">connect.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">coredplus.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">coremessaging.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">coreuicomponents.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">credui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cryptbase.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cryptdll.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cryptsp.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cryptui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cryptxml.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">cscapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">cscobj.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">cscui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d2d1.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d10.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d10_1.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d10_1core.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d10core.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d10warp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d11.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d12.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3d9.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3dcompiler_47.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Program Files\windows kits\10\bin\;\Program Files\windows kits\10\bin\;\Program Files\windows kits\10\redist\d3d\x64;\Program Files\windows kits\10\redist\d3d\x86;\Program Files\wireshark;\Program Files\cisco systems\cisco jabber;\Program Files\microsoft\edge\application\;\Program Files\Google\Chrome\Application\;\Appdata\local\microsoft\teams\stage;\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">d3dx9_43.dll</ImageLoaded> <!-- https://news.sophos.com/en-us/2023/05/03/doubled-dll-sideloading-dragon-breath/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">dataexchange.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">davclnt.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dbgcore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Program Files\windows kits\10\debuggers\arm;\Program Files\windows kits\10\debuggers\arm\srcsrv;\Program Files\windows kits\10\debuggers\arm64;\Program Files\windows kits\10\debuggers\arm64\srcsrv;\Program Files\windows kits\10\debuggers\x64;\Program Files\windows kits\10\debuggers\x64\srcsrv;\Program Files\windows kits\10\debuggers\x86;\Program Files\windows kits\10\debuggers\x86\srcsrv;\Program Files\microsoft office\root\office;\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dbgeng.dll</ImageLoaded> <!-- https://twitter.com/mrexodia/status/1630320327967252483 -->
+					<ImageLoaded condition="excludes any">\Program Files\Windows Kits\;\Program Files\Windows Kits\;\Program Files\Windows Kits\;\Program Files\Windows Kits\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dbghelp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Program Files\windows kits\10\debuggers\arm;\Program Files\windows kits\10\debuggers\arm\srcsrv;\Program Files\windows kits\10\debuggers\arm64;\Program Files\windows kits\10\debuggers\arm64\srcsrv;\Program Files\windows kits\10\debuggers\x64;\Program Files\windows kits\10\debuggers\x64\srcsrv;\Program Files\windows kits\10\debuggers\x86;\Program Files\windows kits\10\debuggers\x86\srcsrv;\Program Files\cisco systems\cisco jabber;\Program Files\microsoft office\root\office;\Program Files\microsoft office\root\vfs\programfilesx86\microsoft analysis services\as oledb\140;\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dbgmodel.dll</ImageLoaded> <!-- https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\;\Program Files\Windows Kits\10\Debuggers\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dcntel.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dcomp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">defragproxy.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">desktopshellext.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">deviceassociation.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">devicecredential.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">devicepairing.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">devobj.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">devrtl.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dhcpcmonitor.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dhcpcsvc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dhcpcsvc6.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">directmanipulation.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dismapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">dismcore.dll</ImageLoaded> <!-- https://cofense.com/exploiting-unpatched-vulnerability-ave_maria-malware-not-full-grace/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\dism;\Windows\SysWOW64\dism</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmcfgutils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmcmnutils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmcommandlineutils.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmenrollengine.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmenterprisediagnostics.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmiso8601utils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmoleaututils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmprocessxmlfiltered.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmpushproxy.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dmxmlhelputils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dnsapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dot3api.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dot3cfg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dpx.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">drprov.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">drvstore.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dsclient.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dsparse.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dsprop.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dsreg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dsrole.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dui70.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">duser.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dusmapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dwmapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dwmcore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dwrite.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dxcore.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dxgi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dxva2.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">dynamoapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">eappcfg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">eappprxy.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">edgeiso.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">edputil.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">efsadu.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">efsutil.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">esent.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">execmodelproxy.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">explorerframe.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">facesdk.dll</ImageLoaded> <!-- https://decoded.avast.io/threatintel/apt-treasure-trove-avast-suspects-chinese-apt-group-mustang-panda-is-collecting-data-from-burmese-government-agencies-and-opposition-groups/ -->
+					<ImageLoaded condition="excludes any">\Program Files\luxand\facesdk\bin\win64</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">fastprox.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\wbem;\Windows\SysWOW64\wbem</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">faultrep.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">fddevquery.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">feclient.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">fhcfg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fhsvcctl.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">firewallapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">flightsettings.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fltlib.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">formdll.dll</ImageLoaded> <!-- https://any.run/report/d9c7f6d4ec08d961c20dac1b6422b3fbec5c6a8d9dc67d1f604835b36c5f224e/ae068531-92db-497d-b0cb-c0b1af5476f1 -->
+					<ImageLoaded condition="excludes any">\Program Files\Common Files\Microsoft Shared\NoteSync Forms</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">framedynos.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fveapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fveskybackup.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fvewiz.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fwbase.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fwcfg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fwpolicyiomgr.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fwpuclnt.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fxsapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\System32\driverstore\filerepository\prnms002.inf_;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">fxsst.dll</ImageLoaded> <!-- https://www.fireeye.com/blog/threat-research/2011/06/fxsst.html/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">fxstiff.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\System32\driverstore\filerepository\prnms002.inf_</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">getuname.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">gflagsui.dll</ImageLoaded> <!-- https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Windows Kits\10\Debuggers\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">glib-2.0.dll</ImageLoaded> <!-- https://www.sentinelone.com/labs/lockbit-ransomware-side-loads-cobalt-strike-beacon-with-legitimate-vmware-utility/ -->
+					<ImageLoaded condition="excludes any">\Program Files\VMware\VMware Tools;\Program Files\VMware\VMware Workstation;\Program Files\VMware\VMware Player</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">gpapi.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">hha.dll</ImageLoaded> <!-- https://blog.trendmicro.com/trendlabs-security-intelligence/new-wave-of-plugx-targets-legitimate-apps/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\;\Program Files\HTML Help Workshop</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">hid.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">hnetmon.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">hpcustpartui.dll</ImageLoaded> <!-- https://www.trellix.com/en-us/about/newsroom/stories/research/operation-harvest-a-deep-dive-into-a-long-term-campaign.html -->
+					<ImageLoaded condition="excludes any">\Program Files\HP</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">hpqhvsei.dll</ImageLoaded> <!-- https://www.secureworks.com/research/shadowpad-malware-analysis -->
+					<ImageLoaded condition="excludes any">\Program Files\HP</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">httpapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">icmp.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">idstore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ieadvpack.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iedkcs32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iernonce.dll</ImageLoaded> <!-- https://www.hexacorn.com/blog/2023/12/26/1-little-known-secret-of-runonce-exe-32-bit/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iertutil.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ifmon.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ifsutil.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">inproclogger.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">iphlpapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iri.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iscsidsc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">iscsiexe.dll</ImageLoaded> <!-- https://github.com/hackerhouse-opensource/iscsicpl_bypassUAC -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iscsium.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">isv.exe_rsaenh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iumbase.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iumsdk.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">iviewers.dll</ImageLoaded> <!-- https://www.secureworks.com/research/shadowpad-malware-analysis -->
+					<ImageLoaded condition="excludes any">\Program Files\Windows Kits\10\bin\;\Program Files\Windows Kits\10\bin\;\Program Files\Windows Kits\10\bin\;\Program Files\Windows Kits\10\bin\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">joinutil.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">kdstub.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ksuser.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ktmw32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ldvpocx.ocx</ImageLoaded> <!-- https://www.secureworks.com/research/a-peek-into-bronze-unions-toolbox -->
+					<ImageLoaded condition="excludes any">\Program Files\Symantec_Client_Security\Symantec AntiVirus;\Program Files\Symantec AntiVirus</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">libvlc.dll</ImageLoaded> <!-- https://news.sophos.com/en-us/2022/11/03/family-tree-dll-sideloading-cases-may-be-related/ -->
+					<ImageLoaded condition="excludes any">\Program Files\VideoLAN\VLC</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">licensemanagerapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">licensingdiagspp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">linkinfo.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">lmiguardiandll.dll</ImageLoaded> <!-- https://twitter.com/StopMalvertisin/status/1610961056163311619 -->
+					<ImageLoaded condition="excludes any">\Program Files\LogMeIn;\Program Files\LogMeIn\x86;\Program Files\LogMeIn\x64</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">loadperf.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">lockdown.dll</ImageLoaded> <!-- https://twitter.com/thepacketrat/status/1520878930449817600 -->
+					<ImageLoaded condition="excludes any">\Program Files\McAfee\VirusScan Enterprise</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">lockhostingframework.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">log.dll</ImageLoaded> <!-- https://www.secureworks.com/research/shadowpad-malware-analysis -->
+					<ImageLoaded condition="excludes any">\Program Files\Bitdefender Antivirus Free</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">logoncli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">logoncontroller.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">lpksetupproxyserv.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">lrwizdll.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">magnification.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">maintenanceui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mapistub.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mbaexmlparser.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mdmdiagnostics.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mfc42u.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mfcore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mfplat.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">midimap.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mintdh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">miutils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mlang.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mmdevapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mobilenetworking.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mozglue.dll</ImageLoaded> <!-- https://twitter.com/SBousseaden/status/1530595156055011330 -->
+					<ImageLoaded condition="excludes any">\Program Files\SeaMonkey;\Program Files\Mozilla Firefox;\Program Files\Mozilla Thunderbird;\AppData\Local\Mozilla Firefox\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mpclient.dll</ImageLoaded> <!-- https://www.sentinelone.com/blog/living-off-windows-defender-lockbit-ransomware-sideloads-cobalt-strike-through-microsoft-security-tool/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Windows Defender;\ProgramData\Microsoft\Windows Defender\Platform\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mpr.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mprapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mpsvc.dll</ImageLoaded> <!-- https://www.mcafee.com/blogs/other-blogs/mcafee-labs/revil-ransomware-uses-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\ProgramData\Microsoft\Windows Defender\Platform\;\Program Files\Windows Defender\;</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mrmcorer.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msacm32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mscms.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mscoree.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mscorsvc.dll</ImageLoaded> <!-- https://decoded.avast.io/threatintel/apt-treasure-trove-avast-suspects-chinese-apt-group-mustang-panda-is-collecting-data-from-burmese-government-agencies-and-opposition-groups/ -->
+					<ImageLoaded condition="excludes any">\Windows\Microsoft.NET\Framework\v;\Windows\Microsoft.NET\Framework64\v</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">msctf.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msctfmonitor.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msdrm.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msdtctm.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msftedit.dll</ImageLoaded> <!-- https://www.hexacorn.com/blog/2015/02/23/beyond-good-ol-run-key-part-28/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msiso.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msutb.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msvcp110_win.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">msvcr100.dll</ImageLoaded> <!-- https://twitter.com/SBousseaden/status/1530595156055011330 -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">mswb7.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mswsock.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">msxml3.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mtxclu.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">napinsp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ncrypt.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ndfapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netapi32.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netid.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netiohlp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netjoin.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netplwiz.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">netprofm.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netprovfw.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">netsetupapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netshell.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">nettrace.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">netutils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">networkexplorer.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">newdev.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ninput.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">nlaapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">nlansp_c.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">npmproxy.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">nshhttp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">nshipsec.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">nshwfp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ntdsapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">ntlanman.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ntlmshared.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ntmarta.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">ntshrui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">nvsmartmax.dll</ImageLoaded> <!-- https://www.cybereason.com/blog/research/deadringer-exposing-chinese-threat-actors-targeting-major-telcos -->
+					<ImageLoaded condition="excludes any">\Program Files\NVIDIA Corporation\Display</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">oleacc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">omadmapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">onex.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">opcservices.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">opera_elf.dll</ImageLoaded> <!-- https://twitter.com/ShitSecure/status/1566127363389329412 -->
+					<ImageLoaded condition="excludes any">\Appdata\local\programs\opera\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">osbaseln.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">osksupport.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">osuninst.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">outllib.dll</ImageLoaded> <!-- https://medium.com/insomniacs/analysis-walkthrough-fun-clientrun-part-1-b2509344ebe6 -->
+					<ImageLoaded condition="excludes any">\Program Files\Microsoft Office\OFFICE;\Program Files\Microsoft Office\Root\OFFICE</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">p2p.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">p2pnetsh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">p9np.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">pcaui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">pdh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">peerdistsh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">pkeyhelper.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">pla.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">playsndsrv.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">pnrpnsp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">policymanager.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">polstore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">powrprof.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">printui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">prntvpt.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">profapi.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">propsys.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">proximitycommon.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">proximityservicepal.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">prvdmofcomp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">puiapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">python39.dll</ImageLoaded> <!-- https://twitter.com/SBousseaden/status/1530595156055011330 -->
+					<ImageLoaded condition="excludes any">\Program Files\Python39;\Appdata\local\Temp\;\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\VC\SecurityIssueAnalysis\python;\Users\anaconda3</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">qrt.dll</ImageLoaded> <!-- https://www.welivesecurity.com/2022/04/27/lookback-ta410-umbrella-cyberespionage-ttps-activity/ -->
+					<ImageLoaded condition="excludes any">\Program Files\F-Secure\Anti-Virus</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">radcui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rasapi32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rasdlg.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">rasgcw.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rasman.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rasmontr.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rastls.dll</ImageLoaded> <!-- https://st.drweb.com/static/new-www/news/2020/october/Study_of_the_ShadowPad_APT_backdoor_and_its_relation_to_PlugX_en.pdf -->
+					<ImageLoaded condition="excludes any">\Program Files\Symantec\Network Connected Devices Auto Setup</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rcdll.dll</ImageLoaded> <!-- https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Windows Kits\10\bin\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">reagent.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">regapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">reseteng.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">resetengine.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">resutils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rjvplatform.dll</ImageLoaded> <!-- https://twitter.com/0gtweet/status/1666716511988330499 -->
+					<ImageLoaded condition="excludes any">\Windows\System32\SystemResetPlatform;\Windows\SysWOW64\SystemResetPlatform</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rmclient.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rpcnsh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">rsaenh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rtutils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rtworkq.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">rzlog4cpp_logger.dll</ImageLoaded> <!-- https://www.mandiant.com/resources/blog/china-nexus-espionage-southeast-asia -->
+					<ImageLoaded condition="excludes any">\Appdata\local\razer\InGameEngine\cache\RzFpsApplet</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">safestore32.dll</ImageLoaded> <!-- https://symantec.broadcom.com/hubfs/Attacks-Against-Government-Sector.pdf -->
+					<ImageLoaded condition="excludes any">\Program Files\Sophos\Sophos Anti-Virus</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">samcli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">samlib.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">sapi_onecore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">sas.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">scansetting.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">scecli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">schedcli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">secur32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">security.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">sensapi.dll</ImageLoaded> <!-- https://twitter.com/AndrewOliveau/status/1682185200862625792 -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">shell32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">shfolder.dll</ImageLoaded> <!-- https://twitter.com/dissectmalware/status/978017957480628226 -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">siteadv.dll</ImageLoaded> <!-- https://www.nortonlifelock.com/sites/default/files/2021-10/OPERATION%20EXORCIST%20White%20Paper.pdf -->
+					<ImageLoaded condition="excludes any">\Program Files\SiteAdvisor\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">slc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">smadhook32c.dll</ImageLoaded> <!-- https://decoded.avast.io/threatintel/apt-treasure-trove-avast-suspects-chinese-apt-group-mustang-panda-is-collecting-data-from-burmese-government-agencies-and-opposition-groups/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Smadav</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">snmpapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">spectrumsyncclient.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">spp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">sppc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">sppcext.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">srclient.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">srcore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">srmtrace.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">srpapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">srvcli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">ssp.exe_rsaenh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">ssp_isv.exe_rsaenh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">sspicli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ssshim.dll</ImageLoaded> <!-- https://twitter.com/0gtweet/status/1363107343018385410 -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">staterepository.core.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">structuredquery.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">sxshared.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">symsrv.dll</ImageLoaded> <!-- https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Windows Kits\10\Debuggers\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">systemsettingsthresholdadminflowui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tapi32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tbs.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tdh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">textshaping.dll</ImageLoaded> <!-- https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">timesync.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tmdbglog.dll</ImageLoaded> <!-- https://www.ptsecurity.com/ww-en/analytics/pt-esc-threat-intelligence/space-pirates-tools-and-connections/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Trend Micro\Titanium</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tosbtkbd.dll</ImageLoaded> <!-- https://www.secureworks.com/research/shadowpad-malware-analysis -->
+					<ImageLoaded condition="excludes any">\Program Files\Toshiba\Bluetooth Toshiba Stack</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tpmcoreprovisioning.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tquery.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">tsworkspace.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ttdrecord.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">twext.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">twinapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">twinui.appcore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">uianimation.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">uiautomationcore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">uireng.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">uiribbon.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">umpdc.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">unattend.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">unityplayer.dll</ImageLoaded> <!-- https://news.sophos.com/en-us/2023/05/03/doubled-dll-sideloading-dragon-breath/ -->
+					<ImageLoaded condition="excludes any">\Appdata\local\Temp\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">updatepolicy.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">upshared.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">urlmon.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">userenv.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">utildll.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">uxinit.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">uxtheme.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vaultcli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vdsutil.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vender.dll</ImageLoaded> <!-- https://decoded.avast.io/threatintel/apt-treasure-trove-avast-suspects-chinese-apt-group-mustang-panda-is-collecting-data-from-burmese-government-agencies-and-opposition-groups/ -->
+					<ImageLoaded condition="excludes any">\Program Files\ASUS\GPU TweakII;\Program Files\ASUS\VGA COM\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">version.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vftrace.dll</ImageLoaded> <!-- https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/budworm-espionage-us-state?web_view=true -->
+					<ImageLoaded condition="excludes any">\Program Files\CyberArk\Endpoint Privilege Manager\Agent\x32;\Program Files\CyberArk\Endpoint Privilege Manager\Agent\x64;\Program Files\CyberArk\Endpoint Privilege Manager\Agent</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">virtdisk.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vivaldi_elf.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/vizom-malware-targets-brazilian-bank-customers-remote-overlay/ -->
+					<ImageLoaded condition="excludes any">\Appdata\local\Vivaldi\Application;\Appdata\local\Vivaldi\Application\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vntfxf32.dll</ImageLoaded> <!-- https://decoded.avast.io/threatintel/apt-treasure-trove-avast-suspects-chinese-apt-group-mustang-panda-is-collecting-data-from-burmese-government-agencies-and-opposition-groups/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Venta\VentaFax &amp; Voice</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vsodscpl.dll</ImageLoaded> <!-- https://eiploader.wordpress.com/2011/03/28/digitally-signed-malware-without-stealing-certificates/ -->
+					<ImageLoaded condition="excludes any">\Program Files\McAfee\VirusScan Enterprise</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vssapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">vsstrace.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">wbemprox.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\wbem;\Windows\SysWOW64\wbem</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">wbemsvc.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\wbem;\Windows\SysWOW64\wbem</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wcmapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wcnnetsh.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wdi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wdscore.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">webservices.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wecapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wer.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wevtapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">whhelper.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wimgapi.dll</ImageLoaded> <!-- https://www.hexacorn.com/blog/2015/02/23/beyond-good-ol-run-key-part-28/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\;\Program Files\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\arm64\DISM</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winbio.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winbrand.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">windows.storage.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">windows.storage.search.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">windows.ui.immersive.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">windowscodecs.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">windowscodecsext.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">windowsperformancerecordercontrol.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Program Files\windows kits\10\windows performance toolkit;\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">windowsperformancerecorderui.dll</ImageLoaded> <!-- https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Windows Kits\10\Windows Performance Toolkit</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">windowsudk.shellcommon.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winhttp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wininet.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winipsec.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winmde.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winmm.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winnsi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">winrnr.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winscard.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winsqlite3.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winsta.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winsync.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">winutils.dll</ImageLoaded> <!-- https://research.checkpoint.com/2023/rorschach-a-new-sophisticated-and-fast-ransomware/ -->
+					<ImageLoaded condition="excludes any">\Program Files\Palo Alto Networks\Traps</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wkscli.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wlanapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wlancfg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wldp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">wlidprov.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wmiclnt.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">wmidcom.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">wmiutils.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\wbem;\Windows\SysWOW64\wbem</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wmpdui.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wmsgapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wofutil.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">wpdshext.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.001,technique_name=HIJACKED_LIBS" condition="end with">wsc.dll</ImageLoaded> <!-- https://github.com/netero1010/Vulnerability-Disclosure/tree/main/CVE-2022-AVAST2 -->
+					<ImageLoaded condition="excludes any">\Program Files\AVAST Software\Avast</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wscapi.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wsdapi.dll</ImageLoaded> <!-- https://globetech.biz/index.php/2023/05/19/evading-edr-by-dll-sideloading-in-csharp/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">wshbth.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wshelper.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wsmsvc.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wtsapi32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wwancfg.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">wwapi.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">xmllite.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">xolehlp.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">xpsservices.dll</ImageLoaded> <!-- https://securityintelligence.com/posts/windows-features-dll-sideloading/ -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">xwizards.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+				<Rule groupRelation="and">
+					<ImageLoaded name="technique_id=T1574.007,technique_name=HIJACKED_LIBS" condition="end with">xwtpw32.dll</ImageLoaded> <!-- https://wietze.github.io/blog/save-the-environment-variables -->
+					<ImageLoaded condition="excludes any">\Windows\System32\;\Windows\SysWOW64\</ImageLoaded>
+				</Rule>
+			</ImageLoad>
+		</RuleGroup>
+	</EventFiltering>
+</Sysmon>
