@@ -8,7 +8,7 @@
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">acrodistdll.dll</ImageLoaded> <!-- https://go.recordedfuture.com/hubfs/reports/cta-2022-1223.pdf -->
-					<ImageLoaded condition="excludes any">\Program Files\Adobe\Acrobat </ImageLoaded>
+					<ImageLoaded condition="excludes any">\Program Files\Adobe\Acrobat;\Acrobat\acrodistdll</ImageLoaded>
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">activeds.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
@@ -144,7 +144,7 @@
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">ciscosparklauncher.dll</ImageLoaded> <!-- https://news.sophos.com/en-us/2022/11/03/family-tree-dll-sideloading-cases-may-be-related/ -->
-					<ImageLoaded condition="excludes any">\Appdata\local\CiscoSparkLauncher</ImageLoaded>
+					<ImageLoaded condition="excludes any">\Appdata\local\CiscoSparkLauncher;\AppData\Local\Programs\Cisco Spark\CiscoSparkLauncher</ImageLoaded>
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">classicexplorer32.dll</ImageLoaded> <!-- https://blogs.blackberry.com/en/2022/12/mustang-panda-uses-the-russian-ukrainian-war-to-attack-europe-and-asia-pacific-targets -->
@@ -864,7 +864,7 @@
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mozglue.dll</ImageLoaded> <!-- https://twitter.com/SBousseaden/status/1530595156055011330 -->
-					<ImageLoaded condition="excludes any">\Program Files\SeaMonkey;\Program Files\Mozilla Firefox;\Program Files\Mozilla Thunderbird</ImageLoaded>
+					<ImageLoaded condition="excludes any">\Program Files\SeaMonkey;\Program Files\Mozilla Firefox;\Program Files\Mozilla Thunderbird;\AppData\Local\Mozilla Firefox\</ImageLoaded>
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mpclient.dll</ImageLoaded> <!-- https://www.sentinelone.com/blog/living-off-windows-defender-lockbit-ransomware-sideloads-cobalt-strike-through-microsoft-security-tool/ -->
@@ -880,7 +880,7 @@
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mpsvc.dll</ImageLoaded> <!-- https://www.mcafee.com/blogs/other-blogs/mcafee-labs/revil-ransomware-uses-dll-sideloading/ -->
-					<ImageLoaded condition="excludes any">\ProgramData\Microsoft\Windows Defender\Platform\</ImageLoaded>
+					<ImageLoaded condition="excludes any">\ProgramData\Microsoft\Windows Defender\Platform\;\Program Files\Windows Defender\;</ImageLoaded>
 				</Rule>
 				<Rule groupRelation="and">
 					<ImageLoaded name="technique_id=T1574.002,technique_name=HIJACKED_LIBS" condition="end with">mrmcorer.dll</ImageLoaded> <!-- https://wietze.github.io/blog/hijacking-dlls-in-windows -->
