@@ -1,0 +1,10 @@
+<RuleGroup name="Certutil Abuse" groupRelation="or">
+  <ProcessCreate onmatch="include">
+    <CommandLine condition="contains">certutil</CommandLine>
+    <CommandLine condition="contains">-urlcache</CommandLine>
+  </ProcessCreate>
+  <ProcessCreate onmatch="include">
+    <CommandLine condition="contains">certutil</CommandLine>
+    <CommandLine condition="contains">-decode</CommandLine>
+  </ProcessCreate>
+</RuleGroup>
