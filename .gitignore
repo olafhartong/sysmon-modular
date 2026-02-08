@@ -1,1 +1,19 @@
+# macOS
 .DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# PowerShell
+*.psm1.bak
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Test output
+sysmonconfig-test.xml
