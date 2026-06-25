@@ -1,0 +1,23 @@
+<Sysmon schemaversion="4.30">
+    <EventFiltering>
+        <RuleGroup name="" groupRelation="or">
+            <FileCreate onmatch="include">
+                <Rule name="technique_id=T1546.013,technique_name=Event Triggered Execution: PowerShell Profile" groupRelation="or"> <!-- PowerShell Profile Rule for T1546.013 -->
+                    <!-- PowerShell 5.1 [ More information: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-5.1] -->
+                    <TargetFilename condition="end with">\Documents\WindowsPowerShell\Profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">C:\Windows\System32\WindowsPowerShell\v1.0\Profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">C:\Windows\SysWOW64\WindowsPowerShell\v1.0\Profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">C:\Windows\SysWOW64\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1</TargetFilename>
+
+                    <!-- PowerShell 7 [ More information: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4] -->
+                    <TargetFilename condition="end with">\Documents\PowerShell\Profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">\Documents\PowerShell\Microsoft.PowerShell_profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">C:\Program Files\PowerShell\7\Profile.ps1</TargetFilename>
+                    <TargetFilename condition="end with">C:\Program Files\PowerShell\7\Microsoft.PowerShell_profile.ps1</TargetFilename>
+                </Rule>
+            </FileCreate>
+        </RuleGroup>
+    </EventFiltering>
+</Sysmon>
