@@ -4,7 +4,7 @@
       <ProcessCreate onmatch="include">
         <Rule name="CMSTP" groupRelation="and">
           <OriginalFileName name="technique_id=T1218.003,technique_name=CMSTP" condition="is">CMSTP.exe</OriginalFileName>          <!--Microsoft Connection Manager Profile Installer-->
-          <CommandLine name="technique_id=T1218.003,technique_name=CMSTP" condition="contains all">/ni;/s</CommandLine>
+          <CommandLine name="technique_id=T1218.003,technique_name=CMSTP" condition="contains any">/ni;/s</CommandLine>
         </Rule>
       </ProcessCreate>
     </RuleGroup>
