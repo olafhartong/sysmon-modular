@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.30">
+    <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+        <ImageLoad onmatch="include">
+            <ImageLoaded name="technique_id=T1003,technique_name=Credential Dumping" condition="contains any">dbghelp.dll;dbgcore.dll</ImageLoaded>	<!--https://github.com/SigmaHQ/sigma/blob/master/rules/windows/image_load/image_load_dll_dbghelp_dbgcore_susp_load.yml--> 
+        </ImageLoad>
+      </RuleGroup>
+    </EventFiltering>
+  </Sysmon>
+  
