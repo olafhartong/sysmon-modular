@@ -4,6 +4,7 @@
       <FileCreate onmatch="include">
         <TargetFilename name="technique_id=T1059.007,technique_name=JavaScript" condition="end with">.js</TargetFilename>        <!--Scripting-->
         <TargetFilename name="technique_id=T1059.007,technique_name=JavaScript" condition="end with">.javascript</TargetFilename>        <!--Scripting-->
+        <TargetFilename name="technique_id=T1059.007,technique_name=JavaScript" condition="end with">.jse</TargetFilename>  <!--JScript Encoded-->
       </FileCreate>
     </RuleGroup>
   </EventFiltering>
