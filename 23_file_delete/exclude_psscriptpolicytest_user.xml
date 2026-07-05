@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.60">
+   <EventFiltering>
+      <RuleGroup name="" groupRelation="or">
+         <FileDelete onmatch="exclude">
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe</Image> 
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Local\Temp\;__PSScriptPolicyTest;.ps1</TargetFilename>
+            </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe</Image> 
+               <TargetFilename condition="contains all">C:\Users\;\AppData\Local\Temp\;__PSScriptPolicyTest;.ps1</TargetFilename>
+            </Rule>
+         </FileDelete>
+      </RuleGroup>
+   </EventFiltering>
+</Sysmon>

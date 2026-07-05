@@ -1,7 +1,7 @@
-<Sysmon schemaversion="4.30">
+<Sysmon schemaversion="4.60">
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
-         <FileCreate onmatch="exclude">
+         <FileDelete onmatch="exclude">
             <Rule groupRelation="and">
                <Image condition="is">C:\Windows\system32\wsmprovhost.exe</Image> 
                <TargetFilename condition="contains all">C:\Users\;\AppData\Local\Temp;__PSScriptPolicyTest;.ps1</TargetFilename>
@@ -16,7 +16,7 @@
                <TargetFilename condition="contains all">C:\Windows\Temp;__PSScriptPolicyTest;.ps1</TargetFilename>
                <User condition="is">NT AUTHORITY\SYSTEM</User>
             </Rule>
-         </FileCreate>
+         </FileDelete>
       </RuleGroup>
    </EventFiltering>
 </Sysmon>
