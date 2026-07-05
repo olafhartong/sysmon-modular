@@ -748,7 +748,7 @@ $mdeaugmentlog = [xml]@'
 
     foreach($key in $Rules.Keys){
         foreach($config in $Source,$Diff){
-            foreach($rule in $config.SelectNodes("//RuleGroup/$Key"))
+            foreach($rule in $config.SelectNodes("//$Key"))
             {
                 $clone = $rule.CloneNode($true)
                 $onmatch = ([System.Xml.XmlElement]$clone).GetAttribute('onmatch')
