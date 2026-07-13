@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important LSASS dump through comsvcs" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule name="technique_id=T1003.001,technique_name=LSASS Memory" groupRelation="and">
+          <OriginalFileName condition="is">rundll32.exe</OriginalFileName>
+          <CommandLine condition="contains all">comsvcs.dll;MiniDump</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

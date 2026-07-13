@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="AeDebug debugger changes" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="end with">\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger</TargetObject>
+        <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="end with">\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

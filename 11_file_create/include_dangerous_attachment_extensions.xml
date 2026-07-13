@@ -1,0 +1,26 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1204.002,technique_name=Malicious File" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename condition="end with">.cpl</TargetFilename>
+        <TargetFilename condition="end with">.jar</TargetFilename>
+        <TargetFilename condition="end with">.reg</TargetFilename>
+        <TargetFilename condition="end with">.sct</TargetFilename>
+        <TargetFilename condition="end with">.xsl</TargetFilename>
+        <TargetFilename condition="end with">.xlm</TargetFilename>
+        <TargetFilename condition="end with">.xslt</TargetFilename>
+        <TargetFilename condition="end with">.diagcab</TargetFilename>
+        <TargetFilename condition="end with">.library-ms</TargetFilename>
+        <TargetFilename condition="end with">.search-ms</TargetFilename>
+        <TargetFilename condition="end with">.gadget</TargetFilename>
+        <TargetFilename condition="end with">.one</TargetFilename>
+        <TargetFilename condition="end with">.onepkg</TargetFilename>
+        <TargetFilename condition="end with">.vhd</TargetFilename>
+        <TargetFilename condition="end with">.vhdx</TargetFilename>
+        <TargetFilename condition="end with">.msi</TargetFilename>
+        <TargetFilename condition="end with">.msp</TargetFilename>
+        <TargetFilename condition="end with">.mst</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

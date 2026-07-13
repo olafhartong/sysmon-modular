@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Process command-line auditing changes" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" condition="end with">\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\ProcessCreationIncludeCmdLine_Enabled</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

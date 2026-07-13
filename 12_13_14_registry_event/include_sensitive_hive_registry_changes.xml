@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important sensitive registry hive changes" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject name="technique_id=T1003.002,technique_name=Security Account Manager" condition="begin with">HKLM\SAM\</TargetObject>
+        <TargetObject name="technique_id=T1003.004,technique_name=LSA Secrets" condition="begin with">HKLM\SECURITY\Policy\Secrets\</TargetObject>
+        <TargetObject name="technique_id=T1003.004,technique_name=LSA Secrets" condition="begin with">HKLM\SECURITY\SAM\</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

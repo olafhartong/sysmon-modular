@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1685,technique_name=Disable or Modify Tools" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName condition="contains">Sysmon</OriginalFileName>
+          <CommandLine condition="contains any"> -u; /u; -c; /c</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

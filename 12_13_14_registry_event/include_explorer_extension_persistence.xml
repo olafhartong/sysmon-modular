@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important Explorer extension persistence" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="contains">\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler</TargetObject>
+        <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="contains all">\Microsoft\Windows\CurrentVersion\Explorer\AppKey\;\ShellExecute</TargetObject>
+        <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="contains">\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers</TargetObject>
+        <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="contains">\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellServiceObjects</TargetObject>
+        <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="end with">\Microsoft\Windows NT\CurrentVersion\Windows\IconServiceLib</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
+

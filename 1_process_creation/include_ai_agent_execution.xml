@@ -1,0 +1,40 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="AI agent and agentic tooling execution" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Image name="AI tooling: Google Antigravity IDE" condition="image">Antigravity IDE.exe</Image>
+        <Image name="AI tooling: Google Antigravity" condition="image">Antigravity.exe</Image>
+        <Image name="AI tooling: OpenAI ChatGPT" condition="image">ChatGPT.exe</Image>
+        <Image name="AI tooling: Anthropic Claude or Claude Code" condition="image">claude.exe</Image>
+        <Image name="AI tooling: OpenAI Codex" condition="image">codex.exe</Image>
+        <Image name="AI tooling: Microsoft or GitHub Copilot" condition="image">copilot.exe</Image>
+        <Image name="AI tooling: Cursor" condition="image">Cursor.exe</Image>
+        <Image name="AI tooling: Ollama" condition="image">ollama.exe</Image>
+        <Image name="AI tooling: Poe" condition="image">Poe.exe</Image>
+        <Image name="AI tooling: GitHub Copilot desktop" condition="contains all">\GitHub Copilot\;github.exe</Image>
+        <Image name="AI agent: OpenClaw" condition="image">openclaw.exe</Image>
+        <Image name="AI agent: OpenClaw legacy Clawdbot" condition="image">clawdbot.exe</Image>
+        <Image name="AI agent: OpenClaw legacy Moltbot" condition="image">moltbot.exe</Image>
+        <Image name="AI agent: Hermes Agent" condition="image">hermes.exe</Image>
+        <Image name="AI agent: OpenCode" condition="image">opencode.exe</Image>
+        <Image name="AI agent: OpenCode Desktop" condition="image">opencode-desktop.exe</Image>
+        <Image name="AI agent: Aider" condition="image">aider.exe</Image>
+        <Image name="AI agent: goose" condition="image">goose.exe</Image>
+        <Image name="AI agent: Gemini CLI" condition="image">gemini.exe</Image>
+        <Image name="AI agent: Qwen Code" condition="image">qwen.exe</Image>
+        <Image name="AI agent: Kiro IDE" condition="image">Kiro.exe</Image>
+        <Image name="AI agent: Kiro CLI" condition="image">kiro-cli.exe</Image>
+        <Image name="AI agent: Windsurf" condition="image">Windsurf.exe</Image>
+        <Image name="AI agent: Trae" condition="image">Trae.exe</Image>
+        <Image name="AI agent: Open Interpreter" condition="image">interpreter.exe</Image>
+        <Image name="AI agent: OpenHands" condition="image">openhands.exe</Image>
+        <Image name="AI agent: CrewAI" condition="image">crewai.exe</Image>
+        <!-- Container launches visible from the Windows Docker CLI. -->
+        <Rule name="AI agent: containerized OpenClaw or OpenHands" groupRelation="and">
+          <Image condition="image">docker.exe</Image>
+          <CommandLine condition="contains any">ghcr.io/openclaw/openclaw;openclaw/openclaw;docker.openhands.dev/openhands/openhands;ghcr.io/openhands/agent-server</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

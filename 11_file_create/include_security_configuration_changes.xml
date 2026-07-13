@@ -1,0 +1,15 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important security configuration changes" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename name="technique_id=T1565.001,technique_name=Stored Data Manipulation" condition="is">C:\Windows\System32\drivers\etc\hosts</TargetFilename>
+        <TargetFilename condition="is">C:\Windows\System32\inetsrv\config\applicationHost.config</TargetFilename>
+        <TargetFilename condition="is">C:\Windows\SysWOW64\inetsrv\config\applicationHost.config</TargetFilename>
+        <Rule groupRelation="and">
+          <TargetFilename condition="contains any">\inetpub\;\wwwroot\</TargetFilename>
+          <TargetFilename condition="end with">\web.config</TargetFilename>
+        </Rule>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

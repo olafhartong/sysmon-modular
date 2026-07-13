@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important Windows event log clearing" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule name="technique_id=T1685.005,technique_name=Clear Windows Event Logs" groupRelation="and">
+          <OriginalFileName condition="is">wevtutil.exe</OriginalFileName>
+          <CommandLine condition="contains any"> cl ;clear-log</CommandLine>
+        </Rule>
+        <Rule name="technique_id=T1685.005,technique_name=Clear Windows Event Logs" groupRelation="and">
+          <Image condition="image">powershell.exe</Image>
+          <CommandLine condition="contains">Clear-EventLog</CommandLine>
+        </Rule>
+        <Rule name="technique_id=T1685.005,technique_name=Clear Windows Event Logs" groupRelation="and">
+          <Image condition="image">pwsh.exe</Image>
+          <CommandLine condition="contains">Clear-EventLog</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

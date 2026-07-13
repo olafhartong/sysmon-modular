@@ -1,0 +1,18 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1098.007,technique_name=Additional Local or Domain Groups" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is any">net.exe;net1.exe</OriginalFileName>
+          <CommandLine condition="contains any"> localgroup ; group </CommandLine>
+          <CommandLine condition="contains">/add</CommandLine>
+        </Rule>
+        <CommandLine condition="contains any">Add-LocalGroupMember;Add-ADGroupMember</CommandLine>
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is">dsmod.exe</OriginalFileName>
+          <CommandLine condition="contains all">group;-addmbr</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

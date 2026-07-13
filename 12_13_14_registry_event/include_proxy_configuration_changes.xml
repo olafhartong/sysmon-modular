@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Proxy configuration changes" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject condition="end with">\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyEnable</TargetObject>
+        <TargetObject condition="end with">\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyServer</TargetObject>
+        <TargetObject condition="end with">\Software\Microsoft\Windows\CurrentVersion\Internet Settings\AutoConfigURL</TargetObject>
+        <TargetObject condition="end with">\Software\Microsoft\Windows\CurrentVersion\Internet Settings\AutoDetect</TargetObject>
+        <TargetObject condition="end with">\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\ProxySettingsPerUser</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

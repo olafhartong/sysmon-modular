@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Outbound SMB anomalous connections" groupRelation="or">  <!--May need tuning on servers-->
+      <NetworkConnect onmatch="include">
+        <Rule groupRelation="and">
+          <Protocol condition="is">tcp</Protocol>
+          <DestinationPort condition="is">445</DestinationPort>
+          <ProcessId condition="is not">4</ProcessId>
+        </Rule>
+      </NetworkConnect>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

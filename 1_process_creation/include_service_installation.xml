@@ -1,0 +1,17 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1543.003,technique_name=Windows Service" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is">sc.exe</OriginalFileName>
+          <CommandLine condition="contains"> create </CommandLine>
+        </Rule>
+        <CommandLine condition="contains">New-Service</CommandLine>
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is">wmic.exe</OriginalFileName>
+          <CommandLine condition="contains all">service;call;create</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

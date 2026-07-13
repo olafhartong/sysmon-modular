@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important VS Code extension changes" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="end with">.vsix</TargetFilename>
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="contains all">\Users\;\.vscode\extensions\extensions.json</TargetFilename>
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="contains all">\Users\;\.vscode-insiders\extensions\extensions.json</TargetFilename>
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="end with">\.vscode\extensions.json</TargetFilename>
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="end with">\.vscode-insiders\extensions.json</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
+
