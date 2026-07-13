@@ -3,24 +3,24 @@
 [![license](https://img.shields.io/github/license/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/blob/master/license.md)
 ![Maintenance](https://img.shields.io/maintenance/yes/2023.svg?style=flat-square)
 [![GitHub last commit](https://img.shields.io/github/last-commit/olafhartong/sysmon-modular.svg?style=flat-square)](https://github.com/olafhartong/sysmon-modular/commit/master)
-![Build Sysmon config with all modules](https://github.com/olafhartong/sysmon-modular/workflows/Build%20Sysmon%20config%20with%20all%20modules/badge.svg)
+![Build Sysmon configurations](https://github.com/olafhartong/sysmon-modular/actions/workflows/config-build.yml/badge.svg)
 [![Twitter](https://img.shields.io/twitter/follow/olafhartong.svg?style=social&label=Follow)](https://twitter.com/olafhartong)
 [![Discord Shield](https://discordapp.com/api/guilds/715302469751668787/widget.png?style=shield)](https://discord.gg/B5n6skNTwy)
 
-This is a Microsoft Sysinternals Sysmon [download here](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon) configuration repository, set up modular for easier maintenance and generation of specific configs. 
+This is a Microsoft Sysinternals Sysmon [download here](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon) configuration repository, set up modular for easier maintenance and generation of specific configs.
 
 Please keep in mind that any of these configurations should be considered a starting point, tuning per environment is **strongly** recommended.
 
-**Note:** to get even more value out of the FileExecutable event, consider getting the most up to date version of the LOLdrivers config merged into the config as well. You can easily do that by grabbing the file and adding it in the 29_file_execute_detected folder and generate a new config. 
+**Note:** to get even more value out of the FileExecutable event, consider getting the most up to date version of the LOLdrivers config merged into the config as well. You can easily do that by grabbing the file and adding it in the 29_file_execute_detected folder and generate a new config.
 
-The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run. More info on how to generate a custom config, incorporating your own modules [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)
+The ready-to-use configurations are generated with the Go tooling, validated in GitHub Actions, and published as assets on the [latest GitHub Release](https://github.com/olafhartong/sysmon-modular/releases/latest). Versioned assets are provided for Sysmon 15.21, 14.16, 13.34, and 12.03 using names such as `sysmonconfig-14.16.xml`; the unversioned links below remain aliases for 15.21. The release also contains [attack-matrix-15.21.json](https://github.com/olafhartong/sysmon-modular/releases/latest/download/attack-matrix-15.21.json), generated from the latest default configuration using the ATT&CK Navigator v5.3.2/ATT&CK v19 layer template in `attack_matrix/Sysmon-modular.json`. Generated files are intentionally not stored in the repository. More information on generating a custom config is available [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs).
 
-## Pre-Grenerated configurations
+## Pre-generated configurations
 | Type | Config | Description|
 | --- | --- | --- |
-| default | [sysmonconfig.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
-| default+ | [sysmonconfig-with-filedelete.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-with-filedelete.xml) | This is the balanced configuration, most used, more information including FileDelete file saves | 
-| verbose | [sysmonconfig-excludes-only.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-excludes-only.xml) |  This is the very verbose configuration, all events are included, only the exclusion modules are applied. This should not be used in production without validation, will generate a significant amount of data and might impact performance. More information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)|
+| default | [sysmonconfig.xml](https://github.com/olafhartong/sysmon-modular/releases/latest/download/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
+| default+ | [sysmonconfig-with-filedelete.xml](https://github.com/olafhartong/sysmon-modular/releases/latest/download/sysmonconfig-with-filedelete.xml) | This is the balanced configuration, most used, more information including FileDelete file saves |
+| verbose | [sysmonconfig-excludes-only.xml](https://github.com/olafhartong/sysmon-modular/releases/latest/download/sysmonconfig-excludes-only.xml) |  This is the very verbose configuration, all events are included, only the exclusion modules are applied. This should not be used in production without validation, will generate a significant amount of data and might impact performance. More information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)|
 | super verbose | [sysmonconfig-research.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-research.xml) | A configuration with extreme verbosity. The log volume expected from this file is significantly high, really DO NOT USE IN PRODUCTION! This config is only for research, this will use way more CPU/Memory. Only enable prior to running the to be investigated technique, when done load a lighter config. |
 | MDE augment | [sysmonconfig-mde-augmentation.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-mde-augment.xml) | A configuration to augment Defender for Endpoint, intended to augment the information and have as little overlap as possible. This is based on the default/balanced config and will *not generate all events* for Sysmon, there are comments in the config. In the benefit of IR, consider using the excludes only config and only ingest the enriching events. (Blog with more rationale soon)|
 
@@ -31,14 +31,14 @@ The sysmonconfig.xml within the repo is automatically generated after a successf
   * [Required actions](#required-actions)
     + [Customization](#customization)
     + [Generating a config](#generating-a-config)
-      - [PowerShell](#powershell)
-    + [Generating custom configs](#generating-custom-configs)
+      - [Go](#go-generator-and-analyzer)
+    + [Generating custom configs](#generating-custom-configs-legacy-powershell)
   * [Use](#use)
     + [Install](#install)
     + [Update existing configuration](#update-existing-configuration)
   * [Python generator tool](#python-generator-tool)
   * [Sysmon Community](#sysmon-community)
-  * [Contributing](#contributing) 
+  * [Contributing](#contributing)
   * [More Information](#more-information)
 
 ---
@@ -77,18 +77,21 @@ For example, you will need to exclude actions of your antivirus, which will othe
 
 ### Generating a config
 
-#### PowerShell
+The Go binary is the primary and supported generator:
 
-    $> git clone https://github.com/olafhartong/sysmon-modular.git
-    $> cd sysmon modular
-    $> . .\Merge-SysmonXml.ps1
-    $> Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
+```bash
+git clone https://github.com/olafhartong/sysmon-modular.git
+cd sysmon-modular
+go -C tooling run ./cmd/sysmon-modular merge --base-path "$PWD" --output sysmonconfig.xml
+```
 
-### Generating custom configs
+The PowerShell merger remains under `scripts/` for legacy use only.
+
+### Generating custom configs (legacy PowerShell)
 
 Below functions with great thanks to mbmy
 
-**New Function:** 
+**New Function:**
 `Find-RulesInBasePath` - takes a base path (i.e. C:\folder\sysmon-modular\) and finds all candidate xml rule files based upon regex pattern
 
 Example:
@@ -212,6 +215,24 @@ python merge_sysmon_configs.py config_lists/default_list/default_list.csv -f csv
 
 ** This way of generating content is still new and experimental. There is no support for the custom versions like the MDE augment and exclude-only versions yet.
 
+## Go generator and analyzer
+
+The Go implementation provides merge, validation, analysis, and generator workflows without non-standard Go dependencies:
+
+```bash
+go -C tooling run ./cmd/sysmon-modular merge --base-path .. --output ../sysmonconfig.xml
+go -C tooling run ./cmd/sysmon-modular validate --all --base-path ..
+go -C tooling run ./cmd/sysmon-modular analyze --config ../sysmonconfig.xml
+go -C tooling run ./cmd/sysmon-modular generate-kql --kql ../detection.kql --output ../generated_module.xml
+go -C tooling run ./cmd/sysmon-modular generate-mde --mde-config mde-config.json --output-dir ../0_custom_configuration/generated_mde
+go -C tooling run ./cmd/sysmon-modular generate-mde-unfiltered --mde-config mde-config.json --output-dir ../0_custom_configuration/generated_mde_unfiltered
+go -C tooling run ./cmd/sysmon-modular generate-mde-inverse --mde-config mde-config.json --output-dir ../0_custom_configuration/generated_mde_inverse
+```
+
+Merge supports `--path`, `--include-list`, `--exclude-list`, `--file-list`, `--format`, `--template`, `--preserve-comments`, `--force-grouprelation-or`, `--validate`, `--schema-validate`, `--sysmon-version`, `--unsupported`, `--analyze`, and `--warnings-as-errors`. It targets Sysmon 15/schema 4.90 by default. Set `--sysmon-version 15.21` for schema 4.91, or select another target from Sysmon 12 through 15. Unsupported events and fields warn by default, or can be removed with `--unsupported exclude`.
+
+The MDE generators analyze `tooling/mde-config.json` and emit Sysmon modules for Sysmon-supported telemetry families. `generate-mde` emits include and exclude modules to approximate MDE-filtered visibility, `generate-mde-unfiltered` emits include-only modules for supported telemetry families without MDE filters, and `generate-mde-inverse` emits include-only modules for filter-defined blind spots. Unsupported MDE telemetry is counted in the command summary because Sysmon can only filter fields and event types exposed by the Sysmon schema.
+
 ---
 
 ## Sysmon Community
@@ -223,7 +244,7 @@ There are three major Sysmon configurations:
 - [@cyb3rops](https://twitter.com/cyb3rops):  A fork of SwiftOnSecurity, bleeding-edge and proactive. **[https://github.com/Neo23x0/sysmon-config](https://github.com/Neo23x0/sysmon-config)
 
 - [@olafhartong](https://twitter.com/olafhartong): This repo, which focuses on being very maintainable with detailed rule notes for guided response and SIEM.
- 
+
 - An excellent community guide by [@Carlos_Perez](https:twitter.com/Carlos_Perez):
  [https://github.com/trustedsec/SysmonCommunityGuide](https://github.com/trustedsec/SysmonCommunityGuide)
 
@@ -238,7 +259,7 @@ I started a series of blog posts covering this repo;
 - [Endpoint detection Superpowers on the cheap — part 2 — Deploy and Maintain](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-2-deploy-and-maintain-d06580329fe8)
 - [Endpoint detection Superpowers on the cheap — part 3 — Sysmon Tampering](https://medium.com/@olafhartong/endpoint-detection-superpowers-on-the-cheap-part-3-sysmon-tampering-49c2dc9bf6d9)
 
-- [A comparison between Sysmon and Microsoft Defender for Endpoint](https://medium.com/falconforce/sysmon-vs-microsoft-defender-for-endpoint-mde-internals-0x01-1e5663b10347) 
+- [A comparison between Sysmon and Microsoft Defender for Endpoint](https://medium.com/falconforce/sysmon-vs-microsoft-defender-for-endpoint-mde-internals-0x01-1e5663b10347)
 
 ## MITRE ATTACK
 
