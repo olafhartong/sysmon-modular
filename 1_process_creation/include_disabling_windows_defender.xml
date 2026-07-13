@@ -2,7 +2,7 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
-        <Rule groupRelation="and">
+        <Rule groupRelation="and" name="technique_id=T1685,technique_name=Disable or Modify Tools">
           <CommandLine condition="contains">Set-MpPreference</CommandLine>
           <CommandLine condition="contains any">-DisableRealTimeMonitoring $true;-DisableBehaviorMonitoring $true;-DisableBlockAtFirstSeen $true;-DisableIOAVProtection $true;-DisablePrivacyMode $true;-SignatureDisableUpdateOnStartupWithoutEngine $true;-DisableArchiveScanning $true;-DisableIntrusionPreventionSystem $true;-DisableScriptScanning $true</CommandLine>
         </Rule>

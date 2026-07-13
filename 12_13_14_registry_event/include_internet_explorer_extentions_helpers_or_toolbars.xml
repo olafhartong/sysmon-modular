@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.30">
 	<EventFiltering>
-		<RuleGroup name="" groupRelation="or">
+		<RuleGroup name="technique_id=T1176.001,technique_name=Browser Extensions" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<TargetObject condition="contains">\Internet Explorer\Toolbar</TargetObject>				<!--Microsoft:InternetExplorer: Machine and user--><!--MDE-->
 				<TargetObject condition="contains">\Internet Explorer\Extensions</TargetObject>				<!--Microsoft:InternetExplorer: Machine and user-->

@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.30">
 	<EventFiltering>
-		<RuleGroup name="" groupRelation="or">
+		<RuleGroup name="technique_id=T1484.001,technique_name=Group Policy Modification" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<!--Group Policy integrity-->
 				<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions</TargetObject>				<!--Microsoft:Windows: Group Policy internally uses a plugin architecture that nothing should be modifying-->

@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.70">
 	<EventFiltering>
-		<RuleGroup name="Disabling Security Service" groupRelation="or">
+		<RuleGroup name="technique_id=T1685,technique_name=Disable or Modify Tools" groupRelation="or">
 			<RegistryEvent onmatch="include">
 			<!--https://twitter.com/JohnLaTwC/status/1415295021041979392-->
 			<!--https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nf-winsvc-changeserviceconfiga-->
