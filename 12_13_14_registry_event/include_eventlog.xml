@@ -2,8 +2,8 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">\SYSTEM\;\Service\EventLog;Retention</TargetObject><!--MDE-->
-        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">\SYSTEM\;\Service\EventLog;MaxSize</TargetObject><!--MDE-->
+        <TargetObject name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" condition="contains all">\SYSTEM\;\Service\EventLog;Retention</TargetObject><!--MDE-->
+        <TargetObject name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" condition="contains all">\SYSTEM\;\Service\EventLog;MaxSize</TargetObject><!--MDE-->
       </RegistryEvent>
     </RuleGroup>
   </EventFiltering>

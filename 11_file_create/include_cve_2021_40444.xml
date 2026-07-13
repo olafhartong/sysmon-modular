@@ -1,5 +1,5 @@
 <Sysmon schemaversion="4.30">
-	<FileCreate>
+  <EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<FileCreate onmatch="include">
 				<Rule groupRelation="and">
@@ -11,5 +11,5 @@
 				</Rule>
 			</FileCreate>
 		</RuleGroup>
-	</FileCreate>
+  </EventFiltering>
 </Sysmon>

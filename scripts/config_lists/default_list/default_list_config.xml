@@ -30,11 +30,11 @@
     <RuleGroup name="" groupRelation="or">
       <ProcessCreate onmatch="include">
         <Rule name="Eventviewer Bypass UAC" groupRelation="and">
-          <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">eventvwr.exe</ParentImage>
+          <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="image">eventvwr.exe</ParentImage>
           <!-- eventvwr.exe launching child process other than mmc.exe -->
           <Image condition="is not">c:\windows\system32\mmc.exe</Image>
         </Rule>
-        <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">fodhelper.exe</ParentImage>
+        <ParentImage name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="image">fodhelper.exe</ParentImage>
         <Rule name="technique_id=T1218,technique_name=System Binary Proxy Execution" groupRelation="and">
           <OriginalFileName condition="is">ATBroker.exe</OriginalFileName>
           <CommandLine condition="contains">start</CommandLine>
@@ -69,8 +69,8 @@
         <ParentCommandLine name="technique_id=T1204,technique_name=User Execution" condition="is">C:\Windows\explorer.exe</ParentCommandLine>
         <ParentImage name="technique_id=T1204,technique_name=User Execution" condition="is">C:\Windows\explorer.exe</ParentImage>
         <Rule name="Fltmc" groupRelation="and">
-          <OriginalFileName name="technique_id=T1562.006,technique_name=Indicator Blocking" condition="is">fltMC.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1562.006,technique_name=Indicator Blocking" condition="contains">unload;detach</CommandLine>
+          <OriginalFileName name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="is">fltMC.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">unload;detach</CommandLine>
         </Rule>
         <Rule groupRelation="or">
           <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>
@@ -80,8 +80,8 @@
           <OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">InstallUtil.exe</OriginalFileName>
           <CommandLine name="technique_id=T1218.004,technique_name=InstallUtil" condition="contains all">/logfile=;/LogToConsole=false;/U</CommandLine>
         </Rule>
-        <OriginalFileName name="technique_id=T1546.008,technique_name=Windows Error Reporting" condition="contains">werfault.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1546.008,technique_name=Accessibility Features" condition="contains">werfault.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1574.001,technique_name=DLL" condition="is">odbcconf.exe</OriginalFileName>
         <!--Microsoft:Windows: allows for driver loads -->
         <!--Local code compilation-->
         <Rule name="technique_id=T1027.004,technique_name=Compile After Delivery" groupRelation="and">
@@ -103,42 +103,42 @@
         <!-- From original - commented out until fixed-->
         <!-- <OriginalFileName name="technique_id=T,technique_name=" condition="is">makecab.exe</OriginalFileName>
 				<OriginalFileName name="technique_id=T,technique_name=" condition="is">wusa.exe</OriginalFileName> -->
-        <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
-        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">update;--download</CommandLine>
-        <CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">squirrel;--download</CommandLine>
-        <OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">expand.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
+        <CommandLine name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="contains all">update;--download</CommandLine>
+        <CommandLine name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="contains all">squirrel;--download</CommandLine>
+        <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1564.001,technique_name=Hidden Files and Directories" condition="is">attrib.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1543.003,technique_name=Windows Service" condition="is">sc.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1040,technique_name=Network Sniffing" condition="is">PktMon.exe</OriginalFileName>
-        <Rule name="technique_id=T1003,technique_name=Credential Dumping" groupRelation="and">
+        <Rule name="technique_id=T1003,technique_name=OS Credential Dumping" groupRelation="and">
           <!-- Extensible Storage Engine Utilities -->
           <OriginalFileName condition="is">esentutl.exe</OriginalFileName>
           <CommandLine condition="contains all">/y;/vss/d</CommandLine>
         </Rule>
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">TTTracer.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">sqldumper.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">TTTracer.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">sqldumper.exe</OriginalFileName>
         <!-- Should rarely be ran -->
-        <Rule name="technique_id=T1003,technique_name=Credential Dumping" groupRelation="and">
+        <Rule name="technique_id=T1003,technique_name=OS Credential Dumping" groupRelation="and">
           <!-- AD Dump with ntdsutil -->
           <OriginalFileName condition="is">ntdsutil.exe</OriginalFileName>
           <CommandLine condition="contains">ifm</CommandLine>
         </Rule>
-        <ParentImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">diskshadow.exe</ParentImage>
+        <ParentImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">diskshadow.exe</ParentImage>
         <!--This only applies to versions of Windows Server-->
-        <Rule name="technique_id=T1003,technique_name=Credential Dumping (Likely)" groupRelation="and">
+        <Rule name="technique_id=T1003,technique_name=OS Credential Dumping" groupRelation="and">
           <!-- Implementation of this Sigma detection https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/process_creation/win_susp_rpcping.yml -->
           <OriginalFileName condition="image">rpcping.exe</OriginalFileName>
           <CommandLine condition="contains any">\s;-s</CommandLine>
           <CommandLine condition="contains any">-u;\u;-t;\t</CommandLine>
           <CommandLine condition="contains any">NTLM;ncacn_np</CommandLine>
         </Rule>
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">rpcping.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">rpcping.exe</OriginalFileName>
         <Rule name="Ingress Tool Transfer" groupRelation="or">
           <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand</OriginalFileName>
           <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">IEExec.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">Print.Exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">curl.exe</OriginalFileName>
-          <ParentImage name="technique=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</ParentImage>
+          <ParentImage name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</ParentImage>
         </Rule>
         <!-- BELOW IS SORTED, not necessiarlly good -->
         <Rule name="technique_id=T1564.004,technique_name=NTFS File Attributes" groupRelation="and">
@@ -156,14 +156,14 @@
           <OriginalFileName name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">extrac32.exe</OriginalFileName>
         </Rule>
         <Rule name="Scheduled Task/Job" groupRelation="or">
-          <OriginalFileName name="technique_id=T1053.005,technique_name=Scheduled Task/Job" condition="contains any">schtasks.exe;sctasks.exe</OriginalFileName>
-          <OriginalFileName name="technique=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1053.005,technique_name=Scheduled Task" condition="contains any">schtasks.exe;sctasks.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskeng.exe</OriginalFileName>
         </Rule>
         <Rule name="File Permissions Modification" groupRelation="or">
-          <OriginalFileName name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="is">takeown.exe</OriginalFileName>
-          <Image name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="image">forfiles.exe</Image>
-          <OriginalFileName name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="contains any">icacls.exe;cacls.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1222.001,technique_name=Windows Permissions" condition="is">takeown.exe</OriginalFileName>
+          <Image name="technique_id=T1222.001,technique_name=Windows Permissions" condition="image">forfiles.exe</Image>
+          <OriginalFileName name="technique_id=T1222.001,technique_name=Windows Permissions" condition="contains any">icacls.exe;cacls.exe</OriginalFileName>
         </Rule>
         <Rule name="Access Token Manipulation" groupRelation="or">
           <OriginalFileName name="technique_id=T1134,technique_name=Access Token Manipulation" condition="is">runas.exe</OriginalFileName>
@@ -171,11 +171,11 @@
           <CommandLine name="technique_id=T1134,technique_name=Access Token Manipulation" condition="contains">runas</CommandLine>
         </Rule>
         <Rule name="Bypass User Access Control" groupRelation="or">
-          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">WSReset.exe</OriginalFileName>
-          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">xwizard.exe</OriginalFileName>
-          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">computerdefaults.exe</OriginalFileName>
-          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">dism.exe</OriginalFileName>
-          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">fodhelper.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">WSReset.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">xwizard.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
+          <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
           <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
@@ -291,7 +291,7 @@
           <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="is any">reg.exe;regedit.exe</OriginalFileName>
         </Rule>
         <!-- SECTION: REMOVAL -->
-        <Rule name="technique_id=T1070.001,technique_name=Clear Windows Event Logs" groupRelation="and">
+        <Rule name="technique_id=T1685.005,technique_name=Clear Windows Event Logs" groupRelation="and">
           <OriginalFileName condition="is">wevtutil.exe</OriginalFileName>
           <CommandLine condition="contains any">cl;clear-log</CommandLine>
         </Rule>
@@ -362,7 +362,7 @@
         <!--Mitre T1218.010-->
         <!--Mitre T1085-->
         <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
-        <OriginalFileName name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1218.011,technique_name=Rundll32" condition="contains">rundll32.exe</OriginalFileName>
         <Rule name="System Binary Proxy Execution" groupRelation="or">
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</OriginalFileName>
           <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">extexport.exe</OriginalFileName>
@@ -439,8 +439,8 @@
           <!-- https://lolbas-project.github.io/lolbas/Binaries/Jsc/ -->
         </Rule>
         <Rule name="Mavinject" groupRelation="and">
-          <OriginalFileName name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains any">Mavinject.exe;mavinject64.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="contains">/INJECTRUNNING</CommandLine>
+          <OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains any">Mavinject.exe;mavinject64.exe</OriginalFileName>
+          <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">/INJECTRUNNING</CommandLine>
         </Rule>
         <Rule name="CMSTP" groupRelation="and">
           <OriginalFileName name="technique_id=T1218.003,technique_name=CMSTP" condition="is">CMSTP.exe</OriginalFileName>
@@ -455,7 +455,7 @@
         <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">msaccess.exe</ParentImage>
         <ParentImage name="technique_id=T1137,technique_name=Office Application Startup" condition="image">mspub.exe</ParentImage>
         <OriginalFileName name="technique_id=T1218.009,technique_name=Regsvcs/Regasm" condition="contains any">regsvcs.exe;regasm.exe</OriginalFileName>
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">SyncAppvPublishingServer.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">SyncAppvPublishingServer.exe</Image>
         <!--Note: Not all Sysinternals listed here, only the ones I know/suspect to be used for malicious activity -->
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">PsList.exe</OriginalFileName>
         <!--Note: Also for the pslist64.exe -->
@@ -464,14 +464,14 @@
         <OriginalFileName name="technique_id=T1569.002,technique_name=Service Execution" condition="is">PsExec.c</OriginalFileName>
         <!--Note: in some versions named like this -->
         <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsGetSID.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="is">PsKill.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="is">PKill.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="is">PsKill.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="is">PKill.exe</OriginalFileName>
         <!--Note: in some versions named like this -->
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">ProcDump</OriginalFileName>
+        <OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">ProcDump</OriginalFileName>
         <!--Note: in some versions naming differs -->
         <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsLoggedOn.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">PsFile.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ShellRunas</OriginalFileName>
+        <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="contains">ShellRunas</OriginalFileName>
         <!--Note: in some versions naming differs -->
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">PipeList.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1083,technique_name=File and Directory Discovery" condition="is">AccessChk.exe</OriginalFileName>
@@ -484,10 +484,10 @@
         <OriginalFileName name="technique_id=T1098,technique_name=Account Manipulation" condition="is">PsPasswd.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="is">ru.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="contains">Regsize</OriginalFileName>
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">ProcDump</OriginalFileName>
+        <OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">ProcDump</OriginalFileName>
         <!--Note: in some versions naming differs -->
-        <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">-ma lsass.exe</CommandLine>
-        <CommandLine name="technique_id=T1036,technique_name=Process Evasion" condition="contains">-accepteula -ma</CommandLine>
+        <CommandLine name="technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">-ma lsass.exe</CommandLine>
+        <CommandLine name="technique_id=T1036,technique_name=Masquerading" condition="contains">-accepteula -ma</CommandLine>
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="is">vssadmin.exe</OriginalFileName>
           <CommandLine name="technique_id=T1490,technique_name=Inhibit System Recovery" condition="contains all">delete;shadow</CommandLine>
@@ -535,13 +535,13 @@
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\Appdata\Local\</Image>
         <!--Thanks to Josh Frazier-->
         <Rule name="Control Panel Items" groupRelation="or">
-          <CommandLine name="technique_id=T1218.002,technique_name=Control Panel Items" condition="contains all">control;/name</CommandLine>
-          <CommandLine name="technique_id=T1218.002,technique_name=Control Panel Items" condition="contains all">rundll32.exe;shell32.dll;Control_RunDLL</CommandLine>
+          <CommandLine name="technique_id=T1218.002,technique_name=Control Panel" condition="contains all">control;/name</CommandLine>
+          <CommandLine name="technique_id=T1218.002,technique_name=Control Panel" condition="contains all">rundll32.exe;shell32.dll;Control_RunDLL</CommandLine>
         </Rule>
         <Rule name="Windows Defender tampering" groupRelation="and">
-          <Image name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="image">MpCmdRun.exe</Image>
+          <Image name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="image">MpCmdRun.exe</Image>
           <!-- Credit @viss http://www.offensiveops.io/tools/incapacitating-windows-defender/ -->
-          <CommandLine name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains any">Add-MpPreference;RemoveDefinitions;DisableIOAVProtection</CommandLine>
+          <CommandLine name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains any">Add-MpPreference;RemoveDefinitions;DisableIOAVProtection</CommandLine>
           <!-- Credit @viss http://www.offensiveops.io/tools/incapacitating-windows-defender/ -->
         </Rule>
         <OriginalFileName name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">wsmprovhost.exe</OriginalFileName>
@@ -551,22 +551,22 @@
            Generally these could be investigated with ease as you can look for 
            abnormal commands coming from the user and can examine bash_history for
            other strange activity that might escape sysmon or Windows event logger -->
-        <ParentImage name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
-        <ParentCommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;-e</ParentCommandLine>
-        <ParentCommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;/e</ParentCommandLine>
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;-e</CommandLine>
+        <ParentImage name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wsl.exe</ParentImage>
+        <ParentCommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">wsl.exe;-e</ParentCommandLine>
+        <ParentCommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">wsl.exe;/e</ParentCommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">wsl.exe;-e</CommandLine>
         <!--This will execute local PEs on the windows host-->
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;/e</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">wsl.exe;/e</CommandLine>
         <!--This will execute local PEs on the windows host-->
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;-u root</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">wsl.exe;-u root</CommandLine>
         <!--Run a bash command as root-->
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;/u root</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">wsl.exe;/u root</CommandLine>
         <!--Run a bash command as root-->
-        <CommandLine name="technique_id=T1218,technique_name=Trusted Binary Proxy Execution" condition="contains all">wsl.exe;--exec bash</CommandLine>
+        <CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">wsl.exe;--exec bash</CommandLine>
         <!--This will execute a command within the distro -->
         <Rule name="Remote Copy via wsl" groupRelation="and">
-          <CommandLine name="technique_id=T1202,technique_name=Remote File Copy" condition="contains all">wsl.exe;--exec bash</CommandLine>
-          <CommandLine name="technique_id=T1202,technique_name=Remote File Copy" condition="contains all">/dev/tcp</CommandLine>
+          <CommandLine name="technique_id=T1202,technique_name=Indirect Command Execution" condition="contains all">wsl.exe;--exec bash</CommandLine>
+          <CommandLine name="technique_id=T1202,technique_name=Indirect Command Execution" condition="contains all">/dev/tcp</CommandLine>
         </Rule>
         <!-- COMMENT: T1059 Section - Command and Scripting Interpreter -->
         <Rule name="Windows Command Shell" groupRelation="or">
@@ -615,15 +615,15 @@
         <!--Microsoft:Windows: Changes to default user profile-->
         <TargetFilename condition="contains">Desktop</TargetFilename>
         <!--Files on the Desktop-->
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="contains">AppData\Local\Microsoft\CLR_v2.0\UsageLogs\</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">AppData\Local\Microsoft\CLR_v2.0\UsageLogs\</TargetFilename>
         <!--Dotnet v2 binary started-->
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\cscript.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wscript.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\wmic.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\mshta.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\svchost.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\regsvr32.exe.log</TargetFilename>
-        <TargetFilename name="technique_id=T1218,technique_name=Office Signed Binary Proxy Execution" condition="end with">\UsageLogs\rundll32.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="end with">\UsageLogs\cscript.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="end with">\UsageLogs\wscript.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="end with">\UsageLogs\wmic.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="end with">\UsageLogs\mshta.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="end with">\UsageLogs\svchost.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="end with">\UsageLogs\regsvr32.exe.log</TargetFilename>
+        <TargetFilename name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="end with">\UsageLogs\rundll32.exe.log</TargetFilename>
         <TargetFilename condition="contains">\Downloads\</TargetFilename>
         <!--Downloaded files. Does not include "Run" files in IE-->
         <!--PRIVACY WARNING-->
@@ -776,13 +776,13 @@
         <!--VisualBasicScripting files-->
         <Rule groupRelation="and">
           <!-- Windows 10 build 1903 and newer + Windows Server  2016 and above -->
-          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="begin with">C:\Windows\System32\CodeIntegrity\CIPolicies\Active\</TargetFilename>
-          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="end with">.cip</TargetFilename>
+          <TargetFilename name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">C:\Windows\System32\CodeIntegrity\CIPolicies\Active\</TargetFilename>
+          <TargetFilename name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="end with">.cip</TargetFilename>
         </Rule>
         <Rule groupRelation="and">
           <!-- Pre Windows 10 build 1903 -->
-          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="begin with">C:\Windows\System32\CodeIntegrity\</TargetFilename>
-          <TargetFilename name="technique_id=T1562.001,technique_name=Disable or Modify tools" condition="end with">.p7b</TargetFilename>
+          <TargetFilename name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">C:\Windows\System32\CodeIntegrity\</TargetFilename>
+          <TargetFilename name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="end with">.p7b</TargetFilename>
         </Rule>
         <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Windows\System32\Wbem</TargetFilename>
         <!--Microsoft:WMI: [ More information: http://2014.hackitoergosum.org/slides/day1_WMI_Shell_Andrei_Dumitrescu.pdf ] -->
@@ -790,12 +790,12 @@
         <!--Microsoft:WMI: [ More information: http://2014.hackitoergosum.org/slides/day1_WMI_Shell_Andrei_Dumitrescu.pdf ] -->
         <Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
         <!-- https://www.eideon.com/2018-03-02-THL03-WMIBackdoors/ -->
-        <TargetFilename name="technique_id=T1546.008,technique_name=Services File Permissions Weakness" condition="begin with">C:\Windows\Temp\</TargetFilename>
-        <TargetFilename name="technique_id=T1546.008,technique_name=Services File Permissions Weakness" condition="begin with">C:\Program\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Temp\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\PerfLogs\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Users\Public\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="contains">\AppData\Temp\</TargetFilename>
+        <TargetFilename name="technique_id=T1546.008,technique_name=Accessibility Features" condition="begin with">C:\Windows\Temp\</TargetFilename>
+        <TargetFilename name="technique_id=T1546.008,technique_name=Accessibility Features" condition="begin with">C:\Program\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Temp\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\PerfLogs\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Users\Public\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">\AppData\Temp\</TargetFilename>
       </FileCreate>
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
@@ -844,7 +844,7 @@
         <!--ADDITIONAL REFERENCE: [ http://www.ghacks.net/2016/06/04/windows-automatic-startup-locations/ ] -->
         <!--ADDITIONAL REFERENCE: [ https://view.officeapps.live.com/op/view.aspx?src=https://arsenalrecon.com/downloads/resources/Registry_Keys_Related_to_Autorun.ods ] -->
         <!--ADDITIONAL REFERENCE: [ http://www.silentrunners.org/launchpoints.html ] -->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">\CurrentVersion\Run</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains">\CurrentVersion\Run</TargetObject>
         <!--Microsoft:Windows: Run keys, incld RunOnce, RunOnceEx, RunServices, RunServicesOnce [Also covers terminal server] -->
         <!--MDE-->
         <TargetObject condition="contains">\Group Policy\Scripts</TargetObject>
@@ -852,7 +852,7 @@
         <!--MDE-->
         <TargetObject name="technique_id=T1037,technique_name=Boot or Logon Initialization Scripts" condition="contains">\Windows\System\Scripts</TargetObject>
         <!--Microsoft:Windows: Logon, Loggoff, Shutdown-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">\Policies\Explorer\Run</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains">\Policies\Explorer\Run</TargetObject>
         <!--Microsoft:Windows -->
         <!--MDE-->
         <TargetObject condition="end with">\ServiceDll</TargetObject>
@@ -881,13 +881,13 @@
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>
         <!--Microsoft:Windows: Legacy driver loading | Credit @ion-storm -->
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\BootExecute</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\BootExecute</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\excludefromknowndlls</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\excludefromknowndlls</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\safedllsearchmode</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\safedllsearchmode</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\setupexecute</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains all">HKLM\SYSTEM\;Control\Session Manager\setupexecute</TargetObject>
         <!--MDE-->
         <TargetObject name="technique_id=T1546.001,technique_name=Change Default File Association" condition="contains">\Explorer\FileExts</TargetObject>
         <!--Microsoft:Windows: Changes to file extension mapping-->
@@ -898,23 +898,23 @@
         <!--MDE-->
         <TargetObject condition="contains">\shell\open\ddeexec</TargetObject>
         <!--Microsoft:Windows: Sensitive subkey under file associations and CLSID that map to launch command-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains">Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains all">software\microsoft\windows nt\currentversion\accessibility\ATs\;\StartExe</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains all">software\microsoft\windows nt\currentversion\accessibility\ATs\;\StartExe</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows nt\currentversion\windows\run\</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains">software\microsoft\windows nt\currentversion\windows\run\</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains">Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU\</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\common startup</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="contains">software\microsoft\windows\currentversion\explorer\shell folders\startup</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">hklm\software\microsoft\command processor\autorun</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="begin with">hklm\software\microsoft\command processor\autorun</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\mscfile\shell\open\command</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ms-settings\shell\open\command</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="contains">\mscfile\shell\open\command</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="contains">ms-settings\shell\open\command</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="contains">Classes\exefile\shell\runas\command\isolatedCommand</TargetObject>
         <!-- Credit cyb3rop -->
         <TargetObject name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" condition="contains all">Software\Classes\CLSID;inprocserver32</TargetObject>
         <!--Appears in HKLM and HKCU-->
@@ -934,7 +934,7 @@
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="contains all">HKLM\SOFTWARE\;Microsoft\Windows NT\CurrentVersion\Windows\loadappinit_dlls</TargetObject>
         <TargetObject name="technique_id=T1546.010,technique_name=Appinit DLLs" condition="contains all">\SYSTEM\;\Services\DNS\Parameters\ServerLevelPluginDll</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.006,technique_name=Impair Defenses - Indicator Blocking" condition="end with">SOFTWARE\Microsoft\.NETFramework\ETWEnabled</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="end with">SOFTWARE\Microsoft\.NETFramework\ETWEnabled</TargetObject>
         <!-- @Cyb3rWard0g and  https://twitter.com/_xpn_/status/1268712093928378368-->
         <TargetObject name="technique_id=T1546.008,technique_name=Accessibility Features" condition="contains">\Environment\</TargetObject>
         <!--MDE-->
@@ -952,9 +952,9 @@
         <!--MDE-->
         <TargetObject condition="begin with">HKLM\Software\Classes\protocols\handler\</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">\SYSTEM\;\Service\EventLog;Retention</TargetObject>
+        <TargetObject name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" condition="contains all">\SYSTEM\;\Service\EventLog;Retention</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.002,technique_name=Disable Windows Event Logging" condition="contains all">\SYSTEM\;\Service\EventLog;MaxSize</TargetObject>
+        <TargetObject name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" condition="contains all">\SYSTEM\;\Service\EventLog;MaxSize</TargetObject>
         <!--MDE-->
         <!--Group Policy integrity-->
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions</TargetObject>
@@ -1004,11 +1004,11 @@
         <TargetObject name="T1562,office" condition="end with">\DisableInternetFilesInPV</TargetObject>
         <TargetObject name="T1562,office" condition="end with">\DisableUnsafeLocationsInPV</TargetObject>
         <TargetObject name="T1562,office" condition="end with">\DisableAttachementsInPV</TargetObject>
-        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains all">\Microsoft\Office;\Outlook\Addins</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Add-ins" condition="contains all">\Microsoft\Office;\Outlook\Addins</TargetObject>
         <!--Microsoft:Office: Outlook add-ins-->
-        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
         <!-- Uncommon place to load add-ins, especially in HKCU-->
-        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Add-ins" condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
         <!--Uncommon place to declare add-in metadata, especially in HKCU-->
         <TargetObject name="technique_name=Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject>
         <TargetObject condition="contains all">SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Account Name</TargetObject>
@@ -1068,7 +1068,7 @@
         <!--MDE-->
         <TargetObject condition="contains all">software\microsoft\office\;\Options\OPEN</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1137.006,technique_name=Office Add-ins" condition="contains all">\Microsoft\Office;\PowerPoint\Addins</TargetObject>
+        <TargetObject name="technique_id=T1137.006,technique_name=Add-ins" condition="contains all">\Microsoft\Office;\PowerPoint\Addins</TargetObject>
         <!--Microsoft:Office: PowerPoint add-ins-->
         <!--MDE-->
         <TargetObject name="technique_id=T1021.001,technique_name=Remote Desktop Protocol" condition="is">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MaxInstanceCount</TargetObject>
@@ -1083,11 +1083,11 @@
 					 http://etutorials.org/Microsoft+Products/microsoft+windows+server+2003+terminal+services/Chapter+6+Registry/Registry+Keys+for+Terminal+Services/
 				-->
         <TargetObject name="technique_id=T1112,technique_name=Modify Registry" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Shadow</TargetObject>
-        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks;Actions</TargetObject>
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks;Actions</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree</TargetObject>
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\</TargetObject>
+        <TargetObject name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\</TargetObject>
         <!--MDE-->
         <TargetObject name="technique_id=T1547.005,technique_name=Security Support Provider" condition="contains">SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe</TargetObject>
         <!--MDE-->
@@ -1105,7 +1105,7 @@
         <TargetObject name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="end with">\PsFile\EulaAccepted</TargetObject>
         <TargetObject name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="end with">\PsGetSID\EulaAccepted</TargetObject>
         <TargetObject name="technique_id=T1057,technique_name=Process Discovery" condition="end with">\PsInfo\EulaAccepted</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="end with">\PsKill\EulaAccepted</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="end with">\PsKill\EulaAccepted</TargetObject>
         <TargetObject name="technique_id=T1057,technique_name=Process Discovery" condition="end with">\PsList\EulaAccepted</TargetObject>
         <TargetObject name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="end with">\PsLoggedOn\EulaAccepted</TargetObject>
         <TargetObject name="technique_id=T1569.002,technique_name=Service Execution" condition="end with">\PsLogList\EulaAccepted</TargetObject>
@@ -1113,18 +1113,18 @@
         <TargetObject name="technique_id=T1569.002,technique_name=Service Execution" condition="end with">\PsService\EulaAccepted</TargetObject>
         <TargetObject name="undefined" condition="end with">\PsShutDown\EulaAccepted</TargetObject>
         <TargetObject name="undefined" condition="end with">\PsSuspend\EulaAccepted</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject>
         <!--Mitre -->
         <!--Mitre T1562.006-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject>
         <!--Mitre -->
         <!--Mitre T1562.006-->
         <!--Terminal service execution-->
-        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
+        <TargetObject name="technique_id=T1547.001,technique_name=Registry Run Keys / Startup Folder" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
         <!--MDE-->
         <TargetObject name="technique_id=T1547.003,technique_name=Time Providers" condition="contains">HKLM\System\CurrentControlSet\Services\W32Time\TimeProviders</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="begin with">HKLM\Software\Microsoft\WAB\DLLPath</TargetObject>
+        <TargetObject name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="begin with">HKLM\Software\Microsoft\WAB\DLLPath</TargetObject>
         <!--AppPaths hijacking-->
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Control.exe</TargetObject>
         <!--MDE-->
@@ -1143,36 +1143,36 @@
         <!--MDE-->
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\</TargetObject>
+        <TargetObject name="technique_id=T1003,technique_name=OS Credential Dumping" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\</TargetObject>
         <!--Microsoft:Windows: Changes to WDigest-UseLogonCredential for password scraping [ https://www.trustedsec.com/april-2015/dumping-wdigest-creds-with-meterpreter-mimikatzkiwi-in-windows-8-1/ ] -->
         <!--MDE-->
-        <TargetObject name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">\Control\SecurityProviders\WDigest</TargetObject>
+        <TargetObject name="technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">\Control\SecurityProviders\WDigest</TargetObject>
         <!--Windows Defender tampering | Credit @ion-storm -->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AntiVirusDisableNotify</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AntiVirusDisableNotify</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiVirus</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiVirus</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableBehaviorMonitoring</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableBehaviorMonitoring</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableOnAccessProtection</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableOnAccessProtection</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableScanOnRealtimeEnable</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableScanOnRealtimeEnable</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableIOAVProtection</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableIOAVProtection</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableRealtimeMonitoring</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection\DisableRealtimeMonitoring</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet\SpyNetReporting</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet\SpyNetReporting</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender</TargetObject>
         <!--Microsoft:Defender: Detect changes to Defender administrative settings to monitor for disablement-->
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\lmicrosoft\microsoft antimalware\exclusions\</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\lmicrosoft\microsoft antimalware\exclusions\</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\microsoft\Windows Advanced Threat Protection\TelLib</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\microsoft\Windows Advanced Threat Protection\TelLib</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windows advanced threat protection\</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windows advanced threat protection\</TargetObject>
         <!--MDE-->
         <!--https://twitter.com/JohnLaTwC/status/1415295021041979392-->
         <!--https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nf-winsvc-changeserviceconfiga-->
@@ -1236,16 +1236,16 @@
         <TargetObject condition="contains">\software\microsoft\windows script\settings\amsienable</TargetObject>
         <!--MDE-->
         <!--Microsoft Firewall tampering-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>
         <!--Windows Firewall authorized applications | Credit @ion-storm -->
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications\list</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications\list</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\globallyopenports</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\globallyopenports</TargetObject>
         <!--MDE-->
         <!--Windows internals integrity monitoring-->
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
@@ -1265,13 +1265,13 @@
         <TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject>
         <!--Microsoft:Windows: See when WindowsInstaller is engaged-->
         <Rule groupRelation="and">
-          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
+          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
           <!--Microsoft:Windows:UAC: Detect malware changes to UAC prompt level-->
           <!--MDE-->
           <Image condition="is not">C:\Windows\System32\svchost.exe</Image>
         </Rule>
         <Rule groupRelation="and">
-          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
+          <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="contains">\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</TargetObject>
           <!--Microsoft:Windows:UAC: Detect malware changes to UAC prompt level-->
           <!--MDE-->
           <Image condition="is not">C:\Windows\System32\svchost.exe</Image>
@@ -1288,10 +1288,10 @@
         <TargetObject name="technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors" condition="contains">\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports</TargetObject>
         <!--Microsoft:Windows: Printer port changes as used in CVE-2020-1048 [ https://windows-internals.com/printdemon-cve-2020-1048/ ] -->
         <!--Windows Powershell logging tampering -->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="contains all">software\microsoft\powershell\;\shellids\microsoft.powershell\executionpolicy</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains all">software\microsoft\powershell\;\shellids\microsoft.powershell\executionpolicy</TargetObject>
         <!--MDE-->
         <TargetObject name="technique_id=T1553.004,technique_name=Install Root Certificate" condition="begin with">HKLM\SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates</TargetObject>
         <!--MDE-->
@@ -1300,8 +1300,8 @@
         <TargetObject name="technique_id=T1553.004,technique_name=Install Root Certificate" condition="contains">\Microsoft\SystemCertificates\CA\Certificates</TargetObject>
         <!--MDE-->
         <!--Microsoft Security Center tampering | Credit @ion-storm -->
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
-        <TargetObject name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\DisableMonitoring</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\AllAlertsDisabled</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\DisableMonitoring</TargetObject>
         <!--Windows shell hijack-->
         <TargetObject condition="contains">\Classes\AllFilesystemObjects</TargetObject>
         <!--Microsoft:Windows:Explorer: [ http://www.silentrunners.org/launchpoints.html ] -->
@@ -1327,23 +1327,23 @@
         <!--MDE-->
         <TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\SOFTWARE\Microsoft\Windows;\CurrentVersion\Print\Connections</TargetObject>
         <TargetObject name="technique_id=T1210,technique_name=Exploitation of Remote Services" condition="contains all">HKLM\System;\control\print\monitors</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="contains">\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command</TargetObject>
         <!--https://lolbas-project.github.io/lolbas/Binaries/Wsreset/-->
         <!--MDE-->
         <!--Windows:Thumbnail:Autostart-->
         <TargetObject condition="contains">{AB8902B4-09CA-4bb6-B78D-A8F59079A8D5}</TargetObject>
         <!--Microsoft:Windows: Thumbnail cache autostart [ http://blog.trendmicro.com/trendlabs-security-intelligence/poweliks-levels-up-with-new-autostart-mechanism/ ] -->
         <!--Windows UAC tampering-->
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject>
         <!--Detect: UAC Tampering | Credit @ion-storm -->
         <!--MDE-->
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject>
         <!--Detect: UAC Tampering | Credit @ion-storm -->
         <!--MDE-->
         <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUsername</TargetObject>
         <!--MDE-->
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
-        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
+        <TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
         <TargetObject name="UACMe Dir Prep" condition="contains all">HKU;Environment</TargetObject>
         <TargetObject name="UACMe Dir Prep" condition="contains all">HKLM;Environment</TargetObject>
         <TargetObject condition="is">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Setup\ServiceStartup</TargetObject>
@@ -1664,12 +1664,12 @@
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <ProcessAccess onmatch="include">
-        <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
-        <CallTrace name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
+        <CallTrace name="technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">dbghelp.dll</CallTrace>
+        <CallTrace name="technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">dbgcore.dll</CallTrace>
         <TargetImage condition="contains">Desktop</TargetImage>
         <!--Files on the Desktop-->
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\csrss.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\csrss.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1677,7 +1677,7 @@
           <GrantedAccess>0x1F1FFF</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\wininit.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\wininit.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1685,7 +1685,7 @@
           <GrantedAccess>0x1F1FFF</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\winlogon.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\winlogon.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1693,7 +1693,7 @@
           <GrantedAccess>0x1F1FFF</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\services.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\services.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1704,7 +1704,7 @@
         <!-- misc::detours in Mimikatz, thanks @Carlos_Perez -->
         <!-- In some environments this causes HIGH CPU usage by sysmon, remove this module when that occurs -->
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1713,7 +1713,7 @@
           <!--Expect EDRs/AVs to also trigger this-->
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1721,7 +1721,7 @@
           <GrantedAccess>0x1F1FFF</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1729,7 +1729,7 @@
           <GrantedAccess>0x1010</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>
           <!--Mitre T1098-->
           <!--Mitre T1550.002-->
           <!--Mitre T1003-->
@@ -1737,9 +1737,9 @@
           <GrantedAccess>0x143A</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">lsass.exe</TargetImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="image">lsass.exe</TargetImage>
           <!--https://pentestlab.blog/2018/05/15/lateral-movement-winrm/-->
-          <SourceImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">wsmprovhost.exe</SourceImage>
+          <SourceImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="image">wsmprovhost.exe</SourceImage>
         </Rule>
         <!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
         <Rule groupRelation="and" name="technique_id=T1055,technique_name=Process Injection">
@@ -1755,13 +1755,13 @@
         <!--Experimental: when a process accesses a lot of other processes this is process discovery through meterpreter for example-->
         <GrantedAccess name="technique_id=T1055.012,technique_name=Process Hollowing">0x0800</GrantedAccess>
         <!-- PROCESS_SUSPEND_RESUME -->
-        <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x0810</GrantedAccess>
+        <GrantedAccess name="technique_id=T1003,technique_name=OS Credential Dumping">0x0810</GrantedAccess>
         <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_READ - possible memory dump to extract sensitive information -->
         <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x0820</GrantedAccess>
         <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_WRITE - possible memory injection -->
         <GrantedAccess name="technique_id=T1055.012,technique_name=Process Hollowing">0x800</GrantedAccess>
         <!-- PROCESS_SUSPEND_RESUME -->
-        <GrantedAccess name="technique_id=T1003,technique_name=Credential Dumping">0x810</GrantedAccess>
+        <GrantedAccess name="technique_id=T1003,technique_name=OS Credential Dumping">0x810</GrantedAccess>
         <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_READ - possible memory dump to extract sensitive information -->
         <GrantedAccess name="technique_id=T1055,technique_name=Process Injection">0x820</GrantedAccess>
         <!-- PROCESS_SUSPEND_RESUME + PROCESS_VM_WRITE - possible memory injection -->
@@ -2203,7 +2203,7 @@
         </Rule>
         <PipeName name="technique_id=T1021.002,technique_name=SMB/Windows Admin Shares" condition="begin with">\msagent_</PipeName>
         <!-- default cobalt strike pipe name-->
-        <PipeName name="technique_id=T1055; Possible Cobalt Strike post-exploitation jobs." condition="begin with">\postex_</PipeName>
+        <PipeName name="technique_id=T1055; Possible Cobalt Strike post-exploitation jobs.,technique_name=Process Injection" condition="begin with">\postex_</PipeName>
         <!-- default cobalt strike pipe name-->
         <PipeName name="technique_id=T1021.004,technique_name=Remote Services: SSH" condition="begin with">\postex_ssh_</PipeName>
         <!-- default cobalt strike pipe name-->
@@ -2259,7 +2259,7 @@
     </RuleGroup>
     <RuleGroup name="" groupRelation="or">
       <FileCreateTime onmatch="include">
-        <TargetFilename name="technique_id=T1099,technique_name=Timestomp" condition="end with">.exe</TargetFilename>
+        <TargetFilename name="technique_id=T1070.006,technique_name=Timestomp" condition="end with">.exe</TargetFilename>
         <!--Look for backdated executables anywhere-->
         <Image name="technique_id=T1070.006,technique_name=Timestomp" condition="begin with">C:\Temp</Image>
         <!--Look for timestomping in temp folders-->
@@ -2267,7 +2267,7 @@
         <Image name="technique_id=T1070.006,technique_name=Timestomp" condition="begin with">C:\Tmp</Image>
         <Image name="technique_id=T1070.006,technique_name=Timestomp" condition="begin with">C:\Users</Image>
         <!--Look for timestomping in user area-->
-        <Image name="technique_id=T1099,technique_name=Timestomp" condition="begin with">\Device\HarddiskVolumeShadowCopy</Image>
+        <Image name="technique_id=T1070.006,technique_name=Timestomp" condition="begin with">\Device\HarddiskVolumeShadowCopy</Image>
         <!--Nothing should be written here | Credit: @SBousseaden [ https://twitter.com/SBousseaden/status/1133030955407630336 ] -->
       </FileCreateTime>
     </RuleGroup>
@@ -2851,7 +2851,7 @@
           <!--Mitre T1546.007-->
           <!--Mitre T1518.001-->
           <!--Microsoft:Windows: manipulate the firewall -->
-          <Image name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">xwizard.exe</Image>
+          <Image name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="image">xwizard.exe</Image>
           <!--https://bohops.com/2018/08/18/abusing-the-com-registry-structure-part-2-loading-techniques-for-evasion-and-persistence/ -->
           <Image name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="image">esentutl.exe</Image>
           <!--https://lolbas-project.github.io/lolbas/Binaries/Esentutl/ Multiple options-->
@@ -2870,10 +2870,10 @@
           <!--Mitre T1069-->
           <!--Mitre T1016-->
           <!--Microsoft:Windows: Launched by "net.exe", but it may not detect connections either -->
-          <Image name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="image">wevtutil.exe</Image>
+          <Image name="technique_id=T1070,technique_name=Indicator Removal" condition="image">wevtutil.exe</Image>
           <!--Microsoft:Windows: read and modify the Windows Eventlog -->
         </Rule>
-        <Image name="technique_id=T1003,technique_name=Credential Dumping" condition="image">RpcPing.exe</Image>
+        <Image name="technique_id=T1003,technique_name=OS Credential Dumping" condition="image">RpcPing.exe</Image>
         <!--https://lolbas-project.github.io/lolbas/Binaries/Rpcping/ -->
         <Rule name="Discovery" groupRelation="or">
           <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">ipconfig.exe</Image>
@@ -2931,11 +2931,11 @@
           <!--Microsoft:Windows: Program Compatibility Assistant)-->
           <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">winrs.exe</Image>
           <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">wscript.exe</Image>
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">Msdt.exe</Image>
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">Msdt.exe</Image>
           <!--https://lolbas-project.github.io/lolbas/Binaries/Msdt/-->
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">msiexec.exe</Image>
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">RegisterCimProvider.exe</Image>
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">ScriptRunner.exe</Image>
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">msiexec.exe</Image>
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">RegisterCimProvider.exe</Image>
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">ScriptRunner.exe</Image>
           <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">dfsvc.exe</Image>
           <!--https://lolbas-project.github.io/lolbas/Binaries/Dfsvc/-->
         </Rule>
@@ -2958,19 +2958,19 @@
           <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">bash.exe</Image>
           <!--Microsoft:Windows: bash on Windows, Linux subsystem-->
         </Rule>
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">Mavinject.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">Mavinject.exe</Image>
         <!--Native Windows tools - Living off the land-->
-        <Image name="technique_id=T1053,technique_name=Scheduled Task" condition="image">at.exe</Image>
+        <Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="image">at.exe</Image>
         <!--Microsoft:Windows: Remote task scheduling | Credit @ion-storm -->
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">certutil.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">certutil.exe</Image>
         <!--Microsoft:Windows: Certificate tool can contact outbound | Credit @ion-storm and @FVT [ https://twitter.com/FVT/status/834433734602530817 ] -->
-        <Image name="technique_id=T1218,technique_name=Signed Script Proxy Execution" condition="image">cscript.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">cscript.exe</Image>
         <!--Microsoft:WindowsScriptingHost: | Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
         <Image condition="image">java.exe</Image>
         <!--Java: Monitor usage of vulnerable application | Credit @ion-storm -->
         <Image name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</Image>
         <!--Microsoft:Windows: HTML application executes scripts without IE protections | Credit @ion-storm [ https://en.wikipedia.org/wiki/HTML_Application ] -->
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">msiexec.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">msiexec.exe</Image>
         <!--Microsoft:Windows: Can install from http:// paths | Credit @vector-sec -->
         <Image name="technique_id=T1069,technique_name=Permission Groups Discovery" condition="image">net.exe</Image>
         <!--Mitre T1018-->
@@ -2980,13 +2980,13 @@
         <!--Mitre T1069-->
         <!--Mitre T1016-->
         <!--Microsoft:Windows: "net use"/"net view" used by attackers to surveil and connect with file shares from command line | Credit @ion-storm -->
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">notepad.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">notepad.exe</Image>
         <!--Microsoft:Windows: [ https://blog.cobaltstrike.com/2013/08/08/why-is-notepad-exe-connecting-to-the-internet/ ] -->
         <Image name="technique_id=T1012,technique_name=Query Registry" condition="image">reg.exe</Image>
         <!--Mitre T1012-->
         <!--Mitre T1112-->
         <!--Microsoft:Windows: Remote Registry | Credit @ion-storm -->
-        <Image name="technique_id=T1218,technique_name=Regsvr32" condition="image">regsvr32.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">regsvr32.exe</Image>
         <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
         <Image name="technique_id=T1218.011,technique_name=Rundll32" condition="image">rundll32.exe</Image>
         <!--Microsoft:Windows: [ https://blog.cobaltstrike.com/2016/07/22/why-is-rundll32-exe-connecting-to-the-internet/ ] -->
@@ -2996,7 +2996,7 @@
         <!--T1047-->
         <!--Mitre T1135-->
         <!--Microsoft:WindowsManagementInstrumentation: Credit @Cyb3rOps [ https://gist.github.com/Neo23x0/a4b4af9481e01e749409 ] -->
-        <Image name="technique_id=T1218,technique_name=Signed Script Proxy Execution" condition="image">wscript.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">wscript.exe</Image>
         <!--Microsoft:WindowsScriptingHost: | Credit @arekfurt -->
         <Image condition="image">driverquery.exe</Image>
         <!--Microsoft:Windows: Remote recognisance of system configuration, oudated/vulnerable drivers -->
@@ -3013,7 +3013,7 @@
         <!--Java: Monitor usage of vulnerable application and init from JAR files -->
         <Image name="technique_id=T1543.003,technique_name=Windows Service" condition="image">mmc.exe</Image>
         <!--Microsoft:Windows: -->
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">msbuild.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">msbuild.exe</Image>
         <!--Microsoft:Windows: [ https://www.hybrid-analysis.com/sample/a314f6106633fba4b70f9d6ddbee452e8f8f44a72117749c21243dc93c7ed3ac?environmentId=100 ] -->
         <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">nbtstat.exe</Image>
         <!--Microsoft:Windows: NetBIOS statistics, attackers use to enumerate local network -->
@@ -3029,9 +3029,9 @@
         <!--Microsoft:Windows: Disconnect remote sessions | Credit @ion-storm -->
         <Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="image">schtasks.exe</Image>
         <!--Microsoft:Windows: Command and Scripting Interpreter to local and remote tasks -->
-        <Image name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="image">taskkill.exe</Image>
+        <Image name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="image">taskkill.exe</Image>
         <!--Microsoft:Windows: Kill processes, has remote ability -->
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">replace.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">replace.exe</Image>
         <!--Ports: Proxy-->
         <DestinationPort name="technique_id=T1571,technique_name=Non-Standard Port" condition="is">1080</DestinationPort>
         <!--Socks proxy port | Credit @ion-storm-->
@@ -3101,7 +3101,7 @@
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\Roaming\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">\AppData\LocalLow\</Image>
         <Image name="technique_id=T1036,technique_name=Masquerading" condition="contains">C:\Windows\SysWOW64</Image>
-        <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">SyncAppvPublishingServer.exe</Image>
+        <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">SyncAppvPublishingServer.exe</Image>
         <!--TOR - Frequently used by malware-->
         <Image condition="image">tor.exe</Image>
         <!--Tor [ https://www.hybrid-analysis.com/sample/800bf028a23440134fc834efc5c1e02cc70f05b2e800bbc285d7c92a4b126b1c?environmentId=100 ] -->
@@ -3210,7 +3210,7 @@
           <Image name="technique_id=T1037.005,technique_name=Boot or Logon Initialization Scripts - Startup Items" condition="end with">bginfo.exe</Image>
           <ImageLoaded condition="contains any">System.ni.dll;System.Core.ni.dll</ImageLoaded>
         </Rule>
-        <ImageLoaded name="technique_id=T1197,technique_name=BITS" condition="end with">bitsproxy.dll</ImageLoaded>
+        <ImageLoaded name="technique_id=T1197,technique_name=BITS Jobs" condition="end with">bitsproxy.dll</ImageLoaded>
         <!-- Credit https://redhead0ntherun.medium.com/detecting-net-c-injection-execute-assembly-1894dbb04ff7-->
         <Rule groupRelation="and">
           <OriginalFileName name="technique_id=T1055,technique_name=Process Injection" condition="is">clr.dll</OriginalFileName>
@@ -3241,7 +3241,7 @@
           <Image condition="excludes">C:\Windows\Microsoft.NET\</Image>
         </Rule>
         <!--COMMENT:	Can cause high system load, disabled by default.-->
-        <ImageLoaded name="technique_id=T1047,technique_name=Windows Scheduled Tasks" condition="end with">mstask.dll</ImageLoaded>
+        <ImageLoaded name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="end with">mstask.dll</ImageLoaded>
         <!---Thanks to Carlos Perez-->
         <ImageLoaded name="technique_id=T1059,technique_name=Command and Scripting Interpreter" condition="end with">wshom.ocx</ImageLoaded>
         <OriginalFileName condition="is">scrrun.dll</OriginalFileName>
@@ -3250,11 +3250,11 @@
         <!--Note: Rule placed before Windows Scriptingh to ensure it triggers on this on case any other component is used.-->
         <!---Thanks to Carlos Perez-->
         <Rule groupRelation="and">
-          <OriginalFileName name="technique_id=T1218.005,technique_name=MSHTA with AMSI Bypass" condition="is">jscript.dll</OriginalFileName>
+          <OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">jscript.dll</OriginalFileName>
           <Image condition="end with">mshta.exe</Image>
         </Rule>
         <Rule groupRelation="and">
-          <OriginalFileName name="technique_id=T1218.005,technique_name=MSHTA with AMSI Bypass" condition="is">jscript9.dll</OriginalFileName>
+          <OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">jscript9.dll</OriginalFileName>
           <Image condition="end with">mshta.exe</Image>
         </Rule>
         <ImageLoaded name="technique_id=T1137,technique_name=Office Application Startup" condition="end with">.wll</ImageLoaded>
@@ -3286,15 +3286,15 @@
           <OriginalFileName condition="is">clr.dll</OriginalFileName>
         </Rule>
         <!-- Credit to @Antonlovesdnb https://blog.pwntario.com/team-posts/antons-posts/hunting-malicious-macros-->
-        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Visual Basic">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">VBE7INTL.DLL</OriginalFileName>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Visual Basic">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">VBE7.DLL</OriginalFileName>
         </Rule>
-        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Command and Scripting Interpreter VBScript">
+        <Rule groupRelation="and" name="technique_id=T1059.005,technique_name=Visual Basic">
           <Image condition="contains all">C:\Program Files;\Microsoft Office\root\Office</Image>
           <OriginalFileName condition="is">VBEUI.DLL</OriginalFileName>
         </Rule>
@@ -3321,34 +3321,34 @@
         <OriginalFileName name="technique_id=T1112,technique_name=Modify Registry" condition="is">regsvc.dll</OriginalFileName>
         <Rule groupRelation="and">
           <Image condition="end with">rundll32.exe</Image>
-          <OriginalFileName name="technique_id=T1003.004,technique_name=LSASS Memory" condition="is">comsvcs.dll</OriginalFileName>
+          <OriginalFileName name="technique_id=T1003.004,technique_name=LSA Secrets" condition="is">comsvcs.dll</OriginalFileName>
         </Rule>
-        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task" condition="is">taskschd.dll</OriginalFileName>
+        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskschd.dll</OriginalFileName>
         <ImageLoaded name="technique_id=T1218.010,technique_name=Regsvr32" condition="end with">scrobj.dll</ImageLoaded>
         <OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">scrobj.dll</OriginalFileName>
-        <ImageLoaded name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="contains any">admin$;c$;\\;\appdata\;\temp\</ImageLoaded>
+        <ImageLoaded name="technique_id=T1574.001,technique_name=DLL" condition="contains any">admin$;c$;\\;\appdata\;\temp\</ImageLoaded>
         <!-- loaded from network file share -->
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">c:\programdata\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Media\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\addins\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\system32\config\systemprofile\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Debug\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Temp</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\PerfLogs\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Help\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Intel\Logs\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Temp</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\repair\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\security\</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">C:\Windows\Fonts\</ImageLoaded>
-        <ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Downloads</ImageLoaded>
-        <ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Public</ImageLoaded>
-        <ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Documents</ImageLoaded>
-        <ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Music</ImageLoaded>
-        <ImageLoaded condition="contains" name="technique_id=T1574.002,technique_name=DLL Side-Loading">Video</ImageLoaded>
-        <ImageLoaded condition="begin with" name="technique_id=T1574.002,technique_name=DLL Side-Loading">file:</ImageLoaded>
-        <ImageLoaded name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="contains">$Recycle.bin\</ImageLoaded>
-        <ImageLoaded name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="contains">\Windows\IME\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">c:\programdata\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\Media\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\addins\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\system32\config\systemprofile\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\Debug\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\Temp</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\PerfLogs\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\Help\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Intel\Logs\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Temp</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\repair\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\security\</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">C:\Windows\Fonts\</ImageLoaded>
+        <ImageLoaded condition="contains" name="technique_id=T1574.001,technique_name=DLL">Downloads</ImageLoaded>
+        <ImageLoaded condition="contains" name="technique_id=T1574.001,technique_name=DLL">Public</ImageLoaded>
+        <ImageLoaded condition="contains" name="technique_id=T1574.001,technique_name=DLL">Documents</ImageLoaded>
+        <ImageLoaded condition="contains" name="technique_id=T1574.001,technique_name=DLL">Music</ImageLoaded>
+        <ImageLoaded condition="contains" name="technique_id=T1574.001,technique_name=DLL">Video</ImageLoaded>
+        <ImageLoaded condition="begin with" name="technique_id=T1574.001,technique_name=DLL">file:</ImageLoaded>
+        <ImageLoaded name="technique_id=T1574.001,technique_name=DLL" condition="contains">$Recycle.bin\</ImageLoaded>
+        <ImageLoaded name="technique_id=T1574.001,technique_name=DLL" condition="contains">\Windows\IME\</ImageLoaded>
         <Rule groupRelation="and">
           <OriginalFileName condition="is">urlmon.dll</OriginalFileName>
         </Rule>

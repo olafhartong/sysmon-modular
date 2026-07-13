@@ -2,21 +2,21 @@
 	<EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<FileExecutableDetected onmatch="include">
-				<Image name="technique_id=T1546.008,technique_name=Windows Error Reporting" condition="contains">werfault.exe</Image>
-				<Image name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
+				<Image name="technique_id=T1546.008,technique_name=Accessibility Features" condition="contains">werfault.exe</Image>
+				<Image name="technique_id=T1574.001,technique_name=DLL" condition="is">odbcconf.exe</Image> <!--Microsoft:Windows: allows for driver loads -->
 				<Image name="technique_id=T1027.004,technique_name=Compile After Delivery" condition="is">csc.exe</Image>
 				<Image name="technique_id=T1543.003,technique_name=Windows Service" condition="is">sc.exe</Image>
 				<Image name="technique_id=T1489,technique_name=Service Stop" condition="is">taskkill.exe</Image>
 				<Image name="technique_id=T1074,technique_name=Data Staged" condition="is">xcopy.exe</Image>
 				<Image name="technique_id=T1074,technique_name=Data Staged" condition="is">robocopy.exe</Image>
-				<Image name="technique_id=T,technique_name=" condition="is">makecab.exe</Image>
-				<Image name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</Image>
-				<Image name="technique_id=T1105,technique_name=Remote File Copy" condition="is">expand.exe</Image>
+				<Image name="technique_id=T1560.001,technique_name=Archive via Utility" condition="is">makecab.exe</Image>
+				<Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">GfxDownloadWrapper.exe</Image>
+				<Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand.exe</Image>
 				<Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">curl.exe</Image>
-				<Image name="technique=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</Image>
+				<Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</Image>
 				<Image name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="is">extrac32.exe</Image>
-				<Image name="technique_id=T1053.005,technique_name=Scheduled Task/Job" condition="contains any">schtasks.exe;sctasks.exe</Image>
-				<Image name="technique=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</Image>
+				<Image name="technique_id=T1053.005,technique_name=Scheduled Task" condition="contains any">schtasks.exe;sctasks.exe</Image>
+				<Image name="technique_id=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</Image>
 				<Image name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskeng.exe</Image>
 				<Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\WINDOWS\system32\wbem\scrcons.exe</Image>
 				<Image name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="is">wmiprvse.exe</Image>
@@ -35,7 +35,7 @@
 				<Image name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</Image>
 				<Image name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</Image>
 				<Image name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</Image> <!--Mitre T1218.010--> <!--Mitre T1085--> <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
-				<Image name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</Image>
+				<Image name="technique_id=T1218.011,technique_name=Rundll32" condition="contains">rundll32.exe</Image>
 				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</Image>
 				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">extexport.exe</Image>
 				<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msconfig.EXE</Image>
