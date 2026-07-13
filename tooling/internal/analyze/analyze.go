@@ -9,8 +9,8 @@ import (
 
 	_ "embed"
 
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
-	"github.com/olafhartong/sysmon-modular/internal/validate"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
 )
 
 type condition struct {

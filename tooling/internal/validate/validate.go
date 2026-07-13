@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/olafhartong/sysmon-modular/internal/merger"
-	"github.com/olafhartong/sysmon-modular/internal/mitre"
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/merger"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/mitre"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 type Severity string

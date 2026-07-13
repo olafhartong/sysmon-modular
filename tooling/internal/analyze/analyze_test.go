@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
-	"github.com/olafhartong/sysmon-modular/internal/validate"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
 )
 
 func TestConfigFindsConflictAndNativePathRecommendation(t *testing.T) {

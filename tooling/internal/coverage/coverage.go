@@ -9,9 +9,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/olafhartong/sysmon-modular/internal/mitre"
-	"github.com/olafhartong/sysmon-modular/internal/semantic"
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/mitre"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/semantic"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 type Event struct {

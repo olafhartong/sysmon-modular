@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 // BinarySchema describes a known Sysmon executable/schema snapshot.

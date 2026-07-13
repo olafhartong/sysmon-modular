@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"path/filepath"
 
-	coveragepkg "github.com/olafhartong/sysmon-modular/internal/coverage"
-	"github.com/olafhartong/sysmon-modular/internal/merger"
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
+	coveragepkg "github.com/olafhartong/sysmon-modular/tooling/internal/coverage"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/merger"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 func runCoverage(args []string) error {

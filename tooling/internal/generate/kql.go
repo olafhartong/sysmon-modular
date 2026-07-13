@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 type KQLResult struct {

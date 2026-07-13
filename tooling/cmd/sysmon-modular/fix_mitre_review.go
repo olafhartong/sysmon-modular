@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/olafhartong/sysmon-modular/internal/mitre"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/mitre"
 )
 
 type mitreReviewer struct {

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/olafhartong/sysmon-modular/internal/validate"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
 )
 
 const (

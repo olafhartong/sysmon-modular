@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 func TestCheckDocumentFindsMITREIssues(t *testing.T) {

@@ -8,12 +8,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/olafhartong/sysmon-modular/internal/analyze"
-	"github.com/olafhartong/sysmon-modular/internal/generate"
-	"github.com/olafhartong/sysmon-modular/internal/merger"
-	"github.com/olafhartong/sysmon-modular/internal/mitre"
-	"github.com/olafhartong/sysmon-modular/internal/sysmonxml"
-	"github.com/olafhartong/sysmon-modular/internal/validate"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/analyze"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/generate"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/merger"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/mitre"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
 )
 
 const (
