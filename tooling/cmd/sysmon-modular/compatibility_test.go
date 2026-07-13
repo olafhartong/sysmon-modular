@@ -103,3 +103,18 @@ func TestMergeDiscoversModulesFromRelativeBasePath(t *testing.T) {
 		t.Fatalf("relative base-path discovery omitted input:\n%s", data)
 	}
 }
+
+func TestValidateWarningsAsErrors(t *testing.T) {
+	dir := t.TempDir()
+	input := filepath.Join(dir, "warning.xml")
+	xml := `<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup><ProcessCreate onmatch="include"><Image condition="is"></Image></ProcessCreate></RuleGroup></EventFiltering></Sysmon>`
+	if err := os.WriteFile(input, []byte(xml), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := runValidate([]string{"--path", input, "--mitre=false"}); err != nil {
+		t.Fatalf("warning should be non-blocking by default: %v", err)
+	}
+	if err := runValidate([]string{"--path", input, "--mitre=false", "--warnings-as-errors"}); err == nil {
+		t.Fatal("warning should fail validation with --warnings-as-errors")
+	}
+}

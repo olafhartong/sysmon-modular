@@ -146,7 +146,8 @@ go run ./cmd/sysmon-modular validate --all --base-path .. --sysmon-version 12
 
 Validation uses warning mode by default. Passing `--unsupported exclude` is a
 dry run: it reports the items that merge exclusion would remove but never
-rewrites the input files.
+rewrites the input files. Pass `--warnings-as-errors` to make any finding
+return a non-zero exit status, as used by the repository's PR workflow.
 
 When validating generated directories, pass one `--path` per file:
 

@@ -34,13 +34,12 @@ jobs:
       - name: Build sysmon-modular
         run: go -C tooling build -o "$RUNNER_TEMP/sysmon-modular" ./cmd/sysmon-modular
 
-      # Remove continue-on-error once the existing module findings have been fixed.
-      - name: Validate source modules (non-blocking)
-        continue-on-error: true
+      - name: Validate source modules
         run: >-
           "$RUNNER_TEMP/sysmon-modular" validate --all
           --base-path "$GITHUB_WORKSPACE"
           --sysmon-version 15.21
+          --warnings-as-errors
 
       - name: Select configuration modules
         run: |
@@ -61,7 +60,6 @@ jobs:
               --preserve-comments
               --sysmon-version "$version"
               --unsupported exclude
-              --schema-validate=false
             )
             "$RUNNER_TEMP/sysmon-modular" merge "${common[@]}" \
               --exclude-list "$RUNNER_TEMP/file-delete-modules.txt" \
@@ -99,7 +97,8 @@ jobs:
           for version in 15.21 14.16 13.34 12.03; do
             for config in release/*-"${version}".xml; do
               "$RUNNER_TEMP/sysmon-modular" validate \
-                --path "$config" --mitre=false --sysmon-version "$version"
+                --path "$config" --mitre=false --sysmon-version "$version" \
+                --warnings-as-errors
             done
           done
 
@@ -142,7 +141,6 @@ jobs:
               --preserve-comments
               --sysmon-version "$version"
               --unsupported exclude
-              --schema-validate=false
             )
             "$RUNNER_TEMP/sysmon-modular" merge "${common[@]}" \
               --exclude-list "$RUNNER_TEMP/file-delete-modules.txt" \

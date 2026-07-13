@@ -34,7 +34,6 @@ jobs:
             --template "$GITHUB_WORKSPACE/templates/sysmon_template.xml" \
             --preserve-comments \
             --sysmon-version 15.21 \
-            --schema-validate=false \
             --exclude-list "$RUNNER_TEMP/file-delete-modules.txt" \
             --output "$RUNNER_TEMP/sysmonconfig.xml"
 

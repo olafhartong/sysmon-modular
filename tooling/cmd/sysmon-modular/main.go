@@ -238,6 +238,7 @@ func runValidate(args []string) error {
 	mitreCheck := fs.Bool("mitre", true, "run MITRE ATT&CK technique id/name validation")
 	preserveComments := fs.Bool("preserve-comments", false, "preserve XML comments while parsing")
 	verbose := fs.Bool("verbose", false, "show source XML lines for findings")
+	warningsAsErrors := fs.Bool("warnings-as-errors", false, "exit non-zero when warnings are emitted")
 	fs.Var(&paths, "path", "XML file to validate; may be repeated")
 	if err := fs.Parse(args); err != nil {
 		return flagParseError(err)
@@ -300,7 +301,7 @@ func runValidate(args []string) error {
 	}
 	printFindings(allFindings, *verbose)
 	printFindingSummary(allFindings, len(paths))
-	if validate.HasErrors(allFindings) {
+	if validate.HasErrors(allFindings) || (*warningsAsErrors && len(allFindings) > 0) {
 		return findingsError("validation failed")
 	}
 	fmt.Fprintf(os.Stderr, "%s %d file(s)\n", paint(ansiBold+ansiGreen, "✓ VALIDATED"), len(paths))
