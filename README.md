@@ -15,7 +15,7 @@ Please keep in mind that any of these configurations should be considered a star
 
 The sysmonconfig.xml within the repo is automatically generated after a successful merge by the PowerShell script and a successful load by Sysmon in an Azure Pipeline run. More info on how to generate a custom config, incorporating your own modules [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs)
 
-## Pre-Grenerated configurations
+## Pre-Generated configurations
 | Type | Config | Description|
 | --- | --- | --- |
 | default | [sysmonconfig.xml](https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml) | This is the balanced configuration, most used, more information [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-the-default-configuration) |
@@ -68,7 +68,7 @@ I do recommend using a minimal number of configurations within your environment 
 
 ## Required actions
 
-I highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as litte noise as possible.
+I highly recommend looking at the configs before implementing them in your production environment. This enables you to have as actionable logging as possible and as little noise as possible.
 
 ### Customization
 
@@ -80,7 +80,7 @@ For example, you will need to exclude actions of your antivirus, which will othe
 #### PowerShell
 
     $> git clone https://github.com/olafhartong/sysmon-modular.git
-    $> cd sysmon modular
+    $> cd sysmon-modular
     $> . .\Merge-SysmonXml.ps1
     $> Merge-AllSysmonXml -Path ( Get-ChildItem '[0-9]*\*.xml') -AsString | Out-File sysmonconfig.xml
 
@@ -218,13 +218,13 @@ python merge_sysmon_configs.py config_lists/default_list/default_list.csv -f csv
 
 There are three major Sysmon configurations:
 
-- [@SwiftOnSecurity](https://twitter/com/SwiftOnSecurity):  great introductory walkthrough of many of the settings. Get started with 1 command **[https://github.com/SwiftOnSecurity/sysmon-config/](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
+- [@SwiftOnSecurity](https://twitter.com/SwiftOnSecurity):  great introductory walkthrough of many of the settings. Get started with 1 command **[https://github.com/SwiftOnSecurity/sysmon-config/](https://github.com/SwiftOnSecurity/sysmon-config/blob/master/sysmonconfig-export.xml)**.
 
-- [@cyb3rops](https://twitter.com/cyb3rops):  A fork of SwiftOnSecurity, bleeding-edge and proactive. **[https://github.com/Neo23x0/sysmon-config](https://github.com/Neo23x0/sysmon-config)
+- [@cyb3rops](https://twitter.com/cyb3rops):  A fork of SwiftOnSecurity, bleeding-edge and proactive. **[https://github.com/Neo23x0/sysmon-config](https://github.com/Neo23x0/sysmon-config)**
 
 - [@olafhartong](https://twitter.com/olafhartong): This repo, which focuses on being very maintainable with detailed rule notes for guided response and SIEM.
  
-- An excellent community guide by [@Carlos_Perez](https:twitter.com/Carlos_Perez):
+- An excellent community guide by [@Carlos_Perez](https://twitter.com/Carlos_Perez):
  [https://github.com/trustedsec/SysmonCommunityGuide](https://github.com/trustedsec/SysmonCommunityGuide)
 
 ## Contributing
