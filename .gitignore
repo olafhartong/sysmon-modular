@@ -3,3 +3,4 @@
 /tooling/sysmon-modular*
 /tooling/*.json
 0_custom_configuration/*
+/outputs/

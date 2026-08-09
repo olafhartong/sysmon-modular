@@ -4,7 +4,7 @@
       <ProcessCreate onmatch="include">
         <Rule name="Fltmc" groupRelation="and">
           <OriginalFileName name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="is">fltMC.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">unload;detach</CommandLine>
+          <CommandLine name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains any">unload;detach</CommandLine>
         </Rule>
         <Rule groupRelation="or">
           <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>

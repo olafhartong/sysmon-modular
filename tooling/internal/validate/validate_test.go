@@ -43,3 +43,35 @@ func TestMITREReturnsFinding(t *testing.T) {
 		t.Fatalf("unexpected finding: %#v", findings[0])
 	}
 }
+
+func TestSchemaRejectsSemicolonForSingleValueCondition(t *testing.T) {
+	doc, err := sysmonxml.Parse([]byte(`<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup><ProcessCreate><Image condition="contains">one;two</Image></ProcessCreate></RuleGroup></EventFiltering></Sysmon>`), false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	findings := Schema(doc, "test.xml")
+	for _, finding := range findings {
+		if finding.Code == "SYS107" && finding.Severity == Error && finding.Line == 1 {
+			return
+		}
+	}
+	t.Fatalf("expected SYS107 error, got %#v", findings)
+}
+
+func TestSchemaAllowsSemicolonForMultiValueConditions(t *testing.T) {
+	conditions := []string{"is any", "contains any", "contains all", "excludes any", "excludes all"}
+	for _, condition := range conditions {
+		t.Run(condition, func(t *testing.T) {
+			xmlConfig := `<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup><ProcessCreate><Image condition="` + condition + `">one;two</Image></ProcessCreate></RuleGroup></EventFiltering></Sysmon>`
+			doc, err := sysmonxml.Parse([]byte(xmlConfig), false)
+			if err != nil {
+				t.Fatal(err)
+			}
+			for _, finding := range Schema(doc, "test.xml") {
+				if finding.Code == "SYS107" {
+					t.Fatalf("unexpected SYS107 finding: %#v", finding)
+				}
+			}
+		})
+	}
+}

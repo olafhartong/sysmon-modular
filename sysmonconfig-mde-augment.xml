@@ -64,7 +64,7 @@
         <ParentImage name="technique_id=T1204,technique_name=User Execution" condition="is">C:\Windows\explorer.exe</ParentImage>
         <Rule name="Fltmc" groupRelation="and">
           <OriginalFileName name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="is">fltMC.exe</OriginalFileName>
-          <CommandLine name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">unload;detach</CommandLine>
+          <CommandLine name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains any">unload;detach</CommandLine>
         </Rule>
         <Rule groupRelation="or">
           <OriginalFileName name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="is">fltMC.exe</OriginalFileName>
@@ -1511,9 +1511,9 @@
         <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>
         <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallDisableNotify</TargetObject>
         <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\FirewallOverride</TargetObject>
-        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications</TargetObject>
-        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications\list</TargetObject>
-        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="begin with">HKLM\software\policies\microsoft\windowsfirewall\;\globallyopenports</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\policies\microsoft\windowsfirewall\;\authorizedapplications\list</TargetObject>
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains all">HKLM\software\policies\microsoft\windowsfirewall\;\globallyopenports</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</TargetObject>
         <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT</TargetObject>
         <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot</TargetObject>
@@ -2726,7 +2726,11 @@
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Adobe\Acrobat Reader DC\Reader\AcroCEF\RdrCEF.exe</Image>
-          <PipeName condition="begin with">\com.adobe.reader.rna.;\mojo</PipeName>
+          <PipeName condition="begin with">\com.adobe.reader.rna.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all">C:\Program Files;\Adobe\Acrobat Reader DC\Reader\AcroCEF\RdrCEF.exe</Image>
+          <PipeName condition="begin with">\mojo</PipeName>
         </Rule>
         <Rule groupRelation="and">
           <Image condition="contains all">C:\Program Files;\Common Files\Adobe\AdobeGCClient\AGMService.exe</Image>
@@ -2739,7 +2743,15 @@
         <Image condition="is">"C:\Program Files\Microsoft Monitoring Agent\Agent\MonitoringHost.exe"</Image>
         <Rule groupRelation="and">
           <Image condition="contains all"> C:\Users\;\AppData\Local\Programs\Call Manager\Call Manager.exe</Image>
-          <PipeName condition="begin with">\crashpad_;\mojo.;\uv\</PipeName>
+          <PipeName condition="begin with">\crashpad_</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Programs\Call Manager\Call Manager.exe</Image>
+          <PipeName condition="begin with">\mojo.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Programs\Call Manager\Call Manager.exe</Image>
+          <PipeName condition="begin with">\uv\</PipeName>
         </Rule>
         <Image condition="contains all">C:\Program Files;\Citrix\ICA Client\SelfServicePlugin\SelfService.exe</Image>
         <Image condition="contains all">C:\Program Files;\Citrix\ICA Client\Receiver\Receiver.exe</Image>

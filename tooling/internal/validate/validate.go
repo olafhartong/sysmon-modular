@@ -132,6 +132,10 @@ func validateRuleChildren(path string, parent *sysmonxml.Node) []Finding {
 		"less than": true, "more than": true,
 		"is any": true, "excludes any": true, "excludes all": true, "not begin with": true, "not end with": true,
 	}
+	multiValueConditions := map[string]bool{
+		"is any": true, "contains any": true, "contains all": true,
+		"excludes any": true, "excludes all": true,
+	}
 	for _, child := range parent.ElementChildren() {
 		if child.Name == "Rule" {
 			rel := strings.ToLower(child.AttrValue("groupRelation"))
@@ -141,8 +145,12 @@ func validateRuleChildren(path string, parent *sysmonxml.Node) []Finding {
 			findings = append(findings, validateRuleChildren(path, child)...)
 			continue
 		}
-		if cond := strings.ToLower(child.AttrValue("condition")); cond != "" && !validConditions[cond] {
+		cond := strings.ToLower(strings.TrimSpace(child.AttrValue("condition")))
+		if cond != "" && !validConditions[cond] {
 			findings = append(findings, Finding{Code: "SYS106", Severity: Warning, Path: path, Line: child.Line, Message: "unknown condition operator", Detail: fmt.Sprintf("%s condition=%s", child.Name, cond)})
+		}
+		if strings.Contains(child.Text, ";") && !multiValueConditions[cond] {
+			findings = append(findings, Finding{Code: "SYS107", Severity: Error, Path: path, Line: child.Line, Message: "semicolon-delimited value requires a multi-value condition", Detail: fmt.Sprintf("%s condition=%s", child.Name, cond)})
 		}
 	}
 	return findings

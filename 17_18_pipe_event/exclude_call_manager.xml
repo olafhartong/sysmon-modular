@@ -5,7 +5,15 @@
       <PipeEvent onmatch="exclude">
         <Rule groupRelation="and">
           <Image condition="contains all"> C:\Users\;\AppData\Local\Programs\Call Manager\Call Manager.exe</Image>
-          <PipeName condition="begin with">\crashpad_;\mojo.;\uv\</PipeName>
+          <PipeName condition="begin with">\crashpad_</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Programs\Call Manager\Call Manager.exe</Image>
+          <PipeName condition="begin with">\mojo.</PipeName>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="contains all"> C:\Users\;\AppData\Local\Programs\Call Manager\Call Manager.exe</Image>
+          <PipeName condition="begin with">\uv\</PipeName>
         </Rule>
       </PipeEvent>
     </RuleGroup>
