@@ -10,12 +10,13 @@ import (
 )
 
 type Node struct {
-	Name     string
-	Line     int
-	Attr     []xml.Attr
-	Text     string
-	Comment  string
-	Children []*Node
+	Name            string
+	Line            int
+	Attr            []xml.Attr
+	Text            string
+	Comment         string
+	TrailingComment string
+	Children        []*Node
 }
 
 type Document struct {
@@ -97,7 +98,7 @@ func (n *Node) Clone() *Node {
 	if n == nil {
 		return nil
 	}
-	out := &Node{Name: n.Name, Line: n.Line, Attr: cloneAttrs(n.Attr), Text: n.Text, Comment: n.Comment}
+	out := &Node{Name: n.Name, Line: n.Line, Attr: cloneAttrs(n.Attr), Text: n.Text, Comment: n.Comment, TrailingComment: n.TrailingComment}
 	out.Children = make([]*Node, 0, len(n.Children))
 	for _, child := range n.Children {
 		out.Children = append(out.Children, child.Clone())

@@ -247,15 +247,49 @@ func (g *mdeGenerator) addRegistryMonitoring(cfg map[string]any) {
 		if value := stringValue(entry["registryValue"]); value != "" {
 			key = strings.TrimRight(key, `\`) + `\` + value
 		}
+		normalizedKey := normalizePathPattern(key)
 		rules = append(rules, RuleSpec{
 			Name:          "MDE registry monitoring",
 			GroupRelation: "and",
-			Conditions:    []Condition{{Field: "TargetObject", Operator: pathOperator(key), Value: normalizePathPattern(key)}},
+			Conditions:    []Condition{{Field: "TargetObject", Operator: registryPathOperator(normalizedKey), Value: normalizedKey}},
 		})
 	}
 	if len(rules) > 0 {
-		g.addInclude("RegistryEvent", rules)
+		g.addInclude("RegistryEvent", markHighLevelRegistryRules(rules))
 	}
+}
+
+const highLevelRegistryComment = "high-level duplicate; remove if too generic"
+
+func markHighLevelRegistryRules(rules []RuleSpec) []RuleSpec {
+	out := append([]RuleSpec(nil), rules...)
+	paths := make([]string, len(out))
+	for i, rule := range out {
+		if len(rule.Conditions) != 1 {
+			continue
+		}
+		condition := rule.Conditions[0]
+		if !strings.EqualFold(condition.Field, "TargetObject") || !strings.EqualFold(condition.Operator, "begin with") {
+			continue
+		}
+		paths[i] = strings.TrimRight(strings.ToLower(strings.TrimSpace(condition.Value)), `\`)
+	}
+	for i, parent := range paths {
+		if parent == "" {
+			continue
+		}
+		for j, child := range paths {
+			if i == j || child == "" || child == parent {
+				continue
+			}
+			if strings.HasPrefix(child, parent+`\`) {
+				out[i].Conditions = append([]Condition(nil), out[i].Conditions...)
+				out[i].Conditions[0].Comment = highLevelRegistryComment
+				break
+			}
+		}
+	}
+	return out
 }
 
 func (g *mdeGenerator) addFileMonitoring(cfg map[string]any) {
@@ -658,6 +692,9 @@ func conditionFromPredicate(event string, pred map[string]any) (Condition, bool)
 	if !ok {
 		return Condition{}, false
 	}
+	if event == "RegistryEvent" && field == "TargetObject" && op == "contains" && isRootedRegistryPath(value) {
+		op = "begin with"
+	}
 	return Condition{Field: field, Operator: op, Value: value}, true
 }
 
@@ -1010,6 +1047,22 @@ func pathOperator(value string) string {
 		return "begin with"
 	}
 	return "contains"
+}
+
+func registryPathOperator(value string) string {
+	op := pathOperator(value)
+	if op == "contains" && isRootedRegistryPath(value) {
+		return "begin with"
+	}
+	return op
+}
+
+func isRootedRegistryPath(value string) bool {
+	if strings.Contains(value, "*") || strings.Contains(value, "(1)") || strings.Contains(value, ";") {
+		return false
+	}
+	v := strings.ToUpper(collapseRepeatedBackslashes(strings.TrimSpace(value)))
+	return v == "HKLM" || strings.HasPrefix(v, `HKLM\`) || v == "HKCU" || strings.HasPrefix(v, `HKCU\`)
 }
 
 func normalizePathPattern(value string) string {

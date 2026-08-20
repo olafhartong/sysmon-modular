@@ -20,7 +20,10 @@ func TestFromMDEConfigFilteredGeneratesIncludeAndExcludeModules(t *testing.T) {
 	}
 	assertFileContains(t, filepath.Join(outDir, "include_mde_processcreate.xml"), "<Rule", "cmd.exe", "CommandLine")
 	assertFileContains(t, filepath.Join(outDir, "exclude_mde_processcreate.xml"), `C:\Program Files\App\app.exe`)
-	assertFileContains(t, filepath.Join(outDir, "include_mde_registryevent.xml"), "TargetObject", "HKCU\\software\\classes")
+	assertFileContains(t, filepath.Join(outDir, "include_mde_registryevent.xml"), `<TargetObject condition="begin with"`, "HKCU\\software\\classes")
+	assertFileContains(t, filepath.Join(outDir, "include_mde_registryevent.xml"), `HKLM\software\microsoft\office\addins\`)
+	assertFileContains(t, filepath.Join(outDir, "include_mde_registryevent.xml"), `HKLM\software\microsoft</TargetObject> <!-- high-level duplicate; remove if too generic -->`)
+	assertFileNotContains(t, filepath.Join(outDir, "include_mde_registryevent.xml"), `<TargetObject condition="contains"`)
 	assertFileContains(t, filepath.Join(outDir, "include_mde_filecreate.xml"), "TargetFilename", `C:\Users\`)
 	assertFileContains(t, filepath.Join(outDir, "exclude_mde_filecreate.xml"), `C:\Temp`)
 	assertFileNotContains(t, filepath.Join(outDir, "exclude_mde_filecreate.xml"), `C:\\Temp`)
@@ -225,6 +228,65 @@ func TestNormalizePathPatternCollapsesDoubleBackslashes(t *testing.T) {
 	}
 }
 
+func TestRegistryPathOperatorUsesBeginWithForRootedKeys(t *testing.T) {
+	tests := []struct {
+		value string
+		want  string
+	}{
+		{value: `HKLM\Software\Microsoft`, want: "begin with"},
+		{value: `hkcu\\software\\classes`, want: "begin with"},
+		{value: `Software\Microsoft\Windows`, want: "contains"},
+		{value: `HKLM\Software\*\Run`, want: "contains"},
+	}
+	for _, test := range tests {
+		if got := registryPathOperator(test.value); got != test.want {
+			t.Errorf("registryPathOperator(%q) = %q, want %q", test.value, got, test.want)
+		}
+	}
+}
+
+func TestRegistryPredicatePromotesRootedContainsToBeginWith(t *testing.T) {
+	predicate := map[string]any{
+		"source": "RegistryKey:REGISTRY_KEY",
+		"filter": "Contains",
+		"values": []any{`HKLM\\Software\\Microsoft`},
+	}
+	condition, ok := conditionFromPredicate("RegistryEvent", predicate)
+	if !ok {
+		t.Fatal("expected registry predicate to be converted")
+	}
+	if condition.Operator != "begin with" || condition.Value != `HKLM\Software\Microsoft` {
+		t.Fatalf("unexpected condition: %#v", condition)
+	}
+}
+
+func TestMarkHighLevelRegistryRulesCommentsOnlyParentPrefixes(t *testing.T) {
+	rules := []RuleSpec{
+		{Conditions: []Condition{{Field: "TargetObject", Operator: "begin with", Value: `HKLM\system`}}},
+		{Conditions: []Condition{{Field: "TargetObject", Operator: "begin with", Value: `HKLM\system\services`}}},
+		{Conditions: []Condition{{Field: "TargetObject", Operator: "begin with", Value: `HKLM\system\services\sharedaccess`}}},
+		{Conditions: []Condition{{Field: "TargetObject", Operator: "begin with", Value: `HKLM\systemwide`}}},
+		{Conditions: []Condition{{Field: "TargetObject", Operator: "contains", Value: `HKLM\system`}}},
+	}
+	marked := markHighLevelRegistryRules(rules)
+	if marked[0].Conditions[0].Comment != highLevelRegistryComment {
+		t.Fatalf("expected root parent comment, got %#v", marked[0])
+	}
+	if marked[1].Conditions[0].Comment != highLevelRegistryComment {
+		t.Fatalf("expected intermediate parent comment, got %#v", marked[1])
+	}
+	for _, index := range []int{2, 3, 4} {
+		if marked[index].Conditions[0].Comment != "" {
+			t.Fatalf("rule %d should not be marked: %#v", index, marked[index])
+		}
+	}
+
+	xmlOutput := string(ModuleFromRules("RegistryEvent", "include", marked, "4.90").Bytes())
+	if !strings.Contains(xmlOutput, `HKLM\system</TargetObject> <!-- high-level duplicate; remove if too generic -->`) {
+		t.Fatalf("expected inline high-level comment, got:\n%s", xmlOutput)
+	}
+}
+
 func containsString(values []string, needle string) bool {
 	for _, value := range values {
 		if strings.Contains(value, needle) {
@@ -252,7 +314,12 @@ func writeMDEFixture(t *testing.T, dir string) string {
       "ExpandedCollectionExcludedFileMonitorEntries": [{"FilePath": "%SystemDrive%\\Windows\\*", "FileMonitorType": [1]}]
     },
     "RegistryMonitoringConfiguration": {
-      "registryEntries": [{"registryKey": "hkcu\\software\\classes\\ms-settings\\shell\\open\\command\\", "registryValue": "delegateexecute"}]
+      "registryEntries": [
+        {"registryKey": "hkcu\\software\\classes\\ms-settings\\shell\\open\\command\\", "registryValue": "delegateexecute"},
+        {"registryKey": "hklm\\software\\microsoft", "registryValue": ""},
+        {"registryKey": "hklm\\software\\microsoft\\office\\addins\\*", "registryValue": ""},
+        {"registryKey": "hklm\\software\\microsoft\\msdtc\\mtxoci\\(1)", "registryValue": ""}
+      ]
     },
     "Provider": {
       "Rules": [{

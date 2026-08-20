@@ -14,6 +14,7 @@ type Condition struct {
 	Operator  string
 	Value     string
 	Technique string
+	Comment   string
 }
 
 type RuleSpec struct {
@@ -81,7 +82,9 @@ func conditionNode(cond Condition, fallbackName string) *sysmonxml.Node {
 	} else if fallbackName != "" {
 		attrs["name"] = fallbackName
 	}
-	return sysmonxml.TextElement(cond.Field, cond.Value, attrs)
+	node := sysmonxml.TextElement(cond.Field, cond.Value, attrs)
+	node.TrailingComment = cond.Comment
+	return node
 }
 
 func normalizeUniqueConditions(conditions []Condition) []Condition {

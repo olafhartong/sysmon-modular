@@ -33,14 +33,18 @@ func writeNode(w io.Writer, n *Node, depth int) {
 		io.WriteString(w, "\"")
 	}
 	if len(n.Children) == 0 && strings.TrimSpace(n.Text) == "" {
-		io.WriteString(w, "/>\n")
+		io.WriteString(w, "/>")
+		writeTrailingComment(w, n)
+		io.WriteString(w, "\n")
 		return
 	}
 	io.WriteString(w, ">")
 	text := n.Text
 	if len(n.Children) == 0 {
 		xml.EscapeText(w, []byte(text))
-		io.WriteString(w, "</"+n.Name+">\n")
+		io.WriteString(w, "</"+n.Name+">")
+		writeTrailingComment(w, n)
+		io.WriteString(w, "\n")
 		return
 	}
 	if text != "" {
@@ -51,4 +55,10 @@ func writeNode(w io.Writer, n *Node, depth int) {
 		writeNode(w, child, depth+1)
 	}
 	io.WriteString(w, indent+"</"+n.Name+">\n")
+}
+
+func writeTrailingComment(w io.Writer, n *Node) {
+	if n.TrailingComment != "" {
+		io.WriteString(w, " <!-- "+n.TrailingComment+" -->")
+	}
 }
