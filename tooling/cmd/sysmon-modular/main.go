@@ -452,10 +452,25 @@ func runGenerateKQL(args []string) error {
 
 func runGenerateMDE(args []string, mode generate.MDEMode) error {
 	fs := newFlagSet("generate-mde")
-	config := fs.String("mde-config", "mde-config.json", "MDE JSON config")
+	config := fs.String("mde-config", "mde-config.json", "MDE JSON config (may also be provided as a positional argument)")
 	outputDir := fs.String("output-dir", defaultMDEOutputDir(mode), "directory for generated Sysmon modules")
 	if err := fs.Parse(args); err != nil {
 		return flagParseError(err)
+	}
+	if fs.NArg() > 1 {
+		return usageError("provide at most one MDE config path")
+	}
+	if fs.NArg() == 1 {
+		mdeConfigFlagSet := false
+		fs.Visit(func(f *flag.Flag) {
+			if f.Name == "mde-config" {
+				mdeConfigFlagSet = true
+			}
+		})
+		if mdeConfigFlagSet {
+			return usageError("provide the MDE config either as a positional argument or with --mde-config, not both")
+		}
+		*config = fs.Arg(0)
 	}
 	result, err := generate.FromMDEConfigFileMode(*config, *outputDir, mode)
 	if err != nil {

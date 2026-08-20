@@ -247,11 +247,13 @@ Generate inverse MDE blind-spot coverage:
 
 ```bash
 go run ./cmd/sysmon-modular generate-mde-inverse \
-  --mde-config mde-config.json \
-  --output-dir ../0_custom_configuration/generated_mde_inverse
+  --output-dir ../0_custom_configuration/generated_mde_inverse \
+  /path/to/senseConfig.json
 ```
 
 This creates include-only modules for supported MDE filter conditions. The intent is to surface telemetry that MDE filters out.
+
+All three MDE generator commands accept the config path either as their single positional argument or through `--mde-config`. If neither is supplied, they read `mde-config.json`.
 
 Generated MDE modules use `RuleGroup` elements and nested `Rule groupRelation="and"` entries where translated MDE filters require grouped conditions.
 
