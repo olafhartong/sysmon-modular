@@ -103,6 +103,38 @@ List the source modules discovered by the tool:
 ./sysmon-modular list-rules
 ```
 
+Generate modules for only one MDE telemetry area:
+
+```bash
+./sysmon-modular generate-mde \
+  --mde-config mde-config.json \
+  --area process-creation \
+  --output-dir ../0_custom_configuration/generated_mde_process
+```
+
+`--area` is optional and may be repeated. Without it, every supported area is
+processed. Common values include `process-creation`, `image-load`, `registry`,
+`network-connection`, `dns-query`, and `file-create`. Run
+`./sysmon-modular generate-mde --help` for flag details; the complete list is
+in the [command reference](cmd/sysmon-modular/README.md#select-mde-telemetry-areas).
+Generation does not delete old files, so use an empty or area-specific output
+directory when changing the selection.
+
+Add `--dedup` to omit rules already present in the repository's current
+numbered module directories:
+
+```bash
+./sysmon-modular generate-mde \
+  --mde-config mde-config.json \
+  --area registry \
+  --dedup \
+  --base-path .. \
+  --output-dir ../0_custom_configuration/generated_mde_registry_new
+```
+
+Deduplication compares complete normalized rules, including their Sysmon event
+and include/exclude scope. It ignores rule display names and ATT&CK annotations.
+
 ## Command help
 
 Each command has its own help output. Consult it before scripting less common

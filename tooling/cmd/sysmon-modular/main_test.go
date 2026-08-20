@@ -32,3 +32,10 @@ func TestRunGenerateMDERejectsExtraArguments(t *testing.T) {
 		t.Fatalf("expected extra argument usage error, got %v", err)
 	}
 }
+
+func TestRunGenerateMDERejectsUnknownAreaBeforeReadingConfig(t *testing.T) {
+	err := runGenerateMDE([]string{"--area", "not-an-area", "missing.json"}, generate.MDEModeFiltered)
+	if err == nil || !strings.Contains(err.Error(), "unknown MDE area") {
+		t.Fatalf("expected unknown area error, got %v", err)
+	}
+}

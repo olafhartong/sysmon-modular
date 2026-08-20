@@ -452,8 +452,12 @@ func runGenerateKQL(args []string) error {
 
 func runGenerateMDE(args []string, mode generate.MDEMode) error {
 	fs := newFlagSet("generate-mde")
+	var areas multiFlag
 	config := fs.String("mde-config", "mde-config.json", "MDE JSON config (may also be provided as a positional argument)")
 	outputDir := fs.String("output-dir", defaultMDEOutputDir(mode), "directory for generated Sysmon modules")
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path used to discover existing modules for --dedup")
+	dedup := fs.Bool("dedup", false, "omit generated rules already present in current repository modules")
+	fs.Var(&areas, "area", "MDE telemetry area to process; may be repeated (for example process-creation, image-load, or registry)")
 	if err := fs.Parse(args); err != nil {
 		return flagParseError(err)
 	}
@@ -472,13 +476,24 @@ func runGenerateMDE(args []string, mode generate.MDEMode) error {
 		}
 		*config = fs.Arg(0)
 	}
-	result, err := generate.FromMDEConfigFileMode(*config, *outputDir, mode)
+	var existingModules []string
+	if *dedup {
+		var err error
+		existingModules, err = merger.FindRuleFiles(*basePath)
+		if err != nil {
+			return inputError("discover existing modules: %v", err)
+		}
+		if len(existingModules) == 0 {
+			return inputError("no existing Sysmon modules found below %s", *basePath)
+		}
+	}
+	result, err := generate.FromMDEConfigFileOptions(*config, *outputDir, generate.MDEOptions{Mode: mode, Areas: areas, ExistingModules: existingModules})
 	if err != nil {
 		return err
 	}
 	printWarnings(result.Warnings)
-	fmt.Fprintf(os.Stderr, "mde analysis: rules_seen=%d rules_mapped=%d unsupported_rules=%d unsupported_predicates=%d\n",
-		result.Stats.RulesSeen, result.Stats.RulesMapped, result.Stats.UnsupportedRules, result.Stats.UnsupportedPredicates)
+	fmt.Fprintf(os.Stderr, "mde analysis: rules_seen=%d rules_mapped=%d duplicate_rules=%d unsupported_rules=%d unsupported_predicates=%d\n",
+		result.Stats.RulesSeen, result.Stats.RulesMapped, result.Stats.DuplicateRules, result.Stats.UnsupportedRules, result.Stats.UnsupportedPredicates)
 	for _, file := range result.Files {
 		fmt.Fprintln(os.Stderr, "generated", file)
 	}

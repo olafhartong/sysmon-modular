@@ -233,6 +233,81 @@ go run ./cmd/sysmon-modular generate-mde \
 
 This creates include and exclude modules. Positive MDE predicates become Sysmon includes. MDE negative filters and exclusions become Sysmon excludes where the event and fields are supported.
 
+#### Select MDE telemetry areas
+
+Pass `--area` to process only one telemetry family instead of the complete MDE
+configuration:
+
+```bash
+go run ./cmd/sysmon-modular generate-mde \
+  --mde-config mde-config.json \
+  --area process-creation \
+  --output-dir ../0_custom_configuration/generated_mde_process
+```
+
+The flag is repeatable when a small set of areas is needed:
+
+```bash
+go run ./cmd/sysmon-modular generate-mde \
+  --mde-config mde-config.json \
+  --area image-load \
+  --area registry \
+  --output-dir ../0_custom_configuration/generated_mde_selected
+```
+
+When `--area` is omitted, all supported areas are processed. The selector is
+available for `generate-mde`, `generate-mde-unfiltered`, and
+`generate-mde-inverse`. Generation does not remove files left by an earlier
+run, so use an empty or area-specific output directory when changing the
+selection.
+
+| Area | Sysmon event |
+| --- | --- |
+| `clipboard` | `ClipboardChange` |
+| `dns-query` | `DnsQuery` |
+| `driver-load` | `DriverLoad` |
+| `file-create` | `FileCreate` |
+| `file-delete` | `FileDeleteDetected` |
+| `file-executable` | `FileExecutableDetected` |
+| `file-stream-hash` | `FileCreateStreamHash` |
+| `image-load` | `ImageLoad` |
+| `named-pipe` | `PipeEvent` |
+| `network-connection` | `NetworkConnect` |
+| `process-access` | `ProcessAccess` |
+| `process-creation` | `ProcessCreate` |
+| `process-tampering` | `ProcessTampering` |
+| `process-termination` | `ProcessTerminate` |
+| `registry` | `RegistryEvent` |
+| `remote-thread` | `CreateRemoteThread` |
+| `wmi` | `WmiEvent` |
+
+#### Deduplicate against current modules
+
+Pass `--dedup` to write only generated rules that are not already represented
+by the current repository modules. `--base-path` selects the repository whose
+numbered module directories are searched and defaults to the repository found
+from the current working directory.
+
+```bash
+go run ./cmd/sysmon-modular generate-mde \
+  --mde-config mde-config.json \
+  --area registry \
+  --dedup \
+  --base-path .. \
+  --output-dir ../0_custom_configuration/generated_mde_registry_new
+```
+
+Deduplication requires an exact normalized semantic match of the event,
+`onmatch` scope, rule relation, fields, condition operators, and values. Matching
+is case-insensitive and ignores surrounding whitespace, display names, and ATT&CK metadata.
+It deliberately does not remove a generated multi-condition rule when an
+existing module contains only one of its conditions. The command reports the
+number removed as `duplicate_rules`.
+
+The option is available for `generate-mde`, `generate-mde-unfiltered`, and
+`generate-mde-inverse`. Generation does not delete stale files in the output
+directory; use a fresh output directory when relying on the deduplicated set.
+
 Generate unfiltered MDE-style telemetry:
 
 ```bash

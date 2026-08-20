@@ -2,12 +2,14 @@ package generate
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
-	"regexp"
 	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 type MDEMode string
@@ -27,8 +29,48 @@ type MDEResult struct {
 type MDEStats struct {
 	RulesSeen             int
 	RulesMapped           int
+	DuplicateRules        int
 	UnsupportedRules      int
 	UnsupportedPredicates int
+}
+
+// MDEOptions controls which conversion mode and telemetry areas are processed.
+// Areas use friendly names such as "process-creation", "image-load", and
+// "registry". An empty Areas slice processes every supported area.
+type MDEOptions struct {
+	Mode            MDEMode
+	Areas           []string
+	ExistingModules []string
+}
+
+var mdeAreas = map[string]string{
+	"clipboard":           "ClipboardChange",
+	"dns-query":           "DnsQuery",
+	"driver-load":         "DriverLoad",
+	"file-create":         "FileCreate",
+	"file-delete":         "FileDeleteDetected",
+	"file-executable":     "FileExecutableDetected",
+	"file-stream-hash":    "FileCreateStreamHash",
+	"image-load":          "ImageLoad",
+	"named-pipe":          "PipeEvent",
+	"network-connection":  "NetworkConnect",
+	"process-access":      "ProcessAccess",
+	"process-creation":    "ProcessCreate",
+	"process-tampering":   "ProcessTampering",
+	"process-termination": "ProcessTerminate",
+	"registry":            "RegistryEvent",
+	"remote-thread":       "CreateRemoteThread",
+	"wmi":                 "WmiEvent",
+}
+
+// MDEAreaNames returns the accepted friendly telemetry area names.
+func MDEAreaNames() []string {
+	names := make([]string, 0, len(mdeAreas))
+	for name := range mdeAreas {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	return names
 }
 
 type eventRules struct {
@@ -49,6 +91,14 @@ func FromMDEConfigFile(configPath, outputDir string) (*MDEResult, error) {
 }
 
 func FromMDEConfigFileMode(configPath, outputDir string, mode MDEMode) (*MDEResult, error) {
+	return FromMDEConfigFileOptions(configPath, outputDir, MDEOptions{Mode: mode})
+}
+
+func FromMDEConfigFileOptions(configPath, outputDir string, options MDEOptions) (*MDEResult, error) {
+	selected, err := resolveMDEAreas(options.Areas)
+	if err != nil {
+		return nil, err
+	}
 	data, err := os.ReadFile(configPath)
 	if err != nil {
 		return nil, err
@@ -57,8 +107,15 @@ func FromMDEConfigFileMode(configPath, outputDir string, mode MDEMode) (*MDEResu
 	if err := json.Unmarshal(data, &root); err != nil {
 		return nil, err
 	}
+	existing, err := loadExistingRuleKeys(options.ExistingModules)
+	if err != nil {
+		return nil, err
+	}
 	g := &mdeGenerator{
-		mode:     mode,
+		mode:     options.Mode,
+		areas:    selected,
+		dedup:    len(options.ExistingModules) > 0,
+		existing: existing,
 		byEvent:  map[string]*eventRules{},
 		warnings: []string{},
 	}
@@ -68,6 +125,9 @@ func FromMDEConfigFileMode(configPath, outputDir string, mode MDEMode) (*MDEResu
 
 type mdeGenerator struct {
 	mode     MDEMode
+	areas    map[string]bool
+	dedup    bool
+	existing map[string]bool
 	byEvent  map[string]*eventRules
 	warnings []string
 	stats    MDEStats
@@ -76,12 +136,18 @@ type mdeGenerator struct {
 func (g *mdeGenerator) analyze(root any) {
 	g.walkConfigTypes(root)
 	for _, rule := range collectMDERules(root) {
-		g.stats.RulesSeen++
 		event := inferSysmonEvent(rule)
 		if event == "" {
-			g.stats.UnsupportedRules++
+			if len(g.areas) == 0 {
+				g.stats.RulesSeen++
+				g.stats.UnsupportedRules++
+			}
 			continue
 		}
+		if !g.eventSelected(event) {
+			continue
+		}
+		g.stats.RulesSeen++
 		g.stats.RulesMapped++
 		switch g.mode {
 		case MDEModeUnfiltered:
@@ -113,9 +179,15 @@ func (g *mdeGenerator) walkConfigTypes(root any) {
 		if cfg == nil {
 			continue
 		}
-		g.addExclusionConfiguration(cfg)
-		g.addRegistryMonitoring(cfg)
-		g.addFileMonitoring(cfg)
+		if g.eventSelected("ProcessCreate") || g.eventSelected("FileCreate") {
+			g.addExclusionConfiguration(cfg)
+		}
+		if g.eventSelected("RegistryEvent") {
+			g.addRegistryMonitoring(cfg)
+		}
+		if g.eventSelected("FileCreate") {
+			g.addFileMonitoring(cfg)
+		}
 	}
 }
 
@@ -315,17 +387,35 @@ func combineAnd(left, right []RuleSpec) []RuleSpec {
 }
 
 func (g *mdeGenerator) addInclude(event string, rules []RuleSpec) {
-	if len(rules) == 0 {
+	if len(rules) == 0 || !g.eventSelected(event) {
 		return
 	}
 	g.ensure(event).Include = append(g.ensure(event).Include, rules...)
 }
 
 func (g *mdeGenerator) addExclude(event string, rules []RuleSpec) {
-	if len(rules) == 0 {
+	if len(rules) == 0 || !g.eventSelected(event) {
 		return
 	}
 	g.ensure(event).Exclude = append(g.ensure(event).Exclude, rules...)
+}
+
+func (g *mdeGenerator) eventSelected(event string) bool {
+	return len(g.areas) == 0 || g.areas[event]
+}
+
+func resolveMDEAreas(areas []string) (map[string]bool, error) {
+	selected := map[string]bool{}
+	for _, area := range areas {
+		key := strings.ToLower(strings.TrimSpace(area))
+		key = strings.ReplaceAll(key, "_", "-")
+		event, ok := mdeAreas[key]
+		if !ok {
+			return nil, fmt.Errorf("unknown MDE area %q; supported areas: %s", area, strings.Join(MDEAreaNames(), ", "))
+		}
+		selected[event] = true
+	}
+	return selected, nil
 }
 
 func (g *mdeGenerator) ensure(event string) *eventRules {
@@ -347,25 +437,134 @@ func (g *mdeGenerator) write(outputDir string) (*MDEResult, error) {
 	sort.Strings(events)
 	for _, event := range events {
 		group := g.byEvent[event]
-		if len(group.Include) > 0 {
+		include := g.removeExistingRules(event, "include", group.Include)
+		if len(include) > 0 {
 			path := filepath.Join(outputDir, "include_mde_"+strings.ToLower(event)+".xml")
-			if err := WriteModuleFromRules(path, event, "include", group.Include); err != nil {
+			if err := WriteModuleFromRules(path, event, "include", include); err != nil {
 				return nil, err
 			}
 			files = append(files, path)
 		}
-		if g.mode == MDEModeFiltered && len(group.Exclude) > 0 {
+		exclude := g.removeExistingRules(event, "exclude", group.Exclude)
+		if g.mode == MDEModeFiltered && len(exclude) > 0 {
 			path := filepath.Join(outputDir, "exclude_mde_"+strings.ToLower(event)+".xml")
-			if err := WriteModuleFromRules(path, event, "exclude", group.Exclude); err != nil {
+			if err := WriteModuleFromRules(path, event, "exclude", exclude); err != nil {
 				return nil, err
 			}
 			files = append(files, path)
 		}
 	}
 	if len(files) == 0 {
-		g.warnings = append(g.warnings, "no Sysmon-supported MDE telemetry could be converted")
+		if g.stats.DuplicateRules > 0 {
+			g.warnings = append(g.warnings, "all generated MDE rules already exist in the deduplication modules")
+		} else {
+			g.warnings = append(g.warnings, "no Sysmon-supported MDE telemetry could be converted")
+		}
 	}
 	return &MDEResult{Files: files, Warnings: dedupeStrings(g.warnings), Stats: g.stats}, nil
+}
+
+func (g *mdeGenerator) removeExistingRules(event, onmatch string, rules []RuleSpec) []RuleSpec {
+	if !g.dedup {
+		return rules
+	}
+	var kept []RuleSpec
+	for _, rule := range normalizeUniqueRules(rules) {
+		key := mdeRuleKey(event, onmatch, rule)
+		if g.existing[key] {
+			g.stats.DuplicateRules++
+			continue
+		}
+		g.existing[key] = true
+		kept = append(kept, rule)
+	}
+	return kept
+}
+
+func loadExistingRuleKeys(paths []string) (map[string]bool, error) {
+	keys := map[string]bool{}
+	for _, path := range paths {
+		doc, err := sysmonxml.ParseFile(path, false)
+		if err != nil {
+			return nil, fmt.Errorf("read deduplication module %s: %w", path, err)
+		}
+		collectExistingRuleKeys(doc, keys)
+	}
+	return keys, nil
+}
+
+func collectExistingRuleKeys(doc *sysmonxml.Document, keys map[string]bool) {
+	if doc == nil || doc.Root == nil {
+		return
+	}
+	doc.Root.Walk(func(group *sysmonxml.Node) {
+		if group.Name != "RuleGroup" {
+			return
+		}
+		// Generated modules use an outer OR group. A rule inside an AND (or
+		// unspecified) group is not independently equivalent, so retain the
+		// generated rule rather than risk a false-positive deduplication.
+		if strings.ToLower(strings.TrimSpace(group.AttrValue("groupRelation"))) != "or" {
+			return
+		}
+		for _, event := range group.ElementChildren() {
+			onmatch := strings.ToLower(strings.TrimSpace(event.AttrValue("onmatch")))
+			if onmatch == "" {
+				onmatch = "include"
+			}
+			for _, child := range event.ElementChildren() {
+				if child.Name == "Rule" {
+					if rule, ok := ruleSpecFromXML(child); ok {
+						keys[mdeRuleKey(event.Name, onmatch, rule)] = true
+					}
+					continue
+				}
+				rule := RuleSpec{GroupRelation: "and", Conditions: []Condition{conditionFromXML(child)}}
+				keys[mdeRuleKey(event.Name, onmatch, rule)] = true
+			}
+		}
+	})
+}
+
+func ruleSpecFromXML(node *sysmonxml.Node) (RuleSpec, bool) {
+	rule := RuleSpec{GroupRelation: node.AttrValue("groupRelation")}
+	for _, child := range node.ElementChildren() {
+		// Generated rules are flat. Avoid treating a nested expression as an
+		// exact match when its grouping semantics cannot be represented here.
+		if child.Name == "Rule" {
+			return RuleSpec{}, false
+		}
+		rule.Conditions = append(rule.Conditions, conditionFromXML(child))
+	}
+	return rule, len(rule.Conditions) > 0
+}
+
+func conditionFromXML(node *sysmonxml.Node) Condition {
+	return Condition{Field: node.Name, Operator: node.AttrValue("condition"), Value: node.Text}
+}
+
+func mdeRuleKey(event, onmatch string, rule RuleSpec) string {
+	relation := strings.ToLower(strings.TrimSpace(rule.GroupRelation))
+	if relation == "" || len(rule.Conditions) == 1 {
+		relation = "and"
+	}
+	parts := []string{strings.ToLower(strings.TrimSpace(event)), strings.ToLower(strings.TrimSpace(onmatch)), relation}
+	seen := map[string]bool{}
+	var conditions []string
+	for _, condition := range rule.Conditions {
+		conditionKey := strings.Join([]string{
+			strings.ToLower(strings.TrimSpace(condition.Field)),
+			strings.ToLower(strings.TrimSpace(condition.Operator)),
+			strings.ToLower(strings.TrimSpace(condition.Value)),
+		}, "\x00")
+		if !seen[conditionKey] {
+			seen[conditionKey] = true
+			conditions = append(conditions, conditionKey)
+		}
+	}
+	sort.Strings(conditions)
+	parts = append(parts, conditions...)
+	return strings.Join(parts, "\x00")
 }
 
 func collectMDERules(root any) []mdeRule {
@@ -783,11 +982,11 @@ func expandMDEPath(value string) string {
 	for from, to := range replacements {
 		out = strings.ReplaceAll(out, from, to)
 	}
-	return out
+	return collapseRepeatedBackslashes(out)
 }
 
 func normalizeRegistryPath(value string) string {
-	v := strings.TrimSpace(value)
+	v := collapseRepeatedBackslashes(strings.TrimSpace(value))
 	replacements := map[string]string{
 		"hkcu\\": "HKCU\\",
 		"hklm\\": "HKLM\\",
@@ -819,8 +1018,35 @@ func normalizePathPattern(value string) string {
 	v = strings.ReplaceAll(v, "\\\\*", "\\")
 	v = strings.ReplaceAll(v, "\\*", "\\")
 	v = strings.ReplaceAll(v, "*", "")
-	v = regexp.MustCompile(`\\{3,}`).ReplaceAllString(v, `\\`)
-	return v
+	return collapseRepeatedBackslashes(v)
+}
+
+// collapseRepeatedBackslashes converts JSON values that retain an additional
+// escaping layer (for example C:\\Windows) into the single separators Sysmon
+// expects. A leading UNC prefix remains two backslashes.
+func collapseRepeatedBackslashes(value string) string {
+	if !strings.Contains(value, `\\`) {
+		return value
+	}
+	var out strings.Builder
+	out.Grow(len(value))
+	for i := 0; i < len(value); {
+		if value[i] != '\\' {
+			out.WriteByte(value[i])
+			i++
+			continue
+		}
+		start := i
+		for i < len(value) && value[i] == '\\' {
+			i++
+		}
+		if start == 0 && i-start >= 2 {
+			out.WriteString(`\\`)
+		} else {
+			out.WriteByte('\\')
+		}
+	}
+	return out.String()
 }
 
 func dedupeStrings(in []string) []string {
