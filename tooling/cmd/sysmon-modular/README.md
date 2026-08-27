@@ -209,7 +209,7 @@ The analyzer reports:
 
 ### Generate from KQL
 
-Convert simple MDE advanced hunting KQL conditions into a Sysmon module:
+Convert one MDE advanced hunting KQL file into a Sysmon module:
 
 ```bash
 go run ./cmd/sysmon-modular generate-kql \
@@ -217,7 +217,70 @@ go run ./cmd/sysmon-modular generate-kql \
   --output ../generated_kql_module.xml
 ```
 
-The KQL converter supports common table and predicate patterns such as `DeviceProcessEvents`, `DeviceNetworkEvents`, equality, `in`, `contains`, `has`, and basic port/path/registry predicates. Complex KQL logic may need manual tuning after generation.
+To crawl a directory recursively and write one module per translatable rule:
+
+```bash
+go run ./cmd/sysmon-modular generate-kql \
+  --directory ./Hunting-Queries-Detection-Rules \
+  --platform defender \
+  --output-dir ../0_custom_configuration/generated_kql
+```
+
+Markdown files are split by fenced KQL block and by Defender XDR or Sentinel
+section. Other UTF-8 text files, including extensionless query files, are
+treated as standalone KQL. `--platform` accepts `defender` (the default),
+`sentinel`, or `all`; unknown/unlabelled standalone queries are included in
+every mode.
+
+Optionally validate every selected query with an HTTP analyzer before local
+conversion. Analyzer failures are reported but do not stop the remaining
+files:
+
+```bash
+go run ./cmd/sysmon-modular generate-kql \
+  --directory ./Hunting-Queries-Detection-Rules \
+  --output-dir ../0_custom_configuration/generated_kql \
+  --analyzer \
+  --analyzer-url http://localhost:8080/api/analyze \
+  --analyzer-environment m365_with_sentinel \
+  --analyzer-profile current
+```
+
+The KQL converter supports Sysmon-relevant MDE tables and common predicates
+such as equality, `in`, `contains`, `has`, `has_any`, `contains_any`,
+`startswith`, and `endswith`. It resolves literal `let` arrays used by these
+operators. KQL `has_any` and `contains_any` use Sysmon `contains any`, while
+`has_all` and `contains_all` use `contains all`; their literal values are
+written as a semicolon-separated Sysmon list. Exact `in` lists and simple
+same-line `where A or B` expressions remain OR branches. Independent predicates
+remain AND conditions; mixed expressions such as `Image in (A, B) and
+CommandLine contains X` are expanded to `(A and X) or (B and X)`. Expansions
+larger than 256 rules are skipped to avoid generating huge
+or unsafe modules. Only predicates from KQL `where` pipeline stages are
+translated; expressions used by `extend`, `project`, and `summarize` are not
+Sysmon filters. Queries using cloud-only tables, joins, aggregations, variables
+that cannot be reduced to literals, or other semantics Sysmon cannot express
+are skipped and require manual tuning. When the converter recognizes only part
+of a query, it fails closed instead of publishing a wider rule. `--allow-lossy`
+explicitly opts into partial conversion for output that will be reviewed
+manually. Every generated module is schema-validated before it is written. The
+command prints conversion totals and warnings for each skipped query.
+
+Use `--dedup` to compare generated conditions with the current repository
+modules. Unlike MDE rule deduplication, KQL conditions are retained and receive
+an inline XML comment identifying the existing module:
+
+```bash
+go run ./cmd/sysmon-modular generate-kql \
+  --directory ./Hunting-Queries-Detection-Rules \
+  --output-dir ../0_custom_configuration/generated_kql \
+  --dedup \
+  --base-path ..
+```
+
+The comparison includes the Sysmon event, include/exclude scope, field,
+condition operator, and normalized value. The summary reports the number as
+`conditions_annotated`.
 
 ### Generate from MDE config
 
@@ -231,7 +294,7 @@ go run ./cmd/sysmon-modular generate-mde \
   --output-dir ../0_custom_configuration/generated_mde
 ```
 
-This creates include and exclude modules. Positive MDE predicates become Sysmon includes. MDE negative filters and exclusions become Sysmon excludes where the event and fields are supported.
+This creates include and exclude modules. Positive MDE predicates become Sysmon includes. MDE negative filters and exclusions become Sysmon excludes where the event and fields are supported. A process-and-path exclusion remains one AND rule. Filters whose Boolean structure or fields cannot be represented safely are skipped by default; `--allow-lossy` opts into fallback conversion for manual review.
 
 #### Select MDE telemetry areas
 
@@ -375,7 +438,7 @@ The generator maps only what Sysmon can represent with its event schema and filt
 - MDE registry monitoring maps to `RegistryEvent`.
 - MDE DNS rules map to `DnsQuery`.
 
-MDE features such as aggregation, capping, some ETW-only providers, memory details, signature-validation actions, file-open/read monitoring, and many internal MDE fields do not have exact Sysmon equivalents. Those are skipped or approximated with warnings and summary counters.
+MDE features such as aggregation, capping, some ETW-only providers, memory details, signature-validation actions, file-open/read monitoring, and many internal MDE fields do not have exact Sysmon equivalents. Unsafe filter approximations are skipped by default and counted as `lossy_rules`. `--allow-lossy` permits fallback output with warnings when a manual review is planned.
 
 ## Test
 

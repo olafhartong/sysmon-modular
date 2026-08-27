@@ -1,12 +1,14 @@
 package generate
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
 
 	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
 )
 
 type Condition struct {
@@ -61,6 +63,9 @@ func ModuleFromRules(event, onmatch string, rules []RuleSpec, schema string) *sy
 
 func WriteModule(path, event, onmatch string, conditions []Condition) error {
 	doc := Module(event, onmatch, conditions, "4.90")
+	if err := validateGeneratedModule(doc, path); err != nil {
+		return err
+	}
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return err
 	}
@@ -69,10 +74,22 @@ func WriteModule(path, event, onmatch string, conditions []Condition) error {
 
 func WriteModuleFromRules(path, event, onmatch string, rules []RuleSpec) error {
 	doc := ModuleFromRules(event, onmatch, rules, "4.90")
+	if err := validateGeneratedModule(doc, path); err != nil {
+		return err
+	}
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return err
 	}
 	return os.WriteFile(path, doc.Bytes(), 0o644)
+}
+
+func validateGeneratedModule(doc *sysmonxml.Document, path string) error {
+	for _, finding := range validate.Schema(doc, path) {
+		if finding.Severity == validate.Error {
+			return fmt.Errorf("generated module failed schema validation: %s: %s", finding.Message, finding.Detail)
+		}
+	}
+	return nil
 }
 
 func conditionNode(cond Condition, fallbackName string) *sysmonxml.Node {

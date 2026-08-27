@@ -109,9 +109,13 @@ func WriteJSON(w io.Writer, r Report) error {
 	return e.Encode(r)
 }
 func WriteText(w io.Writer, r Report) error {
-	fmt.Fprintf(w, "filters: include=%d exclude=%d modules=%d techniques=%d\n", r.Include, r.Exclude, len(r.Modules), len(r.Techniques))
+	if _, err := fmt.Fprintf(w, "filters: include=%d exclude=%d modules=%d techniques=%d\n", r.Include, r.Exclude, len(r.Modules), len(r.Techniques)); err != nil {
+		return err
+	}
 	for _, e := range r.Events {
-		fmt.Fprintf(w, "%-24s include=%-5d exclude=%-5d modules=%d\n", e.Name, e.Include, e.Exclude, len(e.Modules))
+		if _, err := fmt.Fprintf(w, "%-24s include=%-5d exclude=%-5d modules=%d\n", e.Name, e.Include, e.Exclude, len(e.Modules)); err != nil {
+			return err
+		}
 	}
 	return nil
 }

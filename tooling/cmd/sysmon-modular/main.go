@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/olafhartong/sysmon-modular/tooling/internal/analyze"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/generate"
@@ -173,7 +174,7 @@ func runMerge(args []string) error {
 	if err != nil {
 		return err
 	}
-	printWarnings(listWarnings)
+	warningCount := printWarnings(listWarnings)
 	if len(resolved) < 1 {
 		return inputError("no input rules after include/exclude processing")
 	}
@@ -190,7 +191,7 @@ func runMerge(args []string) error {
 	if err != nil {
 		return err
 	}
-	printWarnings(result.Warnings)
+	warningCount += printWarnings(result.Warnings)
 	var findings []validate.Finding
 	if *sysmonVersion != "" {
 		target, _ := validate.ResolveBinarySchema(*sysmonVersion)
@@ -220,7 +221,7 @@ func runMerge(args []string) error {
 		findings = append(findings, analyze.Config(result.Document, "merged")...)
 	}
 	printFindings(findings, *verbose)
-	if validate.HasErrors(findings) || (*warningsAsErrors && len(findings) > 0) {
+	if validate.HasErrors(findings) || (*warningsAsErrors && (len(findings) > 0 || warningCount > 0)) {
 		return findingsError("validation or analysis findings were emitted")
 	}
 	return writeOutput(*output, result.Document.Bytes())
@@ -431,21 +432,79 @@ func runAnalyze(args []string) error {
 func runGenerateKQL(args []string) error {
 	fs := newFlagSet("generate-kql")
 	kqlPath := fs.String("kql", "", "KQL detection file")
+	directory := fs.String("directory", "", "recursively convert KQL rules found below this directory")
 	output := fs.String("output", "-", "output module XML file, or - for stdout")
+	outputDir := fs.String("output-dir", "0_custom_configuration/generated_kql", "directory for per-rule XML modules in directory mode")
+	platform := fs.String("platform", "defender", "Markdown query platform in directory mode: defender, sentinel, or all")
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path used to discover current Sysmon modules")
+	dedup := fs.Bool("dedup", false, "annotate generated conditions already present in current repository modules")
+	allowLossy := fs.Bool("allow-lossy", false, "allow partial conversion when KQL cannot be represented exactly")
+	useAnalyzer := fs.Bool("analyzer", false, "POST each selected query to the KQL analyzer")
+	analyzerURL := fs.String("analyzer-url", "http://localhost:8080/api/analyze", "KQL analyzer endpoint")
+	analyzerEnvironment := fs.String("analyzer-environment", "m365_with_sentinel", "KQL analyzer environment")
+	analyzerProfile := fs.String("analyzer-profile", "current", "KQL analyzer parser profile")
+	analyzerStrict := fs.Bool("analyzer-strict", false, "enable strict analyzer mode")
+	analyzerNRT := fs.Bool("analyzer-nrt", false, "check near-real-time compatibility in the analyzer")
+	analyzerTimeout := fs.Duration("analyzer-timeout", 15*time.Second, "timeout for each analyzer request")
 	if err := fs.Parse(args); err != nil {
 		return flagParseError(err)
 	}
-	if *kqlPath == "" {
-		return usageError("provide --kql")
+	if (*kqlPath == "") == (*directory == "") {
+		return usageError("provide exactly one of --kql or --directory")
+	}
+	analyzerOptions := generate.KQLAnalyzerOptions{
+		URL:                   *analyzerURL,
+		Environment:           *analyzerEnvironment,
+		ParserProfile:         *analyzerProfile,
+		StrictMode:            *analyzerStrict,
+		CheckNRTCompatibility: *analyzerNRT,
+		Timeout:               *analyzerTimeout,
+	}
+	var existingModules []string
+	if *dedup {
+		var err error
+		existingModules, err = merger.FindRuleFiles(*basePath)
+		if err != nil {
+			return inputError("discover existing modules: %v", err)
+		}
+		if len(existingModules) == 0 {
+			return inputError("no existing Sysmon modules found below %s", *basePath)
+		}
+	}
+	if *directory != "" {
+		options := generate.KQLDirectoryOptions{InputDir: *directory, OutputDir: *outputDir, Platform: *platform, ExistingModules: existingModules, AllowLossy: *allowLossy}
+		if *useAnalyzer {
+			options.Analyzer = &analyzerOptions
+		}
+		result, err := generate.GenerateKQLDirectory(options)
+		if err != nil {
+			return err
+		}
+		printWarnings(result.Warnings)
+		fmt.Fprintf(os.Stderr, "kql analysis: files_scanned=%d queries_found=%d queries_selected=%d queries_generated=%d queries_skipped=%d queries_lossy=%d queries_analyzed=%d analyzer_failures=%d conditions_annotated=%d\n",
+			result.Stats.FilesScanned, result.Stats.QueriesFound, result.Stats.QueriesSelected, result.Stats.QueriesGenerated,
+			result.Stats.QueriesSkipped, result.Stats.QueriesLossy, result.Stats.QueriesAnalyzed, result.Stats.AnalyzerFailures, result.Stats.ConditionsAnnotated)
+		for _, file := range result.Files {
+			fmt.Fprintln(os.Stderr, "generated", file)
+		}
+		return nil
 	}
 	data, err := os.ReadFile(*kqlPath)
 	if err != nil {
 		return err
 	}
-	doc, warnings, err := generate.KQLModule(string(data))
+	if *useAnalyzer {
+		if err := generate.AnalyzeKQL(string(data), analyzerOptions); err != nil {
+			printWarnings([]string{"KQL analyzer: " + err.Error()})
+		}
+	}
+	doc, warnings, annotated, err := generate.KQLModuleNamedWithExistingOptions(string(data), "", existingModules, *allowLossy)
 	printWarnings(warnings)
 	if err != nil {
 		return err
+	}
+	if *dedup {
+		fmt.Fprintf(os.Stderr, "kql analysis: conditions_annotated=%d\n", annotated)
 	}
 	return writeOutput(*output, doc.Bytes())
 }
@@ -457,6 +516,7 @@ func runGenerateMDE(args []string, mode generate.MDEMode) error {
 	outputDir := fs.String("output-dir", defaultMDEOutputDir(mode), "directory for generated Sysmon modules")
 	basePath := fs.String("base-path", defaultBasePath(), "repository base path used to discover existing modules for --dedup")
 	dedup := fs.Bool("dedup", false, "omit generated rules already present in current repository modules")
+	allowLossy := fs.Bool("allow-lossy", false, "allow fallback conversion when an MDE filter cannot be represented exactly")
 	fs.Var(&areas, "area", "MDE telemetry area to process; may be repeated (for example process-creation, image-load, or registry)")
 	if err := fs.Parse(args); err != nil {
 		return flagParseError(err)
@@ -487,13 +547,13 @@ func runGenerateMDE(args []string, mode generate.MDEMode) error {
 			return inputError("no existing Sysmon modules found below %s", *basePath)
 		}
 	}
-	result, err := generate.FromMDEConfigFileOptions(*config, *outputDir, generate.MDEOptions{Mode: mode, Areas: areas, ExistingModules: existingModules})
+	result, err := generate.FromMDEConfigFileOptions(*config, *outputDir, generate.MDEOptions{Mode: mode, Areas: areas, ExistingModules: existingModules, AllowLossy: *allowLossy})
 	if err != nil {
 		return err
 	}
 	printWarnings(result.Warnings)
-	fmt.Fprintf(os.Stderr, "mde analysis: rules_seen=%d rules_mapped=%d duplicate_rules=%d unsupported_rules=%d unsupported_predicates=%d\n",
-		result.Stats.RulesSeen, result.Stats.RulesMapped, result.Stats.DuplicateRules, result.Stats.UnsupportedRules, result.Stats.UnsupportedPredicates)
+	fmt.Fprintf(os.Stderr, "mde analysis: rules_seen=%d rules_mapped=%d lossy_rules=%d duplicate_rules=%d unsupported_rules=%d unsupported_predicates=%d\n",
+		result.Stats.RulesSeen, result.Stats.RulesMapped, result.Stats.LossyRules, result.Stats.DuplicateRules, result.Stats.UnsupportedRules, result.Stats.UnsupportedPredicates)
 	for _, file := range result.Files {
 		fmt.Fprintln(os.Stderr, "generated", file)
 	}
@@ -592,7 +652,7 @@ func writeOutput(path string, data []byte) error {
 		return err
 	}
 	tmpName := tmp.Name()
-	defer os.Remove(tmpName)
+	defer func() { _ = os.Remove(tmpName) }()
 	if _, err = tmp.Write(data); err == nil {
 		err = tmp.Chmod(0o644)
 	}
@@ -642,10 +702,13 @@ func flagParseError(err error) error {
 	return &commandError{code: exitUsage, err: err}
 }
 
-func printWarnings(warnings []string) {
+func printWarnings(warnings []string) int {
+	count := 0
 	for _, warning := range warnings {
 		if warning != "" {
 			fmt.Fprintln(os.Stderr, paint(ansiBold+ansiYellow, warning))
+			count++
 		}
 	}
+	return count
 }

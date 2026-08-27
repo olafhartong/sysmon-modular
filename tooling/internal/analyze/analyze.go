@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	_ "embed"
@@ -63,9 +64,8 @@ func Config(doc *sysmonxml.Document, path string) []validate.Finding {
 	}
 	findings = append(findings, bestPractices(doc, path)...)
 	conditions := collectConditions(doc)
-	findings = append(findings, conflictFindings(path, conditions)...)
+	findings = append(findings, conflictFindings(path, collectRuleSignatures(doc))...)
 	findings = append(findings, imagePathRecommendations(path, conditions)...)
-	findings = append(findings, performanceFindings(path, doc, conditions)...)
 	return findings
 }
 
@@ -120,21 +120,87 @@ func collectFromNode(n *sysmonxml.Node, event, onmatch string, out *[]condition)
 	}
 }
 
-func conflictFindings(path string, conditions []condition) []validate.Finding {
-	seenInclude := map[string]condition{}
-	seenExclude := map[string]condition{}
+type ruleSignature struct {
+	Event      string
+	Onmatch    string
+	Expression string
+	Detail     string
+	Line       int
+}
+
+func collectRuleSignatures(doc *sysmonxml.Document) []ruleSignature {
+	var out []ruleSignature
+	eventFiltering := doc.Root.FirstChild("EventFiltering")
+	if eventFiltering == nil {
+		return out
+	}
+	for _, group := range eventFiltering.ElementChildren() {
+		if group.Name != "RuleGroup" {
+			continue
+		}
+		relation := strings.ToLower(strings.TrimSpace(group.AttrValue("groupRelation")))
+		if relation == "" {
+			relation = "or"
+		}
+		for _, event := range group.ElementChildren() {
+			onmatch := strings.ToLower(strings.TrimSpace(event.AttrValue("onmatch")))
+			if onmatch == "" {
+				onmatch = "include"
+			}
+			parts := make([]string, 0, len(event.ElementChildren()))
+			for _, child := range event.ElementChildren() {
+				parts = append(parts, canonicalRuleNode(child))
+			}
+			sort.Strings(parts)
+			if len(parts) == 0 {
+				continue
+			}
+			expression := relation + "(" + strings.Join(parts, ",") + ")"
+			out = append(out, ruleSignature{
+				Event: event.Name, Onmatch: onmatch, Expression: expression,
+				Detail: event.Name + " " + expression, Line: event.Line,
+			})
+		}
+	}
+	return out
+}
+
+func canonicalRuleNode(node *sysmonxml.Node) string {
+	if node.Name != "Rule" {
+		return strings.Join([]string{
+			strings.ToLower(node.Name),
+			strings.ToLower(strings.TrimSpace(node.AttrValue("condition"))),
+			strings.ToLower(strings.TrimSpace(node.Text)),
+		}, "=")
+	}
+	relation := strings.ToLower(strings.TrimSpace(node.AttrValue("groupRelation")))
+	if relation == "" {
+		relation = "and"
+	}
+	parts := make([]string, 0, len(node.ElementChildren()))
+	for _, child := range node.ElementChildren() {
+		parts = append(parts, canonicalRuleNode(child))
+	}
+	sort.Strings(parts)
+	return "rule:" + relation + "(" + strings.Join(parts, ",") + ")"
+}
+
+func conflictFindings(path string, signatures []ruleSignature) []validate.Finding {
+	seenInclude := map[string]ruleSignature{}
+	seenExclude := map[string]ruleSignature{}
 	var findings []validate.Finding
-	for _, c := range conditions {
-		key := c.Event + "\x00" + c.Field + "\x00" + c.Op + "\x00" + c.Value
-		if c.Onmatch == "include" {
-			seenInclude[key] = c
-		} else if c.Onmatch == "exclude" {
-			seenExclude[key] = c
+	for _, signature := range signatures {
+		key := signature.Event + "\x00" + signature.Expression
+		switch signature.Onmatch {
+		case "include":
+			seenInclude[key] = signature
+		case "exclude":
+			seenExclude[key] = signature
 		}
 	}
 	for key, inc := range seenInclude {
-		if _, ok := seenExclude[key]; ok && inc.Value != "" {
-			findings = append(findings, validate.Finding{Code: "ANL005", Severity: validate.Warning, Path: path, Line: inc.Line, Message: "same condition appears in include and exclude rules", Detail: fmt.Sprintf("%s %s %s %q", inc.Event, inc.Field, inc.Op, inc.Value)})
+		if _, ok := seenExclude[key]; ok {
+			findings = append(findings, validate.Finding{Code: "ANL005", Severity: validate.Warning, Path: path, Line: inc.Line, Message: "same condition appears in include and exclude rules", Detail: inc.Detail})
 		}
 	}
 	return findings
@@ -144,7 +210,7 @@ func imagePathRecommendations(path string, conditions []condition) []validate.Fi
 	var findings []validate.Finding
 	seen := map[string]bool{}
 	for _, c := range conditions {
-		if !imagePathField(c.Field) || !imageNameOnlyOperator(c.Op) {
+		if c.Onmatch != "exclude" || !imagePathField(c.Field) || !imageNameOnlyOperator(c.Op) {
 			continue
 		}
 		for _, base := range imageNameCandidates(c.Value) {
@@ -154,18 +220,14 @@ func imagePathRecommendations(path string, conditions []condition) []validate.Fi
 				continue
 			}
 			seen[key] = true
-			message := "known binary is matched by image name only"
 			detail := fmt.Sprintf("%s %s %s=%s; consider full path variants such as %s", c.Event, c.Onmatch, c.Field, base, strings.Join(paths, " or "))
-			if c.Onmatch == "exclude" {
-				message = "exclude rule matches a known binary by image name only"
-				detail = fmt.Sprintf("%s; for exclusions, prefer full paths where possible to avoid suppressing lookalike binaries outside their expected locations", detail)
-			}
+			detail = fmt.Sprintf("%s; for exclusions, prefer full paths where possible to avoid suppressing lookalike binaries outside their expected locations", detail)
 			findings = append(findings, validate.Finding{
 				Code:     "ANL006",
 				Severity: validate.Recommendation,
 				Path:     path,
 				Line:     c.Line,
-				Message:  message,
+				Message:  "exclude rule matches a known binary by image name only",
 				Detail:   detail,
 			})
 		}
@@ -208,45 +270,4 @@ func imageNameCandidates(value string) []string {
 		candidates = append(candidates, base)
 	}
 	return candidates
-}
-
-func performanceFindings(path string, doc *sysmonxml.Document, conditions []condition) []validate.Finding {
-	var findings []validate.Finding
-	eventFiltering := doc.Root.FirstChild("EventFiltering")
-	if eventFiltering != nil {
-		for _, rg := range eventFiltering.ElementChildren() {
-			for _, event := range rg.ElementChildren() {
-				onmatch := event.AttrValue("onmatch")
-				if onmatch == "" {
-					onmatch = "include"
-				}
-				if onmatch == "include" && len(event.ElementChildren()) == 0 {
-					findings = append(findings, validate.Finding{Code: "ANL007", Severity: validate.Performance, Path: path, Line: event.Line, Message: "include rule has no conditions and logs the full event stream", Detail: event.Name})
-				}
-			}
-		}
-	}
-	heavyEvents := map[string]string{
-		"ImageLoad":       "ImageLoad can produce very high volume without tight includes/excludes.",
-		"FileCreate":      "FileCreate can produce high volume on busy endpoints.",
-		"FileDelete":      "FileDelete archives deleted content and can consume disk space.",
-		"ClipboardChange": "ClipboardChange can create privacy exposure and noisy telemetry.",
-		"DnsQuery":        "DnsQuery can be high volume in browser-heavy environments.",
-		"NetworkConnect":  "NetworkConnect broad includes can be high volume.",
-	}
-	counts := map[string]int{}
-	for _, c := range conditions {
-		if c.Onmatch == "include" {
-			counts[c.Event]++
-		}
-		if c.Op == "contains" && (c.Value == `c:\` || c.Value == `\` || len(c.Value) <= 2) {
-			findings = append(findings, validate.Finding{Code: "ANL008", Severity: validate.Performance, Path: path, Line: c.Line, Message: "very broad contains condition may generate high volume", Detail: fmt.Sprintf("%s %s contains %q", c.Event, c.Field, c.Value)})
-		}
-	}
-	for event, detail := range heavyEvents {
-		if counts[event] > 50 {
-			findings = append(findings, validate.Finding{Code: "ANL009", Severity: validate.Performance, Path: path, Message: "large include set on high-volume event", Detail: fmt.Sprintf("%s has %d include conditions. %s", event, counts[event], detail)})
-		}
-	}
-	return findings
 }

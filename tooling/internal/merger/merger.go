@@ -171,7 +171,9 @@ func ResolveLists(basePath string, initial []string, includeList, excludeList st
 		var kept []string
 		for _, path := range paths {
 			if excluded[clean(path)] {
-				warnings = append(warnings, fmt.Sprintf("path selected by include/input and exclude list: %s", path))
+				if includeList != "" {
+					warnings = append(warnings, fmt.Sprintf("path selected by include and exclude list: %s", path))
+				}
 				continue
 			}
 			kept = append(kept, path)
@@ -183,7 +185,6 @@ func ResolveLists(basePath string, initial []string, includeList, excludeList st
 			paths[i] = filepath.Join(basePath, path)
 		}
 	}
-	sort.Strings(paths)
 	return dedupe(paths), warnings, nil
 }
 
@@ -254,12 +255,19 @@ func ReadPriorityList(path, format string) ([]string, error) {
 		if !ok1 || !ok2 {
 			return nil, fmt.Errorf("priority list requires filepath and priority columns")
 		}
-		for _, row := range rows[1:] {
+		for rowNumber, row := range rows[1:] {
 			if len(row) <= fp || len(row) <= pr {
-				continue
+				return nil, fmt.Errorf("priority list row %d is missing filepath or priority", rowNumber+2)
 			}
-			priority, _ := strconv.Atoi(strings.TrimSpace(row[pr]))
-			items = append(items, InputFile{Path: strings.TrimSpace(row[fp]), Priority: priority})
+			pathValue := strings.TrimSpace(row[fp])
+			if pathValue == "" {
+				return nil, fmt.Errorf("priority list row %d has an empty filepath", rowNumber+2)
+			}
+			priority, err := strconv.Atoi(strings.TrimSpace(row[pr]))
+			if err != nil {
+				return nil, fmt.Errorf("priority list row %d has invalid priority %q: %w", rowNumber+2, row[pr], err)
+			}
+			items = append(items, InputFile{Path: pathValue, Priority: priority})
 		}
 	default:
 		return nil, fmt.Errorf("unsupported priority list format %q", format)
@@ -267,6 +275,9 @@ func ReadPriorityList(path, format string) ([]string, error) {
 	sort.SliceStable(items, func(i, j int) bool { return items[i].Priority > items[j].Priority })
 	out := make([]string, 0, len(items))
 	for _, item := range items {
+		if strings.TrimSpace(item.Path) == "" {
+			return nil, fmt.Errorf("priority list contains an empty filepath")
+		}
 		out = append(out, item.Path)
 	}
 	return out, nil

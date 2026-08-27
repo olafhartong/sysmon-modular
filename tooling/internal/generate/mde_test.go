@@ -5,13 +5,15 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 func TestFromMDEConfigFilteredGeneratesIncludeAndExcludeModules(t *testing.T) {
 	dir := t.TempDir()
 	config := writeMDEFixture(t, dir)
 	outDir := filepath.Join(dir, "out")
-	result, err := FromMDEConfigFileMode(config, outDir, MDEModeFiltered)
+	result, err := FromMDEConfigFileOptions(config, outDir, MDEOptions{Mode: MDEModeFiltered, AllowLossy: true})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -27,6 +29,7 @@ func TestFromMDEConfigFilteredGeneratesIncludeAndExcludeModules(t *testing.T) {
 	assertFileContains(t, filepath.Join(outDir, "include_mde_filecreate.xml"), "TargetFilename", `C:\Users\`)
 	assertFileContains(t, filepath.Join(outDir, "exclude_mde_filecreate.xml"), `C:\Temp`)
 	assertFileNotContains(t, filepath.Join(outDir, "exclude_mde_filecreate.xml"), `C:\\Temp`)
+	assertMDEFileExclusionKeepsProcessAndPathTogether(t, filepath.Join(outDir, "exclude_mde_filecreate.xml"))
 	if result.Stats.RulesSeen == 0 || result.Stats.RulesMapped == 0 {
 		t.Fatalf("expected stats to count mapped rules, got %#v", result.Stats)
 	}
@@ -36,6 +39,69 @@ func TestFromMDEConfigFilteredGeneratesIncludeAndExcludeModules(t *testing.T) {
 		}
 	}
 	assertFileContains(t, filepath.Join(outDir, "exclude_mde_filecreate.xml"), `C:\Program Files (x86)\Office\winword.exe`)
+}
+
+func TestFromMDEConfigSkipsLossyFilterUnlessExplicitlyAllowed(t *testing.T) {
+	dir := t.TempDir()
+	config := filepath.Join(dir, "lossy.json")
+	data := `{"rules":[{"name":"process creation unsupported filter","filters":{"expressionType":"predicate","source":"AccountName","filter":"Eq","values":["admin"]}}]}`
+	if err := os.WriteFile(config, []byte(data), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	result, err := FromMDEConfigFileOptions(config, filepath.Join(dir, "safe"), MDEOptions{Mode: MDEModeFiltered})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if result.Stats.LossyRules != 1 || len(result.Files) != 0 || !containsString(result.Warnings, "--allow-lossy") {
+		t.Fatalf("lossy conversion must fail closed by default: %#v", result)
+	}
+	allowed, err := FromMDEConfigFileOptions(config, filepath.Join(dir, "allowed"), MDEOptions{Mode: MDEModeFiltered, AllowLossy: true})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(allowed.Files) == 0 || allowed.Stats.LossyRules != 1 {
+		t.Fatalf("explicit lossy opt-in should retain legacy fallback behavior: %#v", allowed)
+	}
+}
+
+func TestMDECompositeNegationIsMarkedLossy(t *testing.T) {
+	predicate := func(source, value string) map[string]any {
+		return map[string]any{"expressionType": "Predicate", "source": source, "filter": "Eq", "values": []any{value}}
+	}
+	expr := map[string]any{
+		"expressionType": "Operator", "operator": "Not",
+		"expressions": []any{map[string]any{
+			"expressionType": "Operator", "operator": "And",
+			"expressions": []any{predicate("ProcessEntity:PROCESS_NAME", "cmd.exe"), predicate("ProcessEntity:PROCESS_CMD_LINE", "/c")},
+		}},
+	}
+	if _, safe := mdeExpressionSafety("ProcessCreate", expr); safe {
+		t.Fatal("NOT over an AND expression cannot be flattened without changing its meaning")
+	}
+}
+
+func assertMDEFileExclusionKeepsProcessAndPathTogether(t *testing.T, path string) {
+	t.Helper()
+	doc, err := sysmonxml.ParseFile(path, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	found := false
+	doc.Root.Walk(func(node *sysmonxml.Node) {
+		if node.Name != "Rule" || !strings.EqualFold(node.AttrValue("groupRelation"), "and") {
+			return
+		}
+		fields := map[string]string{}
+		for _, child := range node.ElementChildren() {
+			fields[child.Name] = child.Text
+		}
+		if fields["Image"] == `C:\Program Files\App\app.exe` && fields["TargetFilename"] == `C:\Temp` {
+			found = true
+		}
+	})
+	if !found {
+		t.Fatalf("expected the process and path exclusion to remain one AND rule in %s", path)
+	}
 }
 
 func TestFromMDEConfigUnfilteredGeneratesOnlyIncludeModules(t *testing.T) {
@@ -59,7 +125,7 @@ func TestFromMDEConfigInverseGeneratesFilteredBlindSpotsAsIncludes(t *testing.T)
 	dir := t.TempDir()
 	config := writeMDEFixture(t, dir)
 	outDir := filepath.Join(dir, "inverse")
-	result, err := FromMDEConfigFileMode(config, outDir, MDEModeInverse)
+	result, err := FromMDEConfigFileOptions(config, outDir, MDEOptions{Mode: MDEModeInverse, AllowLossy: true})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -77,8 +143,9 @@ func TestFromMDEConfigProcessesOnlySelectedArea(t *testing.T) {
 	config := writeMDEFixture(t, dir)
 	outDir := filepath.Join(dir, "process-only")
 	result, err := FromMDEConfigFileOptions(config, outDir, MDEOptions{
-		Mode:  MDEModeFiltered,
-		Areas: []string{"process-creation"},
+		Mode:       MDEModeFiltered,
+		Areas:      []string{"process-creation"},
+		AllowLossy: true,
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -102,8 +169,9 @@ func TestFromMDEConfigAcceptsMultipleAreas(t *testing.T) {
 	config := writeMDEFixture(t, dir)
 	outDir := filepath.Join(dir, "selected")
 	result, err := FromMDEConfigFileOptions(config, outDir, MDEOptions{
-		Mode:  MDEModeFiltered,
-		Areas: []string{"process-creation", "registry"},
+		Mode:       MDEModeFiltered,
+		Areas:      []string{"process-creation", "registry"},
+		AllowLossy: true,
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -134,8 +202,9 @@ func TestFromMDEConfigDeduplicatesAgainstExistingModules(t *testing.T) {
 	config := writeMDEFixture(t, dir)
 	baselineDir := filepath.Join(dir, "baseline")
 	baseline, err := FromMDEConfigFileOptions(config, baselineDir, MDEOptions{
-		Mode:  MDEModeFiltered,
-		Areas: []string{"process-creation"},
+		Mode:       MDEModeFiltered,
+		Areas:      []string{"process-creation"},
+		AllowLossy: true,
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -148,6 +217,7 @@ func TestFromMDEConfigDeduplicatesAgainstExistingModules(t *testing.T) {
 		Mode:            MDEModeFiltered,
 		Areas:           []string{"process-creation"},
 		ExistingModules: baseline.Files,
+		AllowLossy:      true,
 	})
 	if err != nil {
 		t.Fatal(err)

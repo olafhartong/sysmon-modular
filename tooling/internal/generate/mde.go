@@ -29,6 +29,7 @@ type MDEResult struct {
 type MDEStats struct {
 	RulesSeen             int
 	RulesMapped           int
+	LossyRules            int
 	DuplicateRules        int
 	UnsupportedRules      int
 	UnsupportedPredicates int
@@ -41,6 +42,7 @@ type MDEOptions struct {
 	Mode            MDEMode
 	Areas           []string
 	ExistingModules []string
+	AllowLossy      bool
 }
 
 var mdeAreas = map[string]string{
@@ -112,25 +114,27 @@ func FromMDEConfigFileOptions(configPath, outputDir string, options MDEOptions) 
 		return nil, err
 	}
 	g := &mdeGenerator{
-		mode:     options.Mode,
-		areas:    selected,
-		dedup:    len(options.ExistingModules) > 0,
-		existing: existing,
-		byEvent:  map[string]*eventRules{},
-		warnings: []string{},
+		mode:       options.Mode,
+		allowLossy: options.AllowLossy,
+		areas:      selected,
+		dedup:      len(options.ExistingModules) > 0,
+		existing:   existing,
+		byEvent:    map[string]*eventRules{},
+		warnings:   []string{},
 	}
 	g.analyze(root)
 	return g.write(outputDir)
 }
 
 type mdeGenerator struct {
-	mode     MDEMode
-	areas    map[string]bool
-	dedup    bool
-	existing map[string]bool
-	byEvent  map[string]*eventRules
-	warnings []string
-	stats    MDEStats
+	mode       MDEMode
+	allowLossy bool
+	areas      map[string]bool
+	dedup      bool
+	existing   map[string]bool
+	byEvent    map[string]*eventRules
+	warnings   []string
+	stats      MDEStats
 }
 
 func (g *mdeGenerator) analyze(root any) {
@@ -153,12 +157,18 @@ func (g *mdeGenerator) analyze(root any) {
 		case MDEModeUnfiltered:
 			g.addInclude(event, []RuleSpec{broadRule(event, "MDE unfiltered "+ruleLabel(rule))})
 		case MDEModeInverse:
-			_, neg := g.rulesFromFilter(event, rule)
+			_, neg, lossless := g.rulesFromFilter(event, rule)
+			if !lossless && g.handleLossyRule(rule) {
+				continue
+			}
 			if len(neg) > 0 {
 				g.addInclude(event, prefixRuleNames(neg, "MDE inverse "+ruleLabel(rule)))
 			}
 		default:
-			pos, neg := g.rulesFromFilter(event, rule)
+			pos, neg, lossless := g.rulesFromFilter(event, rule)
+			if !lossless && g.handleLossyRule(rule) {
+				continue
+			}
 			if len(pos) == 0 && len(neg) == 0 {
 				pos = []RuleSpec{broadRule(event, "MDE "+ruleLabel(rule))}
 			}
@@ -166,6 +176,16 @@ func (g *mdeGenerator) analyze(root any) {
 			g.addExclude(event, prefixRuleNames(neg, "MDE filtered "+ruleLabel(rule)))
 		}
 	}
+}
+
+func (g *mdeGenerator) handleLossyRule(rule mdeRule) bool {
+	g.stats.LossyRules++
+	if g.allowLossy {
+		g.warnings = append(g.warnings, "converted lossy MDE rule "+ruleLabel(rule)+" because --allow-lossy was supplied; review the generated fallback")
+		return false
+	}
+	g.warnings = append(g.warnings, "skipped MDE rule "+ruleLabel(rule)+": filter cannot be represented without changing its meaning; use --allow-lossy to opt in")
+	return true
 }
 
 func (g *mdeGenerator) walkConfigTypes(root any) {
@@ -204,26 +224,34 @@ func (g *mdeGenerator) addExclusionConfiguration(cfg map[string]any) {
 		}
 		process := expandMDEPath(stringValue(entry["Process"]))
 		value := expandMDEPath(stringValue(entry["Value"]))
-		var rules []RuleSpec
+		var processRules []RuleSpec
+		var fileRules []RuleSpec
 		if process != "" {
-			rules = append(rules, RuleSpec{Name: "MDE exclusion process", GroupRelation: "and", Conditions: []Condition{{Field: "Image", Operator: "is", Value: process}}})
+			processRules = append(processRules, RuleSpec{Name: "MDE exclusion process", GroupRelation: "and", Conditions: []Condition{{Field: "Image", Operator: "is", Value: process}}})
+		}
+		var fileConditions []Condition
+		if process != "" {
+			fileConditions = append(fileConditions, Condition{Field: "Image", Operator: "is", Value: process})
 		}
 		if value != "" && value != `\\` {
-			rules = append(rules, RuleSpec{Name: "MDE exclusion file path", GroupRelation: "and", Conditions: []Condition{{Field: "TargetFilename", Operator: pathOperator(value), Value: normalizePathPattern(value)}}})
+			fileConditions = append(fileConditions, Condition{Field: "TargetFilename", Operator: pathOperator(value), Value: normalizePathPattern(value)})
 		}
 		if value == `\\` && process == "" {
 			g.warnings = append(g.warnings, "skipped broad MDE path exclusion value \\\\ without a process constraint")
 		}
-		if len(rules) == 0 {
+		if len(fileConditions) > 0 {
+			fileRules = append(fileRules, RuleSpec{Name: "MDE exclusion file constraint", GroupRelation: "and", Conditions: fileConditions})
+		}
+		if len(processRules) == 0 && len(fileRules) == 0 {
 			continue
 		}
 		switch g.mode {
 		case MDEModeInverse:
-			g.addInclude("ProcessCreate", rulesForEvent("ProcessCreate", rules))
-			g.addInclude("FileCreate", rulesForEvent("FileCreate", rules))
+			g.addInclude("ProcessCreate", processRules)
+			g.addInclude("FileCreate", fileRules)
 		case MDEModeFiltered:
-			g.addExclude("ProcessCreate", rulesForEvent("ProcessCreate", rules))
-			g.addExclude("FileCreate", rulesForEvent("FileCreate", rules))
+			g.addExclude("ProcessCreate", processRules)
+			g.addExclude("FileCreate", fileRules)
 		}
 	}
 }
@@ -335,13 +363,54 @@ func fileMonitorRules(entries []any, name string) []RuleSpec {
 	return rules
 }
 
-func (g *mdeGenerator) rulesFromFilter(event string, rule mdeRule) ([]RuleSpec, []RuleSpec) {
+func (g *mdeGenerator) rulesFromFilter(event string, rule mdeRule) ([]RuleSpec, []RuleSpec, bool) {
 	filter, ok := rule.Filters.(map[string]any)
 	if !ok || len(filter) == 0 {
-		return nil, nil
+		return nil, nil, true
 	}
 	pos, neg := g.translateExpr(event, filter, false)
-	return pos, neg
+	_, lossless := mdeExpressionSafety(event, filter)
+	return pos, neg, lossless
+}
+
+func mdeExpressionSafety(event string, expr map[string]any) (bool, bool) {
+	switch strings.ToLower(stringValue(expr["expressionType"])) {
+	case "predicate":
+		_, ok := conditionFromPredicate(event, expr)
+		return false, ok
+	case "operator":
+		children := expressionChildren(expr)
+		if len(children) == 0 {
+			return false, false
+		}
+		switch strings.ToLower(stringValue(expr["operator"])) {
+		case "not":
+			if len(children) != 1 || !strings.EqualFold(stringValue(children[0]["expressionType"]), "predicate") {
+				return true, false
+			}
+			_, safe := mdeExpressionSafety(event, children[0])
+			return true, safe
+		case "and":
+			hasNegative := false
+			for _, child := range children {
+				negative, safe := mdeExpressionSafety(event, child)
+				if !safe {
+					return false, false
+				}
+				hasNegative = hasNegative || negative
+			}
+			return hasNegative, !hasNegative
+		case "or":
+			for _, child := range children {
+				negative, safe := mdeExpressionSafety(event, child)
+				if !safe || negative {
+					return negative, false
+				}
+			}
+			return false, true
+		}
+	}
+	return false, false
 }
 
 func (g *mdeGenerator) translateExpr(event string, expr map[string]any, negated bool) ([]RuleSpec, []RuleSpec) {
@@ -910,44 +979,6 @@ func prefixRuleNames(rules []RuleSpec, fallback string) []RuleSpec {
 		}
 	}
 	return out
-}
-
-func rulesForEvent(event string, rules []RuleSpec) []RuleSpec {
-	var out []RuleSpec
-	for _, rule := range rules {
-		var conds []Condition
-		for _, cond := range rule.Conditions {
-			if field, ok := remapGenericConditionField(event, cond.Field); ok {
-				cond.Field = field
-				conds = append(conds, cond)
-			}
-		}
-		if len(conds) > 0 {
-			rule.Conditions = conds
-			out = append(out, rule)
-		}
-	}
-	return out
-}
-
-func remapGenericConditionField(event, field string) (string, bool) {
-	if field == "Image" {
-		switch event {
-		case "ProcessCreate", "NetworkConnect", "FileCreate", "RegistryEvent", "ProcessTerminate", "ImageLoad", "FileExecutableDetected":
-			return "Image", true
-		default:
-			return "", false
-		}
-	}
-	if field == "TargetFilename" {
-		switch event {
-		case "FileCreate", "FileDelete", "FileDeleteDetected":
-			return "TargetFilename", true
-		default:
-			return "", false
-		}
-	}
-	return field, true
 }
 
 func ruleLabel(rule mdeRule) string {

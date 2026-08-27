@@ -135,6 +135,12 @@ numbered module directories:
 Deduplication compares complete normalized rules, including their Sysmon event
 and include/exclude scope. It ignores rule display names and ATT&CK annotations.
 
+KQL and filtered MDE conversion fail closed when a filter cannot be represented
+without changing its meaning. The command reports the skipped input. Use
+`--allow-lossy` only when partial or fallback output is intentional and will be
+reviewed manually. Every generated module is schema-validated before it is
+written.
+
 ## Command help
 
 Each command has its own help output. Consult it before scripting less common
@@ -154,7 +160,11 @@ The available commands are:
   MITRE ATT&CK metadata.
 - `fix-mitre`: preview or apply supported ATT&CK metadata corrections.
 - `analyze`: find conflicts and configuration or performance concerns.
-- `generate-kql`: convert supported MDE KQL predicates into a Sysmon module.
+- `generate-kql`: convert one KQL file, or recursively extract fenced and
+  standalone KQL from a directory and write one Sysmon module per supported
+  rule. Directory mode can select Defender, Sentinel, or all query sections
+  and can optionally validate queries with a configurable HTTP analyzer. Its
+  deduplication check annotates conditions already present in the main tree.
 - `generate-mde`, `generate-mde-unfiltered`, and `generate-mde-inverse`:
   generate modules from an MDE configuration.
 - `list-rules`: list discovered repository modules.

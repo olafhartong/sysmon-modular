@@ -78,7 +78,7 @@ func ResolveBinarySchema(version string) (BinarySchema, error) {
 func parseBinaryVersion(version string) (int, int, error) {
 	version = strings.TrimSpace(strings.TrimPrefix(strings.ToLower(version), "v"))
 	if version == "" {
-		return 0, 0, fmt.Errorf("Sysmon version cannot be empty")
+		return 0, 0, fmt.Errorf("sysmon version cannot be empty")
 	}
 	parts := strings.Split(version, ".")
 	if len(parts) > 3 {

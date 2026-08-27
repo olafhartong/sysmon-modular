@@ -380,13 +380,12 @@ func nameMatches(id, name string) bool {
 	if normalizeName(name) == normalizeName(tech.Name) {
 		return true
 	}
-	parentID := id
 	if dot := strings.IndexByte(id, '.'); dot >= 0 {
-		parentID = id[:dot]
+		id = id[:dot]
 	} else {
 		return false
 	}
-	parent, ok := techniques[parentID]
+	parent, ok := techniques[id]
 	if !ok || parent.Revoked || parent.Deprecated {
 		return false
 	}
