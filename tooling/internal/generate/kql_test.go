@@ -51,16 +51,40 @@ func TestKQLNetworkCommandLineFailsClosed(t *testing.T) {
 	}
 }
 
-func TestKQLComplexOrAndComputedPredicatesFailClosed(t *testing.T) {
-	tests := []string{
-		`DeviceProcessEvents | where (FileName == "cmd.exe" and ProcessCommandLine contains "/c") or FileName == "powershell.exe"`,
-		`DeviceProcessEvents | where FileName == "cmd.exe" | where tolower(AccountName) == "admin"`,
+func TestKQLNestedBooleanExpressionIsPreserved(t *testing.T) {
+	result := FromKQL(`DeviceProcessEvents | where (FileName == "cmd.exe" and ProcessCommandLine contains "/c") or FileName == "powershell.exe"`)
+	if len(result.LossyReasons) != 0 {
+		t.Fatalf("representable nested expression was marked lossy: %v", result.LossyReasons)
 	}
-	for _, query := range tests {
-		result := FromKQL(query)
-		if len(result.LossyReasons) == 0 {
-			t.Fatalf("query with unrepresented semantics was not marked lossy: %s", query)
-		}
+	if len(result.Rules) != 2 || len(result.Rules[0].Conditions)+len(result.Rules[1].Conditions) != 3 {
+		t.Fatalf("expected two exact DNF branches, got %#v", result.Rules)
+	}
+}
+
+func TestKQLComputedPredicateFailsClosed(t *testing.T) {
+	query := `DeviceProcessEvents | where FileName == "cmd.exe" | where tolower(AccountName) == "admin"`
+	result := FromKQL(query)
+	if len(result.LossyReasons) == 0 {
+		t.Fatalf("computed predicate was not marked lossy: %#v", result)
+	}
+}
+
+func TestKQLTokenMatchingRequiresLossyOptIn(t *testing.T) {
+	query := `DeviceProcessEvents | where ProcessCommandLine has "powershell"`
+	result := FromKQL(query)
+	if len(result.LossyReasons) == 0 {
+		t.Fatalf("KQL token matching was not marked lossy: %#v", result)
+	}
+	if _, warnings, err := KQLModuleNamed(query, "token matching"); err == nil || !strings.Contains(strings.Join(warnings, " "), "--allow-lossy") {
+		t.Fatalf("safe conversion must reject token matching: warnings=%v err=%v", warnings, err)
+	}
+}
+
+func TestKQLSemanticPipelineStageFailsClosed(t *testing.T) {
+	query := `DeviceProcessEvents | where FileName == "cmd.exe" | summarize count() by AccountName`
+	result := FromKQL(query)
+	if len(result.LossyReasons) == 0 || !strings.Contains(strings.Join(result.LossyReasons, " "), "summarize") {
+		t.Fatalf("semantic pipeline stage was not marked lossy: %#v", result)
 	}
 }
 

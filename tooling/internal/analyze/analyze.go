@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"io"
 	"path/filepath"
-	"sort"
 	"strings"
 
 	_ "embed"
 
+	"github.com/olafhartong/sysmon-modular/tooling/internal/expression"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
 )
@@ -63,8 +63,9 @@ func Config(doc *sysmonxml.Document, path string) []validate.Finding {
 		return findings
 	}
 	findings = append(findings, bestPractices(doc, path)...)
-	conditions := collectConditions(doc)
-	findings = append(findings, conflictFindings(path, collectRuleSignatures(doc))...)
+	config := expression.FromXML(doc)
+	conditions := collectConditions(config)
+	findings = append(findings, conflictFindings(path, config.Events)...)
 	findings = append(findings, imagePathRecommendations(path, conditions)...)
 	return findings
 }
@@ -86,121 +87,35 @@ func bestPractices(doc *sysmonxml.Document, path string) []validate.Finding {
 	return findings
 }
 
-func collectConditions(doc *sysmonxml.Document) []condition {
+func collectConditions(config expression.Config) []condition {
 	var out []condition
-	eventFiltering := doc.Root.FirstChild("EventFiltering")
-	if eventFiltering == nil {
-		return out
-	}
-	for _, rg := range eventFiltering.ElementChildren() {
-		if rg.Name != "RuleGroup" {
-			continue
-		}
-		for _, event := range rg.ElementChildren() {
-			onmatch := strings.ToLower(event.AttrValue("onmatch"))
-			if onmatch == "" {
-				onmatch = "include"
-			}
-			collectFromNode(event, event.Name, onmatch, &out)
-		}
-	}
-	return out
-}
-
-func collectFromNode(n *sysmonxml.Node, event, onmatch string, out *[]condition) {
-	for _, child := range n.ElementChildren() {
-		if child.Name == "Rule" {
-			collectFromNode(child, event, onmatch, out)
-			continue
-		}
-		*out = append(*out, condition{
-			Event: event, Onmatch: onmatch, Field: child.Name,
-			Op: strings.ToLower(child.AttrValue("condition")), Value: strings.ToLower(strings.TrimSpace(child.Text)), Line: child.Line,
-		})
-	}
-}
-
-type ruleSignature struct {
-	Event      string
-	Onmatch    string
-	Expression string
-	Detail     string
-	Line       int
-}
-
-func collectRuleSignatures(doc *sysmonxml.Document) []ruleSignature {
-	var out []ruleSignature
-	eventFiltering := doc.Root.FirstChild("EventFiltering")
-	if eventFiltering == nil {
-		return out
-	}
-	for _, group := range eventFiltering.ElementChildren() {
-		if group.Name != "RuleGroup" {
-			continue
-		}
-		relation := strings.ToLower(strings.TrimSpace(group.AttrValue("groupRelation")))
-		if relation == "" {
-			relation = "or"
-		}
-		for _, event := range group.ElementChildren() {
-			onmatch := strings.ToLower(strings.TrimSpace(event.AttrValue("onmatch")))
-			if onmatch == "" {
-				onmatch = "include"
-			}
-			parts := make([]string, 0, len(event.ElementChildren()))
-			for _, child := range event.ElementChildren() {
-				parts = append(parts, canonicalRuleNode(child))
-			}
-			sort.Strings(parts)
-			if len(parts) == 0 {
-				continue
-			}
-			expression := relation + "(" + strings.Join(parts, ",") + ")"
-			out = append(out, ruleSignature{
-				Event: event.Name, Onmatch: onmatch, Expression: expression,
-				Detail: event.Name + " " + expression, Line: event.Line,
+	for _, event := range config.Events {
+		for _, leaf := range event.Expression.Conditions() {
+			out = append(out, condition{
+				Event: event.Name, Onmatch: event.Onmatch, Field: leaf.Field,
+				Op: strings.ToLower(leaf.Operator), Value: strings.ToLower(strings.TrimSpace(leaf.Value)), Line: leaf.Line,
 			})
 		}
 	}
 	return out
 }
 
-func canonicalRuleNode(node *sysmonxml.Node) string {
-	if node.Name != "Rule" {
-		return strings.Join([]string{
-			strings.ToLower(node.Name),
-			strings.ToLower(strings.TrimSpace(node.AttrValue("condition"))),
-			strings.ToLower(strings.TrimSpace(node.Text)),
-		}, "=")
-	}
-	relation := strings.ToLower(strings.TrimSpace(node.AttrValue("groupRelation")))
-	if relation == "" {
-		relation = "and"
-	}
-	parts := make([]string, 0, len(node.ElementChildren()))
-	for _, child := range node.ElementChildren() {
-		parts = append(parts, canonicalRuleNode(child))
-	}
-	sort.Strings(parts)
-	return "rule:" + relation + "(" + strings.Join(parts, ",") + ")"
-}
-
-func conflictFindings(path string, signatures []ruleSignature) []validate.Finding {
-	seenInclude := map[string]ruleSignature{}
-	seenExclude := map[string]ruleSignature{}
+func conflictFindings(path string, events []expression.Event) []validate.Finding {
+	seenInclude := map[string]expression.Event{}
+	seenExclude := map[string]expression.Event{}
 	var findings []validate.Finding
-	for _, signature := range signatures {
-		key := signature.Event + "\x00" + signature.Expression
-		switch signature.Onmatch {
+	for _, event := range events {
+		key := strings.ToLower(event.Name) + "\x00" + event.Expression.Canonical()
+		switch event.Onmatch {
 		case "include":
-			seenInclude[key] = signature
+			seenInclude[key] = event
 		case "exclude":
-			seenExclude[key] = signature
+			seenExclude[key] = event
 		}
 	}
 	for key, inc := range seenInclude {
 		if _, ok := seenExclude[key]; ok {
-			findings = append(findings, validate.Finding{Code: "ANL005", Severity: validate.Warning, Path: path, Line: inc.Line, Message: "same condition appears in include and exclude rules", Detail: inc.Detail})
+			findings = append(findings, validate.Finding{Code: "ANL005", Severity: validate.Warning, Path: path, Line: inc.Line, Message: "same condition appears in include and exclude rules", Detail: inc.Name + " " + inc.Expression.Canonical()})
 		}
 	}
 	return findings

@@ -1,6 +1,7 @@
 package generate
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -77,6 +78,59 @@ func TestMDECompositeNegationIsMarkedLossy(t *testing.T) {
 	}
 	if _, safe := mdeExpressionSafety("ProcessCreate", expr); safe {
 		t.Fatal("NOT over an AND expression cannot be flattened without changing its meaning")
+	}
+}
+
+func TestMDETypedExpressionPreservesNestedBooleanLogic(t *testing.T) {
+	predicate := func(source, filter string, values ...any) map[string]any {
+		return map[string]any{"expressionType": "Predicate", "source": source, "filter": filter, "values": values}
+	}
+	expr := map[string]any{
+		"expressionType": "Operator", "operator": "Or",
+		"expressions": []any{
+			map[string]any{
+				"expressionType": "Operator", "operator": "And",
+				"expressions": []any{
+					predicate("ProcessEntity:PROCESS_NAME", "Eq", "cmd.exe"),
+					predicate("ProcessEntity:PROCESS_CMD_LINE", "Contains", "/c"),
+				},
+			},
+			predicate("ProcessEntity:PROCESS_NAME", "Eq", "powershell.exe"),
+		},
+	}
+	positive, negative, reason, exact := exactMDERules("ProcessCreate", expr)
+	if !exact || reason != "" || len(negative) != 0 {
+		t.Fatalf("expected exact positive expression, got positive=%#v negative=%#v reason=%q", positive, negative, reason)
+	}
+	if len(positive) != 2 || len(positive[0].Conditions)+len(positive[1].Conditions) != 3 {
+		t.Fatalf("expected two exact DNF branches, got %#v", positive)
+	}
+}
+
+func TestMDETypedExpressionRejectsMalformedChild(t *testing.T) {
+	expr := map[string]any{
+		"expressionType": "Operator", "operator": "And",
+		"expressions": []any{"not an expression"},
+	}
+	if _, _, reason, exact := exactMDERules("ProcessCreate", expr); exact || !strings.Contains(reason, "child 1") {
+		t.Fatalf("malformed child must be reported, exact=%v reason=%q", exact, reason)
+	}
+}
+
+func TestMDEBooleanExpansionLimitFailsClosed(t *testing.T) {
+	predicate := func(value string) map[string]any {
+		return map[string]any{"expressionType": "Predicate", "source": "ProcessEntity:PROCESS_NAME", "filter": "Eq", "values": []any{value}}
+	}
+	andChildren := make([]any, 0, 9)
+	for i := 0; i < 9; i++ {
+		andChildren = append(andChildren, map[string]any{
+			"expressionType": "Operator", "operator": "Or",
+			"expressions": []any{predicate(fmt.Sprintf("tool-%d-a.exe", i)), predicate(fmt.Sprintf("tool-%d-b.exe", i))},
+		})
+	}
+	expr := map[string]any{"expressionType": "Operator", "operator": "And", "expressions": andChildren}
+	if _, _, reason, exact := exactMDERules("ProcessCreate", expr); exact || !strings.Contains(reason, "exceeds 256") {
+		t.Fatalf("oversized expansion must fail closed, exact=%v reason=%q", exact, reason)
 	}
 }
 

@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/olafhartong/sysmon-modular/tooling/internal/expression"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/mitre"
-	"github.com/olafhartong/sysmon-modular/tooling/internal/semantic"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
@@ -44,22 +44,23 @@ func Build(docs map[string]*sysmonxml.Document) Report {
 	tmods := map[string]map[string]bool{}
 	modules := map[string]int{}
 	for module, doc := range docs {
-		c := semantic.Extract(doc)
-		modules[module] = len(c.Filters)
-		for _, f := range c.Filters {
-			e := events[f.Event]
+		config := expression.FromXML(doc)
+		for _, event := range config.Events {
+			conditions := event.Expression.Conditions()
+			modules[module] += len(conditions)
+			e := events[event.Name]
 			if e == nil {
 				e = &ec{modules: map[string]bool{}}
-				events[f.Event] = e
+				events[event.Name] = e
 			}
-			if f.Onmatch == "exclude" {
-				e.ex++
+			if event.Onmatch == "exclude" {
+				e.ex += len(conditions)
 			} else {
-				e.in++
+				e.in += len(conditions)
 			}
 			e.modules[module] = true
 		}
-		for _, id := range c.Techniques {
+		for _, id := range config.Techniques {
 			if tmods[id] == nil {
 				tmods[id] = map[string]bool{}
 			}

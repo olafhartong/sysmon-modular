@@ -75,3 +75,24 @@ func TestSchemaAllowsSemicolonForMultiValueConditions(t *testing.T) {
 		})
 	}
 }
+
+func TestSchemaAcceptsDirectEventFilteringLayout(t *testing.T) {
+	doc, err := sysmonxml.Parse([]byte(`<Sysmon schemaversion="4.90"><EventFiltering><ProcessCreate onmatch="include"><Image condition="image">cmd.exe</Image></ProcessCreate><NetworkConnect onmatch="exclude"><DestinationPort condition="is">53</DestinationPort></NetworkConnect></EventFiltering></Sysmon>`), false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if findings := Schema(doc, "legacy.xml"); HasErrors(findings) {
+		t.Fatalf("valid direct-event layout was rejected: %#v", findings)
+	}
+}
+
+func TestSchemaRejectsUnknownDirectEvent(t *testing.T) {
+	doc, err := sysmonxml.Parse([]byte(`<Sysmon schemaversion="4.90"><EventFiltering><NotASysmonEvent onmatch="include"/></EventFiltering></Sysmon>`), false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	findings := Schema(doc, "invalid.xml")
+	if len(findings) != 1 || findings[0].Code != "SYS102" || findings[0].Severity != Error {
+		t.Fatalf("unknown direct event was not rejected: %#v", findings)
+	}
+}

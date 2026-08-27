@@ -246,25 +246,23 @@ go run ./cmd/sysmon-modular generate-kql \
   --analyzer-profile current
 ```
 
-The KQL converter supports Sysmon-relevant MDE tables and common predicates
-such as equality, `in`, `contains`, `has`, `has_any`, `contains_any`,
-`startswith`, and `endswith`. It resolves literal `let` arrays used by these
-operators. KQL `has_any` and `contains_any` use Sysmon `contains any`, while
-`has_all` and `contains_all` use `contains all`; their literal values are
-written as a semicolon-separated Sysmon list. Exact `in` lists and simple
-same-line `where A or B` expressions remain OR branches. Independent predicates
-remain AND conditions; mixed expressions such as `Image in (A, B) and
-CommandLine contains X` are expanded to `(A and X) or (B and X)`. Expansions
-larger than 256 rules are skipped to avoid generating huge
-or unsafe modules. Only predicates from KQL `where` pipeline stages are
-translated; expressions used by `extend`, `project`, and `summarize` are not
-Sysmon filters. Queries using cloud-only tables, joins, aggregations, variables
-that cannot be reduced to literals, or other semantics Sysmon cannot express
-are skipped and require manual tuning. When the converter recognizes only part
-of a query, it fails closed instead of publishing a wider rule. `--allow-lossy`
-explicitly opts into partial conversion for output that will be reviewed
-manually. Every generated module is schema-validated before it is written. The
-command prints conversion totals and warnings for each skipped query.
+The exact KQL subset is deliberately small. It supports Sysmon-relevant MDE
+tables; literal `==`, `=~`, `in`, `in~`, `contains`, `contains_any`,
+`contains_all`, `startswith`, and `endswith` predicates on fields that have an
+event-specific Sysmon equivalent; literal `let` arrays; multiple `where`
+stages; and nested `and`/`or` expressions with parentheses. Boolean precedence
+and grouping are preserved. Expressions are normalized into Sysmon rules, with
+a hard limit of 256 expanded branches.
+
+KQL token operators (`has`, `has_any`, and `has_all`) are not in the exact
+subset: KQL token matching is not equivalent to Sysmon substring matching.
+Negation, computed predicates, unresolved lists, unsupported fields, joins,
+aggregations, and row-changing pipeline operators are also lossy. These inputs
+are skipped by default with the precise reason. `--allow-lossy` explicitly opts
+into the legacy best-effort preview for output that will be reviewed manually.
+Only `where` stages become Sysmon filters; later projection or display stages
+do not create conditions. Every generated module is schema-validated before it
+is written, and the command prints totals and a warning for each skipped query.
 
 Use `--dedup` to compare generated conditions with the current repository
 modules. Unlike MDE rule deduplication, KQL conditions are retained and receive
@@ -294,7 +292,14 @@ go run ./cmd/sysmon-modular generate-mde \
   --output-dir ../0_custom_configuration/generated_mde
 ```
 
-This creates include and exclude modules. Positive MDE predicates become Sysmon includes. MDE negative filters and exclusions become Sysmon excludes where the event and fields are supported. A process-and-path exclusion remains one AND rule. Filters whose Boolean structure or fields cannot be represented safely are skipped by default; `--allow-lossy` opts into fallback conversion for manual review.
+This creates include and exclude modules. Known MDE filter objects are decoded
+into typed recursive expressions before conversion. Positive `and`/`or`
+expressions become Sysmon includes while preserving their Boolean meaning; a
+single negated predicate can become a Sysmon exclude. A process-and-path
+exclusion remains one AND rule. Malformed objects, compound or embedded
+negation, unsupported fields or operators, and expansions over 256 rules are
+skipped by default with a concrete reason. `--allow-lossy` opts into fallback
+conversion for manual review.
 
 #### Select MDE telemetry areas
 
@@ -403,9 +408,10 @@ go run ./cmd/sysmon-modular list-rules --base-path ..
 
 ### Compare configurations
 
-Produce a semantic comparison that identifies added and removed filters,
-classifies their telemetry impact as widened or narrowed, and reports changed
-ATT&CK technique coverage:
+Produce a semantic comparison that identifies added and removed complete
+expressions and reports changed ATT&CK technique coverage. Expression changes
+are labelled with `unknown` impact unless the Boolean context proves whether
+telemetry widened or narrowed:
 
 ```bash
 go run ./cmd/sysmon-modular diff \
@@ -438,7 +444,12 @@ The generator maps only what Sysmon can represent with its event schema and filt
 - MDE registry monitoring maps to `RegistryEvent`.
 - MDE DNS rules map to `DnsQuery`.
 
-MDE features such as aggregation, capping, some ETW-only providers, memory details, signature-validation actions, file-open/read monitoring, and many internal MDE fields do not have exact Sysmon equivalents. Unsafe filter approximations are skipped by default and counted as `lossy_rules`. `--allow-lossy` permits fallback output with warnings when a manual review is planned.
+MDE features such as aggregation, capping, compound negation, some ETW-only
+providers, memory details, signature-validation actions, file-open/read
+monitoring, and many internal MDE fields do not have exact Sysmon equivalents.
+Unsafe filter approximations and Boolean expansions over 256 rules are skipped
+by default, explained in warnings, and counted as `lossy_rules`.
+`--allow-lossy` permits fallback output when a manual review is planned.
 
 ## Test
 

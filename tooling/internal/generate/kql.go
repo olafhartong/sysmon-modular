@@ -35,9 +35,13 @@ func FromKQL(query string) *KQLResult {
 	if event == "ProcessCreate" && table == "" {
 		warnings = append(warnings, "could not identify MDE table; defaulted to ProcessCreate")
 	}
-	groups := extractKQLConditionGroups(executableQuery, event)
-	lossyReasons := kqlLossyReasons(executableQuery, event)
-	rules, expansionTooLarge := rulesFromKQLConditionGroups(groups)
+	rules, lossyReasons, expansionTooLarge := strictKQLRules(executableQuery, event)
+	if len(lossyReasons) > 0 {
+		// Preserve the best-effort preview for callers that explicitly opt in to a
+		// lossy conversion. The default module-writing path rejects these results.
+		groups := extractKQLConditionGroups(executableQuery, event)
+		rules, expansionTooLarge = rulesFromKQLConditionGroups(groups)
+	}
 	var conditions []Condition
 	for _, rule := range rules {
 		conditions = append(conditions, rule.Conditions...)
@@ -452,66 +456,6 @@ func kqlCommandLineTarget(event, sourceField string) string {
 		return "ParentCommandLine"
 	}
 	return "CommandLine"
-}
-
-func kqlLossyReasons(query, event string) []string {
-	var reasons []string
-	predicateText := kqlWherePredicateText(query)
-	if regexp.MustCompile(`(?i)\bnot\s*\(|!contains\b|!has\b|!in~?\b|!=|!~`).MatchString(predicateText) {
-		reasons = append(reasons, "negated KQL predicates are not represented safely")
-	}
-	if regexp.MustCompile(`(?i)\b[A-Za-z][A-Za-z0-9_]*\s*(?:<=|>=|<|>)`).MatchString(predicateText) {
-		reasons = append(reasons, "KQL comparison predicate is not supported")
-	}
-	if regexp.MustCompile(`(?i)\b(?:tolower|toupper|trim|replace_regex|extract|matches\s+regex)\s*\(`).MatchString(predicateText) {
-		reasons = append(reasons, "KQL computed predicate is not supported")
-	}
-	for _, line := range strings.Split(predicateText, "\n") {
-		if len(splitKQLOrExpression(line)) > 1 && (strings.Contains(line, "(") || strings.Contains(line, ")") || regexp.MustCompile(`(?i)\band\b`).MatchString(line)) {
-			reasons = append(reasons, "complex KQL OR expression is not supported")
-		}
-	}
-	supported := map[string]bool{
-		"filename": true, "initiatingprocessfilename": true, "imagefilename": true, "processname": true,
-		"processcommandline": true, "initiatingprocesscommandline": true, "commandline": true,
-		"remoteport": true, "localport": true, "destinationport": true,
-		"remoteurl": true, "remoteip": true, "destinationurl": true, "destinationipaddress": true,
-		"folderpath": true, "registrykey": true, "registryvaluename": true, "registryvaluedata": true,
-	}
-	fieldPattern := regexp.MustCompile(`(?i)\b([A-Za-z][A-Za-z0-9_]*)\s*(?:==|=~|!=|!~|\bcontains(?:_any|_all)?\b|\bhas(?:_any|_all)?\b|\bstarts?with\b|\bends?with\b|\bin~?\b)`)
-	for _, match := range fieldPattern.FindAllStringSubmatch(predicateText, -1) {
-		field := strings.ToLower(match[1])
-		if !supported[field] {
-			reasons = append(reasons, "unsupported KQL predicate field "+match[1])
-		}
-		if event != "ProcessCreate" && (field == "processcommandline" || field == "initiatingprocesscommandline" || field == "commandline") {
-			reasons = append(reasons, match[1]+" has no equivalent field on Sysmon "+event)
-		}
-		if event != "NetworkConnect" && (field == "remoteport" || field == "localport" || field == "destinationport" || field == "remoteurl" || field == "remoteip" || field == "destinationurl" || field == "destinationipaddress") {
-			reasons = append(reasons, match[1]+" has no equivalent field on Sysmon "+event)
-		}
-		if event != "RegistryEvent" && (field == "registrykey" || field == "registryvaluename" || field == "registryvaluedata") {
-			reasons = append(reasons, match[1]+" has no equivalent field on Sysmon "+event)
-		}
-		if field == "folderpath" && event != "FileCreate" && event != "ImageLoad" {
-			reasons = append(reasons, match[1]+" has no equivalent field on Sysmon "+event)
-		}
-	}
-	listPattern := regexp.MustCompile(`(?is)\b[A-Za-z][A-Za-z0-9_]*\s+(?:in~?|has_any|contains_any|has_all|contains_all)\s*\(([^)]*)\)`)
-	for _, match := range listPattern.FindAllStringSubmatch(predicateText, -1) {
-		values := kqlExpressionValues(query, match[1])
-		if len(values) == 0 {
-			reasons = append(reasons, "KQL list predicate does not resolve to literal values")
-			continue
-		}
-		for _, value := range values {
-			if strings.Contains(value, ";") {
-				reasons = append(reasons, "KQL list value contains a semicolon and cannot be represented safely")
-				break
-			}
-		}
-	}
-	return reasons
 }
 
 func kqlMultiValueCondition(field, kqlOperator string, values []string) (Condition, bool) {

@@ -100,15 +100,7 @@ func validateRuleGroups(path string, root *sysmonxml.Node) []Finding {
 			findings = append(findings, Finding{Code: "SYS101", Severity: Error, Path: path, Line: child.Line, Message: "RuleGroup has invalid groupRelation", Detail: rel})
 		}
 		for _, event := range child.ElementChildren() {
-			if !merger.EventSet[event.Name] {
-				findings = append(findings, Finding{Code: "SYS102", Severity: Error, Path: path, Line: event.Line, Message: "unknown Sysmon event element", Detail: event.Name})
-				continue
-			}
-			onmatch := strings.ToLower(event.AttrValue("onmatch"))
-			if onmatch != "" && onmatch != "include" && onmatch != "exclude" {
-				findings = append(findings, Finding{Code: "SYS103", Severity: Error, Path: path, Line: event.Line, Message: "event has invalid onmatch", Detail: fmt.Sprintf("%s onmatch=%s", event.Name, onmatch)})
-			}
-			findings = append(findings, validateRuleChildren(path, event)...)
+			findings = append(findings, validateEvent(path, event)...)
 		}
 	})
 	return findings
@@ -117,11 +109,24 @@ func validateRuleGroups(path string, root *sysmonxml.Node) []Finding {
 func validateEventFilteringChildren(path string, eventFiltering *sysmonxml.Node) []Finding {
 	var findings []Finding
 	for _, child := range eventFiltering.ElementChildren() {
-		if child.Name != "RuleGroup" {
-			findings = append(findings, Finding{Code: "SYS104", Severity: Error, Path: path, Line: child.Line, Message: "EventFiltering children must be RuleGroup", Detail: child.Name})
+		if child.Name == "RuleGroup" {
+			continue
 		}
+		findings = append(findings, validateEvent(path, child)...)
 	}
 	return findings
+}
+
+func validateEvent(path string, event *sysmonxml.Node) []Finding {
+	if !merger.EventSet[event.Name] {
+		return []Finding{{Code: "SYS102", Severity: Error, Path: path, Line: event.Line, Message: "unknown Sysmon event element", Detail: event.Name}}
+	}
+	var findings []Finding
+	onmatch := strings.ToLower(event.AttrValue("onmatch"))
+	if onmatch != "" && onmatch != "include" && onmatch != "exclude" {
+		findings = append(findings, Finding{Code: "SYS103", Severity: Error, Path: path, Line: event.Line, Message: "event has invalid onmatch", Detail: fmt.Sprintf("%s onmatch=%s", event.Name, onmatch)})
+	}
+	return append(findings, validateRuleChildren(path, event)...)
 }
 
 func validateRuleChildren(path string, parent *sysmonxml.Node) []Finding {

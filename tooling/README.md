@@ -139,7 +139,8 @@ KQL and filtered MDE conversion fail closed when a filter cannot be represented
 without changing its meaning. The command reports the skipped input. Use
 `--allow-lossy` only when partial or fallback output is intentional and will be
 reviewed manually. Every generated module is schema-validated before it is
-written.
+written. The exact KQL subset and typed MDE Boolean limits are documented in
+[`cmd/sysmon-modular/README.md`](cmd/sysmon-modular/README.md).
 
 ## Command help
 

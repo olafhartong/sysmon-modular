@@ -1342,7 +1342,7 @@
         <TargetObject name="technique_id=T1137.006,technique_name=Add-ins" condition="contains all">\Microsoft\Office;\Outlook\Addins</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Add-ins" condition="contains">\Software\Microsoft\VSTO\Security\Inclusion</TargetObject>
         <TargetObject name="technique_id=T1137.006,technique_name=Add-ins" condition="contains">\Software\Microsoft\VSTO\SolutionMetadata</TargetObject>
-        <TargetObject name="technique_name=Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject>
+        <TargetObject name="Outlook Server 95/98 Identity Keys" condition="contains">Identities</TargetObject>
         <TargetObject condition="contains all">SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Account Name</TargetObject>
         <TargetObject condition="contains all">SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Display Name</TargetObject>
         <TargetObject condition="contains all">SOFTWARE\Microsoft\Office\;\Outlook\Profiles\;\9375CFF0413111d3B88A00104B2A6676\;\Email</TargetObject>
@@ -2893,7 +2893,7 @@
         <Image name="technique_id=T1489,technique_name=Service Stop" condition="is">taskkill.exe</Image>
         <Image name="technique_id=T1074,technique_name=Data Staged" condition="is">xcopy.exe</Image>
         <Image name="technique_id=T1074,technique_name=Data Staged" condition="is">robocopy.exe</Image>
-        <Image name="technique_id=T,technique_name=" condition="is">makecab.exe</Image>
+        <Image name="technique_id=T1560.001,technique_name=Archive via Utility" condition="is">makecab.exe</Image>
         <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">GfxDownloadWrapper.exe</Image>
         <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand.exe</Image>
         <Image name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">curl.exe</Image>

@@ -37,8 +37,8 @@ func runDiff(args []string) error {
 	case "text":
 		var text string
 		for _, c := range d.Changes {
-			if c.Filter != nil {
-				text += fmt.Sprintf("%-18s %-15s %s %s.%s %s %q\n", c.Kind, c.Impact, c.Filter.Onmatch, c.Filter.Event, c.Filter.Field, c.Filter.Condition, c.Filter.Value)
+			if c.Rule != nil {
+				text += fmt.Sprintf("%-18s %-15s %s %s %s\n", c.Kind, c.Impact, c.Rule.Onmatch, c.Rule.Name, c.Rule.Expression.Canonical())
 			} else {
 				text += fmt.Sprintf("%-18s %-15s %s\n", c.Kind, c.Impact, c.Technique)
 			}

@@ -157,16 +157,16 @@ func (g *mdeGenerator) analyze(root any) {
 		case MDEModeUnfiltered:
 			g.addInclude(event, []RuleSpec{broadRule(event, "MDE unfiltered "+ruleLabel(rule))})
 		case MDEModeInverse:
-			_, neg, lossless := g.rulesFromFilter(event, rule)
-			if !lossless && g.handleLossyRule(rule) {
+			_, neg, lossless, reason := g.rulesFromFilter(event, rule)
+			if !lossless && g.handleLossyRule(rule, reason) {
 				continue
 			}
 			if len(neg) > 0 {
 				g.addInclude(event, prefixRuleNames(neg, "MDE inverse "+ruleLabel(rule)))
 			}
 		default:
-			pos, neg, lossless := g.rulesFromFilter(event, rule)
-			if !lossless && g.handleLossyRule(rule) {
+			pos, neg, lossless, reason := g.rulesFromFilter(event, rule)
+			if !lossless && g.handleLossyRule(rule, reason) {
 				continue
 			}
 			if len(pos) == 0 && len(neg) == 0 {
@@ -178,13 +178,17 @@ func (g *mdeGenerator) analyze(root any) {
 	}
 }
 
-func (g *mdeGenerator) handleLossyRule(rule mdeRule) bool {
+func (g *mdeGenerator) handleLossyRule(rule mdeRule, reason string) bool {
 	g.stats.LossyRules++
+	detail := ""
+	if strings.TrimSpace(reason) != "" {
+		detail = ": " + reason
+	}
 	if g.allowLossy {
-		g.warnings = append(g.warnings, "converted lossy MDE rule "+ruleLabel(rule)+" because --allow-lossy was supplied; review the generated fallback")
+		g.warnings = append(g.warnings, "converted lossy MDE rule "+ruleLabel(rule)+detail+"; --allow-lossy was supplied, so review the generated fallback")
 		return false
 	}
-	g.warnings = append(g.warnings, "skipped MDE rule "+ruleLabel(rule)+": filter cannot be represented without changing its meaning; use --allow-lossy to opt in")
+	g.warnings = append(g.warnings, "skipped MDE rule "+ruleLabel(rule)+detail+"; use --allow-lossy to opt in")
 	return true
 }
 
@@ -363,54 +367,25 @@ func fileMonitorRules(entries []any, name string) []RuleSpec {
 	return rules
 }
 
-func (g *mdeGenerator) rulesFromFilter(event string, rule mdeRule) ([]RuleSpec, []RuleSpec, bool) {
+func (g *mdeGenerator) rulesFromFilter(event string, rule mdeRule) ([]RuleSpec, []RuleSpec, bool, string) {
 	filter, ok := rule.Filters.(map[string]any)
 	if !ok || len(filter) == 0 {
-		return nil, nil, true
+		if rule.Filters == nil {
+			return nil, nil, true, ""
+		}
+		return nil, nil, false, "filter is not an expression object"
 	}
-	pos, neg := g.translateExpr(event, filter, false)
-	_, lossless := mdeExpressionSafety(event, filter)
-	return pos, neg, lossless
+	if pos, neg, reason, exact := exactMDERules(event, filter); exact {
+		return pos, neg, true, ""
+	} else {
+		fallbackPos, fallbackNeg := g.translateExpr(event, filter, false)
+		return fallbackPos, fallbackNeg, false, reason
+	}
 }
 
 func mdeExpressionSafety(event string, expr map[string]any) (bool, bool) {
-	switch strings.ToLower(stringValue(expr["expressionType"])) {
-	case "predicate":
-		_, ok := conditionFromPredicate(event, expr)
-		return false, ok
-	case "operator":
-		children := expressionChildren(expr)
-		if len(children) == 0 {
-			return false, false
-		}
-		switch strings.ToLower(stringValue(expr["operator"])) {
-		case "not":
-			if len(children) != 1 || !strings.EqualFold(stringValue(children[0]["expressionType"]), "predicate") {
-				return true, false
-			}
-			_, safe := mdeExpressionSafety(event, children[0])
-			return true, safe
-		case "and":
-			hasNegative := false
-			for _, child := range children {
-				negative, safe := mdeExpressionSafety(event, child)
-				if !safe {
-					return false, false
-				}
-				hasNegative = hasNegative || negative
-			}
-			return hasNegative, !hasNegative
-		case "or":
-			for _, child := range children {
-				negative, safe := mdeExpressionSafety(event, child)
-				if !safe || negative {
-					return negative, false
-				}
-			}
-			return false, true
-		}
-	}
-	return false, false
+	_, neg, _, exact := exactMDERules(event, expr)
+	return len(neg) > 0, exact
 }
 
 func (g *mdeGenerator) translateExpr(event string, expr map[string]any, negated bool) ([]RuleSpec, []RuleSpec) {
@@ -749,15 +724,18 @@ func inferSysmonEvent(rule mdeRule) string {
 }
 
 func conditionFromPredicate(event string, pred map[string]any) (Condition, bool) {
-	field, ok := sysmonField(event, stringValue(pred["source"]))
+	return conditionFromMDEPredicate(event, stringValue(pred["source"]), stringValue(pred["filter"]), stringValues(pred["values"]))
+}
+
+func conditionFromMDEPredicate(event, source, filter string, values []string) (Condition, bool) {
+	field, ok := sysmonField(event, source)
 	if !ok {
 		return Condition{}, false
 	}
-	values := stringValues(pred["values"])
 	if len(values) == 0 {
 		return Condition{}, false
 	}
-	op, value, ok := sysmonOperatorValue(stringValue(pred["filter"]), values)
+	op, value, ok := sysmonOperatorValue(filter, values)
 	if !ok {
 		return Condition{}, false
 	}

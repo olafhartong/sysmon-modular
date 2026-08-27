@@ -7,23 +7,14 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/olafhartong/sysmon-modular/tooling/internal/expression"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
 )
 
-type Condition struct {
-	Field     string
-	Operator  string
-	Value     string
-	Technique string
-	Comment   string
-}
+type Condition = expression.Condition
 
-type RuleSpec struct {
-	Name          string
-	GroupRelation string
-	Conditions    []Condition
-}
+type RuleSpec = expression.Rule
 
 func Module(event, onmatch string, conditions []Condition, schema string) *sysmonxml.Document {
 	rule := RuleSpec{GroupRelation: "and", Conditions: conditions}
