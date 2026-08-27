@@ -11,6 +11,7 @@ import (
 
 type Technique struct {
 	Name        string
+	Tactics     []string
 	Revoked     bool
 	Deprecated  bool
 	Replacement string
@@ -313,7 +314,16 @@ func FixValue(value string) (string, bool) {
 
 func Lookup(id string) (Technique, bool) {
 	tech, ok := techniques[strings.ToUpper(id)]
+	tech.Tactics = append([]string(nil), tech.Tactics...)
 	return tech, ok
+}
+
+func Tactics(id string) []string {
+	tech, ok := techniques[strings.ToUpper(id)]
+	if !ok {
+		return nil
+	}
+	return append([]string(nil), tech.Tactics...)
 }
 
 func CurrentName(id string) (string, bool) {

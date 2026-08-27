@@ -79,7 +79,10 @@ func Build(docs map[string]*sysmonxml.Document) Report {
 		if t, ok := mitre.Lookup(id); ok {
 			name = t.Name
 		}
-		tactics := tacticsFor(id)
+		tactics := mitre.Tactics(id)
+		if len(tactics) == 0 {
+			tactics = []string{"unmapped"}
+		}
 		for _, t := range tactics {
 			r.Tactics[t]++
 		}
@@ -89,20 +92,6 @@ func Build(docs map[string]*sysmonxml.Document) Report {
 	sort.Slice(r.Techniques, func(i, j int) bool { return r.Techniques[i].ID < r.Techniques[j].ID })
 	return r
 }
-
-// ATT&CK techniques can span tactics. The embedded technique table does not
-// carry STIX tactic relationships yet, so known Windows-centric groups are
-// classified and all others are explicitly reported as unmapped.
-func tacticsFor(id string) []string {
-	for prefix, t := range tacticPrefixes {
-		if strings.HasPrefix(id, prefix) {
-			return []string{t}
-		}
-	}
-	return []string{"unmapped"}
-}
-
-var tacticPrefixes = map[string]string{"T1059": "execution", "T1053": "execution", "T1047": "execution", "T1547": "persistence", "T1543": "persistence", "T1055": "privilege-escalation", "T1003": "credential-access", "T1555": "credential-access", "T1082": "discovery", "T1083": "discovery", "T1057": "discovery", "T1016": "discovery", "T1021": "lateral-movement", "T1105": "command-and-control", "T1071": "command-and-control", "T1562": "defense-evasion", "T1070": "defense-evasion", "T1218": "defense-evasion", "T1115": "collection", "T1113": "collection", "T1041": "exfiltration"}
 
 func WriteJSON(w io.Writer, r Report) error {
 	e := json.NewEncoder(w)

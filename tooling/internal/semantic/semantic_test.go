@@ -1,8 +1,10 @@
 package semantic
 
 import (
+	"encoding/json"
 	"testing"
 
+	"github.com/olafhartong/sysmon-modular/tooling/internal/expression"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
@@ -45,6 +47,25 @@ func TestCompareCountsDuplicateExpressions(t *testing.T) {
 	diff := Compare(before, after)
 	if diff.Summary["expression-removed"] != 1 || len(diff.Changes) != 1 {
 		t.Fatalf("duplicate expression removal was collapsed: %#v", diff)
+	}
+}
+
+func TestCompareOutputIsDeterministicForEquivalentInputOrder(t *testing.T) {
+	rules := []expression.Event{
+		{Name: "ProcessCreate", Onmatch: "include", GroupName: "z-group", GroupRelation: "or", Line: 20, Expression: expression.Leaf(expression.Condition{Field: "Image", Operator: "image", Value: "cmd.exe"})},
+		{Name: "ProcessCreate", Onmatch: "include", GroupName: "a-group", GroupRelation: "or", Line: 10, Expression: expression.Leaf(expression.Condition{Field: "Image", Operator: "image", Value: "cmd.exe"})},
+	}
+	left, err := json.Marshal(Compare(Config{Rules: rules, Techniques: []string{"T1105", "T1059.001"}}, Config{}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	rules[0], rules[1] = rules[1], rules[0]
+	right, err := json.Marshal(Compare(Config{Rules: rules, Techniques: []string{"T1059.001", "T1105"}}, Config{}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(left) != string(right) {
+		t.Fatalf("equivalent input order changed diff output:\n%s\n%s", left, right)
 	}
 }
 

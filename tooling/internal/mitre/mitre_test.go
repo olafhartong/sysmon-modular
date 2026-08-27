@@ -139,3 +139,18 @@ func TestReviewFileCanApproveIndividualChanges(t *testing.T) {
 		t.Fatalf("approved change was not applied: %s", got)
 	}
 }
+
+func TestTacticsComeFromEmbeddedSTIXAndAreCopied(t *testing.T) {
+	tactics := Tactics("t1547.001")
+	if strings.Join(tactics, ",") != "persistence,privilege-escalation" {
+		t.Fatalf("unexpected tactics: %v", tactics)
+	}
+	tactics[0] = "changed"
+	if strings.Join(Tactics("T1547.001"), ",") != "persistence,privilege-escalation" {
+		t.Fatal("Tactics returned mutable embedded data")
+	}
+	technique, ok := Lookup("t1547.001")
+	if !ok || strings.Join(technique.Tactics, ",") != "persistence,privilege-escalation" {
+		t.Fatalf("Lookup omitted tactics: %#v", technique)
+	}
+}

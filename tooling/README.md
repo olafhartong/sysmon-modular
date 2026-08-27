@@ -97,6 +97,9 @@ Report coverage across all source modules:
 ./sysmon-modular coverage --all
 ```
 
+Coverage tactic assignments come from the embedded Enterprise ATT&CK STIX
+table. They are not inferred from technique ID prefixes.
+
 List the source modules discovered by the tool:
 
 ```bash
@@ -185,6 +188,25 @@ Exit codes are stable for automation:
 | 2 | Invalid command usage |
 | 3 | Invalid input |
 | 4 | Validation or policy findings |
+
+## Refresh the embedded ATT&CK table
+
+The generated technique table contains names, retirement metadata, replacements,
+and every Enterprise ATT&CK tactic assigned through STIX `kill_chain_phases`.
+To reproduce the current ATT&CK 19.1 table:
+
+```bash
+curl -L --fail \
+  -o /tmp/enterprise-attack-19.1.json \
+  https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-19.1.json
+go run ./cmd/generate-mitre \
+  --input /tmp/enterprise-attack-19.1.json \
+  --output internal/mitre/techniques_gen.go
+go test ./cmd/generate-mitre ./internal/mitre ./internal/coverage
+```
+
+The generated header records the source bundle's SHA-256 and latest technique
+timestamp. Review both when updating to a newer ATT&CK release.
 
 For the complete command and generator reference, see
 [`cmd/sysmon-modular/README.md`](cmd/sysmon-modular/README.md). For a complete

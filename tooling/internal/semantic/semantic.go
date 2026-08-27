@@ -3,6 +3,8 @@ package semantic
 import (
 	"fmt"
 	"sort"
+	"strconv"
+	"strings"
 
 	"github.com/olafhartong/sysmon-modular/tooling/internal/expression"
 	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
@@ -49,6 +51,8 @@ func Compare(before, after Config) Diff {
 	}
 	for _, key := range sortedKeys(keys) {
 		beforeRules, afterRules := bm[key], am[key]
+		sort.Slice(beforeRules, func(i, j int) bool { return eventSortKey(beforeRules[i]) < eventSortKey(beforeRules[j]) })
+		sort.Slice(afterRules, func(i, j int) bool { return eventSortKey(afterRules[i]) < eventSortKey(afterRules[j]) })
 		common := min(len(beforeRules), len(afterRules))
 		for _, rule := range afterRules[common:] {
 			copy := rule
@@ -71,7 +75,7 @@ func Compare(before, after Config) Diff {
 		}
 	}
 	sort.Slice(d.Changes, func(i, j int) bool {
-		return d.Changes[i].Kind+d.Changes[i].Detail < d.Changes[j].Kind+d.Changes[j].Detail
+		return changeSortKey(d.Changes[i]) < changeSortKey(d.Changes[j])
 	})
 	return d
 }
@@ -98,4 +102,19 @@ func sortedKeys(values map[string]bool) []string {
 	}
 	sort.Strings(keys)
 	return keys
+}
+
+func eventSortKey(event expression.Event) string {
+	return strings.Join([]string{
+		event.Key(), event.GroupName, event.GroupRelation,
+		strings.Join(event.Techniques, ","), strconv.Itoa(event.Line),
+	}, "\x00")
+}
+
+func changeSortKey(change Change) string {
+	parts := []string{change.Kind, change.Impact, change.Technique, change.Detail}
+	if change.Rule != nil {
+		parts = append(parts, eventSortKey(*change.Rule))
+	}
+	return strings.Join(parts, "\x00")
 }

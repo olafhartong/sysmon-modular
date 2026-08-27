@@ -41,6 +41,13 @@ jobs:
           --sysmon-version 15.21
           --warnings-as-errors
 
+      - name: Validate every repository XML file
+        run: >-
+          "$RUNNER_TEMP/sysmon-modular" validate --all-xml
+          --base-path "$GITHUB_WORKSPACE"
+          --sysmon-version 15.21
+          --warnings-as-errors
+
       - name: Select configuration modules
         run: |
           find 23_file_delete -maxdepth 1 -type f -name '*.xml' -print \
@@ -102,6 +109,29 @@ jobs:
             done
           done
 
+          for config in \
+            release/sysmonconfig.xml \
+            release/sysmonconfig-with-filedelete.xml \
+            release/sysmonconfig-excludes-only.xml; do
+            "$RUNNER_TEMP/sysmon-modular" validate \
+              --path "$config" --mitre=false --sysmon-version 15.21 \
+              --warnings-as-errors
+          done
+
+      - name: Record release checksums
+        run: |
+          cd release
+          sha256sum -- *.xml *.json > SHA256SUMS
+          sha256sum --check SHA256SUMS
+
+      - name: Upload validated release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: validated-sysmon-configs-${{ github.sha }}
+          path: release/
+          if-no-files-found: error
+          retention-days: 7
+
   publish-release:
     name: Publish configurations to GitHub Releases
     needs: generate-configs
@@ -110,67 +140,16 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
+      - name: Download validated release artifacts
+        uses: actions/download-artifact@v4
         with:
-          go-version-file: tooling/go.mod
-          cache-dependency-path: tooling/go.mod
+          name: validated-sysmon-configs-${{ github.sha }}
+          path: release
 
-      - name: Build sysmon-modular
-        run: go -C tooling build -o "$RUNNER_TEMP/sysmon-modular" ./cmd/sysmon-modular
-
-      - name: Select configuration modules
+      - name: Verify validated artifact checksums
         run: |
-          find 23_file_delete -maxdepth 1 -type f -name '*.xml' -print \
-            | sort > "$RUNNER_TEMP/file-delete-modules.txt"
-          find . -mindepth 2 -maxdepth 2 -type f \
-            -path './[0-9]*/*.xml' ! -path './23_file_delete/*' \
-            -name 'exclude_*.xml' -print \
-            | sed 's#^./##' | sort > "$RUNNER_TEMP/exclude-modules.txt"
-
-      - name: Generate release configurations
-        run: |
-          mkdir -p release
-          for version in 15.21 14.16 13.34 12.03; do
-            common=(
-              --base-path "$GITHUB_WORKSPACE"
-              --template "$GITHUB_WORKSPACE/templates/sysmon_template.xml"
-              --preserve-comments
-              --sysmon-version "$version"
-              --unsupported exclude
-            )
-            "$RUNNER_TEMP/sysmon-modular" merge "${common[@]}" \
-              --exclude-list "$RUNNER_TEMP/file-delete-modules.txt" \
-              --output "release/sysmonconfig-${version}.xml"
-            "$RUNNER_TEMP/sysmon-modular" merge "${common[@]}" \
-              --output "release/sysmonconfig-with-filedelete-${version}.xml"
-            "$RUNNER_TEMP/sysmon-modular" merge "${common[@]}" \
-              --include-list "$RUNNER_TEMP/exclude-modules.txt" \
-              --output "release/sysmonconfig-excludes-only-${version}.xml"
-          done
-
-          cp release/sysmonconfig-15.21.xml release/sysmonconfig.xml
-          cp release/sysmonconfig-with-filedelete-15.21.xml \
-            release/sysmonconfig-with-filedelete.xml
-          cp release/sysmonconfig-excludes-only-15.21.xml \
-            release/sysmonconfig-excludes-only.xml
-
-      - name: Generate ATT&CK Navigator layer for Sysmon 15.21
-        run: |
-          techniques=$(mktemp)
-          grep -Eo 'technique_id=T[0-9]+([.][0-9]+)?' \
-            release/sysmonconfig-15.21.xml \
-            | sort | uniq -c \
-            | sed -E 's/^[[:space:]]*([0-9]+)[[:space:]]+technique_id=([^[:space:]]+)/{"score": \1, "technique_id": "\2"}/' \
-            | jq -s 'map({techniqueID: .technique_id, score: .score})' > "$techniques"
-          jq --slurpfile techniques "$techniques" \
-            '.techniques = $techniques[0]' attack_matrix/Sysmon-modular.json \
-            > release/attack-matrix-15.21.json
-          jq empty release/attack-matrix-15.21.json
-          rm "$techniques"
+          cd release
+          sha256sum --check SHA256SUMS
 
       - name: Publish GitHub Release
         env:
@@ -183,6 +162,6 @@ jobs:
           if gh release view "$tag" >/dev/null 2>&1; then
             echo "Release $tag already exists; nothing to publish."
           else
-            gh release create "$tag" release/*.xml release/*.json \
+            gh release create "$tag" release/* \
               --target "$GITHUB_SHA" --title "$title" --notes "$notes" --latest
           fi

@@ -433,6 +433,10 @@ go run ./cmd/sysmon-modular coverage --base-path .. --all --format csv --output 
 go run ./cmd/sysmon-modular coverage --base-path .. --all --format navigator --output ../coverage-layer.json
 ```
 
+Technique names and tactics come from the embedded Enterprise ATT&CK 19.1 STIX
+bundle. Techniques assigned to more than one tactic retain every assignment.
+`unmapped` is reserved for unknown IDs or STIX techniques without a tactic.
+
 ## MDE Conversion Limits
 
 The generator maps only what Sysmon can represent with its event schema and filtering model. Examples:
