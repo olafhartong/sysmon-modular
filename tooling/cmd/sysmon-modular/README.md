@@ -430,12 +430,40 @@ and include/exclude balance. Formats are `text`, `json`, `csv`, and
 ```bash
 go run ./cmd/sysmon-modular coverage --base-path .. --path ../sysmonconfig.xml
 go run ./cmd/sysmon-modular coverage --base-path .. --all --format csv --output ../coverage.csv
-go run ./cmd/sysmon-modular coverage --base-path .. --all --format navigator --output ../coverage-layer.json
+go run ./cmd/sysmon-modular coverage \
+  --base-path .. \
+  --all \
+  --format navigator \
+  --template ../attack_matrix/Sysmon-modular.json \
+  --output ../coverage-layer.json
 ```
 
 Technique names and tactics come from the embedded Enterprise ATT&CK 19.1 STIX
 bundle. Techniques assigned to more than one tactic retain every assignment.
 `unmapped` is reserved for unknown IDs or STIX techniques without a tactic.
+
+For a complete configuration, pass the XML file with `--path`:
+
+```bash
+go run ./cmd/sysmon-modular coverage \
+  --path ../sysmonconfig.xml \
+  --format navigator \
+  --output ../attack-navigator.json
+```
+
+The score for each technique is its number of ATT&CK metadata occurrences in
+the selected XML. Technique comments identify the source modules. Coverage
+also accepts repeatable `--path` values and `--include-list` or `--exclude-list`
+files. Navigator output supports `--name`, `--description`, and `--template`.
+The template retains its visual settings while the command replaces its
+techniques, name, description, and version fields.
+
+Navigator output defaults to ATT&CK 18 because the hosted Navigator 5.3.2
+currently remains stuck loading ATT&CK 19 matrices. The command remaps
+`T1685`, `T1685.001`, and `T1685.005` to their ATT&CK 18 predecessors and
+prints each mapping it uses. Pass `--attack-version 19` to retain the current
+IDs when the target Navigator supports them. See the
+[complete flag reference](../../docs/coverage.md) for details.
 
 ## MDE Conversion Limits
 

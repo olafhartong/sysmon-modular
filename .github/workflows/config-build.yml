@@ -99,6 +99,33 @@ jobs:
           jq empty release/attack-matrix-15.21.json
           rm "$techniques"
 
+      - name: Build release binaries
+        run: |
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 \
+            go -C tooling build -trimpath -ldflags="-s -w" \
+            -o "$GITHUB_WORKSPACE/release/sysmon-modular-windows-amd64.exe" \
+            ./cmd/sysmon-modular
+          CGO_ENABLED=0 GOOS=windows GOARCH=arm64 \
+            go -C tooling build -trimpath -ldflags="-s -w" \
+            -o "$GITHUB_WORKSPACE/release/sysmon-modular-windows-arm64.exe" \
+            ./cmd/sysmon-modular
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+            go -C tooling build -trimpath -ldflags="-s -w" \
+            -o "$GITHUB_WORKSPACE/release/sysmon-modular-linux-amd64" \
+            ./cmd/sysmon-modular
+          CGO_ENABLED=0 GOOS=linux GOARCH=arm64 \
+            go -C tooling build -trimpath -ldflags="-s -w" \
+            -o "$GITHUB_WORKSPACE/release/sysmon-modular-linux-arm64" \
+            ./cmd/sysmon-modular
+          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 \
+            go -C tooling build -trimpath -ldflags="-s -w" \
+            -o "$GITHUB_WORKSPACE/release/sysmon-modular-darwin-amd64" \
+            ./cmd/sysmon-modular
+          CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 \
+            go -C tooling build -trimpath -ldflags="-s -w" \
+            -o "$GITHUB_WORKSPACE/release/sysmon-modular-darwin-arm64" \
+            ./cmd/sysmon-modular
+
       - name: Validate generated configurations
         run: |
           for version in 15.21 14.16 13.34 12.03; do
@@ -121,7 +148,7 @@ jobs:
       - name: Record release checksums
         run: |
           cd release
-          sha256sum -- *.xml *.json > SHA256SUMS
+          sha256sum -- *.xml *.json sysmon-modular-* > SHA256SUMS
           sha256sum --check SHA256SUMS
 
       - name: Upload validated release artifacts
@@ -157,7 +184,7 @@ jobs:
         run: |
           tag="configs-${GITHUB_SHA::12}"
           title="Generated Sysmon configurations (${GITHUB_SHA::12})"
-          notes="Generated from commit ${GITHUB_SHA} for Sysmon 15.21, 14.16, 13.34, and 12.03."
+          notes="Generated from commit ${GITHUB_SHA} for Sysmon 15.21, 14.16, 13.34, and 12.03. Includes sysmon-modular binaries for Windows, Linux, and macOS."
 
           if gh release view "$tag" >/dev/null 2>&1; then
             echo "Release $tag already exists; nothing to publish."

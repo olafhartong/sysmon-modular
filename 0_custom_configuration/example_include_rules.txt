@@ -1,0 +1,8 @@
+# A directory entry selects every XML module directly inside it.
+5_process_ended
+3_network_connection_initiated
+
+# Individual module examples.
+1_process_creation/include_clear_windows_event_logs.xml
+11_file_create/include_powershell_scripts.xml
+12_13_14_registry_event/include_autoruns_and_startup_keys.xml

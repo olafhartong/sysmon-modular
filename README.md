@@ -13,7 +13,7 @@ Please keep in mind that any of these configurations should be considered a star
 
 **Note:** to get even more value out of the FileExecutable event, consider getting the most up to date version of the LOLdrivers config merged into the config as well. You can easily do that by grabbing the file and adding it in the 29_file_execute_detected folder and generate a new config.
 
-The ready-to-use configurations are generated once, validated in GitHub Actions, and transferred unchanged to the [latest GitHub Release](https://github.com/olafhartong/sysmon-modular/releases/latest). The release includes a `SHA256SUMS` manifest created after validation and checked again before publication. Versioned assets are provided for Sysmon 15.21, 14.16, 13.34, and 12.03 using names such as `sysmonconfig-14.16.xml`; the unversioned links below remain aliases for 15.21. The release also contains [attack-matrix-15.21.json](https://github.com/olafhartong/sysmon-modular/releases/latest/download/attack-matrix-15.21.json), generated from the latest default configuration using the ATT&CK Navigator v5.3.2/ATT&CK v19 layer template in `attack_matrix/Sysmon-modular.json`. Generated files are intentionally not stored in the repository. More information on generating a custom config is available [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs).
+The ready-to-use configurations are generated once, validated in GitHub Actions, and transferred unchanged to the [latest GitHub Release](https://github.com/olafhartong/sysmon-modular/releases/latest). The release includes a `SHA256SUMS` manifest created after validation and checked again before publication. Versioned assets are provided for Sysmon 15.21, 14.16, 13.34, and 12.03 using names such as `sysmonconfig-14.16.xml`; the unversioned links below remain aliases for 15.21. The release also contains [attack-matrix-15.21.json](https://github.com/olafhartong/sysmon-modular/releases/latest/download/attack-matrix-15.21.json), generated from the latest default configuration using the ATT&CK Navigator v5.3.2/ATT&CK v19 layer template in `attack_matrix/Sysmon-modular.json`. The workflow also publishes prebuilt `sysmon-modular` binaries for Windows, Linux, and macOS for users without Go. Generated files are intentionally not stored in the repository. More information on generating a custom config is available [here](https://github.com/olafhartong/sysmon-modular/wiki/Configuration-options#generating-custom-configs).
 
 ## Pre-generated configurations
 | Type | Config | Description|
@@ -84,6 +84,12 @@ git clone https://github.com/olafhartong/sysmon-modular.git
 cd sysmon-modular
 go -C tooling run ./cmd/sysmon-modular merge --base-path "$PWD" --output sysmonconfig.xml
 ```
+
+If Go is not installed, download the binary for your operating system from the
+[latest release](https://github.com/olafhartong/sysmon-modular/releases/latest).
+Save it as `tooling/sysmon-modular`, or `tooling/sysmon-modular.exe` on Windows.
+The [custom configuration examples](0_custom_configuration/README.md) include
+complete commands for both forms.
 
 The PowerShell merger remains under `scripts/` for legacy use only.
 

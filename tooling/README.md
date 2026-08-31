@@ -6,6 +6,13 @@ modules from supported KQL and Microsoft Defender for Endpoint (MDE) inputs.
 
 The tool requires Go 1.22 or newer and uses only the Go standard library.
 
+The release workflow publishes prebuilt binaries for Windows, Linux, and macOS
+to the [latest GitHub release](https://github.com/olafhartong/sysmon-modular/releases/latest),
+so users do not need Go.
+Release binaries include the operating system and architecture in their names.
+Rename the downloaded file to `sysmon-modular`, or `sysmon-modular.exe` on
+Windows, before following the examples below.
+
 ## Build
 
 From the repository root:
@@ -100,6 +107,25 @@ Report coverage across all source modules:
 Coverage tactic assignments come from the embedded Enterprise ATT&CK STIX
 table. They are not inferred from technique ID prefixes.
 
+Generate an ATT&CK Navigator layer from all source modules or from a complete
+configuration:
+
+```bash
+./sysmon-modular coverage \
+  --all \
+  --format navigator \
+  --output ../attack-navigator.json
+./sysmon-modular coverage \
+  --path ../sysmonconfig.xml \
+  --format navigator \
+  --output ../attack-navigator.json
+```
+
+Navigator output defaults to ATT&CK 18 for compatibility with the hosted
+Navigator 5.3.2. Use `--attack-version 19` when the target Navigator can load
+ATT&CK 19 matrices. Version 18 output remaps the three v19-only technique IDs
+used by this repository and reports those mappings on standard error.
+
 List the source modules discovered by the tool:
 
 ```bash
@@ -173,7 +199,8 @@ The available commands are:
   generate modules from an MDE configuration.
 - `list-rules`: list discovered repository modules.
 - `diff`: compare the effective filters and ATT&CK coverage of two configs.
-- `coverage`: report event, module, include/exclude, and ATT&CK coverage.
+- `coverage`: report event, module, include/exclude, and ATT&CK coverage. It can
+  write text, JSON, CSV, or an ATT&CK Navigator layer.
 
 Use `--verbose` with validation and analysis commands to include the relevant
 source XML line in each finding. Use `NO_COLOR=1` to disable colored terminal
@@ -212,3 +239,6 @@ For the complete command and generator reference, see
 [`cmd/sysmon-modular/README.md`](cmd/sysmon-modular/README.md). For a complete
 table of checks performed by `validate` and its `verify` alias, see
 [`rules.md`](rules.md).
+
+For a flag-by-flag reference with command-specific examples, see
+[`docs/README.md`](docs/README.md).
