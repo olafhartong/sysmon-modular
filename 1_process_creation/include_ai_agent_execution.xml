@@ -29,6 +29,35 @@
         <Image name="AI agent: Open Interpreter" condition="image">interpreter.exe</Image>
         <Image name="AI agent: OpenHands" condition="image">openhands.exe</Image>
         <Image name="AI agent: CrewAI" condition="image">crewai.exe</Image>
+        <!-- Windows executable names: https://app.factory.ai/cli/windows and https://github.com/Kilo-Org/kilocode/blob/main/packages/opencode/bin/kilo -->
+        <Image name="AI agent: Factory Droid" condition="image">droid.exe</Image>
+        <Image name="AI agent: Kilo Code" condition="image">kilo.exe</Image>
+        <!-- npm-installed agents run under node.exe; match package directories with either path separator. -->
+        <!-- https://docs.continue.dev/cli/quickstart -->
+        <Rule name="AI agent: Continue CLI" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@continuedev\cli\;/node_modules/@continuedev/cli/</CommandLine>
+        </Rule>
+        <!-- https://docs.augmentcode.com/cli/overview -->
+        <Rule name="AI agent: Augment Auggie" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@augmentcode\auggie\;/node_modules/@augmentcode/auggie/</CommandLine>
+        </Rule>
+        <!-- https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent -->
+        <Rule name="AI agent: Pi coding agent" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@earendil-works\pi-coding-agent\;/node_modules/@earendil-works/pi-coding-agent/;\node_modules\@mariozechner\pi-coding-agent\;/node_modules/@mariozechner/pi-coding-agent/</CommandLine>
+        </Rule>
+        <!-- https://github.com/google-gemini/gemini-cli/blob/main/packages/cli/package.json -->
+        <Rule name="AI agent: Gemini CLI via Node.js" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@google\gemini-cli\;/node_modules/@google/gemini-cli/</CommandLine>
+        </Rule>
+        <!-- https://github.com/QwenLM/qwen-code/blob/main/packages/cli/package.json -->
+        <Rule name="AI agent: Qwen Code via Node.js" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@qwen-code\qwen-code\;/node_modules/@qwen-code/qwen-code/</CommandLine>
+        </Rule>
         <!-- Container launches visible from the Windows Docker CLI. -->
         <Rule name="AI agent: containerized OpenClaw or OpenHands" groupRelation="and">
           <Image condition="image">docker.exe</Image>

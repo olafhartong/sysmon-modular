@@ -1,0 +1,18 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="AI agent hook definitions and scripts" groupRelation="or">
+      <FileCreate onmatch="include">
+        <!-- ATT&CK: https://attack.mitre.org/techniques/T1546/ includes AI coding-agent hook persistence. -->
+        <!-- https://cursor.com/docs/hooks -->
+        <TargetFilename name="technique_id=T1546,technique_name=Event Triggered Execution,rule=AI agent hooks: Cursor configuration" condition="end with">\.cursor\hooks.json</TargetFilename>
+        <TargetFilename name="technique_id=T1546,technique_name=Event Triggered Execution,rule=AI agent hooks: Cursor scripts" condition="contains">\.cursor\hooks\</TargetFilename>
+        <!-- https://docs.cline.bot/customization/hooks -->
+        <TargetFilename name="technique_id=T1546,technique_name=Event Triggered Execution,rule=AI agent hooks: Cline project hooks" condition="contains">\.clinerules\hooks\</TargetFilename>
+        <TargetFilename name="technique_id=T1546,technique_name=Event Triggered Execution,rule=AI agent hooks: Cline global hooks" condition="contains">\Documents\Cline\Hooks\</TargetFilename>
+        <!-- https://kiro.dev/docs/hooks/ -->
+        <TargetFilename name="technique_id=T1546,technique_name=Event Triggered Execution,rule=AI agent hooks: Kiro definitions and scripts" condition="contains">\.kiro\hooks\</TargetFilename>
+        <!-- Add paths for hook scripts stored elsewhere. Claude Code hook declarations are covered by include_ai_agent_configuration.xml. -->
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
