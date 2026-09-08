@@ -1,4 +1,4 @@
-# Verify Rules
+# Validate Rules
 
 `sysmon-modular verify` is an alias for `sysmon-modular validate`. It checks XML
 syntax first and, for files that parse successfully, runs structural Sysmon and
