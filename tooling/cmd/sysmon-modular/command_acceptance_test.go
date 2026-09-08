@@ -16,7 +16,7 @@ func TestRunDispatchesEveryCommandAndClassifiesErrors(t *testing.T) {
 	for _, command := range []string{
 		"merge", "validate", "verify", "fix-mitre", "analyze", "generate-kql",
 		"generate-mde", "generate-mde-unfiltered", "generate-mde-inverse",
-		"list-rules", "diff", "coverage",
+		"list-rules", "diff", "coverage", "version",
 	} {
 		t.Run(command+" help", func(t *testing.T) {
 			var code int

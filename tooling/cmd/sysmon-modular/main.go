@@ -85,6 +85,8 @@ func run(args []string) int {
 		err = runDiff(args[1:])
 	case "coverage":
 		err = runCoverage(args[1:])
+	case "version", "-version", "--version":
+		err = runVersion(args[1:])
 	case "help", "-h", "--help":
 		usage()
 		return exitOK
@@ -103,7 +105,8 @@ func run(args []string) int {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, `sysmon-modular is a Go Sysmon-Modular configuration tool.
+	fmt.Fprintln(os.Stderr, versionString())
+	fmt.Fprintln(os.Stderr, `Go Sysmon-Modular configuration tool.
 
 Commands:
   merge         merge Sysmon module XML files
@@ -119,7 +122,8 @@ Commands:
                 generate include-only Sysmon modules for MDE-filtered blind spots
   list-rules    list rule modules discovered below a base path`)
 	fmt.Fprintln(os.Stderr, `  diff          compare two configurations semantically
-  coverage      report event, ATT&CK, tactic, module, and include/exclude coverage`)
+  coverage      report event, ATT&CK, tactic, module, and include/exclude coverage
+  version       print the tool build version (also --version)`)
 }
 
 func runMerge(args []string) error {
@@ -668,6 +672,11 @@ func writeOutput(path string, data []byte) error {
 func newFlagSet(name string) *flag.FlagSet {
 	fs := flag.NewFlagSet(name, flag.ContinueOnError)
 	fs.SetOutput(os.Stderr)
+	fs.Usage = func() {
+		fmt.Fprintln(fs.Output(), versionString())
+		fmt.Fprintf(fs.Output(), "Usage of %s:\n", fs.Name())
+		fs.PrintDefaults()
+	}
 	return fs
 }
 
