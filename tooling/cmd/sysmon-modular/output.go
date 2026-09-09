@@ -57,7 +57,13 @@ func findingStyle(severity validate.Severity) string {
 	}
 }
 
-func printFindings(findings []validate.Finding, verbose bool) {
+type findingOutputOptions struct {
+	ShowSource   bool
+	ShowLocation bool
+	ShowPath     bool
+}
+
+func printFindings(findings []validate.Finding, options findingOutputOptions) {
 	type displayedFinding struct {
 		finding validate.Finding
 		count   int
@@ -66,7 +72,7 @@ func printFindings(findings []validate.Finding, verbose bool) {
 	indexes := map[string]int{}
 	for _, finding := range findings {
 		lineKey := ""
-		if verbose {
+		if options.ShowLocation || options.ShowSource {
 			lineKey = strconv.Itoa(finding.Line)
 		}
 		key := strings.Join([]string{finding.Path, finding.Code, string(finding.Severity), finding.Message, finding.Detail, lineKey}, "\x00")
@@ -81,7 +87,7 @@ func printFindings(findings []validate.Finding, verbose bool) {
 	lastPath := ""
 	for _, item := range displayed {
 		finding := item.finding
-		if finding.Path != lastPath {
+		if !options.ShowLocation && finding.Path != lastPath {
 			if lastPath != "" {
 				fmt.Fprintln(os.Stderr)
 			}
@@ -94,14 +100,36 @@ func printFindings(findings []validate.Finding, verbose bool) {
 		if item.count > 1 {
 			occurrences = paint(ansiBold+ansiYellow, fmt.Sprintf(" ×%d", item.count))
 		}
-		fmt.Fprintf(os.Stderr, "  %s %s%s\n", label, finding.Message, occurrences)
+		location := ""
+		if options.ShowLocation {
+			location = findingLocation(finding, options.ShowPath)
+			if location != "" {
+				location = paint(ansiBold+ansiCyan, location) + ": "
+			}
+		}
+		fmt.Fprintf(os.Stderr, "  %s %s%s%s\n", label, location, finding.Message, occurrences)
 		for _, line := range formatDetail(finding.Detail, outputWidth()-8) {
 			fmt.Fprintf(os.Stderr, "  %s %s\n", paint(ansiDim, "↳"), paint(ansiDim, line))
 		}
-		if verbose {
+		if options.ShowSource {
 			printSourceLine(finding)
 		}
 	}
+}
+
+func findingLocation(finding validate.Finding, showPath bool) string {
+	location := ""
+	if showPath {
+		location = displayPath(finding.Path)
+	}
+	// Merged nodes retain input line numbers, which do not describe the output.
+	if finding.Line > 0 && finding.Path != "merged" {
+		if location != "" {
+			return fmt.Sprintf("%s:%d", location, finding.Line)
+		}
+		return fmt.Sprintf("line %d", finding.Line)
+	}
+	return location
 }
 
 func printSourceLine(finding validate.Finding) {

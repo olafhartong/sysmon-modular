@@ -34,12 +34,17 @@ func SyntaxFile(path string, preserveComments bool) []Finding {
 	if err == nil {
 		return nil
 	}
+	return []Finding{SyntaxFinding(path, err)}
+}
+
+// SyntaxFinding describes an XML parse or read error, including its line when available.
+func SyntaxFinding(path string, err error) Finding {
 	line := 0
 	var syntaxError *xml.SyntaxError
 	if errors.As(err, &syntaxError) {
 		line = syntaxError.Line
 	}
-	return []Finding{{Code: "XML001", Severity: Error, Path: path, Line: line, Message: "XML syntax validation failed", Detail: err.Error()}}
+	return Finding{Code: "XML001", Severity: Error, Path: path, Line: line, Message: "XML syntax validation failed", Detail: err.Error()}
 }
 
 func Schema(doc *sysmonxml.Document, path string) []Finding {

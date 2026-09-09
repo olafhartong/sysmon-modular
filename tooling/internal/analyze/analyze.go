@@ -74,7 +74,11 @@ func bestPractices(doc *sysmonxml.Document, path string) []validate.Finding {
 	var findings []validate.Finding
 	hashes := doc.Root.FirstChild("HashAlgorithms")
 	if hashes == nil || strings.TrimSpace(hashes.Text) == "" {
-		findings = append(findings, validate.Finding{Code: "ANL001", Severity: validate.Recommendation, Path: path, Message: "set HashAlgorithms explicitly", Detail: "Use '*' for maximum hash coverage unless storage constraints require a narrower set."})
+		line := doc.Root.Line
+		if hashes != nil {
+			line = hashes.Line
+		}
+		findings = append(findings, validate.Finding{Code: "ANL001", Severity: validate.Recommendation, Path: path, Line: line, Message: "set HashAlgorithms explicitly", Detail: "Use '*' for maximum hash coverage unless storage constraints require a narrower set."})
 	} else if strings.TrimSpace(hashes.Text) != "*" {
 		findings = append(findings, validate.Finding{Code: "ANL002", Severity: validate.Recommendation, Path: path, Line: hashes.Line, Message: "HashAlgorithms is not set to '*'", Detail: "Consider SHA256/IMPHASH coverage or '*' for richer triage data."})
 	}

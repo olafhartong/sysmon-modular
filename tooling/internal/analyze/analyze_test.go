@@ -34,6 +34,28 @@ func TestConfigFindsConflictAndNativePathRecommendation(t *testing.T) {
 	}
 }
 
+func TestHashRecommendationLocation(t *testing.T) {
+	for _, test := range []struct {
+		name string
+		xml  string
+		line int
+	}{
+		{name: "missing", xml: "<Sysmon>\n<EventFiltering/>\n</Sysmon>", line: 1},
+		{name: "empty", xml: "<Sysmon>\n<HashAlgorithms/>\n<EventFiltering/>\n</Sysmon>", line: 2},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			doc, err := sysmonxml.Parse([]byte(test.xml), false)
+			if err != nil {
+				t.Fatal(err)
+			}
+			findings := Config(doc, "test.xml")
+			if len(findings) != 1 || findings[0].Code != "ANL001" || findings[0].Line != test.line {
+				t.Fatalf("expected hash recommendation on line %d, got %#v", test.line, findings)
+			}
+		})
+	}
+}
+
 func TestConfigDoesNotNarrowImageLoadedIncludeToKnownPath(t *testing.T) {
 	doc, err := sysmonxml.Parse([]byte(`<Sysmon schemaversion="4.90"><EventFiltering>
 	<RuleGroup groupRelation="or"><ImageLoad onmatch="include"><ImageLoaded condition="end with">scrobj.dll</ImageLoaded></ImageLoad></RuleGroup>

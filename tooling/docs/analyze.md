@@ -16,7 +16,20 @@ Keeps XML comments while parsing. The default is `false`.
 
 `--verbose`
 
-Prints the source XML line for each finding when a line is available.
+Prints the source XML line for each finding when a line is available. This is
+enabled by default; use `--verbose=false` to omit source text while keeping line
+numbers.
+
+Findings include the line number and affected XML by default, including warnings,
+errors, recommendations, and performance findings. Line numbers refer to the
+opening line of the affected element. A missing setting points to the root element
+where it belongs. XML syntax errors show the line reported by the parser; errors
+without a source location, such as an unreadable or empty file, omit the line.
+
+```text
+  [ANL003] line 3: DnsLookup=True can add resolver overhead
+    3 │ <DnsLookup>true</DnsLookup>
+```
 
 The command first runs structural Sysmon validation, then adds analyzer findings. It prints `no findings` when both passes are clean. Error-severity findings return exit code `4`. Recommendations and performance findings remain successful so they can be reviewed without breaking automation.
 
@@ -29,5 +42,5 @@ measure endpoint performance or event volume in your environment.
 ## Example
 
 ```bash
-./sysmon-modular analyze --config ../sysmonconfig.xml --verbose
+./sysmon-modular analyze --config ../sysmonconfig.xml
 ```

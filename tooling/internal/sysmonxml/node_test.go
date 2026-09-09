@@ -46,6 +46,32 @@ func TestNodeCloneAndMutationAreIndependent(t *testing.T) {
 	}
 }
 
+func TestParseRecordsOpeningTagLines(t *testing.T) {
+	input := "<?xml version=\"1.0\"?>\n<!-- before root -->\n<Sysmon\n  schemaversion=\"4.90\">\n  <EventFiltering>\n    <!-- before event\n         still a comment -->\n    <ProcessCreate\n      onmatch=\"include\">\n      <Image\n        condition=\"is\">cmd.exe</Image>\n      <Image/>\n    </ProcessCreate>\n  </EventFiltering>\n</Sysmon>"
+	for _, newline := range []string{"\n", "\r\n"} {
+		for _, preserveComments := range []bool{false, true} {
+			doc, err := Parse([]byte(strings.ReplaceAll(input, "\n", newline)), preserveComments)
+			if err != nil {
+				t.Fatal(err)
+			}
+			want := []int{3, 5, 8, 10, 12}
+			index := 0
+			doc.Root.Walk(func(node *Node) {
+				if node.Name == "" {
+					return
+				}
+				if index >= len(want) || node.Line != want[index] {
+					t.Fatalf("wrong opening line for %s: got %d at index %d, want %v", node.Name, node.Line, index, want)
+				}
+				index++
+			})
+			if index != len(want) {
+				t.Fatalf("got %d elements, want %d", index, len(want))
+			}
+		}
+	}
+}
+
 func TestParseFileAndInvalidDocuments(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "module.xml")
 	if err := os.WriteFile(path, []byte(`<Sysmon/>`), 0o644); err != nil {

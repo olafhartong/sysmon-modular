@@ -185,7 +185,7 @@ func runMerge(args []string) error {
 	if *doValidate {
 		for _, path := range resolved {
 			findings := validate.SyntaxFile(path, *preserveComments)
-			printFindings(findings, *verbose)
+			printFindings(findings, findingOutputOptions{ShowSource: *verbose})
 			if validate.HasErrors(findings) {
 				return findingsError("XML syntax validation failed")
 			}
@@ -224,7 +224,7 @@ func runMerge(args []string) error {
 	if *doAnalyze {
 		findings = append(findings, analyze.Config(result.Document, "merged")...)
 	}
-	printFindings(findings, *verbose)
+	printFindings(findings, findingOutputOptions{ShowSource: *verbose})
 	if validate.HasErrors(findings) || (*warningsAsErrors && (len(findings) > 0 || warningCount > 0)) {
 		return findingsError("validation or analysis findings were emitted")
 	}
@@ -304,7 +304,11 @@ func runValidate(args []string) error {
 			}
 		}
 	}
-	printFindings(allFindings, *verbose)
+	printFindings(allFindings, findingOutputOptions{
+		ShowSource:   *verbose,
+		ShowLocation: true,
+		ShowPath:     *all || *allXML || len(paths) > 1,
+	})
 	printFindingSummary(allFindings, len(paths))
 	if validate.HasErrors(allFindings) || (*warningsAsErrors && len(allFindings) > 0) {
 		return findingsError("validation failed")
@@ -411,19 +415,21 @@ func runAnalyze(args []string) error {
 	fs := newFlagSet("analyze")
 	config := fs.String("config", "", "Sysmon config XML to analyze")
 	preserveComments := fs.Bool("preserve-comments", false, "preserve XML comments while parsing")
-	verbose := fs.Bool("verbose", false, "show source XML lines for findings")
+	verbose := fs.Bool("verbose", true, "show source XML lines for findings")
 	if err := fs.Parse(args); err != nil {
 		return flagParseError(err)
 	}
 	if *config == "" {
 		return usageError("provide --config")
 	}
+	outputOptions := findingOutputOptions{ShowSource: *verbose, ShowLocation: true}
 	doc, err := sysmonxml.ParseFile(*config, *preserveComments)
 	if err != nil {
+		printFindings([]validate.Finding{validate.SyntaxFinding(*config, err)}, outputOptions)
 		return err
 	}
 	findings := append(validate.Schema(doc, *config), analyze.Config(doc, *config)...)
-	printFindings(findings, *verbose)
+	printFindings(findings, outputOptions)
 	if len(findings) == 0 {
 		fmt.Fprintln(os.Stderr, "no findings")
 	}

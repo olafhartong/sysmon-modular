@@ -54,7 +54,18 @@ Keeps comments in the parsed document. This mainly matters when line mapping or 
 
 `--verbose`
 
-Prints the relevant XML source line below each finding. Without it, findings include the file, code, message, and detail but omit source text.
+Prints the relevant XML source line below each finding. Line numbers are always
+shown when available, including without `--verbose`. A single `--path` file uses
+`line N`; multiple files or directory discovery with `--all` / `--all-xml` use
+`filename:N` on each finding, even when discovery selects only one file. The
+filename includes its directory path so equally named files can be distinguished.
+Identical findings on different lines are listed separately. Errors without a
+source location, such as an unreadable or empty file, omit the line number.
+
+```text
+  [SYS106] line 5: unknown condition operator
+  [SYS106] 1_process_creation/example.xml:5: unknown condition operator
+```
 
 `--warnings-as-errors`
 

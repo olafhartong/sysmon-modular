@@ -166,7 +166,7 @@ func TestRunAnalyzeCoversCleanWarningAndInvalidConfigurations(t *testing.T) {
   <EventFiltering><RuleGroup groupRelation="or"><ProcessCreate onmatch="include"><Image condition="image">cmd.exe</Image></ProcessCreate></RuleGroup></EventFiltering>
 </Sysmon>`)
 	var warningErr error
-	_, warningOutput := captureCommandOutput(t, func() { warningErr = runAnalyze([]string{"--config", warning, "--verbose"}) })
+	_, warningOutput := captureCommandOutput(t, func() { warningErr = runAnalyze([]string{"--config", warning}) })
 	if warningErr != nil || !strings.Contains(warningOutput, "ANL003") || !strings.Contains(warningOutput, "3 │") {
 		t.Fatalf("warning analysis returned err=%v output=%q", warningErr, warningOutput)
 	}

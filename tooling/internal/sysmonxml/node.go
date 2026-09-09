@@ -37,6 +37,7 @@ func Parse(data []byte, preserveComments bool) (*Document, error) {
 	var root *Node
 	var stack []*Node
 	for {
+		line, _ := decoder.InputPos()
 		tok, err := decoder.Token()
 		if err == io.EOF {
 			break
@@ -46,11 +47,10 @@ func Parse(data []byte, preserveComments bool) (*Document, error) {
 		}
 		switch t := tok.(type) {
 		case xml.StartElement:
-			line, _ := decoder.InputPos()
 			n := &Node{Name: t.Name.Local, Line: line, Attr: cloneAttrs(t.Attr)}
 			if len(stack) == 0 {
 				if root != nil {
-					return nil, fmt.Errorf("multiple document roots")
+					return nil, &xml.SyntaxError{Msg: "multiple document roots", Line: line}
 				}
 				root = n
 			} else {

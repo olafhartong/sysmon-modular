@@ -85,8 +85,11 @@ Each command accepts `-h` or `--help`. Flags must appear after the command name.
 For the MDE generators, place the optional positional config path after all flags. The parser stops reading flags when it reaches that path.
 
 Top-level `--version` is an alias for the `version` command. The version is
-also shown in top-level and command-specific help. Use `--verbose` with
-`merge`, `validate`, `verify` or `analyze` to show source lines for findings.
+also shown in top-level and command-specific help. `analyze`, `validate`, and
+`verify` show finding line numbers by default; directory and multiple-file
+validation also include the filename. `analyze` includes the affected source XML
+by default. Use `--verbose` with `merge`, `validate`, or `verify` to include source
+XML, or `--verbose=false` with `analyze` to omit it.
 
 ## Paths and output
 
