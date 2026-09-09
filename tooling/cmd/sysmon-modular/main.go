@@ -105,9 +105,9 @@ func run(args []string) int {
 }
 
 func usage() {
+	printBanner(os.Stderr)
 	fmt.Fprintln(os.Stderr, versionString())
-	fmt.Fprintln(os.Stderr, `Go Sysmon-Modular configuration tool.
-
+	fmt.Fprintln(os.Stderr, `
 Commands:
   merge         merge Sysmon module XML files
   validate      run XML syntax and optional Sysmon schema validation
@@ -675,7 +675,26 @@ func writeOutput(path string, data []byte) error {
 	return os.Rename(tmpName, path)
 }
 
-func newFlagSet(name string) *flag.FlagSet {
+type commandFlagSet struct {
+	*flag.FlagSet
+}
+
+func (fs *commandFlagSet) Parse(args []string) error {
+	// Defer usage output until the parser distinguishes help from invalid flags.
+	usage := fs.Usage
+	fs.Usage = func() {}
+	err := fs.FlagSet.Parse(args)
+	fs.Usage = usage
+	if errors.Is(err, flag.ErrHelp) {
+		printBanner(fs.Output())
+	}
+	if err != nil {
+		fs.Usage()
+	}
+	return err
+}
+
+func newFlagSet(name string) *commandFlagSet {
 	fs := flag.NewFlagSet(name, flag.ContinueOnError)
 	fs.SetOutput(os.Stderr)
 	fs.Usage = func() {
@@ -683,7 +702,7 @@ func newFlagSet(name string) *flag.FlagSet {
 		fmt.Fprintf(fs.Output(), "Usage of %s:\n", fs.Name())
 		fs.PrintDefaults()
 	}
-	return fs
+	return &commandFlagSet{FlagSet: fs}
 }
 
 func defaultBasePath() string {

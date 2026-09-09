@@ -9,7 +9,7 @@ import (
 var buildVersion = "1.0"
 
 func versionString() string {
-	return "sysmon-modular " + buildVersion
+	return "sysmon-modular configuration tool v" + buildVersion
 }
 
 func runVersion(args []string) error {
