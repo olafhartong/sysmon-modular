@@ -2,7 +2,7 @@
    <EventFiltering>
       <RuleGroup name="" groupRelation="or">
          <FileDeleteDetected onmatch="include">
-            <Rule groupRelation="and">
+            <Rule groupRelation="and" name="technique_id=T1070.004,technique_name=File Deletion">
                <TargetFilename condition="contains all">C:\PS-Transcripts\;PowerShell_transcript</TargetFilename>               <!--Default PowerShell transcript folder-->
                <TargetFilename condition="contains">.txt</TargetFilename>
             </Rule>

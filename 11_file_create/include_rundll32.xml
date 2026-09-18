@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.30">
      <EventFiltering>
-          <RuleGroup name="" groupRelation="or">
+          <RuleGroup name="technique_id=T1218.011,technique_name=Rundll32" groupRelation="or">
                <FileCreate onmatch="include">
                     <Image condition="image">rundll32.exe</Image>                    <!-- Thanks to @c_APT-ure -->
                </FileCreate>

@@ -2,7 +2,7 @@
 	<EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<FileCreateTime onmatch="include">
-				<TargetFilename name="technique_id=T1099,technique_name=Timestomp" condition="end with">.exe</TargetFilename> <!--Look for backdated executables anywhere-->
+				<TargetFilename name="technique_id=T1070.006,technique_name=Timestomp" condition="end with">.exe</TargetFilename> <!--Look for backdated executables anywhere-->
 			</FileCreateTime>
 		</RuleGroup>
 	</EventFiltering>

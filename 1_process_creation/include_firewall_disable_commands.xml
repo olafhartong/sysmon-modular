@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1685,technique_name=Disable or Modify Tools" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is">netsh.exe</OriginalFileName>
+          <CommandLine condition="contains all">advfirewall;state;off</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <CommandLine condition="contains">Set-NetFirewallProfile</CommandLine>
+          <CommandLine condition="contains all">Enabled;False</CommandLine>
+        </Rule>
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is any">sc.exe;net.exe;net1.exe</OriginalFileName>
+          <CommandLine condition="contains all">stop;MpsSvc</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

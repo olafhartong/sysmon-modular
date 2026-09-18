@@ -4,24 +4,24 @@
       <ProcessAccess onmatch="include">
         <!-- In some environments this causes HIGH CPU usage by sysmon, remove this module when that occurs -->
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
           <GrantedAccess>0x1FFFFF</GrantedAccess>          <!--Expect EDRs/AVs to also trigger this-->
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
           <GrantedAccess>0x1F1FFF</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
           <GrantedAccess>0x1010</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage>          <!--Mitre T1098-->          <!--Mitre T1550.002-->          <!--Mitre T1003-->          <!-- depending on what you're running on your host, this might be noisy-->
           <GrantedAccess>0x143A</GrantedAccess>
         </Rule>
         <Rule groupRelation="and">
-          <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">lsass.exe</TargetImage>          <!--https://pentestlab.blog/2018/05/15/lateral-movement-winrm/-->
-          <SourceImage name="technique_id=T1003,technique_name=Credential Dumping" condition="image">wsmprovhost.exe</SourceImage>
+          <TargetImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="image">lsass.exe</TargetImage>          <!--https://pentestlab.blog/2018/05/15/lateral-movement-winrm/-->
+          <SourceImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="image">wsmprovhost.exe</SourceImage>
         </Rule>        
       </ProcessAccess>
     </RuleGroup>

@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.30">
   <EventFiltering>
-    <RuleGroup name="" groupRelation="or">
+    <RuleGroup name="technique_id=T1547.009,technique_name=Shortcut Modification" groupRelation="or">
       <FileCreate onmatch="include">
         <TargetFilename condition="contains">\Start Menu</TargetFilename>        <!--Microsoft:Windows: Startup links and shortcut modification-->
       </FileCreate>

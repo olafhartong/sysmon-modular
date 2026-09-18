@@ -1,0 +1,748 @@
+package main
+
+import (
+	"errors"
+	"flag"
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"time"
+
+	"github.com/olafhartong/sysmon-modular/tooling/internal/analyze"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/generate"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/merger"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/mitre"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
+	"github.com/olafhartong/sysmon-modular/tooling/internal/validate"
+)
+
+const (
+	exitOK           = 0
+	exitInternal     = 1
+	exitUsage        = 2
+	exitInvalidInput = 3
+	exitFindings     = 4
+)
+
+type commandError struct {
+	code int
+	err  error
+}
+
+func (e *commandError) Error() string { return e.err.Error() }
+func (e *commandError) Unwrap() error { return e.err }
+func usageError(format string, args ...any) error {
+	return &commandError{code: exitUsage, err: fmt.Errorf(format, args...)}
+}
+func inputError(format string, args ...any) error {
+	return &commandError{code: exitInvalidInput, err: fmt.Errorf(format, args...)}
+}
+func findingsError(format string, args ...any) error {
+	return &commandError{code: exitFindings, err: fmt.Errorf(format, args...)}
+}
+
+type multiFlag []string
+
+func (m *multiFlag) String() string { return strings.Join(*m, ",") }
+func (m *multiFlag) Set(v string) error {
+	*m = append(*m, v)
+	return nil
+}
+
+func main() {
+	os.Exit(run(os.Args[1:]))
+}
+
+func run(args []string) int {
+	if len(args) < 1 {
+		usage()
+		return exitUsage
+	}
+	var err error
+	switch args[0] {
+	case "merge":
+		err = runMerge(args[1:])
+	case "validate":
+		err = runValidate(args[1:])
+	case "verify":
+		err = runValidate(args[1:])
+	case "fix-mitre":
+		err = runFixMITRE(args[1:])
+	case "analyze":
+		err = runAnalyze(args[1:])
+	case "generate-kql":
+		err = runGenerateKQL(args[1:])
+	case "generate-mde":
+		err = runGenerateMDE(args[1:], generate.MDEModeFiltered)
+	case "generate-mde-unfiltered":
+		err = runGenerateMDE(args[1:], generate.MDEModeUnfiltered)
+	case "generate-mde-inverse":
+		err = runGenerateMDE(args[1:], generate.MDEModeInverse)
+	case "list-rules":
+		err = runListRules(args[1:])
+	case "diff":
+		err = runDiff(args[1:])
+	case "coverage":
+		err = runCoverage(args[1:])
+	case "version", "-version", "--version":
+		err = runVersion(args[1:])
+	case "help", "-h", "--help":
+		usage()
+		return exitOK
+	default:
+		err = usageError("unknown command %q", args[0])
+	}
+	if err != nil {
+		fmt.Fprintln(os.Stderr, paint(ansiBold+ansiRed, err.Error()))
+		var ce *commandError
+		if errors.As(err, &ce) {
+			return ce.code
+		}
+		return exitInternal
+	}
+	return exitOK
+}
+
+func usage() {
+	printBanner(os.Stderr)
+	fmt.Fprintln(os.Stderr, versionString())
+	fmt.Fprintln(os.Stderr, `
+Commands:
+  merge         merge Sysmon module XML files
+  validate      run XML syntax and optional Sysmon schema validation
+  verify        alias for validate
+  fix-mitre     fix MITRE ATT&CK technique metadata in XML name attributes
+  analyze       recommend improvements and flag conflicts/performance risks
+  generate-kql  convert simple MDE KQL detections into a Sysmon module
+  generate-mde  convert MDE telemetry rules and filters into Sysmon modules
+  generate-mde-unfiltered
+                generate include-only Sysmon modules for MDE telemetry families
+  generate-mde-inverse
+                generate include-only Sysmon modules for MDE-filtered blind spots
+  list-rules    list rule modules discovered below a base path`)
+	fmt.Fprintln(os.Stderr, `  diff          compare two configurations semantically
+  coverage      report event, ATT&CK, tactic, module, and include/exclude coverage
+  version       print the tool build version (also --version)`)
+}
+
+func runMerge(args []string) error {
+	fs := newFlagSet("merge")
+	var paths multiFlag
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path")
+	includeList := fs.String("include-list", "", "newline-delimited module include list")
+	excludeList := fs.String("exclude-list", "", "newline-delimited module exclude list")
+	fileList := fs.String("file-list", "", "CSV/TSV/JSON priority list with filepath and priority")
+	format := fs.String("format", "", "priority list format: csv, tsv, or json")
+	template := fs.String("template", "", "base Sysmon config template")
+	output := fs.String("output", "-", "output file, or - for stdout")
+	preserveComments := fs.Bool("preserve-comments", false, "preserve XML comments from source modules")
+	forceGroupRelation := fs.Bool("force-grouprelation-or", false, "override every merged RuleGroup groupRelation as or")
+	doValidate := fs.Bool("validate", true, "run XML syntax validation before merge")
+	doSchema := fs.Bool("schema-validate", true, "run versioned Sysmon event and field validation")
+	doAnalyze := fs.Bool("analyze", false, "print analysis warnings for the merged output")
+	sysmonVersion := fs.String("sysmon-version", "15", "target Sysmon executable version (12 through 15; default 15)")
+	unsupported := fs.String("unsupported", "warn", "unsupported target items: warn or exclude")
+	verbose := fs.Bool("verbose", false, "show source XML lines for findings")
+	warningsAsErrors := fs.Bool("warnings-as-errors", false, "exit non-zero when warnings/recommendations are emitted")
+	fs.Var(&paths, "path", "input XML module path; may be repeated")
+	if err := fs.Parse(args); err != nil {
+		return flagParseError(err)
+	}
+	absoluteBasePath, err := filepath.Abs(*basePath)
+	if err != nil {
+		return inputError("resolve base path: %v", err)
+	}
+	*basePath = absoluteBasePath
+	if err := validateCompatibilityFlags(*sysmonVersion, *unsupported); err != nil {
+		return err
+	}
+	if *fileList != "" {
+		listPaths, err := merger.ReadPriorityList(*fileList, *format)
+		if err != nil {
+			return err
+		}
+		paths = append(paths, listPaths...)
+	}
+	var input []string
+	if len(paths) == 0 && *includeList == "" {
+		found, err := merger.FindRuleFiles(*basePath)
+		if err != nil {
+			return err
+		}
+		input = found
+	} else {
+		input = append(input, paths...)
+	}
+	resolved, listWarnings, err := merger.ResolveLists(*basePath, input, *includeList, *excludeList)
+	if err != nil {
+		return err
+	}
+	warningCount := printWarnings(listWarnings)
+	if len(resolved) < 1 {
+		return inputError("no input rules after include/exclude processing")
+	}
+	if *doValidate {
+		for _, path := range resolved {
+			findings := validate.SyntaxFile(path, *preserveComments)
+			printFindings(findings, findingOutputOptions{ShowSource: *verbose})
+			if validate.HasErrors(findings) {
+				return findingsError("XML syntax validation failed")
+			}
+		}
+	}
+	result, err := merger.Merge(resolved, merger.Options{Template: resolveTemplate(*basePath, *template), PreserveComments: *preserveComments, ForceGroupRelationOr: *forceGroupRelation})
+	if err != nil {
+		return err
+	}
+	warningCount += printWarnings(result.Warnings)
+	var findings []validate.Finding
+	if *sysmonVersion != "" {
+		target, _ := validate.ResolveBinarySchema(*sysmonVersion)
+		result.Document.Root.SetAttr("schemaversion", target.SchemaVersion)
+		var compatibility []validate.Finding
+		if *unsupported == "exclude" {
+			compatibility, err = validate.ExcludeBinaryUnsupported(result.Document, "merged", *sysmonVersion)
+		} else {
+			compatibility, err = validate.BinaryCompatibility(result.Document, "merged", *sysmonVersion)
+		}
+		if err != nil {
+			return inputError("%v", err)
+		}
+		findings = append(findings, compatibility...)
+	}
+	if *doSchema {
+		for _, finding := range validate.Schema(result.Document, "merged") {
+			// Target compatibility emits a more precise SYS204 finding for the
+			// same event/schema mismatch after we set the target schema version.
+			if *sysmonVersion != "" && finding.Code == "SYS201" {
+				continue
+			}
+			findings = append(findings, finding)
+		}
+	}
+	if *doAnalyze {
+		findings = append(findings, analyze.Config(result.Document, "merged")...)
+	}
+	printFindings(findings, findingOutputOptions{ShowSource: *verbose})
+	if validate.HasErrors(findings) || (*warningsAsErrors && (len(findings) > 0 || warningCount > 0)) {
+		return findingsError("validation or analysis findings were emitted")
+	}
+	return writeOutput(*output, result.Document.Bytes())
+}
+
+func runValidate(args []string) error {
+	fs := newFlagSet("validate")
+	var paths multiFlag
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path")
+	all := fs.Bool("all", false, "validate all modules below base path")
+	allXML := fs.Bool("all-xml", false, "validate every XML file below base path")
+	schema := fs.Bool("schema", true, "run structural Sysmon schema validation")
+	sysmonVersion := fs.String("sysmon-version", "", "target Sysmon executable version (12 through 15)")
+	unsupported := fs.String("unsupported", "warn", "unsupported target items: warn or exclude (exclude is a dry run)")
+	mitreCheck := fs.Bool("mitre", true, "run MITRE ATT&CK technique id/name validation")
+	preserveComments := fs.Bool("preserve-comments", false, "preserve XML comments while parsing")
+	verbose := fs.Bool("verbose", false, "show source XML lines for findings")
+	warningsAsErrors := fs.Bool("warnings-as-errors", false, "exit non-zero when warnings are emitted")
+	fs.Var(&paths, "path", "XML file to validate; may be repeated")
+	if err := fs.Parse(args); err != nil {
+		return flagParseError(err)
+	}
+	if err := validateCompatibilityFlags(*sysmonVersion, *unsupported); err != nil {
+		return err
+	}
+	if *all {
+		found, err := merger.FindRuleFiles(*basePath)
+		if err != nil {
+			return err
+		}
+		if len(found) == 0 {
+			return inputError("no Sysmon module XML files found below %s", *basePath)
+		}
+		paths = append(paths, found...)
+	}
+	if *allXML {
+		found, err := findXMLFiles(*basePath)
+		if err != nil {
+			return err
+		}
+		paths = append(paths, found...)
+	}
+	if len(paths) == 0 {
+		return usageError("provide --path, --all, or --all-xml")
+	}
+	paths = dedupeStrings(paths)
+	var allFindings []validate.Finding
+	for _, path := range paths {
+		if info, err := os.Stat(path); err == nil && info.IsDir() {
+			return inputError("--path expects an XML file, but %s is a directory; use --all --base-path %s to validate repository modules", path, path)
+		}
+		findings := validate.SyntaxFile(path, *preserveComments)
+		allFindings = append(allFindings, findings...)
+		if len(findings) == 0 && (*schema || *mitreCheck || *sysmonVersion != "") {
+			doc, err := sysmonxml.ParseFile(path, *preserveComments)
+			if err != nil {
+				return err
+			}
+			if *schema {
+				allFindings = append(allFindings, validate.Schema(doc, path)...)
+			}
+			if *mitreCheck {
+				allFindings = append(allFindings, validate.MITRE(doc, path)...)
+			}
+			if *sysmonVersion != "" {
+				var compatibility []validate.Finding
+				if *unsupported == "exclude" {
+					compatibility, err = validate.ExcludeBinaryUnsupported(doc, path, *sysmonVersion)
+				} else {
+					compatibility, err = validate.BinaryCompatibility(doc, path, *sysmonVersion)
+				}
+				if err != nil {
+					return inputError("%v", err)
+				}
+				allFindings = append(allFindings, compatibility...)
+			}
+		}
+	}
+	printFindings(allFindings, findingOutputOptions{
+		ShowSource:   *verbose,
+		ShowLocation: true,
+		ShowPath:     *all || *allXML || len(paths) > 1,
+	})
+	printFindingSummary(allFindings, len(paths))
+	if validate.HasErrors(allFindings) || (*warningsAsErrors && len(allFindings) > 0) {
+		return findingsError("validation failed")
+	}
+	fmt.Fprintf(os.Stderr, "%s %d file(s)\n", paint(ansiBold+ansiGreen, "✓ VALIDATED"), len(paths))
+	return nil
+}
+
+func validateCompatibilityFlags(version, unsupported string) error {
+	if unsupported != "warn" && unsupported != "exclude" {
+		return usageError("--unsupported must be warn or exclude")
+	}
+	if version == "" {
+		if unsupported != "warn" {
+			return usageError("--unsupported requires --sysmon-version")
+		}
+		return nil
+	}
+	if _, err := validate.ResolveBinarySchema(version); err != nil {
+		return inputError("%v", err)
+	}
+	return nil
+}
+
+func runFixMITRE(args []string) error {
+	fs := newFlagSet("fix-mitre")
+	var paths multiFlag
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path")
+	all := fs.Bool("all", false, "fix all modules below base path")
+	allXML := fs.Bool("all-xml", false, "fix every XML file below base path")
+	dryRun := fs.Bool("dry-run", false, "report changes without writing files")
+	yes := fs.Bool("yes", false, "apply all fixes without prompting")
+	fs.Var(&paths, "path", "XML file to fix; may be repeated")
+	if err := fs.Parse(args); err != nil {
+		return flagParseError(err)
+	}
+	if *all {
+		found, err := merger.FindRuleFiles(*basePath)
+		if err != nil {
+			return err
+		}
+		paths = append(paths, found...)
+	}
+	if *allXML {
+		found, err := findXMLFiles(*basePath)
+		if err != nil {
+			return err
+		}
+		paths = append(paths, found...)
+	}
+	if len(paths) == 0 {
+		return usageError("provide --path, --all, or --all-xml")
+	}
+	paths = dedupeStrings(paths)
+	totalChanges := 0
+	totalProposed := 0
+	totalSkipped := 0
+	totalUnfixed := 0
+	reviewer := newMITREReviewer()
+	interactive := !*dryRun && !*yes && stdinIsTerminal()
+	for _, path := range paths {
+		var approve func(mitre.Change) bool
+		if interactive {
+			approve = reviewer.approve
+		}
+		result, err := mitre.ReviewFile(path, !*dryRun, approve)
+		if err != nil {
+			return err
+		}
+		totalChanges += result.Changes
+		totalProposed += result.Proposed
+		totalSkipped += result.Skipped
+		totalUnfixed += len(result.Unfixed)
+		if result.Proposed > 0 {
+			action := "fixed"
+			if *dryRun {
+				action = "would fix"
+			}
+			fmt.Fprintf(os.Stderr, "%s: %s %d MITRE metadata value(s)", displayPath(path), action, result.Changes)
+			if result.Skipped > 0 {
+				fmt.Fprintf(os.Stderr, ", skipped %d", result.Skipped)
+			}
+			fmt.Fprintln(os.Stderr)
+		}
+		for _, issue := range result.Unfixed {
+			fmt.Fprintf(os.Stderr, "%s: %s (%s)\n", paint(ansiBold+ansiYellow, displayPath(path)), mitre.IssueMessage(issue), mitre.IssueDetail(issue))
+		}
+		if reviewer.quit {
+			break
+		}
+	}
+	if *dryRun {
+		fmt.Fprintf(os.Stderr, "mitre dry-run: files=%d proposed=%d unfixed=%d\n", len(paths), totalProposed, totalUnfixed)
+	} else {
+		fmt.Fprintf(os.Stderr, "mitre fix: files=%d applied=%d skipped=%d unfixed=%d\n", len(paths), totalChanges, totalSkipped, totalUnfixed)
+	}
+	if totalUnfixed > 0 {
+		return findingsError("some MITRE metadata issues require manual fixes")
+	}
+	return nil
+}
+
+func runAnalyze(args []string) error {
+	fs := newFlagSet("analyze")
+	config := fs.String("config", "", "Sysmon config XML to analyze")
+	preserveComments := fs.Bool("preserve-comments", false, "preserve XML comments while parsing")
+	verbose := fs.Bool("verbose", true, "show source XML lines for findings")
+	if err := fs.Parse(args); err != nil {
+		return flagParseError(err)
+	}
+	if *config == "" {
+		return usageError("provide --config")
+	}
+	outputOptions := findingOutputOptions{ShowSource: *verbose, ShowLocation: true}
+	doc, err := sysmonxml.ParseFile(*config, *preserveComments)
+	if err != nil {
+		printFindings([]validate.Finding{validate.SyntaxFinding(*config, err)}, outputOptions)
+		return err
+	}
+	findings := append(validate.Schema(doc, *config), analyze.Config(doc, *config)...)
+	printFindings(findings, outputOptions)
+	if len(findings) == 0 {
+		fmt.Fprintln(os.Stderr, "no findings")
+	}
+	if validate.HasErrors(findings) {
+		return findingsError("analysis found invalid configuration")
+	}
+	return nil
+}
+
+func runGenerateKQL(args []string) error {
+	fs := newFlagSet("generate-kql")
+	kqlPath := fs.String("kql", "", "KQL detection file")
+	directory := fs.String("directory", "", "recursively convert KQL rules found below this directory")
+	output := fs.String("output", "-", "output module XML file, or - for stdout")
+	outputDir := fs.String("output-dir", "0_custom_configuration/generated_kql", "directory for per-rule XML modules in directory mode")
+	platform := fs.String("platform", "defender", "Markdown query platform in directory mode: defender, sentinel, or all")
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path used to discover current Sysmon modules")
+	dedup := fs.Bool("dedup", false, "annotate generated conditions already present in current repository modules")
+	allowLossy := fs.Bool("allow-lossy", false, "allow partial conversion when KQL cannot be represented exactly")
+	useAnalyzer := fs.Bool("analyzer", false, "POST each selected query to the KQL analyzer")
+	analyzerURL := fs.String("analyzer-url", "http://localhost:8080/api/analyze", "KQL analyzer endpoint")
+	analyzerEnvironment := fs.String("analyzer-environment", "m365_with_sentinel", "KQL analyzer environment")
+	analyzerProfile := fs.String("analyzer-profile", "current", "KQL analyzer parser profile")
+	analyzerStrict := fs.Bool("analyzer-strict", false, "enable strict analyzer mode")
+	analyzerNRT := fs.Bool("analyzer-nrt", false, "check near-real-time compatibility in the analyzer")
+	analyzerTimeout := fs.Duration("analyzer-timeout", 15*time.Second, "timeout for each analyzer request")
+	if err := fs.Parse(args); err != nil {
+		return flagParseError(err)
+	}
+	if (*kqlPath == "") == (*directory == "") {
+		return usageError("provide exactly one of --kql or --directory")
+	}
+	analyzerOptions := generate.KQLAnalyzerOptions{
+		URL:                   *analyzerURL,
+		Environment:           *analyzerEnvironment,
+		ParserProfile:         *analyzerProfile,
+		StrictMode:            *analyzerStrict,
+		CheckNRTCompatibility: *analyzerNRT,
+		Timeout:               *analyzerTimeout,
+	}
+	var existingModules []string
+	if *dedup {
+		var err error
+		existingModules, err = merger.FindRuleFiles(*basePath)
+		if err != nil {
+			return inputError("discover existing modules: %v", err)
+		}
+		if len(existingModules) == 0 {
+			return inputError("no existing Sysmon modules found below %s", *basePath)
+		}
+	}
+	if *directory != "" {
+		options := generate.KQLDirectoryOptions{InputDir: *directory, OutputDir: *outputDir, Platform: *platform, ExistingModules: existingModules, AllowLossy: *allowLossy}
+		if *useAnalyzer {
+			options.Analyzer = &analyzerOptions
+		}
+		result, err := generate.GenerateKQLDirectory(options)
+		if err != nil {
+			return err
+		}
+		printWarnings(result.Warnings)
+		fmt.Fprintf(os.Stderr, "kql analysis: files_scanned=%d queries_found=%d queries_selected=%d queries_generated=%d queries_skipped=%d queries_lossy=%d queries_analyzed=%d analyzer_failures=%d conditions_annotated=%d\n",
+			result.Stats.FilesScanned, result.Stats.QueriesFound, result.Stats.QueriesSelected, result.Stats.QueriesGenerated,
+			result.Stats.QueriesSkipped, result.Stats.QueriesLossy, result.Stats.QueriesAnalyzed, result.Stats.AnalyzerFailures, result.Stats.ConditionsAnnotated)
+		for _, file := range result.Files {
+			fmt.Fprintln(os.Stderr, "generated", file)
+		}
+		return nil
+	}
+	data, err := os.ReadFile(*kqlPath)
+	if err != nil {
+		return err
+	}
+	if *useAnalyzer {
+		if err := generate.AnalyzeKQL(string(data), analyzerOptions); err != nil {
+			printWarnings([]string{"KQL analyzer: " + err.Error()})
+		}
+	}
+	doc, warnings, annotated, err := generate.KQLModuleNamedWithExistingOptions(string(data), "", existingModules, *allowLossy)
+	printWarnings(warnings)
+	if err != nil {
+		return err
+	}
+	if *dedup {
+		fmt.Fprintf(os.Stderr, "kql analysis: conditions_annotated=%d\n", annotated)
+	}
+	return writeOutput(*output, doc.Bytes())
+}
+
+func runGenerateMDE(args []string, mode generate.MDEMode) error {
+	fs := newFlagSet("generate-mde")
+	var areas multiFlag
+	config := fs.String("mde-config", "mde-config.json", "MDE JSON config (may also be provided as a positional argument)")
+	outputDir := fs.String("output-dir", defaultMDEOutputDir(mode), "directory for generated Sysmon modules")
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path used to discover existing modules for --dedup")
+	dedup := fs.Bool("dedup", false, "omit generated rules already present in current repository modules")
+	allowLossy := fs.Bool("allow-lossy", false, "allow fallback conversion when an MDE filter cannot be represented exactly")
+	fs.Var(&areas, "area", "MDE telemetry area to process; may be repeated (for example process-creation, image-load, or registry)")
+	if err := fs.Parse(args); err != nil {
+		return flagParseError(err)
+	}
+	if fs.NArg() > 1 {
+		return usageError("provide at most one MDE config path")
+	}
+	if fs.NArg() == 1 {
+		mdeConfigFlagSet := false
+		fs.Visit(func(f *flag.Flag) {
+			if f.Name == "mde-config" {
+				mdeConfigFlagSet = true
+			}
+		})
+		if mdeConfigFlagSet {
+			return usageError("provide the MDE config either as a positional argument or with --mde-config, not both")
+		}
+		*config = fs.Arg(0)
+	}
+	var existingModules []string
+	if *dedup {
+		var err error
+		existingModules, err = merger.FindRuleFiles(*basePath)
+		if err != nil {
+			return inputError("discover existing modules: %v", err)
+		}
+		if len(existingModules) == 0 {
+			return inputError("no existing Sysmon modules found below %s", *basePath)
+		}
+	}
+	result, err := generate.FromMDEConfigFileOptions(*config, *outputDir, generate.MDEOptions{Mode: mode, Areas: areas, ExistingModules: existingModules, AllowLossy: *allowLossy})
+	if err != nil {
+		return err
+	}
+	printWarnings(result.Warnings)
+	fmt.Fprintf(os.Stderr, "mde analysis: rules_seen=%d rules_mapped=%d lossy_rules=%d duplicate_rules=%d unsupported_rules=%d unsupported_predicates=%d\n",
+		result.Stats.RulesSeen, result.Stats.RulesMapped, result.Stats.LossyRules, result.Stats.DuplicateRules, result.Stats.UnsupportedRules, result.Stats.UnsupportedPredicates)
+	for _, file := range result.Files {
+		fmt.Fprintln(os.Stderr, "generated", file)
+	}
+	return nil
+}
+
+func defaultMDEOutputDir(mode generate.MDEMode) string {
+	switch mode {
+	case generate.MDEModeUnfiltered:
+		return "0_custom_configuration/generated_mde_unfiltered"
+	case generate.MDEModeInverse:
+		return "0_custom_configuration/generated_mde_inverse"
+	default:
+		return "0_custom_configuration/generated_mde"
+	}
+}
+
+func runListRules(args []string) error {
+	fs := newFlagSet("list-rules")
+	basePath := fs.String("base-path", defaultBasePath(), "repository base path")
+	if err := fs.Parse(args); err != nil {
+		return flagParseError(err)
+	}
+	paths, err := merger.FindRuleFiles(*basePath)
+	if err != nil {
+		return err
+	}
+	for _, path := range paths {
+		rel, err := filepath.Rel(*basePath, path)
+		if err != nil {
+			rel = path
+		}
+		fmt.Println(filepath.ToSlash(rel))
+	}
+	return nil
+}
+
+func findXMLFiles(basePath string) ([]string, error) {
+	var paths []string
+	err := filepath.WalkDir(basePath, func(path string, entry os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if entry.IsDir() {
+			switch entry.Name() {
+			case ".git":
+				return filepath.SkipDir
+			}
+			return nil
+		}
+		if strings.EqualFold(filepath.Ext(path), ".xml") {
+			paths = append(paths, path)
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return dedupeStrings(paths), nil
+}
+
+func dedupeStrings(values []string) []string {
+	seen := map[string]bool{}
+	out := make([]string, 0, len(values))
+	for _, value := range values {
+		if seen[value] {
+			continue
+		}
+		seen[value] = true
+		out = append(out, value)
+	}
+	return out
+}
+
+func resolveTemplate(basePath, template string) string {
+	if template != "" {
+		return template
+	}
+	candidate := filepath.Join(basePath, "templates", "sysmon_template.xml")
+	if _, err := os.Stat(candidate); err == nil {
+		return candidate
+	}
+	return ""
+}
+
+func writeOutput(path string, data []byte) error {
+	if path == "-" {
+		_, err := os.Stdout.Write(data)
+		return err
+	}
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil && filepath.Dir(path) != "." {
+		return err
+	}
+	tmp, err := os.CreateTemp(filepath.Dir(path), ".sysmon-modular-*")
+	if err != nil {
+		return err
+	}
+	tmpName := tmp.Name()
+	defer func() { _ = os.Remove(tmpName) }()
+	if _, err = tmp.Write(data); err == nil {
+		err = tmp.Chmod(0o644)
+	}
+	if closeErr := tmp.Close(); err == nil {
+		err = closeErr
+	}
+	if err != nil {
+		return err
+	}
+	return os.Rename(tmpName, path)
+}
+
+type commandFlagSet struct {
+	*flag.FlagSet
+}
+
+func (fs *commandFlagSet) Parse(args []string) error {
+	// Defer usage output until the parser distinguishes help from invalid flags.
+	usage := fs.Usage
+	fs.Usage = func() {}
+	err := fs.FlagSet.Parse(args)
+	fs.Usage = usage
+	if errors.Is(err, flag.ErrHelp) {
+		printBanner(fs.Output())
+	}
+	if err != nil {
+		fs.Usage()
+	}
+	return err
+}
+
+func newFlagSet(name string) *commandFlagSet {
+	fs := flag.NewFlagSet(name, flag.ContinueOnError)
+	fs.SetOutput(os.Stderr)
+	fs.Usage = func() {
+		fmt.Fprintln(fs.Output(), versionString())
+		fmt.Fprintf(fs.Output(), "Usage of %s:\n", fs.Name())
+		fs.PrintDefaults()
+	}
+	return &commandFlagSet{FlagSet: fs}
+}
+
+func defaultBasePath() string {
+	if hasNumberedModuleDirs(".") {
+		return "."
+	}
+	if hasNumberedModuleDirs("..") {
+		return ".."
+	}
+	return "."
+}
+
+func hasNumberedModuleDirs(path string) bool {
+	entries, err := os.ReadDir(path)
+	if err != nil {
+		return false
+	}
+	for _, entry := range entries {
+		name := entry.Name()
+		if entry.IsDir() && len(name) > 0 && name[0] >= '0' && name[0] <= '9' {
+			return true
+		}
+	}
+	return false
+}
+
+func flagParseError(err error) error {
+	if errors.Is(err, flag.ErrHelp) {
+		return nil
+	}
+	return &commandError{code: exitUsage, err: err}
+}
+
+func printWarnings(warnings []string) int {
+	count := 0
+	for _, warning := range warnings {
+		if warning != "" {
+			fmt.Fprintln(os.Stderr, paint(ansiBold+ansiYellow, warning))
+			count++
+		}
+	}
+	return count
+}

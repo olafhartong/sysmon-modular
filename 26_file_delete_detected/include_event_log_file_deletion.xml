@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1685.005,technique_name=Clear Windows Event Logs" groupRelation="or">
+      <FileDeleteDetected onmatch="include">
+        <Rule groupRelation="and">
+          <TargetFilename condition="begin with">C:\Windows\System32\winevt\Logs\</TargetFilename>
+          <TargetFilename condition="end with">.evtx</TargetFilename>
+        </Rule>
+      </FileDeleteDetected>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

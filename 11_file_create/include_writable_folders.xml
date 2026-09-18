@@ -2,12 +2,12 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <FileCreate onmatch="include">
-        <TargetFilename name="technique_id=T1546.008,technique_name=Services File Permissions Weakness" condition="begin with">C:\Windows\Temp\</TargetFilename>
-        <TargetFilename name="technique_id=T1546.008,technique_name=Services File Permissions Weakness" condition="begin with">C:\Program\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Temp\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\PerfLogs\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="begin with">C:\Users\Public\</TargetFilename>
-        <TargetFilename name="technique_id=T1047,technique_name=File System Permissions Weakness" condition="contains">\AppData\Temp\</TargetFilename>
+        <TargetFilename name="technique_id=T1546.008,technique_name=Accessibility Features" condition="begin with">C:\Windows\Temp\</TargetFilename>
+        <TargetFilename name="technique_id=T1546.008,technique_name=Accessibility Features" condition="begin with">C:\Program\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Temp\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\PerfLogs\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="begin with">C:\Users\Public\</TargetFilename>
+        <TargetFilename name="technique_id=T1047,technique_name=Windows Management Instrumentation" condition="contains">\AppData\Temp\</TargetFilename>
       </FileCreate>
     </RuleGroup>
   </EventFiltering>

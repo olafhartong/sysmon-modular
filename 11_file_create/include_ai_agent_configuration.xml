@@ -1,0 +1,30 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="AI agent configuration and permissions" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename name="AI agent configuration: Codex" condition="end with">\.codex\config.toml</TargetFilename>
+        <Rule name="AI agent configuration: Codex execution rules" groupRelation="and">
+          <TargetFilename condition="contains">\.codex\rules\</TargetFilename>
+          <TargetFilename condition="end with">.rules</TargetFilename>
+        </Rule>
+        <!-- https://code.claude.com/docs/en/settings; includes permissions, hooks, and plugin settings. -->
+        <TargetFilename name="AI agent configuration: Claude Code settings" condition="end with">\.claude\settings.json</TargetFilename>
+        <TargetFilename name="AI agent configuration: Claude Code local settings" condition="end with">\.claude\settings.local.json</TargetFilename>
+        <TargetFilename name="AI agent configuration: Claude Code user state and MCP" condition="end with">\.claude.json</TargetFilename>
+        <TargetFilename name="AI agent configuration: Project MCP servers" condition="end with">\.mcp.json</TargetFilename>
+        <!-- https://cursor.com/help/customization/mcp -->
+        <TargetFilename name="AI agent configuration: Cursor MCP servers" condition="end with">\.cursor\mcp.json</TargetFilename>
+        <!-- https://github.com/google-gemini/gemini-cli/blob/main/docs/reference/configuration.md -->
+        <TargetFilename name="AI agent configuration: Gemini CLI settings" condition="end with">\.gemini\settings.json</TargetFilename>
+        <TargetFilename name="AI agent configuration: Gemini CLI extension" condition="end with">\gemini-extension.json</TargetFilename>
+        <!-- https://opencode.ai/docs/config/ -->
+        <TargetFilename name="AI agent configuration: OpenCode JSON" condition="end with">\opencode.json</TargetFilename>
+        <TargetFilename name="AI agent configuration: OpenCode JSONC" condition="end with">\opencode.jsonc</TargetFilename>
+        <!-- https://kiro.dev/docs/mcp/configuration/ -->
+        <TargetFilename name="AI agent configuration: Kiro MCP servers" condition="end with">\.kiro\settings\mcp.json</TargetFilename>
+        <!-- https://docs.openclaw.ai/concepts/agent-workspace; add custom state directories or named profiles as needed. -->
+        <TargetFilename name="AI agent configuration: OpenClaw" condition="end with">\.openclaw\openclaw.json</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

@@ -1,0 +1,15 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1685,technique_name=Disable or Modify Tools" groupRelation="or">
+      <ProcessTerminate onmatch="include">
+        <Image condition="image">MsMpEng.exe</Image>
+        <Image condition="image">MsSense.exe</Image>
+        <Image condition="image">SenseIR.exe</Image>
+        <Image condition="image">SenseNdr.exe</Image>
+        <Image condition="image">SecurityHealthService.exe</Image>
+        <Image condition="image">Sysmon.exe</Image>
+        <Image condition="image">Sysmon64.exe</Image>
+      </ProcessTerminate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

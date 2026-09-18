@@ -1,0 +1,10 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1685,technique_name=Disable or Modify Tools" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject condition="contains">\SOFTWARE\Microsoft\AMSI\Providers\</TargetObject>
+        <TargetObject condition="contains">\SOFTWARE\WOW6432Node\Microsoft\AMSI\Providers\</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

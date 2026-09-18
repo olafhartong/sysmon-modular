@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1685,technique_name=Disable or Modify Tools" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject condition="contains">\Control\WMI\Autologger\SenseAuditLogger\</TargetObject>
+        <TargetObject condition="contains">\Control\WMI\Autologger\SenseEventLog\</TargetObject>
+        <TargetObject condition="contains">\Control\WMI\Autologger\DefenderApiLogger\</TargetObject>
+        <TargetObject condition="contains">\Control\WMI\Autologger\DefenderAuditLogger\</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

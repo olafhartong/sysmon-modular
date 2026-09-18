@@ -1,0 +1,16 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Chrome and Edge extension side-loading" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule name="technique_id=T1176.001,technique_name=Browser Extensions" groupRelation="and">
+          <Image condition="image">chrome.exe</Image>
+          <CommandLine condition="contains any">--load-extension;--disable-extensions-except</CommandLine>
+        </Rule>
+        <Rule name="technique_id=T1176.001,technique_name=Browser Extensions" groupRelation="and">
+          <Image condition="image">msedge.exe</Image>
+          <CommandLine condition="contains any">--load-extension;--disable-extensions-except</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

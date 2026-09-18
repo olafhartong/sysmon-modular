@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1105,technique_name=Ingress Tool Transfer" groupRelation="or">
+      <FileExecutableDetected onmatch="include">
+        <Image condition="image">chrome.exe</Image>
+        <Image condition="image">msedge.exe</Image>
+        <Image condition="image">firefox.exe</Image>
+        <Image condition="image">iexplore.exe</Image>
+        <Image condition="image">brave.exe</Image>
+        <Image condition="image">opera.exe</Image>
+      </FileExecutableDetected>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

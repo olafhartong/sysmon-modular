@@ -1,0 +1,62 @@
+image,paths,note
+acroRd32.exe,C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe|C:\Program Files\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe,Adobe Acrobat Reader default install paths
+appcmd.exe,C:\Windows\System32\inetsrv\appcmd.exe|C:\Windows\SysWOW64\inetsrv\appcmd.exe,IIS command-line utility
+at.exe,C:\Windows\System32\at.exe,Windows command
+atbroker.exe,C:\Windows\System32\AtBroker.exe,Windows accessibility utility
+audiodg.exe,C:\Windows\System32\audiodg.exe,Windows audio device graph isolation
+bitsadmin.exe,C:\Windows\System32\bitsadmin.exe,Windows command
+bitsproxy.dll,C:\Windows\System32\bitsproxy.dll|C:\Windows\SysWOW64\bitsproxy.dll,BITS proxy module
+certutil.exe,C:\Windows\System32\certutil.exe|C:\Windows\SysWOW64\certutil.exe,Windows command
+cmd.exe,C:\Windows\System32\cmd.exe|C:\Windows\SysWOW64\cmd.exe,Windows command processor
+conhost.exe,C:\Windows\System32\conhost.exe|C:\Windows\SysWOW64\conhost.exe,Windows console host
+control.exe,C:\Windows\System32\control.exe|C:\Windows\SysWOW64\control.exe,Windows Control Panel
+csc.exe,C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe|C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe|C:\Windows\Microsoft.NET\Framework64\v3.5\csc.exe|C:\Windows\Microsoft.NET\Framework\v3.5\csc.exe,.NET Framework C# compiler
+cscript.exe,C:\Windows\System32\cscript.exe|C:\Windows\SysWOW64\cscript.exe,Windows Script Host console
+devtoolslauncher.exe,C:\Windows\System32\devtoolslauncher.exe,Windows developer tool launcher
+diskshadow.exe,C:\Windows\System32\diskshadow.exe,Windows Server Volume Shadow Copy utility
+displayswitch.exe,C:\Windows\System32\DisplaySwitch.exe|C:\Windows\SysWOW64\DisplaySwitch.exe,Windows projection utility
+dxcap.exe,C:\Windows\System32\dxcap.exe|C:\Windows\SysWOW64\dxcap.exe,DirectX capture utility
+eventvwr.exe,C:\Windows\System32\eventvwr.exe,Windows Event Viewer
+excel.exe,C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE|C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE|C:\Program Files\Microsoft Office\Office16\EXCEL.EXE|C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE,Microsoft Office Excel
+fodhelper.exe,C:\Windows\System32\fodhelper.exe,Windows Features on Demand helper
+forfiles.exe,C:\Windows\System32\forfiles.exe,Windows command
+ftp.exe,C:\Windows\System32\ftp.exe|C:\Windows\SysWOW64\ftp.exe,Windows command
+hh.exe,C:\Windows\System32\hh.exe|C:\Windows\SysWOW64\hh.exe,HTML Help executable
+magnify.exe,C:\Windows\System32\Magnify.exe,Windows accessibility utility
+mftrace.exe,C:\Windows\System32\mftrace.exe,Windows Media Foundation trace utility
+mmc.exe,C:\Windows\System32\mmc.exe|C:\Windows\SysWOW64\mmc.exe,Microsoft Management Console
+mpcmdrun.exe,C:\ProgramData\Microsoft\Windows Defender\Platform\<version>\MpCmdRun.exe|C:\Program Files\Windows Defender\MpCmdRun.exe|C:\Program Files\Microsoft Security Client\MpCmdRun.exe,Microsoft Defender command-line tool
+msaccess.exe,C:\Program Files\Microsoft Office\root\Office16\MSACCESS.EXE|C:\Program Files (x86)\Microsoft Office\root\Office16\MSACCESS.EXE|C:\Program Files\Microsoft Office\Office16\MSACCESS.EXE|C:\Program Files (x86)\Microsoft Office\Office16\MSACCESS.EXE,Microsoft Office Access
+mshta.exe,C:\Windows\System32\mshta.exe|C:\Windows\SysWOW64\mshta.exe,Microsoft HTML Application host
+mspub.exe,C:\Program Files\Microsoft Office\root\Office16\MSPUB.EXE|C:\Program Files (x86)\Microsoft Office\root\Office16\MSPUB.EXE|C:\Program Files\Microsoft Office\Office16\MSPUB.EXE|C:\Program Files (x86)\Microsoft Office\Office16\MSPUB.EXE,Microsoft Office Publisher
+mstask.dll,C:\Windows\System32\mstask.dll|C:\Windows\SysWOW64\mstask.dll,Task Scheduler module
+narrator.exe,C:\Windows\System32\Narrator.exe,Windows accessibility utility
+net.exe,C:\Windows\System32\net.exe|C:\Windows\SysWOW64\net.exe,Windows command
+net1.exe,C:\Windows\System32\net1.exe|C:\Windows\SysWOW64\net1.exe,Windows command
+osk.exe,C:\Windows\System32\osk.exe,Windows accessibility utility
+outlook.exe,C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE|C:\Program Files (x86)\Microsoft Office\root\Office16\OUTLOOK.EXE|C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE|C:\Program Files (x86)\Microsoft Office\Office16\OUTLOOK.EXE,Microsoft Office Outlook
+pcalua.exe,C:\Windows\System32\pcalua.exe,Windows Program Compatibility Assistant
+powershell.exe,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe|C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe,Windows PowerShell
+powershell_ise.exe,C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe|C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell_ise.exe,Windows PowerShell ISE
+powerpnt.exe,C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE|C:\Program Files (x86)\Microsoft Office\root\Office16\POWERPNT.EXE|C:\Program Files\Microsoft Office\Office16\POWERPNT.EXE|C:\Program Files (x86)\Microsoft Office\Office16\POWERPNT.EXE,Microsoft Office PowerPoint
+pwsh.exe,C:\Program Files\PowerShell\7\pwsh.exe|C:\Program Files (x86)\PowerShell\7\pwsh.exe,PowerShell 7
+reg.exe,C:\Windows\System32\reg.exe|C:\Windows\SysWOW64\reg.exe,Windows command
+regsvr32.exe,C:\Windows\System32\regsvr32.exe|C:\Windows\SysWOW64\regsvr32.exe,Windows command
+rundll32.exe,C:\Windows\System32\rundll32.exe|C:\Windows\SysWOW64\rundll32.exe,Windows command
+sc.exe,C:\Windows\System32\sc.exe|C:\Windows\SysWOW64\sc.exe,Windows command
+schtasks.exe,C:\Windows\System32\schtasks.exe|C:\Windows\SysWOW64\schtasks.exe,Windows command
+scrobj.dll,C:\Windows\System32\scrobj.dll|C:\Windows\SysWOW64\scrobj.dll,Windows Script Component runtime
+sethc.exe,C:\Windows\System32\sethc.exe,Windows accessibility utility
+syncappvpublishingserver.exe,C:\Windows\System32\SyncAppvPublishingServer.exe,Microsoft App-V publishing utility
+system.management.automation.dll,C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll,Windows PowerShell automation assembly
+utilman.exe,C:\Windows\System32\utilman.exe,Windows accessibility utility
+vstoinstaller.exe,C:\Program Files\Common Files\Microsoft Shared\VSTO\10.0\VSTOInstaller.exe|C:\Program Files (x86)\Common Files\Microsoft Shared\VSTO\10.0\VSTOInstaller.exe,Visual Studio Tools for Office installer
+wab.exe,C:\Program Files\Windows Mail\wab.exe|C:\Program Files (x86)\Windows Mail\wab.exe,Windows Contacts
+winword.exe,C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE|C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE|C:\Program Files\Microsoft Office\Office16\WINWORD.EXE|C:\Program Files (x86)\Microsoft Office\Office16\WINWORD.EXE,Microsoft Office Word
+wmic.exe,C:\Windows\System32\wbem\wmic.exe|C:\Windows\SysWOW64\wbem\wmic.exe,Windows Management Instrumentation command
+wmiprvse.exe,C:\Windows\System32\wbem\WmiPrvSE.exe|C:\Windows\SysWOW64\wbem\WmiPrvSE.exe,WMI provider host
+wmiutils.dll,C:\Windows\System32\wbem\wmiutils.dll|C:\Windows\SysWOW64\wbem\wmiutils.dll,WMI utility module
+wscript.exe,C:\Windows\System32\wscript.exe|C:\Windows\SysWOW64\wscript.exe,Windows Script Host GUI
+wshom.ocx,C:\Windows\System32\wshom.ocx|C:\Windows\SysWOW64\wshom.ocx,Windows Script Host object model
+wsl.exe,C:\Windows\System32\wsl.exe,Windows Subsystem for Linux launcher
+wsreset.exe,C:\Windows\System32\WSReset.exe,Microsoft Store reset utility

@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\EventLog\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

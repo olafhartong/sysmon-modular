@@ -3,11 +3,11 @@
 		<RuleGroup name="" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<!--Windows UAC tampering-->
-				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm --><!--MDE-->
-				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm --><!--MDE-->
+				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm --><!--MDE-->
+				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject> <!--Detect: UAC Tampering | Credit @ion-storm --><!--MDE-->
 				<TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUsername</TargetObject><!--MDE-->
-				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
-				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
+				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UacDisableNotify</TargetObject>
+				<TargetObject name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="begin with">HKLM\SOFTWARE\Microsoft\Security Center\UpdatesDisableNotify</TargetObject>
 				<TargetObject name="UACMe Dir Prep" condition="contains all">HKU;Environment</TargetObject>
 				<TargetObject name="UACMe Dir Prep" condition="contains all">HKLM;Environment</TargetObject>
 			</RegistryEvent>

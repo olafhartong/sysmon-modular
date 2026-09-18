@@ -1,0 +1,17 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important VS Code extension management" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule name="technique_id=T1176.002,technique_name=IDE Extensions" groupRelation="and">
+          <Image condition="image">Code.exe</Image>
+          <CommandLine condition="contains any">--install-extension;--update-extensions;--extensions-dir;--enable-proposed-api</CommandLine>
+        </Rule>
+        <Rule name="technique_id=T1176.002,technique_name=IDE Extensions" groupRelation="and">
+          <Image condition="image">Code - Insiders.exe</Image>
+          <CommandLine condition="contains any">--install-extension;--update-extensions;--extensions-dir;--enable-proposed-api</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
+

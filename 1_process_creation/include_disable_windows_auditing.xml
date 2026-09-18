@@ -1,0 +1,22 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important Windows auditing changes" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" groupRelation="and">
+          <OriginalFileName condition="is">auditpol.exe</OriginalFileName>
+          <CommandLine condition="contains">/clear</CommandLine>
+        </Rule>
+        <Rule name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" groupRelation="and">
+          <OriginalFileName condition="is">auditpol.exe</OriginalFileName>
+          <CommandLine condition="contains">/set</CommandLine>
+          <CommandLine condition="contains any">success:disable;failure:disable</CommandLine>
+        </Rule>
+        <Rule name="technique_id=T1685.001,technique_name=Disable or Modify Windows Event Log" groupRelation="and">
+          <OriginalFileName condition="is">wevtutil.exe</OriginalFileName>
+          <CommandLine condition="contains"> sl </CommandLine>
+          <CommandLine condition="contains">/e:false</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

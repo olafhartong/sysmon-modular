@@ -1,0 +1,69 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="AI agent and agentic tooling execution" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Image name="AI tooling: Google Antigravity IDE" condition="image">Antigravity IDE.exe</Image>
+        <Image name="AI tooling: Google Antigravity" condition="image">Antigravity.exe</Image>
+        <Image name="AI tooling: OpenAI ChatGPT" condition="image">ChatGPT.exe</Image>
+        <Image name="AI tooling: Anthropic Claude or Claude Code" condition="image">claude.exe</Image>
+        <Image name="AI tooling: OpenAI Codex" condition="image">codex.exe</Image>
+        <Image name="AI tooling: Microsoft or GitHub Copilot" condition="image">copilot.exe</Image>
+        <Image name="AI tooling: Cursor" condition="image">Cursor.exe</Image>
+        <Image name="AI tooling: Ollama" condition="image">ollama.exe</Image>
+        <Image name="AI tooling: Poe" condition="image">Poe.exe</Image>
+        <Image name="AI tooling: GitHub Copilot desktop" condition="contains all">\GitHub Copilot\;github.exe</Image>
+        <Image name="AI agent: OpenClaw" condition="image">openclaw.exe</Image>
+        <Image name="AI agent: OpenClaw legacy Clawdbot" condition="image">clawdbot.exe</Image>
+        <Image name="AI agent: OpenClaw legacy Moltbot" condition="image">moltbot.exe</Image>
+        <Image name="AI agent: Hermes Agent" condition="image">hermes.exe</Image>
+        <Image name="AI agent: OpenCode" condition="image">opencode.exe</Image>
+        <Image name="AI agent: OpenCode Desktop" condition="image">opencode-desktop.exe</Image>
+        <Image name="AI agent: Aider" condition="image">aider.exe</Image>
+        <Image name="AI agent: goose" condition="image">goose.exe</Image>
+        <Image name="AI agent: Gemini CLI" condition="image">gemini.exe</Image>
+        <Image name="AI agent: Qwen Code" condition="image">qwen.exe</Image>
+        <Image name="AI agent: Kiro IDE" condition="image">Kiro.exe</Image>
+        <Image name="AI agent: Kiro CLI" condition="image">kiro-cli.exe</Image>
+        <Image name="AI agent: Windsurf" condition="image">Windsurf.exe</Image>
+        <Image name="AI agent: Trae" condition="image">Trae.exe</Image>
+        <Image name="AI agent: Open Interpreter" condition="image">interpreter.exe</Image>
+        <Image name="AI agent: OpenHands" condition="image">openhands.exe</Image>
+        <Image name="AI agent: CrewAI" condition="image">crewai.exe</Image>
+        <!-- Windows executable names: https://app.factory.ai/cli/windows and https://github.com/Kilo-Org/kilocode/blob/main/packages/opencode/bin/kilo -->
+        <Image name="AI agent: Factory Droid" condition="image">droid.exe</Image>
+        <Image name="AI agent: Kilo Code" condition="image">kilo.exe</Image>
+        <!-- npm-installed agents run under node.exe; match package directories with either path separator. -->
+        <!-- https://docs.continue.dev/cli/quickstart -->
+        <Rule name="AI agent: Continue CLI" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@continuedev\cli\;/node_modules/@continuedev/cli/</CommandLine>
+        </Rule>
+        <!-- https://docs.augmentcode.com/cli/overview -->
+        <Rule name="AI agent: Augment Auggie" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@augmentcode\auggie\;/node_modules/@augmentcode/auggie/</CommandLine>
+        </Rule>
+        <!-- https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent -->
+        <Rule name="AI agent: Pi coding agent" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@earendil-works\pi-coding-agent\;/node_modules/@earendil-works/pi-coding-agent/;\node_modules\@mariozechner\pi-coding-agent\;/node_modules/@mariozechner/pi-coding-agent/</CommandLine>
+        </Rule>
+        <!-- https://github.com/google-gemini/gemini-cli/blob/main/packages/cli/package.json -->
+        <Rule name="AI agent: Gemini CLI via Node.js" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@google\gemini-cli\;/node_modules/@google/gemini-cli/</CommandLine>
+        </Rule>
+        <!-- https://github.com/QwenLM/qwen-code/blob/main/packages/cli/package.json -->
+        <Rule name="AI agent: Qwen Code via Node.js" groupRelation="and">
+          <Image condition="image">node.exe</Image>
+          <CommandLine condition="contains any">\node_modules\@qwen-code\qwen-code\;/node_modules/@qwen-code/qwen-code/</CommandLine>
+        </Rule>
+        <!-- Container launches visible from the Windows Docker CLI. -->
+        <Rule name="AI agent: containerized OpenClaw or OpenHands" groupRelation="and">
+          <Image condition="image">docker.exe</Image>
+          <CommandLine condition="contains any">ghcr.io/openclaw/openclaw;openclaw/openclaw;docker.openhands.dev/openhands/openhands;ghcr.io/openhands/agent-server</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

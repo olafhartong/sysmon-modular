@@ -8,12 +8,12 @@
         <OriginalFileName name="technique_id=T1569.002,technique_name=Service Execution" condition="is">PsExec.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1569.002,technique_name=Service Execution" condition="is">PsExec.c</OriginalFileName>        <!--Note: in some versions named like this -->
         <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsGetSID.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="is">PsKill.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1562.001,technique_name=Disable or Modify Tools" condition="is">PKill.exe</OriginalFileName>        <!--Note: in some versions named like this -->
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">ProcDump</OriginalFileName>        <!--Note: in some versions naming differs -->
+        <OriginalFileName name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="is">PsKill.exe</OriginalFileName>
+        <OriginalFileName name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="is">PKill.exe</OriginalFileName>        <!--Note: in some versions named like this -->
+        <OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">ProcDump</OriginalFileName>        <!--Note: in some versions naming differs -->
         <OriginalFileName name="technique_id=T1033,technique_name=System Owner/User Discovery" condition="is">PsLoggedOn.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">PsFile.exe</OriginalFileName>
-        <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="contains">ShellRunas</OriginalFileName>        <!--Note: in some versions naming differs -->
+        <OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="contains">ShellRunas</OriginalFileName>        <!--Note: in some versions naming differs -->
         <OriginalFileName name="technique_id=T1057,technique_name=Process Discovery" condition="is">PipeList.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1083,technique_name=File and Directory Discovery" condition="is">AccessChk.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1083,technique_name=File and Directory Discovery" condition="is">AccessEnum.exe</OriginalFileName>
@@ -24,9 +24,9 @@
         <OriginalFileName name="technique_id=T1098,technique_name=Account Manipulation" condition="is">PsPasswd.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="is">ru.exe</OriginalFileName>
         <OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="contains">Regsize</OriginalFileName>
-        <OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">ProcDump</OriginalFileName>        <!--Note: in some versions naming differs -->
-        <CommandLine name="technique_id=T1003,technique_name=Credential Dumping" condition="contains">-ma lsass.exe</CommandLine>
-        <CommandLine name="technique_id=T1036,technique_name=Process Evasion" condition="contains">-accepteula -ma</CommandLine>
+        <OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">ProcDump</OriginalFileName>        <!--Note: in some versions naming differs -->
+        <CommandLine name="technique_id=T1003,technique_name=OS Credential Dumping" condition="contains">-ma lsass.exe</CommandLine>
+        <CommandLine name="technique_id=T1036,technique_name=Masquerading" condition="contains">-accepteula -ma</CommandLine>
       </ProcessCreate>
     </RuleGroup>
   </EventFiltering>

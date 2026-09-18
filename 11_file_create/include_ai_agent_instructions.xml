@@ -1,0 +1,53 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="AI agent instructions and definitions" groupRelation="or">
+      <FileCreate onmatch="include">
+        <!-- Agent instruction files can appear at any level in a project. -->
+        <TargetFilename name="AI agent instructions: AGENTS.md" condition="end with">\AGENTS.md</TargetFilename>
+        <TargetFilename name="AI agent instructions: Claude Code" condition="end with">\CLAUDE.md</TargetFilename>
+        <TargetFilename name="AI agent instructions: Gemini CLI" condition="end with">\GEMINI.md</TargetFilename>
+        <!-- https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions -->
+        <TargetFilename name="AI agent instructions: GitHub Copilot" condition="end with">\.github\copilot-instructions.md</TargetFilename>
+        <Rule name="AI agent instructions: GitHub Copilot path-specific instructions" groupRelation="and">
+          <TargetFilename condition="contains">\.github\instructions\</TargetFilename>
+          <TargetFilename condition="end with">.instructions.md</TargetFilename>
+        </Rule>
+        <!-- https://cursor.com/docs/rules -->
+        <Rule name="AI agent instructions: Cursor rules" groupRelation="and">
+          <TargetFilename condition="contains">\.cursor\rules\</TargetFilename>
+          <TargetFilename condition="end with">.mdc</TargetFilename>
+        </Rule>
+        <!-- https://opencode.ai/docs/agents/ and https://opencode.ai/docs/commands/ -->
+        <Rule name="AI agent instructions: OpenCode agents and commands" groupRelation="and">
+          <TargetFilename condition="contains any">\.opencode\agents\;\.opencode\commands\;\.config\opencode\agents\;\.config\opencode\commands\</TargetFilename>
+          <TargetFilename condition="end with">.md</TargetFilename>
+        </Rule>
+        <!-- https://kiro.dev/docs/custom-agents/configuration-reference/ -->
+        <Rule name="AI agent instructions: Kiro agent definitions" groupRelation="and">
+          <TargetFilename condition="contains">\.kiro\agents\</TargetFilename>
+          <TargetFilename condition="end with">.json</TargetFilename>
+        </Rule>
+        <Rule name="AI agent instructions: Kiro steering" groupRelation="and">
+          <TargetFilename condition="contains">\.kiro\steering\</TargetFilename>
+          <TargetFilename condition="end with">.md</TargetFilename>
+        </Rule>
+        <!-- https://docs.cline.bot/customization/cline-rules; hooks are covered in include_ai_agent_hooks.xml. -->
+        <Rule name="AI agent instructions: Cline Markdown rules" groupRelation="and">
+          <TargetFilename condition="contains">\.clinerules\</TargetFilename>
+          <TargetFilename condition="end with">.md</TargetFilename>
+          <TargetFilename condition="excludes">\.clinerules\hooks\</TargetFilename>
+        </Rule>
+        <Rule name="AI agent instructions: Cline text rules" groupRelation="and">
+          <TargetFilename condition="contains">\.clinerules\</TargetFilename>
+          <TargetFilename condition="end with">.txt</TargetFilename>
+          <TargetFilename condition="excludes">\.clinerules\hooks\</TargetFilename>
+        </Rule>
+        <!-- https://docs.openclaw.ai/concepts/agent-workspace -->
+        <!-- Default OpenClaw workspace. Add paths for custom workspaces or named profiles. -->
+        <TargetFilename name="AI agent instructions: OpenClaw persona" condition="end with">\.openclaw\workspace\SOUL.md</TargetFilename>
+        <TargetFilename name="AI agent instructions: OpenClaw tools" condition="end with">\.openclaw\workspace\TOOLS.md</TargetFilename>
+        <TargetFilename name="AI agent instructions: OpenClaw heartbeat" condition="end with">\.openclaw\workspace\HEARTBEAT.md</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

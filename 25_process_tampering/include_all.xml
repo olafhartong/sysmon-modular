@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.50">
   <EventFiltering>
-    <RuleGroup name="" groupRelation="or">
+    <RuleGroup name="technique_id=T1055,technique_name=Process Injection" groupRelation="or">
       <ProcessTampering onmatch="exclude">
       </ProcessTampering>
     </RuleGroup>

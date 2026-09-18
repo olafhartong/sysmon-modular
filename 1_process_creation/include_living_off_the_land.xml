@@ -2,9 +2,9 @@
 	<EventFiltering>
 		<RuleGroup name="" groupRelation="or">
 			<ProcessCreate onmatch="include">
-				<OriginalFileName name="technique_id=T1546.008,technique_name=Windows Error Reporting" condition="contains">werfault.exe</OriginalFileName>
+				<OriginalFileName name="technique_id=T1546.008,technique_name=Accessibility Features" condition="contains">werfault.exe</OriginalFileName>
 
-				<OriginalFileName name="technique_id=T1574.002,technique_name=DLL Side-Loading" condition="is">odbcconf.exe</OriginalFileName> <!--Microsoft:Windows: allows for driver loads -->
+				<OriginalFileName name="technique_id=T1574.001,technique_name=DLL" condition="is">odbcconf.exe</OriginalFileName> <!--Microsoft:Windows: allows for driver loads -->
 
 				<!--Local code compilation-->
 				<Rule name="technique_id=T1027.004,technique_name=Compile After Delivery" groupRelation="and">
@@ -31,44 +31,44 @@
 				<!-- <OriginalFileName name="technique_id=T,technique_name=" condition="is">makecab.exe</OriginalFileName>
 				<OriginalFileName name="technique_id=T,technique_name=" condition="is">wusa.exe</OriginalFileName> -->
 
-				<OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
-				<CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">update;--download</CommandLine>
-				<CommandLine name="technique_id=T1105,technique_name=Remote File Copy" condition="contains all">squirrel;--download</CommandLine>
-				<OriginalFileName name="technique_id=T1105,technique_name=Remote File Copy" condition="is">expand.exe</OriginalFileName>
+				<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">GfxDownloadWrapper.exe</OriginalFileName>
+				<CommandLine name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="contains all">update;--download</CommandLine>
+				<CommandLine name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="contains all">squirrel;--download</CommandLine>
+				<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand.exe</OriginalFileName>
 
 				<OriginalFileName name="technique_id=T1564.001,technique_name=Hidden Files and Directories" condition="is">attrib.exe</OriginalFileName>
 				<OriginalFileName name="technique_id=T1543.003,technique_name=Windows Service" condition="is">sc.exe</OriginalFileName>
 
 				<OriginalFileName name="technique_id=T1040,technique_name=Network Sniffing" condition="is">PktMon.exe</OriginalFileName>
 
-				<Rule name="technique_id=T1003,technique_name=Credential Dumping" groupRelation="and">
+				<Rule name="technique_id=T1003,technique_name=OS Credential Dumping" groupRelation="and">
 					<!-- Extensible Storage Engine Utilities -->
 					<OriginalFileName condition="is">esentutl.exe</OriginalFileName>
 					<CommandLine condition="contains all">/y;/vss/d</CommandLine>
 				</Rule>
-				<OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">TTTracer.exe</OriginalFileName>
-				<OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">sqldumper.exe</OriginalFileName> <!-- Should rarely be ran -->
-				<Rule name="technique_id=T1003,technique_name=Credential Dumping" groupRelation="and">
+				<OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">TTTracer.exe</OriginalFileName>
+				<OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">sqldumper.exe</OriginalFileName> <!-- Should rarely be ran -->
+				<Rule name="technique_id=T1003,technique_name=OS Credential Dumping" groupRelation="and">
 					<!-- AD Dump with ntdsutil -->
 					<OriginalFileName condition="is">ntdsutil.exe</OriginalFileName>
 					<CommandLine condition="contains">ifm</CommandLine>
 				</Rule>
-				<ParentImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">diskshadow.exe</ParentImage> <!--This only applies to versions of Windows Server-->
-				<Rule name="technique_id=T1003,technique_name=Credential Dumping (Likely)" groupRelation="and">
+				<ParentImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">diskshadow.exe</ParentImage> <!--This only applies to versions of Windows Server-->
+				<Rule name="technique_id=T1003,technique_name=OS Credential Dumping" groupRelation="and">
 					<!-- Implementation of this Sigma detection https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/process_creation/win_susp_rpcping.yml --> 
 					<OriginalFileName condition="image">rpcping.exe</OriginalFileName>
 					<CommandLine condition="contains any">\s;-s</CommandLine>
 					<CommandLine condition="contains any">-u;\u;-t;\t</CommandLine>
 					<CommandLine condition="contains any">NTLM;ncacn_np</CommandLine>
 				</Rule>
-				<OriginalFileName name="technique_id=T1003,technique_name=Credential Dumping" condition="is">rpcping.exe</OriginalFileName>
+				<OriginalFileName name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">rpcping.exe</OriginalFileName>
 				
 				<Rule name="Ingress Tool Transfer" groupRelation="or">
 					<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">expand</OriginalFileName>
 					<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">IEExec.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">Print.Exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">curl.exe</OriginalFileName>
-					<ParentImage name="technique=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</ParentImage>
+					<ParentImage name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</ParentImage>
 				</Rule>
 
 				<!-- BELOW IS SORTED, not necessiarlly good -->
@@ -89,15 +89,15 @@
 				</Rule>
 
 				<Rule name="Scheduled Task/Job" groupRelation="or">
-					<OriginalFileName name="technique_id=T1053.005,technique_name=Scheduled Task/Job" condition="contains any">schtasks.exe;sctasks.exe</OriginalFileName>
-					<OriginalFileName name="technique=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1053.005,technique_name=Scheduled Task" condition="contains any">schtasks.exe;sctasks.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1053.002,technique_name=At" condition="contains any">at.exe;At.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskeng.exe</OriginalFileName>
 				</Rule>
 
 				<Rule name="File Permissions Modification" groupRelation="or">
-					<OriginalFileName name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="is">takeown.exe</OriginalFileName>
-					<Image name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="image">forfiles.exe</Image>
-					<OriginalFileName name="technique_id=T1222.001,technique_name=File Permissions Modification" condition="contains any">icacls.exe;cacls.exe;xcacls.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1222.001,technique_name=Windows Permissions" condition="is">takeown.exe</OriginalFileName>
+					<Image name="technique_id=T1222.001,technique_name=Windows Permissions" condition="image">forfiles.exe</Image>
+					<OriginalFileName name="technique_id=T1222.001,technique_name=Windows Permissions" condition="contains any">icacls.exe;cacls.exe;xcacls.exe</OriginalFileName>
 				</Rule>
 
 				<Rule name="Access Token Manipulation" groupRelation="or">
@@ -106,11 +106,11 @@
 				</Rule>
 
 				<Rule name="Bypass User Access Control" groupRelation="or">
-					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">WSReset.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">xwizard.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">computerdefaults.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">dism.exe</OriginalFileName>
-					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="is">fodhelper.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">WSReset.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">xwizard.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
+					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">computerdefaults.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">dism.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="is">fodhelper.exe</OriginalFileName>
@@ -206,7 +206,7 @@
 					<OriginalFileName name="technique_id=T1012,technique_name=Query Registry" condition="is any">reg.exe;regedit.exe</OriginalFileName>
 				</Rule>
 				<!-- SECTION: REMOVAL -->
-				<Rule name="technique_id=T1070.001,technique_name=Clear Windows Event Logs" groupRelation="and">
+				<Rule name="technique_id=T1685.005,technique_name=Clear Windows Event Logs" groupRelation="and">
 					<OriginalFileName condition="is">wevtutil.exe</OriginalFileName>
 					<CommandLine condition="contains any">cl;clear-log</CommandLine>
 				</Rule>
@@ -263,7 +263,7 @@
 				<ParentImage name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
 				<OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
 				<OriginalFileName name="technique_id=T1218.010,technique_name=Regsvr32" condition="is">regsvr32.exe</OriginalFileName> <!--Mitre T1218.010--> <!--Mitre T1085--> <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
-				<OriginalFileName name="technique_id=T1218.011,technique_name=rundll32.exe" condition="contains">rundll32.exe</OriginalFileName>
+				<OriginalFileName name="technique_id=T1218.011,technique_name=Rundll32" condition="contains">rundll32.exe</OriginalFileName>
 
 				<Rule name="System Binary Proxy Execution" groupRelation="or">
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">InfDefaultInstall.EXE</OriginalFileName>

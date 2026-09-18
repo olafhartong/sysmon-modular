@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important Chrome and Edge extension changes" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename name="technique_id=T1176.001,technique_name=Browser Extensions" condition="end with">.crx</TargetFilename>
+        <Rule name="technique_id=T1176.001,technique_name=Browser Extensions" groupRelation="and">
+          <TargetFilename condition="contains">\Google\Chrome\User Data\</TargetFilename>
+          <TargetFilename condition="contains">\Extensions\</TargetFilename>
+          <TargetFilename condition="end with">\manifest.json</TargetFilename>
+        </Rule>
+        <Rule name="technique_id=T1176.001,technique_name=Browser Extensions" groupRelation="and">
+          <TargetFilename condition="contains">\Microsoft\Edge\User Data\</TargetFilename>
+          <TargetFilename condition="contains">\Extensions\</TargetFilename>
+          <TargetFilename condition="end with">\manifest.json</TargetFilename>
+        </Rule>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
+

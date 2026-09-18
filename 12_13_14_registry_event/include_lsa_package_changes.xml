@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important LSA package changes" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject name="technique_id=T1547.002,technique_name=Authentication Package" condition="end with">\SYSTEM\CurrentControlSet\Control\Lsa\Authentication Packages</TargetObject>
+        <TargetObject name="technique_id=T1547.005,technique_name=Security Support Provider" condition="end with">\SYSTEM\CurrentControlSet\Control\Lsa\Security Packages</TargetObject>
+        <TargetObject name="technique_id=T1547.005,technique_name=Security Support Provider" condition="end with">\SYSTEM\CurrentControlSet\Control\Lsa\OSConfig\Security Packages</TargetObject>
+        <TargetObject name="technique_id=T1556.002,technique_name=Password Filter DLL" condition="end with">\SYSTEM\CurrentControlSet\Control\Lsa\Notification Packages</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

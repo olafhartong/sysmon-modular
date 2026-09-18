@@ -1,0 +1,18 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1136.001,technique_name=Local Account" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is any">net.exe;net1.exe</OriginalFileName>
+          <CommandLine condition="contains"> user </CommandLine>
+          <CommandLine condition="contains">/add</CommandLine>
+        </Rule>
+        <CommandLine condition="contains">New-LocalUser</CommandLine>
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is">wmic.exe</OriginalFileName>
+          <CommandLine condition="contains all">useraccount;call;create</CommandLine>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

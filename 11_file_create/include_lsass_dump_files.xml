@@ -1,0 +1,12 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important LSASS dump file creation" groupRelation="or">
+      <FileCreate onmatch="include">
+        <Rule name="technique_id=T1003.001,technique_name=LSASS Memory" groupRelation="and">
+          <Image condition="contains any">\rundll32.exe;\procdump.exe;\procdump64.exe;\taskmgr.exe;\werfault.exe;\createdump.exe</Image>
+          <TargetFilename condition="end with">.dmp</TargetFilename>
+        </Rule>
+      </FileCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

@@ -1,6 +1,6 @@
 <Sysmon schemaversion="4.30">
 	<EventFiltering>
-		<RuleGroup name="" groupRelation="or">
+		<RuleGroup name="technique_id=T1546.015,technique_name=Component Object Model Hijacking" groupRelation="or">
 			<RegistryEvent onmatch="include">
 				<!--Windows shell hijack-->
 				<TargetObject condition="contains">\Classes\AllFilesystemObjects</TargetObject>				<!--Microsoft:Windows:Explorer: [ http://www.silentrunners.org/launchpoints.html ] -->

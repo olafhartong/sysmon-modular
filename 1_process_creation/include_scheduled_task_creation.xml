@@ -1,0 +1,13 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1053.005,technique_name=Scheduled Task" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Rule groupRelation="and">
+          <OriginalFileName condition="is">schtasks.exe</OriginalFileName>
+          <CommandLine condition="contains any">/create;/change</CommandLine>
+        </Rule>
+        <CommandLine condition="contains any">Register-ScheduledTask;Set-ScheduledTask</CommandLine>
+      </ProcessCreate>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

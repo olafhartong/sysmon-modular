@@ -1,0 +1,5 @@
+# Remove modules selected through directory entries in the include list.
+# These are examples of environment-specific choices.
+3_network_connection_initiated/include_hp_critical_services.xml
+3_network_connection_initiated/include_hybrid_connection_manager.xml
+5_process_ended/include_users_and_temp_folders.xml

@@ -2,7 +2,7 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <ImageLoad onmatch="include">
-        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task" condition="is">taskschd.dll</OriginalFileName>
+        <OriginalFileName name="technique_id=T1053,technique_name=Scheduled Task/Job" condition="is">taskschd.dll</OriginalFileName>
       </ImageLoad>
     </RuleGroup>
   </EventFiltering>

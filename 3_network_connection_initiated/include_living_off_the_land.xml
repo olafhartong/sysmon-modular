@@ -13,14 +13,14 @@
           <Image name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</Image>
           <Image name="technique_id=T1218.010,technique_name=Regsvr32" condition="image">regsvr32.exe</Image>          <!--Mitre T1218.010-->          <!--Mitre T1218.011-->          <!--Microsoft:Windows: [ https://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html ] -->
           <Image name="technique_id=T1518.001,technique_name=Security Software Discovery" condition="image">netsh.exe</Image>          <!--Mitre T1016-->          <!--Mitre T1546.007-->          <!--Mitre T1518.001-->          <!--Microsoft:Windows: manipulate the firewall -->
-          <Image name="technique_id=T1548.002,technique_name=Bypass User Access Control" condition="image">xwizard.exe</Image>          <!--https://bohops.com/2018/08/18/abusing-the-com-registry-structure-part-2-loading-techniques-for-evasion-and-persistence/ -->
+          <Image name="technique_id=T1548.002,technique_name=Bypass User Account Control" condition="image">xwizard.exe</Image>          <!--https://bohops.com/2018/08/18/abusing-the-com-registry-structure-part-2-loading-techniques-for-evasion-and-persistence/ -->
           <Image name="technique_id=T1564.004,technique_name=NTFS File Attributes" condition="image">esentutl.exe</Image>          <!--https://lolbas-project.github.io/lolbas/Binaries/Esentutl/ Multiple options-->
           <Image name="technique_id=T1112,technique_name=Modify Registry" condition="image">reg.exe</Image>          <!--Mitre T1552.002-->          <!--Mitre T1012-->          <!--Mitre T1112-->          <!--Microsoft:Windows: reads and modifies the Windows register -->
           <Image name="technique_id=T1134,technique_name=Access Token Manipulation" condition="image">runas.exe</Image>          <!--Microsoft:Windows: run a process as another user -->
           <Image name="technique_id=T1069,technique_name=Permission Groups Discovery" condition="image">net1.exe</Image>          <!--Mitre T1018-->          <!--Mitre T1021.002-->          <!--Mitre T1087-->          <!--Mitre T1135-->          <!--Mitre T1069-->          <!--Mitre T1016-->          <!--Microsoft:Windows: Launched by "net.exe", but it may not detect connections either -->
-          <Image name="technique_id=T1070,technique_name=Indicator Removal on Host" condition="image">wevtutil.exe</Image>          <!--Microsoft:Windows: read and modify the Windows Eventlog -->
+          <Image name="technique_id=T1070,technique_name=Indicator Removal" condition="image">wevtutil.exe</Image>          <!--Microsoft:Windows: read and modify the Windows Eventlog -->
         </Rule>
-        <Image name="technique_id=T1003,technique_name=Credential Dumping" condition="image">RpcPing.exe</Image>        <!--https://lolbas-project.github.io/lolbas/Binaries/Rpcping/ -->
+        <Image name="technique_id=T1003,technique_name=OS Credential Dumping" condition="image">RpcPing.exe</Image>        <!--https://lolbas-project.github.io/lolbas/Binaries/Rpcping/ -->
         <Rule name="Discovery" groupRelation="or">
           <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">ipconfig.exe</Image>          <!--Microsoft:Windows: shows ip configuration -->
           <Image name="technique_id=T1016,technique_name=System Network Configuration Discovery" condition="image">nbtstat.exe</Image>          <!--Microsoft:Windows: NetBIOS statistics, attackers use to enumerate local network -->
@@ -48,10 +48,10 @@
           <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">pcalua.exe</Image>          <!--Microsoft:Windows: Program Compatibility Assistant)-->
           <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">winrs.exe</Image>
           <Image name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">wscript.exe</Image>
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">Msdt.exe</Image>          <!--https://lolbas-project.github.io/lolbas/Binaries/Msdt/-->
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">msiexec.exe</Image>
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">RegisterCimProvider.exe</Image>
-          <Image name="technique_id=T1218,technique_name=Signed Binary Proxy Execution" condition="image">ScriptRunner.exe</Image>
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">Msdt.exe</Image>          <!--https://lolbas-project.github.io/lolbas/Binaries/Msdt/-->
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">msiexec.exe</Image>
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">RegisterCimProvider.exe</Image>
+          <Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">ScriptRunner.exe</Image>
           <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">dfsvc.exe</Image>          <!--https://lolbas-project.github.io/lolbas/Binaries/Dfsvc/-->
         </Rule>
         <Rule name="Services" groupRelation="or">

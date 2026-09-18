@@ -1,0 +1,9 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="technique_id=T1490,technique_name=Inhibit System Recovery" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject condition="begin with">HKLM\BCD00000000\Objects\</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

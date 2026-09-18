@@ -1,0 +1,11 @@
+<Sysmon schemaversion="4.90">
+  <EventFiltering>
+    <RuleGroup name="Mission-important executable payloads in VS Code extensions" groupRelation="or">
+      <FileExecutableDetected onmatch="include">
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="contains all">\Users\;\.vscode\extensions\</TargetFilename>
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="contains all">\Users\;\.vscode-insiders\extensions\</TargetFilename>
+        <TargetFilename name="technique_id=T1176.002,technique_name=IDE Extensions" condition="contains">\Microsoft VS Code\bootstrap\extensions\</TargetFilename>
+      </FileExecutableDetected>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
