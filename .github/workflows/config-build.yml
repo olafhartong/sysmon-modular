@@ -181,6 +181,7 @@ jobs:
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           tag="configs-${GITHUB_SHA::12}"
           title="Generated Sysmon configurations (${GITHUB_SHA::12})"
