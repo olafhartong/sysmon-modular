@@ -1,0 +1,20 @@
+<Sysmon schemaversion="4.30">
+  <!-- Capture all hashes -->
+  <HashAlgorithms>*</HashAlgorithms>
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="exclude">
+        <Rule groupRelation="and">
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Roaming\Zoom\bin\;dll</ImageLoaded>
+          <Image condition="begin with">C:\Windows\System32\</Image>
+          <Company condition="contains">Zoom Video Communications</Company>
+        </Rule>
+        <Rule groupRelation="and">
+          <ImageLoaded condition="contains all">C:\Users\;\AppData\Roaming\Zoom\bin\;dll</ImageLoaded>
+          <Image condition="contains all">C:\Users\;\AppData\Roaming\Zoom\bin\;exe</Image>
+          <Company condition="contains">Zoom Video Communications</Company>
+        </Rule>
+      </ImageLoad>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
