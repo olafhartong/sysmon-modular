@@ -3,7 +3,7 @@
         <RuleGroup name="" groupRelation="or">
             <ProcessCreate onmatch="include">
                 <!-- Include All -->
-                <OriginalFileName condition="contains">\</OriginalFileName>
+                <Image condition="contains">\</Image>
             </ProcessCreate>
         </RuleGroup>
     </EventFiltering>
