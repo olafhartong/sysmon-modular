@@ -2,8 +2,8 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <FileExecutableDetected onmatch="include">
-        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">wsmprovhost.exe</Image>
-        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="is">winrshost.exe</Image>
+        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">wsmprovhost.exe</Image>
+        <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">winrshost.exe</Image>
         <Image name="technique_id=T1021.006,technique_name=Windows Remote Management" condition="image">winrm.cmd</Image>
       </FileExecutableDetected>
     </RuleGroup>

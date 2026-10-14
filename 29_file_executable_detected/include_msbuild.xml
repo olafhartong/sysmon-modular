@@ -2,7 +2,7 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <FileExecutableDetected onmatch="include">
-        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">MSBuild.exe</Image>
+        <Image name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">MSBuild.exe</Image>
       </FileExecutableDetected>
     </RuleGroup>
   </EventFiltering>

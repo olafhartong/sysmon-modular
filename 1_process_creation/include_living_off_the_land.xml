@@ -8,12 +8,12 @@
 
 				<!--Local code compilation-->
 				<Rule name="technique_id=T1027.004,technique_name=Compile After Delivery" groupRelation="and">
-					<ParentImage condition="is">csc.exe</ParentImage>
+					<ParentImage condition="image">csc.exe</ParentImage>
 					<CommandLine condition="contains">-target:library</CommandLine>
 					<CommandLine condition="contains">.cs</CommandLine>
 				</Rule>
 				<Rule name="technique_id=T1027.004,technique_name=Compile After Delivery" groupRelation="and">
-					<ParentImage condition="is">csc.exe</ParentImage> 
+					<ParentImage condition="image">csc.exe</ParentImage>
 					<CommandLine condition="contains">-out:</CommandLine>
 					<CommandLine condition="contains">.cs</CommandLine>
 				</Rule>
@@ -53,7 +53,7 @@
 					<OriginalFileName condition="is">ntdsutil.exe</OriginalFileName>
 					<CommandLine condition="contains">ifm</CommandLine>
 				</Rule>
-				<ParentImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="is">diskshadow.exe</ParentImage> <!--This only applies to versions of Windows Server-->
+				<ParentImage name="technique_id=T1003,technique_name=OS Credential Dumping" condition="image">diskshadow.exe</ParentImage> <!--This only applies to versions of Windows Server-->
 				<Rule name="technique_id=T1003,technique_name=OS Credential Dumping" groupRelation="and">
 					<!-- Implementation of this Sigma detection https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/process_creation/win_susp_rpcping.yml --> 
 					<OriginalFileName condition="image">rpcping.exe</OriginalFileName>
@@ -68,7 +68,7 @@
 					<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">IEExec.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">Print.Exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">curl.exe</OriginalFileName>
-					<ParentImage name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="is">ftp.exe</ParentImage>
+					<ParentImage name="technique_id=T1105,technique_name=Ingress Tool Transfer" condition="image">ftp.exe</ParentImage>
 				</Rule>
 
 				<!-- BELOW IS SORTED, not necessiarlly good -->
@@ -226,7 +226,7 @@
 				</Rule>
 				<!-- SECTION: EXECUTION -->
 				<Rule name="technique_id=T1202,technique_name=Indirect Command Execution" groupRelation="and">
-					<ParentImage condition="is">hh.exe</ParentImage> <!--Always build overlapping detections, PEs -->
+					<ParentImage condition="image">hh.exe</ParentImage> <!--Always build overlapping detections, PEs -->
 					<CommandLine condition="contains">.exe</CommandLine>
 				</Rule>
 				<Rule name="Indirect Command Execution" groupRelation="or">
@@ -241,7 +241,7 @@
 					<OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">winrs.exe</OriginalFileName>
 					<ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">control.exe</ParentImage> <!-- https://twitter.com/rikvduijn/status/853251879320662017 -->
 					<OriginalFileName name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">desktopimgdownldr.exe</OriginalFileName>
-					<ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="is">wsl.exe</ParentImage>
+					<ParentImage name="technique_id=T1202,technique_name=Indirect Command Execution" condition="image">wsl.exe</ParentImage>
 				</Rule>
 
 				<Rule name="System Script Proxy Execution" groupRelation="or">
@@ -258,7 +258,7 @@
 				</Rule>
 
 				<OriginalFileName name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</OriginalFileName> <!--Microsoft:Windows: HTML Helper-->
-				<ParentImage name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="is">hh.exe</ParentImage> <!--Microsoft:Windows: HTML Helper-->
+				<ParentImage name="technique_id=T1218.001,technique_name=Compiled HTML File" condition="image">hh.exe</ParentImage> <!--Microsoft:Windows: HTML Helper-->
 				<OriginalFileName name="technique_id=T1218.004,technique_name=InstallUtil" condition="is">installutil.exe</OriginalFileName>
 				<ParentImage name="technique_id=T1218.005,technique_name=Mshta" condition="image">mshta.exe</ParentImage>
 				<OriginalFileName name="technique_id=T1218.005,technique_name=Mshta" condition="is">mshta.exe</OriginalFileName>
@@ -278,8 +278,8 @@
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">ScriptRunner.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">verclsid.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wab.exe</OriginalFileName>
-					<ParentImage name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wab.exe</ParentImage>
-					<ParentImage name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">wsreset.exe</ParentImage>
+					<ParentImage name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">wab.exe</ParentImage>
+					<ParentImage name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">wsreset.exe</ParentImage>
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">xwizard RunWizard</CommandLine>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Appvlp.exe</OriginalFileName>
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">bginfo</CommandLine>
@@ -288,7 +288,7 @@
 					<ParentCommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">csi.exe</ParentCommandLine>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">csi.exe</OriginalFileName>
 					<ParentCommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">devtoolslauncher.exe LaunchForDeploy</ParentCommandLine>
-					<ParentImage name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">devtoolslauncher.exe</ParentImage>
+					<ParentImage name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">devtoolslauncher.exe</ParentImage>
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">runscripthelper.exe surfacecheck</CommandLine>
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">Scriptrunner.exe -appvscript</CommandLine>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains">Scriptrunner.exe</OriginalFileName>
@@ -296,7 +296,7 @@
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">msdt.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">rasautou.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">Register-cimprovider.exe</OriginalFileName>
-					<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">diskshadow.exe</Image> <!--This only applies to versions of Windows Server-->
+					<Image name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="image">diskshadow.exe</Image> <!--This only applies to versions of Windows Server-->
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">diskshadow.exe;/s</CommandLine> <!--This only applies to versions of Windows Server-->
 					<CommandLine name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="contains all">diskshadow.exe;-s</CommandLine> <!--This only applies to versions of Windows Server-->
 					<OriginalFileName name="technique_id=T1218,technique_name=System Binary Proxy Execution" condition="is">replace.exe</OriginalFileName>
@@ -311,15 +311,15 @@
 					<OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">csc.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dfsvc.exe</OriginalFileName>
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">msdeploy.exe -verb:sync -source:RunCommand</CommandLine>
-					<ParentImage name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">mftrace.exe</ParentImage>
-					<ParentImage name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">dxcap.exe</ParentImage>
+					<ParentImage name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">mftrace.exe</ParentImage>
+					<ParentImage name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">dxcap.exe</ParentImage>
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains all">dxcap.exe;-c</CommandLine>
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains all">dxcap.exe;/c</CommandLine>
 					<OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">ilasm.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">jsc.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">vbc.exe</OriginalFileName>
 					<OriginalFileName name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">Microsoft.Workflow.Compiler.exe</OriginalFileName>
-					<ParentImage name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="is">vsjitdebugger.exe</ParentImage>
+					<ParentImage name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="image">vsjitdebugger.exe</ParentImage>
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains">vsjitdebugger</CommandLine>
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains all">update.exe;--update</CommandLine>
 					<CommandLine name="technique_id=T1127,technique_name=Trusted Developer Utilities Proxy Execution" condition="contains all">update.exe;--ProcessStart</CommandLine>
