@@ -133,7 +133,7 @@ python scripts/merge_sysmon_configs.py \
 
 The script forces `RuleGroup` relations to `or` by default. Use
 `--no-force-grouprelation-or` to preserve them. This differs from the Go
-merger's default, which preserves each source group's relation.
+merger's default, which keeps an `and` group's meaning as a `Rule` element.
 
 This older script does not implement the Go workflow's target-version handling
 or dedicated MDE-augment and excludes-only profiles. Review its output before

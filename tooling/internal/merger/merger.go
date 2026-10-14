@@ -74,8 +74,6 @@ func Merge(paths []string, opts Options) (*Result, error) {
 			if opts.ForceGroupRelationOr {
 				clone.SetAttr("groupRelation", "or")
 			}
-			// Preserve each RuleGroup as a semantic unit. Flattening groups by event
-			// changes the meaning of groupRelation="and" and loses group names.
 			groups = append(groups, clone)
 		})
 		if !foundRuleGroup {
@@ -94,9 +92,86 @@ func Merge(paths []string, opts Options) (*Result, error) {
 		eventFiltering = sysmonxml.Element("EventFiltering", nil)
 		out.Root.Children = append(out.Root.Children, eventFiltering)
 	}
+	merged, err := consolidate(groups)
+	if err != nil {
+		return nil, err
+	}
 	eventFiltering.Children = nil
-	eventFiltering.Children = append(eventFiltering.Children, groups...)
+	eventFiltering.Children = append(eventFiltering.Children, merged...)
 	return &Result{Document: out, Warnings: warnings, Inputs: paths}, nil
+}
+
+// Keeps rule groups together to prevent Sysmon from loading only the first include and exclude filter. Fixes olafhartong/sysmon-modular#226.
+func consolidate(groups []*sysmonxml.Node) ([]*sysmonxml.Node, error) {
+	type filterKey struct{ event, onmatch string }
+	filters := map[filterKey]*sysmonxml.Node{}
+	var order []filterKey
+	for _, group := range groups {
+		groupName := group.AttrValue("name")
+		and := strings.EqualFold(group.AttrValue("groupRelation"), "and")
+		var pending []*sysmonxml.Node
+		var last *sysmonxml.Node
+		for _, child := range group.Children {
+			if child.Name == "" {
+				// Keep a comment with the filter that follows it.
+				pending = append(pending, child)
+				continue
+			}
+			key := filterKey{child.Name, strings.ToLower(child.AttrValue("onmatch"))}
+			filter, ok := filters[key]
+			if !ok {
+				filter = &sysmonxml.Node{Name: child.Name, Line: child.Line, Attr: child.Attr}
+				filters[key] = filter
+				order = append(order, key)
+			}
+			rules, err := groupRules(child, groupName, and)
+			if err != nil {
+				return nil, err
+			}
+			filter.Children = append(filter.Children, pending...)
+			filter.Children = append(filter.Children, rules...)
+			pending = nil
+			last = filter
+		}
+		if last != nil {
+			last.Children = append(last.Children, pending...)
+		}
+	}
+	out := make([]*sysmonxml.Node, 0, len(order))
+	for _, key := range order {
+		out = append(out, sysmonxml.Element("RuleGroup", map[string]string{"name": "", "groupRelation": "or"}, filters[key]))
+	}
+	return out, nil
+}
+
+// groupRules returns the children of one source filter as they must appear inside an
+// "or" RuleGroup.
+func groupRules(filter *sysmonxml.Node, groupName string, and bool) ([]*sysmonxml.Node, error) {
+	rules := filter.ElementChildren()
+	if !and || len(rules) < 2 {
+		for _, rule := range rules {
+			if groupName != "" && rule.AttrValue("name") == "" {
+				rule.SetAttr("name", groupName)
+			}
+		}
+		return filter.Children, nil
+	}
+	combined := sysmonxml.Element("Rule", map[string]string{"groupRelation": "and"})
+	if groupName != "" {
+		combined.SetAttr("name", groupName)
+	}
+	for _, child := range filter.Children {
+		if child.Name != "Rule" {
+			combined.Children = append(combined.Children, child)
+			continue
+		}
+		// A nested Rule can only be flattened when it is an "and" Rule as well.
+		if !strings.EqualFold(child.AttrValue("groupRelation"), "and") {
+			return nil, fmt.Errorf("line %d: cannot merge a %s Rule that is not groupRelation=\"and\" into an \"and\" RuleGroup", child.Line, filter.Name)
+		}
+		combined.Children = append(combined.Children, child.Children...)
+	}
+	return []*sysmonxml.Node{combined}, nil
 }
 
 func baseDocument(template string, preserveComments bool) (*sysmonxml.Document, error) {

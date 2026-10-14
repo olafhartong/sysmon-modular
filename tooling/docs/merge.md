@@ -1,6 +1,6 @@
 # `merge`
 
-`merge` combines Sysmon module XML files while keeping each `RuleGroup` intact. It can select modules directly, through text include and exclude lists, or from a priority file. By default it validates source syntax and the merged Sysmon structure, targets Sysmon 15, and writes XML to standard output.
+`merge` combines Sysmon module XML files into one filter for each event and `onmatch` value. It can select modules directly, through text include and exclude lists, or from a priority file. By default it validates source syntax and the merged Sysmon structure, targets Sysmon 15, and writes XML to standard output.
 
 ```text
 sysmon-modular merge [flags]
@@ -61,7 +61,15 @@ Keeps XML comments from source modules and the template. The default is `false`,
 
 `--force-grouprelation-or`
 
-Changes every merged `RuleGroup` to `groupRelation="or"`. The default preserves each group's original relation. Use this only when you deliberately want to change how conditions inside all groups combine.
+Treats every source `RuleGroup` as `groupRelation="or"`. By default, a group with `groupRelation="and"` keeps its meaning as a `Rule` element, as described below. Use this only when you deliberately want to change how conditions inside all groups combine.
+
+### One filter per event
+
+Sysmon applies only the first include filter and the first exclude filter it finds for an event, so a second `RuleGroup` with the same event and `onmatch` value is ignored ([#226](https://github.com/olafhartong/sysmon-modular/issues/226)). The merger therefore writes one `RuleGroup` per event and `onmatch` value, in order of first appearance, and places every module's rules for that pair inside it:
+
+- A source group's `name` moves onto each of its rules that has no `name` of its own, so ATT&CK metadata and the reported `RuleName` stay the same.
+- A source group with `groupRelation="and"` and more than one rule becomes a single `<Rule groupRelation="and">`. A nested `Rule` inside such a group must also be an `and` Rule; anything else stops the merge with an error.
+- An empty filter adds no rules. On its own it still switches an include filter off or logs an exclude filter in full.
 
 ## Validation and compatibility
 

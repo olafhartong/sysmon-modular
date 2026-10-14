@@ -1,10 +1,13 @@
 package merger
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/olafhartong/sysmon-modular/tooling/internal/sysmonxml"
 )
 
 func TestMergeCombinesEventChildrenAndHighestSchema(t *testing.T) {
@@ -25,8 +28,8 @@ func TestMergeCombinesEventChildrenAndHighestSchema(t *testing.T) {
 	if !strings.Contains(out, `schemaversion="4.90"`) {
 		t.Fatalf("expected highest schema version, got:\n%s", out)
 	}
-	if strings.Count(out, "<ProcessCreate") != 2 || strings.Count(out, "<RuleGroup") != 2 {
-		t.Fatalf("expected source rule groups to remain separate, got:\n%s", out)
+	if strings.Count(out, "<ProcessCreate") != 1 || strings.Count(out, "<RuleGroup") != 1 {
+		t.Fatalf("expected one filter for the shared event and onmatch value, got:\n%s", out)
 	}
 	if !strings.Contains(out, "cmd.exe") || !strings.Contains(out, "/c") {
 		t.Fatalf("expected merged children, got:\n%s", out)
@@ -49,6 +52,85 @@ func TestMergePreservesRuleGroupSemantics(t *testing.T) {
 		if !strings.Contains(out, want) {
 			t.Fatalf("missing %s in:\n%s", want, out)
 		}
+	}
+}
+
+func writeModules(t *testing.T, modules ...string) []string {
+	t.Helper()
+	dir := t.TempDir()
+	var paths []string
+	for i, module := range modules {
+		path := filepath.Join(dir, fmt.Sprintf("m%d.xml", i))
+		if err := os.WriteFile(path, []byte(module), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		paths = append(paths, path)
+	}
+	return paths
+}
+
+func TestMergeKeepsOneFilterPerEventAndOnmatch(t *testing.T) {
+	paths := writeModules(t,
+		`<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup name="" groupRelation="or"><ProcessCreate onmatch="include"/></RuleGroup><RuleGroup name="" groupRelation="or"><PipeEvent onmatch="exclude"/></RuleGroup></EventFiltering></Sysmon>`,
+		`<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup name="technique_id=T1059,technique_name=Command and Scripting Interpreter" groupRelation="or"><ProcessCreate onmatch="include"><Image condition="image">cmd.exe</Image><Image name="own" condition="image">pwsh.exe</Image></ProcessCreate></RuleGroup></EventFiltering></Sysmon>`,
+		`<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup name="" groupRelation="or"><ProcessCreate onmatch="exclude"><Image condition="is">C:\a.exe</Image></ProcessCreate></RuleGroup><RuleGroup name="" groupRelation="or"><PipeEvent onmatch="exclude"><PipeName condition="is">\x</PipeName></PipeEvent></RuleGroup></EventFiltering></Sysmon>`,
+	)
+	result, err := Merge(paths, Options{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	counts := map[string]int{}
+	result.Document.Root.Walk(func(n *sysmonxml.Node) {
+		if n.Name == "RuleGroup" {
+			if len(n.ElementChildren()) != 1 {
+				t.Errorf("each RuleGroup must hold one filter, got %d", len(n.ElementChildren()))
+			}
+			for _, f := range n.ElementChildren() {
+				counts[f.Name+"/"+f.AttrValue("onmatch")]++
+			}
+		}
+	})
+	want := map[string]int{"ProcessCreate/include": 1, "ProcessCreate/exclude": 1, "PipeEvent/exclude": 1}
+	if fmt.Sprint(counts) != fmt.Sprint(want) {
+		t.Fatalf("filters per event and onmatch = %v, want %v", counts, want)
+	}
+	out := result.Document.String()
+	for _, want := range []string{`condition="image" name="technique_id=T1059,technique_name=Command and Scripting Interpreter">cmd.exe`, `name="own"`, `\x</PipeName>`} {
+		if !strings.Contains(out, want) {
+			t.Fatalf("missing %s in:\n%s", want, out)
+		}
+	}
+	if strings.Count(out, "technique_id=T1059") != 1 {
+		t.Fatalf("a rule with its own name must keep it, got:\n%s", out)
+	}
+}
+
+func TestMergeTurnsAndGroupsIntoRules(t *testing.T) {
+	paths := writeModules(t,
+		`<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup name="pair" groupRelation="and"><ProcessCreate onmatch="include"><Image condition="image">cmd.exe</Image><Rule groupRelation="and"><CommandLine condition="contains">/c</CommandLine></Rule></ProcessCreate></RuleGroup></EventFiltering></Sysmon>`,
+		`<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup name="" groupRelation="or"><ProcessCreate onmatch="include"><Image condition="image">wscript.exe</Image></ProcessCreate></RuleGroup></EventFiltering></Sysmon>`,
+	)
+	result, err := Merge(paths, Options{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	out := result.Document.String()
+	for _, want := range []string{`<Rule groupRelation="and" name="pair">`, "cmd.exe", "/c", "wscript.exe"} {
+		if !strings.Contains(out, want) {
+			t.Fatalf("missing %s in:\n%s", want, out)
+		}
+	}
+	if strings.Count(out, "<Rule ") != 1 || strings.Count(out, "<ProcessCreate") != 1 {
+		t.Fatalf("expected the and group as one Rule in one filter, got:\n%s", out)
+	}
+}
+
+func TestMergeRejectsOrRuleInsideAndGroup(t *testing.T) {
+	paths := writeModules(t,
+		`<Sysmon schemaversion="4.90"><EventFiltering><RuleGroup groupRelation="and"><ProcessCreate onmatch="include"><Image condition="image">cmd.exe</Image><Rule groupRelation="or"><CommandLine condition="contains">/c</CommandLine></Rule></ProcessCreate></RuleGroup></EventFiltering></Sysmon>`,
+	)
+	if _, err := Merge(paths, Options{}); err == nil {
+		t.Fatal("expected an error for an or Rule inside an and RuleGroup")
 	}
 }
 
