@@ -2,8 +2,8 @@
   <EventFiltering>
     <RuleGroup name="" groupRelation="or">
       <RegistryEvent onmatch="include">
-        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\SysmonDrv</TargetObject>        <!--Mitre -->        <!--Mitre T1562.006-->
-        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">SYSTEM\CurrentControlSet\services\Sysmon</TargetObject>        <!--Mitre -->        <!--Mitre T1562.006-->
+        <!--Sysmon's service and driver keys, such as Sysmon64 and SysmonDrv, under CurrentControlSet or any ControlSet00x-->
+        <TargetObject name="technique_id=T1685,technique_name=Disable or Modify Tools" condition="contains">\Services\Sysmon</TargetObject>
       </RegistryEvent>
     </RuleGroup>
   </EventFiltering>
