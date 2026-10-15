@@ -1,0 +1,14 @@
+<Sysmon schemaversion="4.30">
+  <!-- Capture all hashes -->
+  <HashAlgorithms>*</HashAlgorithms>
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="include">
+        <Rule name="Office Process Creation" groupRelation="and">
+          <SourceImage condition="contains all">C:\Program Files;\Microsoft Office\Root\Office</SourceImage>
+          <CallTrace condition="contains">C:\Windows\System32\KERNELBASE.dll+76516</CallTrace>
+        </Rule>
+      </ProcessAccess>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
