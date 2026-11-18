@@ -1,0 +1,58 @@
+<Sysmon schemaversion="4.30">
+<EventFiltering>
+	<RuleGroup name="" groupRelation="or">
+		<FileCreate onmatch="include">
+			<!-- Ransomare can leave notes on the filesystem, explaining their recovery process. These are some common filenames for these ransomware instructions -->
+			<TargetFilename condition="contains">decrypt all files</TargetFilename>
+			<TargetFilename condition="contains">_h_e_l_p_recover_instructions</TargetFilename>
+			<TargetFilename condition="contains">@please_read_me@</TargetFilename>
+			<TargetFilename condition="contains">-read-for-hellpp.html</TargetFilename>
+			<TargetFilename condition="contains">readme_decrypt_hydra_id_</TargetFilename>
+			<TargetFilename condition="contains">readme_decrypt_umbre_id_</TargetFilename>
+			<TargetFilename condition="contains">-sorry-for-files.html</TargetFilename>
+			<TargetFilename condition="contains">@wanadecryptor@.exe</TargetFilename>
+			<TargetFilename condition="end with">attention.rtf</TargetFilename>
+			<TargetFilename condition="end with">bitcryptorfilelist.txt</TargetFilename>
+			<TargetFilename condition="end with">buyunlockcode</TargetFilename>
+			<TargetFilename condition="end with">coin.locker.txt</TargetFilename>
+			<TargetFilename condition="end with">cryptinfo.txt</TargetFilename>
+			<TargetFilename condition="end with">cryptlogfile.txt</TargetFilename>
+			<TargetFilename condition="end with">decrypt_instructions.html</TargetFilename>
+			<TargetFilename condition="end with">decrypt_instruction.txt</TargetFilename>
+			<TargetFilename condition="end with"># decrypt my files #.html</TargetFilename>
+			<TargetFilename condition="end with"># decrypt my files #.txt</TargetFilename>
+			<TargetFilename condition="end with"># decrypt my files #.vbs</TargetFilename>
+			<TargetFilename condition="end with">decrypt_readme.txt.readme</TargetFilename>
+			<TargetFilename condition="end with">decrypt_your_files.html</TargetFilename>
+			<TargetFilename condition="end with">exit.hhr.obleep</TargetFilename>
+			<TargetFilename condition="end with">filesaregone.txt</TargetFilename>
+			<TargetFilename condition="end with">getyoufiles.txt</TargetFilename>
+			<TargetFilename condition="end with">hellothere.txt</TargetFilename>
+			<TargetFilename condition="end with">help_decrypt.txt</TargetFilename>
+			<TargetFilename condition="end with">help_decrypt_your_files.html</TargetFilename>
+			<TargetFilename condition="end with">*-help_for_decrypt_file.html</TargetFilename>
+			<TargetFilename condition="end with">help_to_save_files.txt</TargetFilename>
+			<TargetFilename condition="end with">help_yourfiles.html</TargetFilename>
+			<TargetFilename condition="end with">howdecrypt.gif</TargetFilename>
+			<TargetFilename condition="end with">how_decrypt.txt</TargetFilename>
+			<TargetFilename condition="end with">how to decrypt files.html</TargetFilename>
+			<TargetFilename condition="end with">how-to-decrypt-files.html</TargetFilename>
+			<TargetFilename condition="end with">how to decrypt files.txt</TargetFilename>
+			<TargetFilename condition="end with">how_to_decrypt.html</TargetFilename>
+			<TargetFilename condition="end with">how to get data.txt</TargetFilename>
+			<TargetFilename condition="end with">important read me.txt</TargetFilename>
+			<TargetFilename condition="end with">kryptolocker_readme.txt</TargetFilename>
+			<TargetFilename condition="end with">_locky_recover_instructions.txt</TargetFilename>
+			<TargetFilename condition="end with">nefilim-decrypt.txt</TargetFilename>
+			<TargetFilename condition="end with">qwer2.html</TargetFilename>
+			<TargetFilename condition="end with">qwer.html</TargetFilename>
+			<TargetFilename condition="end with">readdecryptfileshere.txt</TargetFilename>
+			<TargetFilename condition="end with">read if you want your files back.html</TargetFilename>
+			<TargetFilename condition="end with">ryukreadme.html</TargetFilename>
+			<TargetFilename condition="end with">unblockfiles.vbs</TargetFilename>
+			<TargetFilename condition="end with">your_files_are_encrypted.html</TargetFilename>
+			<TargetFilename condition="end with">your_files.url</TargetFilename>
+		</FileCreate>
+	</RuleGroup>
+</EventFiltering>
+</Sysmon>
