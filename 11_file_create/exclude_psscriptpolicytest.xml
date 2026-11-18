@@ -11,6 +11,11 @@
                <TargetFilename condition="contains all">C:\Windows\Temp;__PSScriptPolicyTest;.ps1</TargetFilename>
                <User condition="is">NT AUTHORITY\SYSTEM</User>
             </Rule>
+            <Rule groupRelation="and">
+               <Image condition="is">C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe</Image> 
+               <TargetFilename condition="contains all">C:\Windows\Temp;__PSScriptPolicyTest;.ps1</TargetFilename>
+               <User condition="is">NT AUTHORITY\SYSTEM</User>
+            </Rule>
          </FileCreate>
       </RuleGroup>
    </EventFiltering>
