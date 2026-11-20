@@ -3,11 +3,26 @@
     <RuleGroup name="" groupRelation="or">
       <PipeEvent onmatch="exclude">
         <PipeName condition="is">\ntapvsrq</PipeName>
-        <PipeName condition="is">\srvsvc</PipeName>
-        <PipeName condition="is">\wkssvc</PipeName>
-        <PipeName condition="is">\lsass</PipeName>
-        <PipeName condition="is">\winreg</PipeName>
-        <PipeName condition="is">\spoolss</PipeName>
+        <Rule groupRelation="and">
+          <PipeName condition="is">\srvsvc</PipeName>
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <PipeName condition="is">\wkssvc</PipeName>
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <PipeName condition="is">\lsass</PipeName>
+          <Image condition="is">C:\Windows\System32\lsass.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <PipeName condition="is">\winreg</PipeName>
+          <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+        </Rule>
+        <Rule groupRelation="and">
+          <PipeName condition="is">\spoolss</PipeName>
+          <Image condition="is">C:\Windows\System32\spoolsv.exe</Image>
+        </Rule>
         <PipeName condition="is">&lt;Anonymous Pipe&gt;</PipeName>
         <Image condition="is">c:\windows\system32\inetsrv\w3wp.exe</Image>
       </PipeEvent>
