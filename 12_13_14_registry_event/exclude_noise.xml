@@ -5,7 +5,6 @@
                 <!--COMMENT:    Taken from SwiftOnSecurity sysmonconfig, see notes below -->
                 <!--COMMENT:	Remove low-information noise. Often these hide a procress recreating an empty key and do not hide the values created subsequently.-->
                 <!--NOTE:	A lot of noise can be removed by excluding CreateKey events, which are largely innocuous-->
-                <TargetObject condition="contains">\{CAFEEFAC-</TargetObject>
                 <EventType condition="is">CreateKey</EventType>
                 <TargetObject condition="begin with">HKLM\COMPONENTS</TargetObject>
             </RegistryEvent>
